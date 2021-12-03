@@ -33,11 +33,12 @@ public class Lieu implements Serializable, Comparable<Lieu> {
 	private Long id;
 
 	@Column(name = "label", length = 35)
-	@NotNull(message = "Le nom de lieu ne doit pas être vide")
+	@NotNull(message = "Le nom de lieu ne doit pas être vide ")
 	@Length(min = 4, max = 35, message = "le nom de lieu doit être entre 4 et 35")
 	private String label;
 
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@NotNull(message = "Vous devez selectionner un voyage")
 	private Voyage voyage;
 
 	public Lieu(String label, Voyage voyage) {

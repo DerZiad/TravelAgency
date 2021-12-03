@@ -51,17 +51,15 @@ public class Activite implements Serializable, Comparable<Activite> {
 			CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "activite", targetEntity = SousActivite.class)
 	private List<SousActivite> sousActivites = new ArrayList<SousActivite>();
 
-	/*
-	 * @ManyToOne(cascade =
-	 * {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-	 * 
-	 * @JsonIgnore private Voyage voyage;
-	 */
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@JsonIgnore
+	private Voyage voyage;
+
 	public Activite(String nomActivite, String description, Voyage voyage) {
 		super();
 		this.nomActivite = nomActivite;
 		this.description = description;
-		// this.voyage = voyage;
+		 this.voyage = voyage;
 	}
 
 	@Override
