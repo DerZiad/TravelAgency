@@ -57,7 +57,6 @@ public class ForumCleaner implements Runnable {
 			int hour = rightNow.get(Calendar.HOUR_OF_DAY);
 			int minute = rightNow.get(Calendar.MINUTE);
 			if ((hour == DELAI_HOURS && minute == DELAI_MINUTES )) {
-				System.out.println("Start JOB ");
 				Job cleaner = cleanForum();
 				
 				try {
