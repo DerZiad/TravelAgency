@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -88,7 +89,10 @@ public class Personne implements Serializable, Comparable<Personne> {
 
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	private Equipe equipe = null;
-
+	
+	@OneToMany(cascade= {CascadeType.ALL},mappedBy = "person")
+	private List<Reservation> reservations = new ArrayList<Reservation>();
+	
 	@Override
 	public int compareTo(Personne o) {
 		return cne.compareTo(o.getCne());

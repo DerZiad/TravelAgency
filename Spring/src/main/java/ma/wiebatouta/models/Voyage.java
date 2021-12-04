@@ -6,11 +6,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -28,6 +32,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "voyages")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="TYPE_VOYAGE",discriminatorType = DiscriminatorType.STRING)
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -93,6 +100,10 @@ public class Voyage {
 	@JsonIgnore
 	private Equipe equipe;
 
+	
+	@OneToMany(cascade= {CascadeType.ALL},mappedBy = "voyage")
+	private List<Reservation> reservations = new ArrayList<Reservation>();
+	
 	public Voyage(Integer ageMax, Integer ageMin, Date dateArrivee, Date dateDepart, String description,
 			int nombrePersonneEnGroupe, int nombrePersonneTotal, double prix, boolean reduction, String titre,
 			byte[] trajet) {

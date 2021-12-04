@@ -5,9 +5,12 @@ package ma.wiebatouta.models;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,11 +27,13 @@ public class Reservation implements Serializable,Comparable<Reservation>,Statist
 	
 	private static final long serialVersionUID = 1L;
 
-
+	@EmbeddedId
 	private KeyReservation id = new KeyReservation();
 	
-	
+	@Column
 	boolean isConfirmed = false;
+	
+	@Column
 	boolean isReserved = false;
 	
 	/**
@@ -37,13 +42,15 @@ public class Reservation implements Serializable,Comparable<Reservation>,Statist
 	
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	@MapsId("idVoyage")
-	private Voyage product;
+	private Voyage voyage;
 	
 	
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	@MapsId("idPerson")
 	private Personne person;
 	
+	@OneToOne(cascade = {CascadeType.ALL})
+	private Feedback feedback = new Feedback();
 	
 	@Override
 	public int compareTo(Reservation o) {
