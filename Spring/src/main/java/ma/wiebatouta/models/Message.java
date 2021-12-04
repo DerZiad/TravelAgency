@@ -34,6 +34,8 @@ public class Message {
 	@Length(min=5,max=35,message="Le sujet doit être entre 5 et 35 caractères")
 	private String sujet;
 	
+	private long startTime = System.currentTimeMillis();
+	
 	
 	/**
 	 * Relations
