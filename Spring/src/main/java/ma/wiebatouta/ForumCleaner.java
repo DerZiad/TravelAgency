@@ -10,13 +10,13 @@ import ma.wiebatoute.repositories.MessageRepository;
 @Service
 public class ForumCleaner implements Runnable{
 	
-	@Autowired
+	/*@Autowired
 	private MessageRepository messageRepository;
-	
-	@Bean
+	*/
+	/*@Bean
 	public Job cleanForum() {
 		return null;
-	}
+	}*/
 	
 	@Override
 	public void run() {

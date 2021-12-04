@@ -58,7 +58,7 @@ public class User implements UserDetails, Serializable, Comparable<User> {
 	private boolean credentialsNonExpired = true;
 	private boolean enabled = true;
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "user",targetEntity = User.class)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "user",targetEntity = Message.class)
 	private List<Message> messages = new ArrayList<Message>();
 
 	@Override

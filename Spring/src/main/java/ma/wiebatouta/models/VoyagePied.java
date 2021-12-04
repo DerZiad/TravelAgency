@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VoyagePied {
+public class VoyagePied extends Voyage{
 	@Column
 	private double nbKilometre ;
 }

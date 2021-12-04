@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VoyageCircuit {
+public class VoyageCircuit extends Voyage{
 	@Column
 	private double nbCircuit ;
 }

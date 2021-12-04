@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VoyageDecouverte {
+public class VoyageDecouverte extends Voyage{
 	
 	@Column
 	private int nbLieuxDecouverte;
