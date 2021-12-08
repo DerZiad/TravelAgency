@@ -4,11 +4,11 @@ public enum ServerRole {
 	ADMIN("ADMIN", "/admin"), CLIENT("CLIENT", "/client");
 
 	private String role;
-	private String path;
+	private String space;
 
-	private ServerRole(String role, String path) {
+	private ServerRole(String role, String space) {
 		this.role = role;
-		this.path = path;
+		this.space = space;
 	}
 
 	public String getRole() {
@@ -19,12 +19,12 @@ public enum ServerRole {
 		this.role = role;
 	}
 
-	public String getPath() {
-		return path;
+	public String getSpace() {
+		return space;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setSpace(String space) {
+		this.space = space;
 	}
 
 }
