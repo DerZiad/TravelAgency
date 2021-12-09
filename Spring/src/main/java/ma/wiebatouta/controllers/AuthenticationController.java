@@ -53,7 +53,7 @@ public class AuthenticationController {
 		return model;
 	}
 	
-	@GetMapping("/admin/")
+	@GetMapping("/admin")
 	public ModelAndView getIndexAdmin() {
 		List<Voyage> voyages = voyageRepository.findAll();
 		List<Hotel> hotels = hotelRepository.findAll();

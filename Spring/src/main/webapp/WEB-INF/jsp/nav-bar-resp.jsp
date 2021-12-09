@@ -40,49 +40,21 @@
 				<li><a href="/" class="${dashboard}"> <i
 						class="metismenu-icon pe-7s-rocket"></i> Tableau de bords
 				</a></li>
-				<li><a href="/resp/mafiliere" class="${MaFiliere}"> <i
-						class="metismenu-icon pe-7s-rocket"></i> Ma Filiere
-				</a></li>
-				<li><a href="/resp/mesmodules" class="${MesModules}"> <i
-						class="metismenu-icon pe-7s-rocket"></i> Mes Modules
-				</a></li>
-				<li><a href="/resp/mesetudiants" class="${MesEtudiants}"> <i
-						class="metismenu-icon pe-7s-rocket"></i> Mes Etudiants
-				</a></li>
 				<li><a href="#" aria-expanded="false"> <i
-						class="metismenu-icon pe-7s-id"></i> Note Element de module <i
+						class="metismenu-icon pe-7s-id"></i> Voyage <i
 						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
 				</a>
 					<ul class="mm-collapse" style="height: 7.04px;">
 						<li><a href="/note/choix"
 					class="${choixElement}"> <i
-						class="metismenu-icon pe-7s-graph3"></i> Ajouter une Note
+						class="metismenu-icon pe-7s-graph3"></i> Ajouter theme
 				</a></li>
 						<li><a href="/note/choixList"
 					class="${choixElementList}"> <i
-						class="metismenu-icon pe-7s-graph3"></i> List des Note
+						class="metismenu-icon pe-7s-graph3"></i> Ajouter activite
 				</a></li>
 					</ul></li>
-				
-				<li><a href="#" aria-expanded="false"> <i
-						class="metismenu-icon pe-7s-id"></i>Deliberation<i
-						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-				</a>
-					<ul class="mm-collapse" style="height: 7.04px;">
-				<li><a href="/delib/choixList"
-					class="${importdelib}"> <i
-						class="metismenu-icon pe-7s-graph3"></i> Resultat Deliberation module
-				</a></li>	
-				<li><a href="/delib/choixListSemestre"
-					class="${importdelib}"> <i
-						class="metismenu-icon pe-7s-graph3"></i> Resultat Deliberation semestre
-				</a></li>
-				<li><a href="/delib/choixListEtape"
-					class="${importdelib}"> <i
-						class="metismenu-icon pe-7s-graph3"></i> Resultat Deliberation anuelle
-				</a></li>
-						
-					</ul></li>
+		
 					
 				<li><a href="/logout"
 					class=""> <i
