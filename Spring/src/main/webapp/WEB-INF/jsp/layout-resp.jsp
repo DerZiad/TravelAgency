@@ -51,6 +51,7 @@
 			<!-- scripts -->
 			<jsp:include page="scripts.jsp"></jsp:include>
 		</div>
+		<jsp:include page="hotel/modalHotel.jsp"></jsp:include>
 	</div>
 	<script type="text/javascript" src="/delibdesign/assets/scripts/main.js"></script>
 </body>
