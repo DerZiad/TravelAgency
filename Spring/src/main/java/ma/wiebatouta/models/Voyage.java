@@ -23,6 +23,7 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -40,10 +41,10 @@ public class Voyage {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(length = 150)
-	@Length(min = 1, max = 150, message = "L'age est entre 1 et 150 maximum")
+	@Range(min = 1, max = 150, message = "L'age est entre 1 et 150 maximum")
 	private Integer ageMax;
 	@Column(length = 150)
-	@Length(min = 1, max = 150, message = "L'age est entre 1 et 150 minimum")
+	@Range(min = 1, max = 150, message = "L'age est entre 1 et 150 minimum")
 	private Integer ageMin;
 	@NotNull(message = "La date d'arrivée ne doit pas être vide")
 	@Future(message = "La date d'arrivée ne doit pas être dans le passé")
@@ -55,11 +56,11 @@ public class Voyage {
 	@NotNull(message = "La description ne doit pas être vide")
 	@Length(min = 9, max = 600, message = "La description doît être entre 9 et 600")
 	private String description;
-	@Length(min = 1, message = "Le nombre de personne en groupe doît être au moins 1")
+	@Range(min = 1, message = "Le nombre de personne en groupe doît être au moins 1")
 	private int nombrePersonneEnGroupe;
-	@Length(min = 0, message = "Le nombre de personne en groupe doît être au moins 1")
+	@Range(min = 0, message = "Le nombre de personne en groupe doît être au moins 1")
 	private int nombrePersonneTotal;
-	@Length(min = 0, message = "Le prix doit être 0 ou supérieur à 0")
+	@Range(min = 0, message = "Le prix doit être 0 ou supérieur à 0")
 	private double prix;
 	private boolean reduction = false;
 	@Column(length = 45)

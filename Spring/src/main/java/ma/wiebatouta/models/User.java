@@ -51,7 +51,7 @@ public class User implements UserDetails, Serializable, Comparable<User> {
 	private String username;
 	private String password;
 
-	private String roles;
+	private String roles = "";
 
 	private boolean accountNonExpired = true;
 	private boolean accountNonLocked = true;

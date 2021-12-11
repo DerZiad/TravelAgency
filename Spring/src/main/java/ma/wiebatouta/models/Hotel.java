@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,15 +40,15 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 
 	@Column(name = "nombreetoiles", nullable = false)
 	@NotNull(message = "Le nombre d'étoile ne doit pas être vide")
-	@Length(min = 1, max = 5, message = "Le nombre d'étoile doit être entre 1 et 5")
-	private int nombreEtoile;
+	@Range (min = 1, max = 5, message = "Le nombre d'étoile doit être entre 1 et 5")
+	private Integer nombreEtoile;
 	@Column(name = "nomhotel", nullable = false)
 	@NotNull(message = "Le nombre d'étoile ne doit pas être vide")
 	@Length(min = 1, max = 30, message = "Le nom d'Hotel doit être entre 1 et 30 caractères")
 	private String nomHotel;
 	@Column(name = "ville", nullable = false)
 	@NotNull(message = "Le nom de la ville ne doit pas être vide")
-	@Length(min = 4, max = 35, message = "Le nom de la ville doit être entre 1 et 30")
+	@Length(min = 1, max = 30, message = "Le nom de la ville doit être entre 1 et 30")
 	private String ville;
 
 	/**

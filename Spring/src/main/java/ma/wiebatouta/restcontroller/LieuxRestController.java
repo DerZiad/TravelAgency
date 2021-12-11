@@ -2,6 +2,8 @@ package ma.wiebatouta.restcontroller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +16,13 @@ import ma.wiebatouta.metier.LieuxMetier;
 import ma.wiebatouta.models.Lieu;
 
 @RestController
-@RequestMapping("/lieux")
+@RequestMapping("/api/lieux")
 public class LieuxRestController {
 	@Autowired
 	private LieuxMetier lm ;
 	
 	@GetMapping
+	@RolesAllowed("ADMIN")
 	public ModelAndView listeLieux(){
 		ModelAndView model = new ModelAndView("/hotel/index");
 		List<Lieu> lieux = lm.listeLieux();
@@ -29,6 +32,7 @@ public class LieuxRestController {
 	}
 	
 	@PostMapping
+	@RolesAllowed("ADMIN")
 	public Lieu saveLieu(@RequestBody Lieu l) {
 		return lm.save(l);
 	}
