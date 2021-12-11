@@ -27,6 +27,9 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private CountryInitializer countryInitializer;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AgenceVoyageApplication.class, args);
 	}
@@ -47,6 +50,14 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 		}else {
 			System.out.println("[ + ] - Admin not initialized");
 		}
+		
+		if(countryInitializer.isEmpty()) {
+			System.out.println("[ + ] - Remplissage de base de données");
+			countryInitializer.remplirBaseDonnee();
+		}else {
+			System.out.println("[ ! ] - La base de données est plein");
+		}
+		
 	}
 
 }

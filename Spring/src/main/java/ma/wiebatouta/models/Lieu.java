@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -40,18 +41,26 @@ public class Lieu implements Serializable, Comparable<Lieu> {
 	@Length(min = 4, max = 35, message = "le nom de lieu doit être entre 4 et 35")
 	private String label;
 
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@NotNull(message = "Le lieu doit avoir au moins un pays")
+	private Country country;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Hotel.class)
+	private List<Hotel> hotel = new ArrayList<Hotel>();
+
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	private List<Voyage> voyages = new ArrayList<Voyage>();
-
-	public Lieu(String label, List<Voyage> voyages) {
-		super();
-		this.label = label;
-		this.voyages = voyages;
-	}
 
 	@Override
 	public int compareTo(Lieu o) {
 		return label.compareTo(o.getLabel());
+	}
+
+	public Lieu(Long id, String label, Country country) {
+		super();
+		this.id = id;
+		this.label = label;
+		this.country = country;
 	}
 
 }

@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -47,10 +48,6 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 	@NotNull(message = "Le nombre d'étoile ne doit pas être vide")
 	@Length(min = 1, max = 30, message = "Le nom d'Hotel doit être entre 1 et 30 caractères")
 	private String nomHotel;
-	@Column(name = "ville", nullable = false)
-	@NotNull(message = "Le nom de la ville ne doit pas être vide")
-	@Length(min = 1, max = 30, message = "Le nom de la ville doit être entre 1 et 30")
-	private String ville;
 
 	/**
 	 * Voyages
@@ -62,16 +59,15 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "hotel",fetch = FetchType.LAZY,targetEntity = Picture.class)
 	private List<Picture> pictures = new ArrayList<Picture>();
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE,CascadeType.DETACH},fetch = FetchType.EAGER,targetEntity = Lieu.class)
+	@NotNull(message = "L'hotel doit avoir au moins une ville")
+	private Lieu ville;
+	
 	@Override
 	public int compareTo(Hotel o) {
 		return nomHotel.compareTo(nomHotel);
 	}
 
-	public Hotel(int nombreEtoile, String nomHotel, String ville) {
-		super();
-		this.nombreEtoile = nombreEtoile;
-		this.nomHotel = nomHotel;
-		this.ville = ville;
-	}
+	
 
 }
