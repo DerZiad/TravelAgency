@@ -32,8 +32,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "voyages")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TYPE_VOYAGE",discriminatorType = DiscriminatorType.STRING)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name="TYPE_VOYAGE",discriminatorType = DiscriminatorType.STRING)
 
 @Data
 @NoArgsConstructor
@@ -71,7 +71,10 @@ public class Voyage {
 	private String titre;
 	@NotNull(message = "Le trajet ne doit pas être vide")
 	private byte[] trajet;
-
+	@Column
+	private double nbKilometres;
+	@Column
+	private int nbrPersonnes;
 	/**
 	 * Relations
 	 */
@@ -80,8 +83,8 @@ public class Voyage {
 	@JsonIgnore
 	private List<Hotel> hoteles = new ArrayList<Hotel>();
 
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Theme.class)
-	private List<Theme> themes = new ArrayList<Theme>();
+	/*@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Theme.class)
+	private List<Theme> themes = new ArrayList<Theme>();*/
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Picture.class)
 	private List<Picture> pictures = new ArrayList<Picture>();
@@ -89,8 +92,8 @@ public class Voyage {
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Activite.class)
 	private List<Activite> activites = new ArrayList<Activite>();
 
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Lieu.class)
-	private List<Lieu> lieux = new ArrayList<Lieu>();
+	/*@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Lieu.class)
+	private List<Lieu> lieux = new ArrayList<Lieu>();*/
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE,
 			CascadeType.DETACH }, mappedBy = "voyages", targetEntity = Personne.class)
