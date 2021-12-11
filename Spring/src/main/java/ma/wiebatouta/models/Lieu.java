@@ -1,6 +1,8 @@
 package ma.wiebatouta.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -37,14 +40,13 @@ public class Lieu implements Serializable, Comparable<Lieu> {
 	@Length(min = 4, max = 35, message = "le nom de lieu doit être entre 4 et 35")
 	private String label;
 
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@NotNull(message = "Vous devez selectionner un voyage")
-	private Voyage voyage;
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	private List<Voyage> voyages = new ArrayList<Voyage>();
 
-	public Lieu(String label, Voyage voyage) {
+	public Lieu(String label, List<Voyage> voyages) {
 		super();
 		this.label = label;
-		this.voyage = voyage;
+		this.voyages = voyages;
 	}
 
 	@Override
