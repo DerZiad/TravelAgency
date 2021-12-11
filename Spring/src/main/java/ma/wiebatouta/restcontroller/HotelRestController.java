@@ -1,5 +1,12 @@
 package ma.wiebatouta.restcontroller;
 
-public class HotelRestController {
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+public class HotelRestController {
+	
+	//@PostMapping("/api/hotel/add")
+	
 }

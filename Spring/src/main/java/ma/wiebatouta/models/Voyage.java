@@ -80,7 +80,8 @@ public class Voyage {
 	@JsonIgnore
 	private List<Hotel> hoteles = new ArrayList<Hotel>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE }, mappedBy = "voyages", targetEntity = Theme.class,fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,
+			CascadeType.MERGE }, mappedBy = "voyages", targetEntity = Theme.class, fetch = FetchType.LAZY)
 	private List<Theme> themes = new ArrayList<Theme>();
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Picture.class)
@@ -89,7 +90,8 @@ public class Voyage {
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Activite.class)
 	private List<Activite> activites = new ArrayList<Activite>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE }, mappedBy = "voyages", targetEntity = Lieu.class,fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,
+			CascadeType.MERGE }, mappedBy = "voyages", targetEntity = Lieu.class, fetch = FetchType.LAZY)
 	private List<Lieu> lieux = new ArrayList<Lieu>();
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE,
@@ -100,10 +102,9 @@ public class Voyage {
 	@JsonIgnore
 	private Equipe equipe;
 
-	
-	@OneToMany(cascade= {CascadeType.ALL},mappedBy = "voyage")
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage")
 	private List<Reservation> reservations = new ArrayList<Reservation>();
-	
+
 	public Voyage(Integer ageMax, Integer ageMin, Date dateArrivee, Date dateDepart, String description,
 			int nombrePersonneEnGroupe, int nombrePersonneTotal, double prix, boolean reduction, String titre,
 			byte[] trajet) {
