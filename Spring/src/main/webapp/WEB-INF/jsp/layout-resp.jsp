@@ -49,10 +49,12 @@
 			</div>
 			
 			<!-- scripts -->
-			<jsp:include page="scripts.jsp"></jsp:include>
 		</div>
-		<jsp:include page="hotel/modalHotel.jsp"></jsp:include>
+		<!-- Modals -->
+		<layout:block name="modals"></layout:block>
 	</div>
 	<script type="text/javascript" src="/delibdesign/assets/scripts/main.js"></script>
+	<jsp:include page="scripts.jsp"></jsp:include>
+	
 </body>
 </html>

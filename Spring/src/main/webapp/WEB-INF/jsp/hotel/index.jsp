@@ -136,4 +136,9 @@
 			</div>
 		
 	</layout:put>
+	<layout:put block="modals" type="REPLACE">
+		<jsp:include page="modalHotel.jsp"></jsp:include>
+	</layout:put>
 </layout:extends>
+
+	

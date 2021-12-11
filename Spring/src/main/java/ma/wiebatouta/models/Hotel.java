@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -57,6 +58,9 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE,CascadeType.DETACH})
 	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "hotel",fetch = FetchType.LAZY,targetEntity = Picture.class)
+	private List<Picture> pictures = new ArrayList<Picture>();
 	
 	@Override
 	public int compareTo(Hotel o) {

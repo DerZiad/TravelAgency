@@ -33,8 +33,11 @@ public class Picture implements Serializable, Comparable<Picture> {
 	@NotNull(message = "On a besoin d'au moins d'une image")
 	private byte[] picture;
 
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	private Voyage voyage;
+	
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	private Voyage hotel;
 
 	public Picture(byte[] picture, Voyage voyage) {
 		super();
