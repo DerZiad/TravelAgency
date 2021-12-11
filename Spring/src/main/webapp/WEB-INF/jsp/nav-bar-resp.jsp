@@ -58,13 +58,13 @@
 						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
 				</a>
 					<ul class="mm-collapse" style="height: 7.04px;">
-						<li><a href="/note/choix"
-					class="${choixElement}"> <i
-						class="metismenu-icon pe-7s-graph3"></i> Ajouter theme
+						<li><a href="/admin/hotel"
+					class="${hotelActive}"> <i
+						class="metismenu-icon pe-7s-graph3"></i> Gérer hotel
 				</a></li>
-						<li><a href="/note/choixList"
+						<li><a href="/admin/lieu"
 					class="${choixElementList}"> <i
-						class="metismenu-icon pe-7s-graph3"></i> Ajouter activite
+						class="metismenu-icon pe-7s-graph3"></i> Gérer Ville
 				</a></li>
 					</ul></li>
 		
