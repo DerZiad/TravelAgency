@@ -45,8 +45,8 @@
 						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
 				</a>
 					<ul class="mm-collapse" style="height: 7.04px;">
-						<li><a href="/note/choix"
-					class="${choixElement}"> <i
+						<li><a href="/api/lieu"
+					class="${lieuAjout}"> <i
 						class="metismenu-icon pe-7s-graph3"></i> Ajouter Lieux
 				</a></li>
 						
