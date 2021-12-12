@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance"
+	prefix="layout"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +17,7 @@
 <link href="/delibdesign/css/main.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<layout:block name="cssfiles"></layout:block>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">

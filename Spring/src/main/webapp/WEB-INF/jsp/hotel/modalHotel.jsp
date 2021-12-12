@@ -6,26 +6,23 @@
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">
-					<h4 class="modal-title">Add Employee</h4>
+					<h4 class="modal-title">Add Hotel</h4>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label>Name</label> <input type="text" class="form-control"
+						<label>NomHotel</label> <input type="text" class="form-control"
 							required>
 					</div>
 					<div class="form-group">
-						<label>Email</label> <input type="email" class="form-control"
-							required>
-					</div>
-					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
-					</div>
-					<div class="form-group">
-						<label>Phone</label> <input type="text" class="form-control"
-							required>
+						<label>Nombre etoiles</label> <span class="C2etoiles"><div></div>
+
+							<span class="C2etoiles"><div></div> <span
+								class="C2etoiles"><div></div> <span class="C2etoiles"><div></div>
+
+										<span class="C2etoiles"><div></div> <!-- les div ici permettent l'affichage de l'étoile via la propriété "content", avec le sélecteur ".C2etoiles div::after" -->
+									</span> </span> </span> </span> </span>
 					</div>
 					<div class="form-group">
 						<select id="select-state" placeholder="Pick a state...">

@@ -19,6 +19,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,12 +45,15 @@ public class Lieu implements Serializable, Comparable<Lieu> {
 
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@NotNull(message = "Le lieu doit avoir au moins un pays")
+	@JsonIgnore
 	private Country country;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Hotel.class)
+	@JsonIgnore
 	private List<Hotel> hotel = new ArrayList<Hotel>();
 
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 
 	@Override

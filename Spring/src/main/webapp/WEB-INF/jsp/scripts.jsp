@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance"
+	prefix="layout"%>
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -16,13 +17,5 @@
 
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="/hotel/script.js"></script>
-<script src="/js/hotel/script.js"></script>
-<link rel="stylesheet" href="/hotel/style.css">
-<script>
-	$(function() {
-		$('select').selectize({
-			sortField : 'text'
-		});
-	});
-</script>
+<layout:block name="scriptsfile"></layout:block>
+

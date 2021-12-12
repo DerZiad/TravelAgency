@@ -22,6 +22,7 @@ import org.hibernate.validator.constraints.Range;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -67,7 +68,5 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 	public int compareTo(Hotel o) {
 		return nomHotel.compareTo(nomHotel);
 	}
-
-	
 
 }
