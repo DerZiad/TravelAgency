@@ -6,13 +6,13 @@ $(function() {
 
 
 function initializeLieux(lieux){
+	var country = $('select[name=country]').val();
 	var contenue = "";
-	contenue = contenue + '<option value="">Select a state...</option>\n';
 	for(lieu of lieux){
-		contenue = contenue + '<option value="' + lieu.id + '">' + lieu.label + '</option>';
+		if(lieu.country.keyCountry === country){
+			contenue = contenue + '<option value="' + lieu.id + '">' + lieu.label + '</option>';
+		}
 	}
-	console.log(contenue);
-	console.log($('select[name=state]').html);
 	$('select[name=state]').html(contenue);						
 	
 }
@@ -50,6 +50,9 @@ function initialize(){
 		}
 	});
 
+	$('select[name=country]').change(function(){
+		initializeLieux(lieux);
+	});
 
 }
 

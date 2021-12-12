@@ -27,22 +27,15 @@
 									</span> </span> </span> </span> </span>
 					</div>
 					<div class="form-group">
-						<label>State</label>
-						<select class="selectpicker form-control" data-live-search="true" name="state">
+						<label>Pays</label>
+						<select class="form-control" name="country">
 							<c:forEach var="country" items="${countries }">
 								<option value="${country.keyCountry}">${country.valueCountry}</option>
 							</c:forEach>
 						</select>
 					</div>
-					countries
 					<div class="form-group">
-						<label>State</label>
-						<select class="selectpicker form-control" data-live-search="true" name="state">
-
-						</select>
-					</div>
-					<div class="form-group">
-						<label>NomHotel</label>
+						<label>Lieux</label>
 						<select class="selectpicker form-control" data-live-search="true" name="state">
 
 						</select>
