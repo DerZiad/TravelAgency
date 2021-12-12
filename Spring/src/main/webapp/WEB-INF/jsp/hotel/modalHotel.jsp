@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!-- Edit Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
@@ -25,23 +27,24 @@
 									</span> </span> </span> </span> </span>
 					</div>
 					<div class="form-group">
-						<select id="select-state" placeholder="Pick a state...">
-							<option value="">Select a state...</option>
-							<option value="AL">Alabama</option>
-							<option value="AK">Alaska</option>
-							<option value="AZ">Arizona</option>
-							<option value="AR">Arkansas</option>
-							<option value="CA">California</option>
-							<option value="CO">Colorado</option>
-							<option value="CT">Connecticut</option>
-							<option value="DE">Delaware</option>
-							<option value="DC">District of Columbia</option>
-							<option value="FL">Florida</option>
-							<option value="GA">Georgia</option>
-							<option value="HI">Hawaii</option>
-							<option value="ID">Idaho</option>
-							<option value="IL">Illinois</option>
-							<option value="IN">Indiana</option>
+						<label>State</label>
+						<select class="selectpicker form-control" data-live-search="true" name="state">
+							<c:forEach var="country" items="${countries }">
+								<option value="${country.keyCountry}">${country.valueCountry}</option>
+							</c:forEach>
+						</select>
+					</div>
+					countries
+					<div class="form-group">
+						<label>State</label>
+						<select class="selectpicker form-control" data-live-search="true" name="state">
+
+						</select>
+					</div>
+					<div class="form-group">
+						<label>NomHotel</label>
+						<select class="selectpicker form-control" data-live-search="true" name="state">
+
 						</select>
 					</div>
 				</div>

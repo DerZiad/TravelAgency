@@ -40,19 +40,25 @@ public class Theme implements Serializable, Comparable<Theme> {
 	@Length(min = 5, max = 60, message = "Le label doit être entre 5 et 60")
 	private String label;
 
+	@NotNull(message = "Veuillez inserer une image")
+	private byte[] picture;
+
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE })
 	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 
-	public Theme(String label, List<Voyage> voyages) {
-		super();
-		this.label = label;
-		this.voyages = voyages;
-	}
-
 	@Override
 	public int compareTo(Theme o) {
 		return label.compareTo(o.getLabel());
+	}
+
+	public Theme(Long id,
+			@NotNull(message = "Le label d'un theme ne doit pas être vide") @Length(min = 5, max = 60, message = "Le label doit être entre 5 et 60") String label,
+			@NotNull(message = "Veuillez inserer une image") byte[] picture) {
+		super();
+		this.id = id;
+		this.label = label;
+		this.picture = picture;
 	}
 
 }
