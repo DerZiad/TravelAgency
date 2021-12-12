@@ -8,4 +8,5 @@ import ma.wiebatouta.models.Country;
 @Repository
 public interface CountryRepository extends JpaRepository<Country, String>{
 
+
 }

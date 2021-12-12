@@ -5,36 +5,52 @@ import java.util.List;
 import javax.annotation.security.RolesAllowed;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import ma.wiebatouta.exceptions.DataEmptyException;
+import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.metier.LieuxMetier;
+import ma.wiebatouta.models.Hotel;
 import ma.wiebatouta.models.Lieu;
+import ma.wiebatouta.repositories.LieuRepository;
 
 @RestController
 @RequestMapping("/api/lieux")
 public class LieuxRestController {
 	@Autowired
-	private LieuxMetier lm ;
+	private LieuxMetier lieuxmetier ;
 	
-	/*@GetMapping
+	@Autowired
+	private LieuRepository lieuRepository;
+	
+	@GetMapping
 	@RolesAllowed("ADMIN")
-	public ModelAndView listeLieux(){
-		ModelAndView model = new ModelAndView("/hotel/index");
-		List<Lieu> lieux = lm.listeLieux();
-		model.addObject("lieux", lieux);
-		return model;
-		
-	}*/
+	public ResponseEntity<?> getLieux(@RequestParam(name = "id", required = false) Long id) throws DataEmptyException, NotFoundException{
+		List<Lieu> lieux = lieuxmetier.listeLieux();
+		if (lieux.size() == 0) {
+			throw new DataEmptyException("The list of lieux is empty");
+		} else {
+			if (id != null) {
+				Lieu lieu = lieuRepository.findById(id)
+						.orElseThrow(() -> new NotFoundException("The id is not found"));
+				return ResponseEntity.ok(lieu);
+			} else {
+				return ResponseEntity.ok(lieux);
+			
+		}
+		}}
 	
 	@PostMapping
 	@RolesAllowed("ADMIN")
 	public Lieu saveLieu(@RequestBody Lieu l) {
-		return lm.save(l);
+		return lieuxmetier.save(l);
 	}
 	
 	
