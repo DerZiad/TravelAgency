@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -47,7 +48,9 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 	@NotNull(message = "Le nombre d'étoile ne doit pas être vide")
 	@Length(min = 1, max = 30, message = "Le nom d'Hotel doit être entre 1 et 30 caractères")
 	private String nomHotel;
-
+	
+	@Transient
+	private Long idLieu;
 	/**
 	 * Voyages
 	 * */

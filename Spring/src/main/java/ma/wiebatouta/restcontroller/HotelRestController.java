@@ -1,12 +1,19 @@
 package ma.wiebatouta.restcontroller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.security.RolesAllowed;
+import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
@@ -20,29 +27,61 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ma.wiebatouta.exceptions.AddUnsatisfiedException;
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Hotel;
+import ma.wiebatouta.models.Lieu;
 import ma.wiebatouta.repositories.HotelRepository;
+import ma.wiebatouta.repositories.LieuRepository;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+class test {
+	private String nomHotel;
+	private String nombreEtoile;
+	private String idLieu;
+}
 
 @RestController
-@RequestMapping("/api/hotel")
-@CrossOrigin("*")
+@RequestMapping(name = "/api/hotel", produces = MediaType.APPLICATION_JSON_VALUE, value = "/api/hotel")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class HotelRestController {
 
 	@Autowired
 	private HotelRepository hotelRepository;
 
-	@PostMapping
+	@Autowired
+	private LieuRepository lieuRepository;
+
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	@RolesAllowed("ADMIN")
-	public HttpEntity<?> addHotel(@Valid @RequestBody Hotel hotel, Errors error) throws AddUnsatisfiedException {
-		if (error.hasErrors()) {
-			List<ObjectError> errors = error.getAllErrors();
+	public HttpEntity<?> addHotel(@RequestBody Hotel hotel) throws AddUnsatisfiedException {
+		HashMap<String, String> errors = new HashMap<String, String>();
+
+		Lieu lieu = null;
+		try {
+			lieu = lieuRepository.findById(hotel.getIdLieu())
+					.orElseThrow(() -> new NotFoundException("L'id lieu n'est pas trouvé"));
+			hotel.setVille(lieu);
+		} catch (NotFoundException e) {
+			hotel.setVille(null);
+		}
+
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		Set<ConstraintViolation<Hotel>> violatons = validator.validate(hotel);
+		for (ConstraintViolation<Hotel> constraintViolation : violatons) {
+			errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
+		}
+
+		if (errors.size() != 0) {
 			AddUnsatisfiedException exception = new AddUnsatisfiedException();
-			for (ObjectError objectError : errors) {
-				exception.getErrors().put(objectError.getObjectName(), objectError.getDefaultMessage());
-			}
+			exception.setErrors(errors);
 			throw exception;
 		}
 		hotel.setId(null);
@@ -90,5 +129,18 @@ public class HotelRestController {
 			}
 		}
 
+	}
+
+	@PostMapping("/setlieu")
+	@RolesAllowed("ADMIN")
+	public HttpEntity<?> addLieu(@RequestParam("LieuId") Long idLieu, @RequestParam("HotelId") Long idHotel)
+			throws NotFoundException {
+		Lieu lieu = lieuRepository.findById(idLieu)
+				.orElseThrow(() -> new NotFoundException("L'id lieu n'est pas trouvé"));
+		Hotel hotel = hotelRepository.findById(idHotel)
+				.orElseThrow(() -> new NotFoundException("L'id hotel n'est pas trouvé"));
+		hotel.setVille(lieu);
+		hotelRepository.save(hotel);
+		return ResponseEntity.accepted().build();
 	}
 }

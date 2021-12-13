@@ -54,10 +54,3 @@
 		<script src="/delibdesign/js/hotel/template.js"></script>
 	</layout:put>
 </layout:extends>
-
-
-
-<script src="/hotel/script.js"></script>
-<script src="/js/hotel/script.js"></script>
-<link rel="stylesheet" href="/hotel/style.css">
-	
