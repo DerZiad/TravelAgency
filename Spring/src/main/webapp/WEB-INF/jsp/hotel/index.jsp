@@ -11,13 +11,13 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<h2>
-								Manage <b>Employees</b>
+								Manage your <b>hotels</b> here
 							</h2>
 						</div>
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
 								data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add
-									New Employee</span></a> <a href="#deleteEmployeeModal"
+									New Hotel</span></a> <a href="#deleteEmployeeModale"
 								class="btn btn-danger" data-toggle="modal"><i
 								class="material-icons">&#xE15C;</i> <span>Delete</span></a>
 						</div>

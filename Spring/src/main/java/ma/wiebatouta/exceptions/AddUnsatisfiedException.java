@@ -6,6 +6,9 @@ import java.util.HashMap;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.Gson;
+
 import lombok.Data;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -22,4 +25,11 @@ public class AddUnsatisfiedException extends Exception {
 	public AddUnsatisfiedException() {
 
 	}
+
+	@Override
+	public String toString() {
+		System.out.println(errors.toString());
+		return errors.toString();
+	}
+	
 }

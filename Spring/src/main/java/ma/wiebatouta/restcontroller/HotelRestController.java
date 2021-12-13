@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -62,14 +64,13 @@ public class HotelRestController {
 	@RolesAllowed("ADMIN")
 	public HttpEntity<?> addHotel(@RequestBody Hotel hotel) throws AddUnsatisfiedException {
 		HashMap<String, String> errors = new HashMap<String, String>();
-
-		Lieu lieu = null;
-		try {
-			lieu = lieuRepository.findById(hotel.getIdLieu())
-					.orElseThrow(() -> new NotFoundException("L'id lieu n'est pas trouvé"));
-			hotel.setVille(lieu);
-		} catch (NotFoundException e) {
-			hotel.setVille(null);
+		if (hotel.getIdLieu() != null) {
+			try {
+				hotel.setVille(lieuRepository.findById(hotel.getIdLieu())
+						.orElseThrow(() -> new NotFoundException("L'id lieu n'est pas trouvé")));
+			} catch (NotFoundException e) {
+				hotel.setVille(null);
+			}
 		}
 
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -80,8 +81,9 @@ public class HotelRestController {
 		}
 
 		if (errors.size() != 0) {
-			AddUnsatisfiedException exception = new AddUnsatisfiedException();
-			exception.setErrors(errors);
+			Gson gson = new Gson();
+	        String json = gson.toJson(errors);
+			AddUnsatisfiedException exception = new AddUnsatisfiedException(json);
 			throw exception;
 		}
 		hotel.setId(null);
