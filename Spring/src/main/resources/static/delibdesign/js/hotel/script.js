@@ -68,12 +68,12 @@ function makeEditHotel(idHotel) {
 		var star = $('input[name=starEdit]').val();
 		var state = $('select[name=stateEdit]').val();
 		datas = {
-			'idJson':"" + idHotel,
+			'id':"" + idHotel,
 			'nomHotel': nomHotel,
 			'nombreEtoile': star,
 			'idLieu': state
 		}
-		console.log(datas);
+		datas = JSON.stringify(datas);
 		$.ajax({
 			type: "PUT",
 			headers: { Accept: "application/json" },

@@ -95,7 +95,6 @@ public class HotelRestController {
 	@RolesAllowed("ADMIN")
 	public HttpEntity<?> editHotel(@RequestBody Hotel hotel) throws AddUnsatisfiedException {
 		HashMap<String, String> errors = new HashMap<String, String>();
-		hotel.setId(hotel.getIdJson());
 		if (hotel.getIdLieu() != null) {
 			try {
 				hotel.setVille(lieuRepository.findById(hotel.getIdLieu())
