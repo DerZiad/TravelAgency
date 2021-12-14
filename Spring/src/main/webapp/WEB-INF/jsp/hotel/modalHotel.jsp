@@ -61,39 +61,39 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>NomHotel</label> <input type="text" class="form-control"
-						name="hotelname" required>
-					<p id="nomHotelError" class="error"></p>
+					<label>Nom Hotel</label> <input type="text" class="form-control"
+						name="hotelnameEdit" required>
+					<p id="nomHotelErrorEdit" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Nombre etoiles</label> <span id="star1" class="C2etoiles"><div></div></span>
-					<span id="star2" class="C2etoiles"><div></div> </span> <span
-						id="star3" class="C2etoiles"><div></div></span> <span id="star4"
-						class="C2etoiles"><div></div></span> <span id="star5"
+					<label>Nombre etoiles</label> <span id="star1Edit" class="C2etoiles"><div></div></span>
+					<span id="star2Edit" class="C2etoiles"><div></div> </span> <span
+						id="star3Edit" class="C2etoiles"><div></div></span> <span id="star4Edit"
+						class="C2etoiles"><div></div></span> <span id="star5Edit"
 						class="C2etoiles"><div></div></span> <input type="hidden"
-						name="star" value="1" />
-					<p id="nombreEtoileError" class="error"></p>
+						name="starEdit" value="1" />
+					<p id="nombreEtoileErrorEdit" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Pays</label> <select class="form-control" name="country">
+					<label>Pays</label> <select class="form-control" name="countryEdit">
 						<c:forEach var="country" items="${countries }">
 							<option value="${country.keyCountry}">${country.valueCountry}</option>
 						</c:forEach>
 					</select>
-					<p id="nombreEtoileError" class="error"></p>
+					<p id="nombreEtoileErrorEdit" class="error"></p>
 				</div>
 				<div class="form-group">
 					<label>Lieux</label> <select class="selectpicker form-control"
-						data-live-search="true" name="state">
+						data-live-search="true" name="stateEdit">
 
 					</select>
-					<p id="villeError" class="error"></p>
+					<p id="villeErrorEdit" class="error"></p>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<input type="button" class="btn btn-default" data-dismiss="modal"
-					value="Cancel" id="cancelAdd"> <input type="submit"
-					name="add" class="btn btn-success" value="Add">
+					value="Cancel" id="cancelEdit"> <input id="editEdit" type="submit"
+					name="edit" class="btn btn-success" value="Edit">
 			</div>
 		</div>
 	</div>

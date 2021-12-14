@@ -1,10 +1,10 @@
+// Ziad Bougrine
 const gold = "#fdd835";
 const plat = "#b6b8c3";
-const deletetedId = null;
-const editedHotelId = null;
+deletetedId = null;
 hotels = [];
 lieux = [];
-
+countries = [];
 $(function() {
 	$('.select-stateForm').selectize({
 		sortField: 'text'
@@ -15,15 +15,91 @@ function deleteHotel(idHotel) {
 	deletetedId = idHotel;
 }
 
-function editHotel(idHotel) {
-	editedHotelId = idHotel;
+function refreshCountryByHotel(keyCountry) {
+	var contenue = "";
+	for (country of countries) {
+		if (keyCountry == country.keyCountry) {
+			contenue = contenue + '<option value="' + country.keyCountry + '" selected >' + country.valueCountry + '</option>';
+		} else {
+			contenue = contenue + '<option value="' + country.keyCountry + '">' + country.valueCountry + '</option>';
+		}
+	}
+	$('select[name=countryEdit]').html(contenue);
+}
+function refreshLieuxByHotel(idLieu) {
+	var country = $('select[name=countryEdit]').val();
+	var contenue = "";
+	for (lieu of lieux) {
+		if (lieu.country.keyCountry === country) {
+			if (lieu.idLieu == idLieu) {
+				contenue = contenue + '<option value="' + lieu.id + '" selected >' + lieu.label + '</option>';
+			} else {
+				contenue = contenue + '<option value="' + lieu.id + '">' + lieu.label + '</option>';
+			}
+
+		}
+
+	}
+	$('select[name=stateEdit]').html(contenue);
 }
 
-function deleteAll() {
-	console.log("start");
+
+function makeEditHotel(idHotel) {
+	var selectedHotel = null;
 	for (hotel of hotels) {
-		console.log(hotel);
-		console.log($('#checkbox' + hotel.id));
+		if (hotel.id == idHotel) {
+			selectedHotel = hotel;
+		}
+	}
+	hotel = selectedHotel;
+	$("input[name=hotelnameEdit]").val(hotel.nomHotel);
+	for (let i = 1; i <= 5; i++) {
+		if (i <= hotel.nombreEtoile) {
+			$('#star' + i + 'Edit').css("color", gold);
+		} else {
+			$('#star' + i + 'Edit').css("color", plat);
+		}
+	}
+	$("input[name=starEdit]").val(hotel.nombreEtoile);
+	refreshCountryByHotel(hotel.ville.country.keyCountry);
+	refreshLieuxByHotel(hotel.ville.idLieu);
+	$('#editEdit').click(function() {
+		var nomHotel = $('input[name=hotelnameEdit]').val();
+		var star = $('input[name=starEdit]').val();
+		var state = $('select[name=stateEdit]').val();
+		datas = {
+			'idJson':"" + idHotel,
+			'nomHotel': nomHotel,
+			'nombreEtoile': star,
+			'idLieu': state
+		}
+		console.log(datas);
+		$.ajax({
+			type: "PUT",
+			headers: { Accept: "application/json" },
+			contentType: "application/json",
+			url: "/api/hotel",
+			data: datas,
+			success: function(response) {
+				hotel = response;
+				refreshotels();
+				clearAddCache();
+			}, error: function(xhr, ajaxOptions, thrownError) {
+				var message = xhr['responseJSON'].message;
+				message = JSON.parse(message);
+				keys = Object.keys(message);
+				for (let i = 0; i < keys.length; i++) {
+					$('#' + keys[i] + 'ErrorEdit').html(message[keys[i]]);
+				}
+			}
+		});
+	});
+}
+
+
+
+function deleteAll() {
+	for (hotel of hotels) {
 		if ($('#checkbox' + hotel.id).is(":checked")) {
 			$.ajax({
 				type: "Delete",
@@ -100,9 +176,16 @@ function clearAddCache() {
 	$('#nombreEtoileError').html("");
 	$('#villeError').html("");
 	refreshLieux();
+	refreshCountry();
 }
 
-
+function refreshCountry() {
+	var contenue = "";
+	for (country of countries) {
+		contenue = contenue + '<option value="' + country.keyCountry + '">' + country.valueCountry + '</option>';
+	}
+	$('select[name=country]').html(contenue);
+}
 function refreshLieux() {
 	$.ajax({
 		url: '/api/lieux',
@@ -137,7 +220,7 @@ function refreshotels() {
 				contenue = contenue + '<td>' + hotel.nomHotel + '</td>\n'
 				contenue = contenue + '<td>' + hotel.nombreEtoile + '</td>\n'
 				contenue = contenue + '<td>' + hotel.ville.label + '</td>\n'
-				contenue = contenue + '<td><a href="#editEmployeeModal" onclick="(' + hotel.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + hotel.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>\n'
+				contenue = contenue + '<td><a href="#editEmployeeModal" onclick="makeEditHotel(' + hotel.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + hotel.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>\n'
 				contenue = contenue + '</tr>\n'
 			}
 			$('#hotelslist').html(contenue);
@@ -156,7 +239,6 @@ function initialize() {
 	});
 
 	$('input[name=add]').click(function() {
-		console.log("click");
 		var nomHotel = $('input[name=hotelname]').val();
 		var star = $('input[name=star]').val();
 		var state = $('select[name=state]').val();
@@ -203,8 +285,16 @@ jQuery(document).ready(function() {
 	$('#cancelAdd').click(function() {
 		clearAddCache();
 	});
-	$('input[name=deleteAll]').click(function(){
+	$('input[name=deleteAll]').click(function() {
 		deleteAll();
+	});
+	$.ajax({
+		url: '/api/country',
+		type: 'get',
+		data: {},
+		success: function(response) {
+			countries = response;
+		}
 	});
 });
 

@@ -82,7 +82,7 @@ public class HotelRestController {
 
 		if (errors.size() != 0) {
 			Gson gson = new Gson();
-	        String json = gson.toJson(errors);
+			String json = gson.toJson(errors);
 			AddUnsatisfiedException exception = new AddUnsatisfiedException(json);
 			throw exception;
 		}
@@ -93,16 +93,31 @@ public class HotelRestController {
 
 	@PutMapping
 	@RolesAllowed("ADMIN")
-	public HttpEntity<?> editHotel(@Valid @RequestBody Hotel hotel, Errors error) throws AddUnsatisfiedException {
-		if (error.hasErrors()) {
-			List<ObjectError> errors = error.getAllErrors();
-			AddUnsatisfiedException exception = new AddUnsatisfiedException();
-			for (ObjectError objectError : errors) {
-				exception.getErrors().put(objectError.getObjectName(), objectError.getDefaultMessage());
+	public HttpEntity<?> editHotel(@RequestBody Hotel hotel) throws AddUnsatisfiedException {
+		HashMap<String, String> errors = new HashMap<String, String>();
+		hotel.setId(hotel.getIdJson());
+		if (hotel.getIdLieu() != null) {
+			try {
+				hotel.setVille(lieuRepository.findById(hotel.getIdLieu())
+						.orElseThrow(() -> new NotFoundException("L'id lieu n'est pas trouvé")));
+			} catch (NotFoundException e) {
+				hotel.setVille(null);
 			}
+		}
+
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		Set<ConstraintViolation<Hotel>> violatons = validator.validate(hotel);
+		for (ConstraintViolation<Hotel> constraintViolation : violatons) {
+			errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
+		}
+		if (errors.size() != 0) {
+			Gson gson = new Gson();
+			String json = gson.toJson(errors);
+			AddUnsatisfiedException exception = new AddUnsatisfiedException(json);
 			throw exception;
 		}
-		hotelRepository.save(hotel);
+		hotel = hotelRepository.save(hotel);
 		return ResponseEntity.ok(hotel);
 	}
 

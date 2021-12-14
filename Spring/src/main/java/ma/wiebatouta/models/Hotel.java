@@ -22,6 +22,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -51,6 +52,9 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 	
 	@Transient
 	private Long idLieu;
+	
+	@Transient
+	private Long idJson;
 	/**
 	 * Voyages
 	 * */
