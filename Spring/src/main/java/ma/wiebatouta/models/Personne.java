@@ -104,4 +104,19 @@ public class Personne implements Serializable, Comparable<Personne> {
 		return cne.compareTo(o.getCne());
 	}
 
+	@SuppressWarnings("deprecation")
+	public void setDateNaissance(String date) {
+		int year = Integer.parseInt(date.substring(0,4));
+		int month = Integer.parseInt(date.substring(5,7));
+		int day = Integer.parseInt(date.substring(8,10));
+		this.dateNaissance = new Date(year, month, day);
+	}
+	
+	public void setMarie(String marie) {
+		if(marie.equals("OUI")) {
+			this.marie = true;
+		}else {
+			this.marie = false;
+		}
+	}
 }

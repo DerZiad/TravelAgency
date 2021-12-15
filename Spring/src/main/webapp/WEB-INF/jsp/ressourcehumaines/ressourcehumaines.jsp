@@ -9,7 +9,7 @@
 		<div class="main-card mb-3 card">
 			<div class="card-body">
 				<h5 class="card-title">Création d'une equipe</h5>
-				<form class="" action="/signup" method="POST">
+				<form class="" action="/admin/ressources/add" method="POST">
 					<div class="alert alert-primary">
 						<h1>Informations de l'equipe</h1>
 						<div class="form-row">
@@ -76,8 +76,8 @@
 								<div class="position-relative form-group">
 									<label for="nationalite" class="">Nationalité</label> <select
 										name="nationalite" id="nationalite" class="form-control">
-										<c:forEach var="c" items="${country}">
-											<option data-tokens="${c.keyCountry}" value="${c.keyCountry}">${c.valueCountry}</option>
+										<c:forEach var="c" items="${countries}">
+											<option value="${c.valueCountry}">${c.valueCountry}</option>
 										</c:forEach>
 									</select>
 									<p class="error">
@@ -95,7 +95,7 @@
 									<div class="position-relative form-group">
 										<div>
 											<div class="custom-radio custom-control">
-												<input type="radio" id="male" value="HOMME" name="gender"
+												<input type="radio" id="male" value="HOMME" name="sexe"
 													class="custom-control-input" checked><label
 													class="custom-control-label" for="male">Homme</label>
 											</div>
@@ -106,7 +106,7 @@
 											</div>
 										</div>
 										<p class="error">
-											<c:out value="${errors.nationalite}" />
+											<c:out value="${errors.sexe}" />
 										</p>
 									</div>
 								</div>
@@ -121,7 +121,10 @@
 								<div class="position-relative form-group">
 									<label for="codePostal" class="">Code postal</label><input
 										name="codePostal" id="codePostal" placeholder="Code postale"
-										type="number" class="form-control">
+										type="text" class="form-control">
+									<p class="error">
+										<c:out value="${errors.codePostal}" />
+									</p>
 								</div>
 							</div>
 							<div class="col-md-3">
@@ -130,6 +133,9 @@
 										name="telephone" id="telephone"
 										placeholder="Numéro de telephone" type="text"
 										class="form-control">
+									<p class="error">
+										<c:out value="${errors.telephone}" />
+									</p>
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -137,6 +143,9 @@
 									<label for="email" class="">Email</label><input name="email"
 										id="email" placeholder="Email" type="text"
 										class="form-control">
+									<p class="error">
+										<c:out value="${errors.email}" />
+									</p>
 								</div>
 							</div>
 						</div>
@@ -150,6 +159,9 @@
 									<label for="travaille" class="">Travaille</label><input
 										name="travaille" id="travaille" placeholder="Travaille"
 										type="text" class="form-control">
+									<p class="error">
+										<c:out value="${errors.travaille}" />
+									</p>
 								</div>
 							</div>
 							<div class="col-md-3">
@@ -157,6 +169,9 @@
 									<label for="etatSocial" class="">Etat Sociale</label><input
 										name="etatSocial" id="etatSocial" placeholder="Etat Sociale"
 										type="number" class="form-control">
+									<p class="error">
+										<c:out value="${errors.etatSocial}" />
+									</p>
 								</div>
 							</div>
 						</div>
@@ -167,16 +182,19 @@
 									<div class="position-relative form-group">
 										<div>
 											<div class="custom-radio custom-control">
-												<input type="radio" id="marie" value="HOMME" name="marie"
+												<input type="radio" id="marie" value="OUI" name="marie"
 													class="custom-control-input" checked><label
 													class="custom-control-label" for="marie">Marié</label>
 											</div>
 											<div class="custom-radio custom-control">
-												<input type="radio" id="marie" value="FEMME" name="marie"
+												<input type="radio" id="marie" value="NON" name="marie"
 													class="custom-control-input"><label
 													class="custom-control-label" for="marie">Célibataire</label>
 											</div>
 										</div>
+										<p class="error">
+											<c:out value="${errors.marie}" />
+										</p>
 									</div>
 								</div>
 							</div>
@@ -186,6 +204,9 @@
 										name="nombreEnfant" id="nombreEnfant"
 										placeholder="Nombre d'enfants" type="number"
 										class="form-control">
+									<p class="error">
+										<c:out value="${errors.nombreEnfant}" />
+									</p>
 								</div>
 							</div>
 						</div>

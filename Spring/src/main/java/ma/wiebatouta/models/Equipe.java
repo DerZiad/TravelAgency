@@ -37,7 +37,7 @@ public class Equipe implements Serializable,Comparable<Equipe>{
 	
 	@OneToOne(cascade = {
 			CascadeType.ALL }, fetch = FetchType.EAGER,targetEntity = Personne.class)
-	private Personne personnes;
+	private Personne personne;
 	
 	@OneToMany(cascade = {
 			CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "equipe", targetEntity = Voyage.class)
