@@ -15,7 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -68,7 +70,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@Column(nullable = false, length = 25)
 	@NotNull(message = "La nationnalité ne doit pas être vide")
 	@Length(min = 5, max = 25, message = "La nationnalité doit être entre 5 et 25 caracètres")
-	private String nationalité;
+	private String nationalite;
 	private boolean marie = false;
 	@Column(nullable = false, length = 35)
 	@NotNull(message = "Lieu de naissance ne doit pas être vide")
@@ -78,7 +80,11 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@NotNull(message = "L'etat social ne ne doit pas être vide")
 	@Length(min = 2, max = 25, message = "L'etat social doit être entre 2 et 25 caracètres")
 	private String etatSocial;
-
+	@Length(min=10,max=22,message = "Le numéro de téléphone doit être entre 10 et 22")
+	@NotNull(message = "Le numero de téléphone ne doit pas être vide")
+	private String telephone;
+	@Email(message = "L'email n'est pas valide")
+	private String email;
 	/*
 	 * Relations
 	 **/
@@ -87,7 +93,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	private Equipe equipe = null;
 	
 	@OneToMany(cascade= {CascadeType.ALL},mappedBy = "person")

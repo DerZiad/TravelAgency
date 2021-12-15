@@ -11,7 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,9 +31,13 @@ public class Equipe implements Serializable,Comparable<Equipe>{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(cascade = {
-			CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "equipe", targetEntity = Voyage.class)
-	private List<Personne> personnes = new ArrayList<Personne>();
+	@Length(min = 3,max = 20,message = "Le nom de l'equipe doit être entre 3 et 20")
+	@NotNull(message = "Vous devez nommer l'equipe")
+	private String label;
+	
+	@OneToOne(cascade = {
+			CascadeType.ALL }, fetch = FetchType.EAGER,targetEntity = Personne.class)
+	private Personne personnes;
 	
 	@OneToMany(cascade = {
 			CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "equipe", targetEntity = Voyage.class)
