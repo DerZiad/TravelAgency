@@ -45,13 +45,23 @@
 						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
 				</a>
 					<ul class="mm-collapse" style="height: 7.04px;">
-						<li><a href="/lieux"
-					class="${lieuActive}"> <i
+						<li><a href="/admin/lieux"
+					class="${lieuAjout}"> <i
 						class="metismenu-icon pe-7s-graph3"></i> Ajouter Lieux
 				</a></li>
 						
 					</ul></li>
-					
+			<li><a href="#" aria-expanded="false"> <i
+						class="metismenu-icon pe-7s-id"></i> Themes <i
+						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+				</a>
+					<ul class="mm-collapse" style="height: 7.04px;">
+						<li><a href="/admin/theme"
+					class="${themeAjout}"> <i
+						class="metismenu-icon pe-7s-graph3"></i> Ajouter Theme du Voyage
+				</a></li>
+						
+					</ul></li>
 					
 				<li><a href="#" aria-expanded="false"> <i
 						class="metismenu-icon pe-7s-id"></i> Voyage <i

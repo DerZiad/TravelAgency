@@ -19,11 +19,12 @@ import ma.wiebatouta.models.Country;
 import ma.wiebatouta.models.Lieu;
 
 @Controller
-@RequestMapping("/lieux")
+@RequestMapping("/admin/lieux")
 public class LieuController {
-
+	private final static String LIEUX ="lieux"; 
+	private final static String COUNTRY ="country"; 
 	private final static String PATH_HOTEL = "lieu/addLieu";
-
+	private final static String REDIRECT_LIST_LIEUX="redirect:/admin/lieux";
 	@Autowired
 	private LieuxMetier lm;
 	@Autowired
@@ -34,10 +35,10 @@ public class LieuController {
 	public ModelAndView listeLieux() {
 		ModelAndView model = new ModelAndView(PATH_HOTEL);
 		List<Lieu> lieux = lm.listeLieux();
-		model.addObject("lieux", lieux);
+		model.addObject(LIEUX, lieux);
 		List<Country> country = cm.listeCountries();
 		model.addObject(DesignAttributes.ACTIVE_LIEUX_AJOUT, DesignAttributes.ACTIVE);
-		model.addObject("country", country);
+		model.addObject(COUNTRY, country);
 		return model;
 
 	}
@@ -46,13 +47,13 @@ public class LieuController {
 
 	@PostMapping
 	@RolesAllowed("ADMIN")
-	public ModelAndView saveLieu(@RequestParam("name") String name, @RequestParam("keyCountry") String keyCountry) {
+	public ModelAndView saveLieu(@RequestParam("name") String name, @RequestParam("keycountry") String keyCountry) {
 		Lieu lieu = new Lieu();
 		Country country =cm.getCountryByKey(keyCountry);
 		lieu.setLabel(name);
 		lieu.setCountry(country);
 		lm.save(lieu);
-		ModelAndView model = new ModelAndView(PATH_HOTEL);
+		ModelAndView model = new ModelAndView(REDIRECT_LIST_LIEUX);
 		return model;
 	}
 }
