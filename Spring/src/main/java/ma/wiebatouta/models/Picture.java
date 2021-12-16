@@ -48,7 +48,7 @@ public class Picture implements Serializable, Comparable<Picture> {
 	private Voyage voyage;
 	
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	private Voyage hotel;
+	private Hotel hotel;
 
 	public Picture(byte[] picture, Voyage voyage) {
 		super();

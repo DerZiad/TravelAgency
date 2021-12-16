@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance"
@@ -10,8 +11,7 @@
 
 		<div class="main-card mb-3 card">
 			<div class="card-body">
-				<form class="form-group" action="/admin/activite"
-					 method="POST">
+				<form class="form-group" action="/admin/activite" method="POST">
 					<h5 class="card-title">Création d'une Activite Voyage</h5>
 					<input name="id" id="id" type="hidden" class="form-control"
 						value="">
@@ -54,11 +54,12 @@
 								style="font-size: 16px; font-weight: bold;">+ </span>
 						</button>
 						<div>
-						<p style="color: red;">
-							<c:if test="${bool1}">
-								<c:out value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
-							</c:if>
-						</p>
+							<p style="color: red;">
+								<c:if test="${bool1}">
+									<c:out
+										value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
+								</c:if>
+							</p>
 						</div>
 					</div>
 
@@ -94,13 +95,11 @@
 										href="/admin/activite/${activity.id}"> ${activity.id}</a></td>
 									<td style="color: black">${activity.nomActivite}</td>
 									<td style="color: black">${activity.description}</td>
-									<td>
-										<!--<c:forEach var="s" items="${activity.sousActivites}">
-											<li>${s.id}</li>
-										</c:forEach>-->
-										<c:out value="${cmp}"></c:out>
-										<c:set var="cmp" value="${cmp + 1}"></c:set>
-									</td>
+									<td><c:forEach var="s" items="${activity.sousActivites}" varStatus="status">
+											<li>${s.titre}</li>
+											<c:set var="cmp" value="${cmp + 1}"></c:set>
+
+										</c:forEach></td>
 									<td><a href="/admin/theme/deleteTheme/${themes.id}"
 										class="delete"><i class="bi bi-trash"></i>DELETE</a>
 								</tr>

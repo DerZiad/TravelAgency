@@ -10,40 +10,36 @@
 
 		<div class="main-card mb-3 card">
 			<div class="card-body">
-				<form class="form-group" action="/admin/theme"
+				<form class="form-group" action="/admin/hotel/picture?id=${idHotel}"
 					enctype="multipart/form-data" method="POST">
 					<h5 class="card-title">Ajout image</h5>
-					<input name="id"
-									id="id"  type="hidden"
-									class="form-control" value="${idHotel}">
+					<input name="id" id="id" type="hidden" class="form-control"
+						value="${idHotel}">
 					<div class="form-row">
-							<div class="position-relative form-group alert alert-primary">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="col-md-6">
-											<label for="photo" class="">Inserer Photo</label> <input
-												name="picturePart" id="file" type="file" />
-										</div>
-									</div>
-
-								</div>
-
+						<div class="position-relative form-group">
+							<div class="col-md-6">
+								<label for="photo" class="">Inserer Photo</label> <input
+									name="picturePart" id="file" type="file" />
 							</div>
+
+						</div>
 					</div>
-	
+
 					<div class="form-row">
-							<div class="position-relative form-group alert alert-primary">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="col-md-6">
-											<label for="photo" class="">Inserer Photo</label> <input
-												name="logo" id="file" type="file" />
-										</div>
-									</div>
+						<div class="position-relative form-group">
+							<div class="col-md-6">
+								<label for="type" class="">Type</label> <select name="type"
+									id="type" class="form-control">
+									<c:forEach var="type" items="${types}">
 
-								</div>
+										<option value="${type}">${type}</option>
 
+									</c:forEach>
+								</select>
 							</div>
+
+						</div>
+
 					</div>
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
 				</form>
@@ -54,21 +50,21 @@
 					<table class="mb-0 table table-striped">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>LABEL</th>
-								<th>DESCRIPTION</th>
+								<th>Picture</th>
+								<th>Type</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="themes" items="${themes}">
+							<c:forEach var="picture" items="${pictures}">
 								<tr>
-									<td><a style="color: black"
-										href="/admin/theme/${themes.id}"> ${themes.id}</a></td>
+									<td><img style='display: block; width: 50px; height: 50px;'
+									id='base64image'
+									src='data:image/jpeg;base64,${picture.getBase64()}' /></td>
 									<td style="color: black">${themes.label}</td>
 									<td style="color: black">${themes.description}</td>
-									<td><a href="/admin/theme/deleteTheme/${themes.id}" class="delete"
-									><i class="bi bi-trash"></i>DELETE</a> 
+									<td><a href="/admin/theme/deleteTheme/${themes.id}"
+										class="delete"><i class="bi bi-trash"></i>DELETE</a>
 								</tr>
 							</c:forEach>
 						</tbody>
