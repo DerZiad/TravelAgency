@@ -95,9 +95,9 @@
 									<td style="color: black">${activity.nomActivite}</td>
 									<td style="color: black">${activity.description}</td>
 									<td>
-										<c:forEach var="s" items="${sousActivitie}${cmp}">
-											<li>${sousActivitie}${cmp}</li>
-										</c:forEach>
+										<!--<c:forEach var="s" items="${activity.sousActivites}">
+											<li>${s.id}</li>
+										</c:forEach>-->
 										<c:out value="${cmp}"></c:out>
 										<c:set var="cmp" value="${cmp + 1}"></c:set>
 									</td>

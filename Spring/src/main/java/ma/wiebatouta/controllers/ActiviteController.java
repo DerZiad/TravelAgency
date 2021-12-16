@@ -54,6 +54,7 @@ public class ActiviteController {
 		model.addObject(DesignAttributes.ACTIVE_ACTIVITY_AJOUT, DesignAttributes.ACTIVE);
 		model.addObject("activities", activities);
 		model.addObject("cmp", cmp);
+		
 		return model;
 	}
 
