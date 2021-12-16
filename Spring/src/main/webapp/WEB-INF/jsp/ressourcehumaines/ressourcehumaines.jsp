@@ -9,16 +9,24 @@
 		<div class="main-card mb-3 card">
 			<div class="card-body">
 				<h5 class="card-title">Création d'une equipe</h5>
-				<form class="" action="/admin/ressources/add" method="POST">
+				<form class="" action="/admin/ressources/add" method="POST"
+					enctype="multipart/form-data">
 					<div class="alert alert-primary">
 						<h1>Informations de l'equipe</h1>
 						<div class="form-row">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
 									<label for="label" class="">Nom de l'equipe</label><input
-										name="label" id="label" placeholder="" type="text"
-										class="form-control">
+										name="label" id="label" placeholder="Titre de l'équipe"
+										type="text" class="form-control"
+										value="<c:out value="${equipe.label}"/>">
+									<p class="error">
+										<c:out value="${errors.label}" />
+									</p>
 								</div>
+								<c:if test="${equipe.id ne null }">
+									<input type="hidden" name="id" value="${equipe.id}" />
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -65,8 +73,8 @@
 							<div class="col-md-3">
 								<div class="position-relative form-group">
 									<label for="dateNaissance" class="">Date de naissance</label><input
-										name="dateNaissance" id="dateNaissance" type="date"
-										class="form-control">
+										name="dateNaissanceDate" id="dateNaissance" type="date"
+										class="form-control" value="${personne.dateNaissance}">
 									<p class="error">
 										<c:out value="${errors.dateNaissance}" />
 									</p>
@@ -77,7 +85,13 @@
 									<label for="nationalite" class="">Nationalité</label> <select
 										name="nationalite" id="nationalite" class="form-control">
 										<c:forEach var="c" items="${countries}">
-											<option value="${c.valueCountry}">${c.valueCountry}</option>
+											<c:if test="${personne.nationalite.equals(c) }">
+												<option value="${c.valueCountry}" selected>${c.valueCountry}</option>
+											</c:if>
+											<c:if test="${not personne.nationalite.equals(c) }">
+												<option value="${c.valueCountry}">${c.valueCountry}</option>
+											</c:if>
+
 										</c:forEach>
 									</select>
 									<p class="error">
@@ -111,8 +125,24 @@
 									</div>
 								</div>
 							</div>
+							<c:if test="${personne.getBase64() ne null }">
+								<div class="col-md-3">
+									<img style='display: block; width: 100px; height: 100px;'
+										id='base64image' src='data:image/jpeg;base64,${personne.getBase64()}' />
+								</div>
+							</c:if>
+							<div class="col-md-3">
+								<div class="position-relative form-group">
 
+									<label for="image" class="">Image</label><input name="imagePart"
+										id="image" type="file" class="form-control">
+									<p class="error">
+										<c:out value="${errors.image}" />
+									</p>
+								</div>
+							</div>
 						</div>
+
 						<div class="form-row">
 							<h1>Contacts</h1>
 						</div>
@@ -121,7 +151,8 @@
 								<div class="position-relative form-group">
 									<label for="codePostal" class="">Code postal</label><input
 										name="codePostal" id="codePostal" placeholder="Code postale"
-										type="text" class="form-control">
+										type="text" class="form-control"
+										value="${personne.codePostal}">
 									<p class="error">
 										<c:out value="${errors.codePostal}" />
 									</p>
@@ -132,7 +163,7 @@
 									<label for="telephone" class="">Telephone</label><input
 										name="telephone" id="telephone"
 										placeholder="Numéro de telephone" type="text"
-										class="form-control">
+										class="form-control" value="${personne.telephone}">
 									<p class="error">
 										<c:out value="${errors.telephone}" />
 									</p>
@@ -142,7 +173,7 @@
 								<div class="position-relative form-group">
 									<label for="email" class="">Email</label><input name="email"
 										id="email" placeholder="Email" type="text"
-										class="form-control">
+										class="form-control" value="${personne.email}">
 									<p class="error">
 										<c:out value="${errors.email}" />
 									</p>
@@ -158,7 +189,7 @@
 								<div class="position-relative form-group">
 									<label for="travaille" class="">Travaille</label><input
 										name="travaille" id="travaille" placeholder="Travaille"
-										type="text" class="form-control">
+										type="text" class="form-control" value="${personne.travaille}">
 									<p class="error">
 										<c:out value="${errors.travaille}" />
 									</p>
@@ -168,7 +199,8 @@
 								<div class="position-relative form-group">
 									<label for="etatSocial" class="">Etat Sociale</label><input
 										name="etatSocial" id="etatSocial" placeholder="Etat Sociale"
-										type="number" class="form-control">
+										type="text" class="form-control"
+										value="${personne.etatSocial}">
 									<p class="error">
 										<c:out value="${errors.etatSocial}" />
 									</p>
@@ -182,7 +214,7 @@
 									<div class="position-relative form-group">
 										<div>
 											<div class="custom-radio custom-control">
-												<input type="radio" id="marie" value="OUI" name="marie"
+												<input type="radio" id="marie" value="OUI" name="marieString"
 													class="custom-control-input" checked><label
 													class="custom-control-label" for="marie">Marié</label>
 											</div>
@@ -203,7 +235,7 @@
 									<label for="nombreEnfant" class="">Nombre d'enfants</label><input
 										name="nombreEnfant" id="nombreEnfant"
 										placeholder="Nombre d'enfants" type="number"
-										class="form-control">
+										class="form-control" value="${personne.nombreEnfant}">
 									<p class="error">
 										<c:out value="${errors.nombreEnfant}" />
 									</p>

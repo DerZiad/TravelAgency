@@ -22,15 +22,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
-import io.swagger.models.Model;
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Country;
 import ma.wiebatouta.models.Equipe;
-import ma.wiebatouta.models.Hotel;
 import ma.wiebatouta.models.Personne;
-import ma.wiebatouta.models.Theme;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.EquipeRepository;
+import ma.wiebatouta.repositories.PersonneRepository;
 
 @Controller
 @RequestMapping("/admin/ressources")
@@ -42,6 +40,8 @@ public class EquipeController {
 
 	private final static String ATTRIBUT_COUNTRIES = "countries";
 	private final static String ATTRIBUT_EQUIPES = "equipes";
+	private final static String ATTRIBUT_EQUIPE = "equipe";
+	private final static String ATTRIBUT_PERSONNE = "personne";
 	private final static String ATTRIBUT_ERRORS = "errors";
 
 	@Autowired
@@ -58,24 +58,38 @@ public class EquipeController {
 	}
 
 	@GetMapping("/add")
-	public ModelAndView getRessource() {
+	public ModelAndView getRessource(@RequestParam(name = "id", required = false) Long id) throws NotFoundException {
 		ModelAndView model = new ModelAndView(PAGE_AJOUT_EQUIPE);
 		List<Country> countries = countryRepository.findAll();
 		model.addObject(ATTRIBUT_COUNTRIES, countries);
+
+		if (id != null) {
+			Equipe equipe = equipeController.findById(id).orElseThrow(() -> new NotFoundException("L'id est invalide"));
+			model.addObject(ATTRIBUT_PERSONNE, equipe.getPersonne());
+			model.addObject(ATTRIBUT_EQUIPE, equipe);
+		}
 		return model;
 	}
 
 	@PostMapping("/add")
 	@RolesAllowed("ADMIN")
-	public ModelAndView createNewTheme(@RequestPayload Equipe equipe, @RequestPayload Personne person)
-			throws IOException, MessagingException {
+	public ModelAndView createNewRessource(@RequestParam(name = "id", required = false) Long id, @RequestPayload Equipe equipe, @RequestPayload Personne person)
+			throws IOException, MessagingException, NotFoundException {
 		ModelAndView model = null;
 		HashMap<String, String> errors = new HashMap<String, String>();
-		
-		System.out.println(equipe);
-		System.out.println(person);
-		
-		/*ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+
+		if (id != null) {
+			Equipe equipeGrab = equipeController.findById(id)
+					.orElseThrow(() -> new NotFoundException("L'id est invalide"));// Verifier si l'id existe
+			equipe.setId(id);
+			person.setId(equipeGrab.getPersonne().getId());
+
+			if (person.getImage() == null || person.getImage().length == 0) {
+				person.setImage(equipeGrab.getPersonne().getImage());
+			}
+		}
+
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 
 		Set<ConstraintViolation<Personne>> violatons = validator.validate(person);
@@ -86,19 +100,27 @@ public class EquipeController {
 		Set<ConstraintViolation<Equipe>> violatons1 = validator.validate(equipe);
 		for (ConstraintViolation<Equipe> constraintViolation : violatons1) {
 			errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
-		}*/
+		}
 
 		if (errors.size() == 0) {
 			equipe.setPersonne(person);
 			equipeController.save(equipe);
 			model = new ModelAndView(REDIRECT_LIST_EQUIPES);
 		} else {
+			System.out.println(errors);
 			model = new ModelAndView(PAGE_AJOUT_EQUIPE);
 			List<Country> countries = countryRepository.findAll();
 			model.addObject(ATTRIBUT_COUNTRIES, countries);
 			model.addObject(ATTRIBUT_ERRORS, errors);
 		}
 		model.addObject(DesignAttributes.ACTIVE_THEME_AJOUT, DesignAttributes.ACTIVE);
+		return model;
+	}
+
+	@GetMapping("/delete")
+	public ModelAndView deleteRessource(@RequestParam(name = "id", required = true) Long id) throws NotFoundException {
+		ModelAndView model = new ModelAndView(REDIRECT_LIST_EQUIPES);
+		equipeController.deleteById(id);
 		return model;
 	}
 }
