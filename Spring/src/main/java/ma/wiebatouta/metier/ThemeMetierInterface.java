@@ -15,4 +15,5 @@ public interface ThemeMetierInterface {
 	public Theme save(Theme theme) throws IOException;
 	public  Theme getThemeById(String idTheme) throws NotFoundException;
 	public Theme getThemeById(Long idTheme) throws NotFoundException;
+	public void deleteTheme(Long idTheme) ;
 }

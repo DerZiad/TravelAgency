@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance"
@@ -10,69 +10,99 @@
 
 		<div class="main-card mb-3 card">
 			<div class="card-body">
-				<form class="from-group" action="/admin/module/profile/${module.id_module}/element/create" method="POST">
-					<h5 class="card-title">Création d'un element</h5>
+				<form class="form-group" action="/admin/activite"
+					 method="POST">
+					<h5 class="card-title">Création d'une Activite Voyage</h5>
+					<input name="id" id="id" type="hidden" class="form-control"
+						value="">
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="position-relative form-group">
+								<label for="name" class="">Label Activite</label><input
+									name="name" id="name" placeholder="Label Theme" type="text"
+									class="form-control" value="">
+							</div>
+							<p style="color: red;">
+
+								<c:if test="${bool}">
+									<c:out value="${errors.nomActivite}"></c:out>
+								</c:if>
+							</p>
+						</div>
+					</div>
 
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
-								<label for="name" class="">Nom d'element</label><input
-									name="name" id="name" placeholder="Nom d'element" type="text"
-									class="form-control">
+								<label for="name" class="">Description Activite</label><input
+									name="description" id="name"
+									placeholder="Description du Theme " type="text"
+									class="form-control" value="${theme.description}">
+
 							</div>
+							<p style="color: red;">
+								<c:if test="${bool}">
+									<c:out value="${errors.description}"></c:out>
+								</c:if>
+							</p>
 						</div>
 					</div>
-					<div class="form-row">
-						<div class="col-md-12">
-							<div class="position-relative form-group">
-								<label for="professeur_id" class="">Professeur</label> <select
-									name="professeur_id" id="exampleSelect" class="form-control">
-									<c:forEach var="professeur" items="${professeurs}">
-										<option value="${professeur.id_professeur}">
-											${professeur.nom_professeur } ${professeur.prenom_professeur}</option>
-									</c:forEach>
-								</select>
-							</div>
+
+					<div class="container1">
+						<button class="add_form_field">
+							Ajouter Sous-Activite &nbsp; <span
+								style="font-size: 16px; font-weight: bold;">+ </span>
+						</button>
+						<div>
+						<p style="color: red;">
+							<c:if test="${bool1}">
+								<c:out value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
+							</c:if>
+						</p>
 						</div>
 					</div>
-					<div class="form-row">
-						<div class="col-md-4">
-							<div class="position-relative form-group">
-								<label for="coefficient_id" class="">Coefficient</label> <input
-									id="coefficient_id" class="form-control" name="coefficient" />
-							</div>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-md-4">
-							<div class="position-relative form-group">
-								<label for="validation_id" class="">Validation</label> <input
-									id="validation_id" class="form-control" name="validation" />
-							</div>
-						</div>
-					</div>
+
+
+					<p style="color: red;">
+						<c:if test="${bool}">
+							<c:out value="${errors.picture}"></c:out>
+						</c:if>
+					</p>
+
+
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
 				</form>
 			</div>
+			<c:set var="cmp" value="${cmp}" scope="request"></c:set>
 			<div class="main-card mb-3">
 				<div class="card-body">
-					<h5 class="card-title">Liste des modules</h5>
+					<h5 class="card-title">Liste des Themes de Voyage</h5>
 					<table class="mb-0 table table-striped">
 						<thead>
 							<tr>
-								<th>Nom</th>
-								<th>Coefficient</th>
-								<th>Validation</th>
+								<th>ID</th>
+								<th>LABEL</th>
+								<th>DESCRIPTION</th>
+								<th>Sous Activites</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="element" items="${elements}">
+							<c:forEach var="activity" items="${activities}">
 								<tr>
 									<td><a style="color: black"
-										href="/admin/module/profile/${element.module.id_module}/element/modify/${element.id_element}">
-											${element.libelle_element}</a></td>
-									<td style="color: black">${element.coeficient}</td>
-									<td style="color: black">${element.validation}</td>
+										href="/admin/activite/${activity.id}"> ${activity.id}</a></td>
+									<td style="color: black">${activity.nomActivite}</td>
+									<td style="color: black">${activity.description}</td>
+									<td>
+										<c:forEach var="s" items="${sousActivitie}${cmp}">
+											<li>${sousActivitie}${cmp}</li>
+										</c:forEach>
+										<c:out value="${cmp}"></c:out>
+										<c:set var="cmp" value="${cmp + 1}"></c:set>
+									</td>
+									<td><a href="/admin/theme/deleteTheme/${themes.id}"
+										class="delete"><i class="bi bi-trash"></i>DELETE</a>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -81,5 +111,9 @@
 			</div>
 		</div>
 
+	</layout:put>
+	<layout:put block="scriptsfile" type="REPLACE">
+		<script src="/delibdesign/js/Activite/script.js"></script>
+		<script src="/delibdesign/js/hotel/template.js"></script>
 	</layout:put>
 </layout:extends>

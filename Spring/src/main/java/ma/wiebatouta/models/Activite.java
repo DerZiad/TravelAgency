@@ -36,12 +36,12 @@ public class Activite implements Serializable, Comparable<Activite> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "nomactivite", nullable = false, length = 60)
-	@Length(min = 20, max = 60, message = "La taille du titre d'activite doit être entre 20 et 60 caractères")
+	@Length(min = 5, max = 60, message = "La taille du titre d'activite doit être entre 5 et 60 caractères")
 	@NotNull(message = "Le nom d'activite ne doit pas être vide")
 	private String nomActivite;
 	@Column(name = "description", nullable = false, length = 150)
 	@NotNull(message = "La description ne doit pas être vide")
-	@Length(min = 50, max = 150, message = "La taille de la description d'activite doit être entre 50 et 150 caractères")
+	@Length(min = 5, max = 150, message = "La taille de la description d'activite doit être entre 5 et 150 caractères")
 	private String description;
 
 	/**
@@ -66,5 +66,32 @@ public class Activite implements Serializable, Comparable<Activite> {
 	public int compareTo(Activite o) {
 		return this.nomActivite.compareTo(o.getNomActivite());
 	}
+
+	public Activite(Long id,
+			@Length(min = 20, max = 60, message = "La taille du titre d'activite doit être entre 20 et 60 caractères") @NotNull(message = "Le nom d'activite ne doit pas être vide") String nomActivite,
+			@NotNull(message = "La description ne doit pas être vide") @Length(min = 50, max = 150, message = "La taille de la description d'activite doit être entre 50 et 150 caractères") String description,
+			List<SousActivite> sousActivites) {
+		super();
+		this.id = id;
+		this.nomActivite = nomActivite;
+		this.description = description;
+		this.sousActivites = sousActivites;
+	}
+
+	public Activite(Long id,
+			@Length(min = 20, max = 60, message = "La taille du titre d'activite doit être entre 20 et 60 caractères") @NotNull(message = "Le nom d'activite ne doit pas être vide") String nomActivite,
+			@NotNull(message = "La description ne doit pas être vide") @Length(min = 50, max = 150, message = "La taille de la description d'activite doit être entre 50 et 150 caractères") String description) {
+		super();
+		this.id = id;
+		this.nomActivite = nomActivite;
+		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "Activite [id=" + id + ", nomActivite=" + nomActivite + ", description=" + description
+				+ ", sousActivites=" + sousActivites + ", voyage=" + voyage + "]";
+	}
+	
 
 }

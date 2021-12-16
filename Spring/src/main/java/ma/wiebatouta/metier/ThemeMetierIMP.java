@@ -46,6 +46,12 @@ public class ThemeMetierIMP implements ThemeMetierInterface {
 		return t ;
 	}
 
+	@Override
+	public void deleteTheme(Long idTheme) {
+		// TODO Auto-generated method stub
+		themeRepository.deleteById(idTheme);
+		}
+
 
 
 }

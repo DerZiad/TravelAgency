@@ -62,7 +62,17 @@
 				</a></li>
 						
 					</ul></li>
-					
+					<li><a href="#" aria-expanded="false"> <i
+						class="metismenu-icon pe-7s-id"></i> Activite <i
+						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+				</a>
+					<ul class="mm-collapse" style="height: 7.04px;">
+						<li><a href="/admin/activite"
+					class="${activiteAjout}"> <i
+						class="metismenu-icon pe-7s-graph3"></i> Ajouter Activite  du Voyage
+				</a></li>
+						
+					</ul></li>
 				<li><a href="#" aria-expanded="false"> <i
 						class="metismenu-icon pe-7s-id"></i> Voyage <i
 						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>

@@ -134,4 +134,12 @@ public class ThemeController {
 		return model;
 
 	}
+	
+	@GetMapping("/deleteLieu/{id}")
+	@RolesAllowed("ADMIN")
+	public ModelAndView delete(@PathVariable("id")Long idTheme) {
+		themeMetier.deleteTheme(idTheme);
+		ModelAndView model = new ModelAndView(REDIRECT_LIST_THEMES);
+		return model;
+	}
 }

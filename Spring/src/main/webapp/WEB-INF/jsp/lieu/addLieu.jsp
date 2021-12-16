@@ -10,16 +10,24 @@
 
 		<div class="main-card mb-3 card">
 			<div class="card-body">
-				<form class="form-group" action="lieux" method="POST">
+				<form class="form-group" action="/admin/lieux" method="POST">
 					<h5 class="card-title">Création d'un Lieu</h5>
-
+					<input name="id"
+									id="id"  type="hidden"
+									class="form-control" value="${lieu.id}">
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
 								<label for="name" class="">Label lieu</label><input name="name"
-									id="name" placeholder="Nom du Lieu" type="text"
+									id="name" placeholder="Nom du Lieu" type="text" value="${lieu.label}"
 									class="form-control">
 							</div>
+							<p style="color: red;">
+
+								<c:if test="${bool}">
+									<c:out value="${errors.label}"></c:out>
+								</c:if>
+							</p>
 
 						</div>
 					</div>
@@ -28,12 +36,18 @@
 					<div class="form-row">
 						<select name="keycountry" class="selectpicker"
 							data-live-search="true">
-							<option selected="selected">Nom Du Pays</option>
+							<option selected="selected" value="${lieu.country.keyCountry}"><c:out  value="${lieu.country.valueCountry}">NOM PAYS</c:out></option>
 							<c:forEach var="c" items="${country}">
 								<option data-tokens="${c.keyCountry}" value="${c.keyCountry}">${c.valueCountry}</option>
 							</c:forEach>
 							
 						</select>
+						<p style="color: red;">
+
+								<c:if test="${bool}">
+									<c:out value="${errors.label}"></c:out>
+								</c:if>
+							</p>
 					</div>
 
 
@@ -57,18 +71,20 @@
 								<th>ID</th>
 								<th>LABEL</th>
 								<th>COUNTRY</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="lieux" items="${lieux}">
 								<tr>
 									<td>
-										<!--  <a style="color: black"
-										href="/admin/module/profile/${element.module.id_module}/element/modify/${element.id_element}">-->
-										${lieux.id}</a>
+										<a style="color: black"
+										href="/admin/lieux/${lieux.id}"> ${lieux.id}</a>
 									</td>
 									<td style="color: black">${lieux.label}</td>
 									<td style="color: black">${lieux.country.valueCountry}</td>
+									<td><a href="/admin/theme/deleteLieu/${themes.id}" class="delete"
+									><i class="bi bi-trash"></i>DELETE</a>
 								</tr>
 							</c:forEach>
 						</tbody>

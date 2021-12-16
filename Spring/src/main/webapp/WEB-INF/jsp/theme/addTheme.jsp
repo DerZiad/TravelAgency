@@ -93,6 +93,7 @@
 								<th>ID</th>
 								<th>LABEL</th>
 								<th>DESCRIPTION</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -102,7 +103,8 @@
 										href="/admin/theme/${themes.id}"> ${themes.id}</a></td>
 									<td style="color: black">${themes.label}</td>
 									<td style="color: black">${themes.description}</td>
-
+									<td><a href="/admin/theme/deleteTheme/${themes.id}" class="delete"
+									><i class="bi bi-trash"></i>DELETE</a> 
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -35,10 +35,15 @@ public class SousActivite implements Serializable,Comparable<SousActivite>{
 	private Long id;
 
 	@Column(name = "description",length = 35,nullable = false)
-	@NotNull(message="Le titre ne doit pas être vide")
-	@Length(max = 35,min = 5,message="Le titre doit être entre 5 et 35 caractère")
-	private String titre;
+	@NotNull(message="La description d'une sousActivite  ne doit pas être vide")
+	@Length(max = 65,min = 5,message="La description doit être entre 5 et 35 caractère")
+	private String description;
 	
+	
+	@Column
+	@NotNull(message="Le titre d'une sousActivite  ne doit pas être vide")
+	@Length(max = 15,min = 5,message="Le titre doit être entre 5 et 15 caractère")
+	private String titre;
 	
 	/**
 	 * Relations
@@ -62,6 +67,12 @@ public class SousActivite implements Serializable,Comparable<SousActivite>{
 	@Override
 	public int compareTo(SousActivite o) {
 		return titre.compareTo(o.getTitre());
+	}
+
+	@Override
+	public String toString() {
+		return "SousActivite [id=" + id + ", description=" + description + ", titre=" + titre + ", activite=" + activite
+				+ "]";
 	}
 	
 }
