@@ -1,21 +1,28 @@
 package ma.wiebatouta.models;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.wiebatouta.models.enums.TypePicture;
 
 @Entity
 @Table(name = "pictures")
@@ -30,6 +37,10 @@ public class Picture implements Serializable, Comparable<Picture> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Enumerated(EnumType.STRING)
+	private TypePicture type;
+	
+	@Lob
 	@NotNull(message = "On a besoin d'au moins d'une image")
 	private byte[] picture;
 
@@ -44,7 +55,16 @@ public class Picture implements Serializable, Comparable<Picture> {
 		this.picture = picture;
 		this.voyage = voyage;
 	}
-
+	
+	public void setPicturePart(MultipartFile file) throws IOException {
+		byte image[] = file.getBytes();
+		if(image != null && image.length != 0) {
+			this.picture = image;
+		}else {
+			this.picture = null;
+		}
+	}
+	
 	@Override
 	public int compareTo(Picture o) {
 		if (id < o.getId()) {

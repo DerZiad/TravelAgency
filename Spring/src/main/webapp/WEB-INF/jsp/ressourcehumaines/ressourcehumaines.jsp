@@ -7,7 +7,14 @@
 <layout:extends name="../layout-resp.jsp">
 	<layout:put block="content" type="REPLACE">
 		<div class="main-card mb-3 card">
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+						<a href="/admin/ressources" class="col-md-12 btn btn-info">Cancel</a>
+				</div>
+			</div>
 			<div class="card-body">
+
 				<h5 class="card-title">Création d'une equipe</h5>
 				<form class="" action="/admin/ressources/add" method="POST"
 					enctype="multipart/form-data">
@@ -128,14 +135,15 @@
 							<c:if test="${personne.getBase64() ne null }">
 								<div class="col-md-3">
 									<img style='display: block; width: 100px; height: 100px;'
-										id='base64image' src='data:image/jpeg;base64,${personne.getBase64()}' />
+										id='base64image'
+										src='data:image/jpeg;base64,${personne.getBase64()}' />
 								</div>
 							</c:if>
 							<div class="col-md-3">
 								<div class="position-relative form-group">
 
-									<label for="image" class="">Image</label><input name="imagePart"
-										id="image" type="file" class="form-control">
+									<label for="image" class="">Image</label><input
+										name="imagePart" id="image" type="file" class="form-control">
 									<p class="error">
 										<c:out value="${errors.image}" />
 									</p>
@@ -214,8 +222,8 @@
 									<div class="position-relative form-group">
 										<div>
 											<div class="custom-radio custom-control">
-												<input type="radio" id="marie" value="OUI" name="marieString"
-													class="custom-control-input" checked><label
+												<input type="radio" id="marie" value="OUI"
+													name="marieString" class="custom-control-input" checked><label
 													class="custom-control-label" for="marie">Marié</label>
 											</div>
 											<div class="custom-radio custom-control">
