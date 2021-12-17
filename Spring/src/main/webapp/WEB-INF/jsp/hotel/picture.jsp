@@ -61,7 +61,7 @@
 									<td><img style='display: block; width: 50px; height: 50px;'
 									id='base64image'
 									src='data:image/jpeg;base64,${picture.getBase64()}' /></td>
-									<td style="color: black">${themes.label}</td>
+									<td style="color: black">${picture.type}</td>
 									<td style="color: black">${themes.description}</td>
 									<td><a href="/admin/theme/deleteTheme/${themes.id}"
 										class="delete"><i class="bi bi-trash"></i>DELETE</a>
