@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,6 +43,7 @@ public class Equipe implements Serializable,Comparable<Equipe>{
 	
 	@OneToMany(cascade = {
 			CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "equipe", targetEntity = Voyage.class)
+	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 
 	@Override

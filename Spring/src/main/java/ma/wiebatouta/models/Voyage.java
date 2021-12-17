@@ -78,7 +78,6 @@ public class Voyage {
 	 */
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE,
 			CascadeType.DETACH }, mappedBy = "voyages")
-	@JsonIgnore
 	private List<Hotel> hoteles = new ArrayList<Hotel>();
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,
@@ -97,6 +96,7 @@ public class Voyage {
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE,
 			CascadeType.DETACH }, mappedBy = "voyages", targetEntity = Personne.class)
+	@JsonIgnore
 	private List<Personne> personnes = new ArrayList<Personne>();
 
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH })
