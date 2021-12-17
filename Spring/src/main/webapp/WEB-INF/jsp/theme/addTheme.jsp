@@ -56,7 +56,7 @@
 									<c:if test="${modify}">
 									<div class="col-md-6">
 										<img style='display: block; width: 100px; height: 100px;'
-											id='base64image'
+											id='base64image' name="img"
 											src='data:image/jpeg;base64,${theme.encodedPicture}' />
 									</div>
 									</c:if>
@@ -82,7 +82,11 @@
 
 
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
+				
+
 				</form>
+				<button id="rst" class=" mt-2 btn btn-danger" 
+						>Effacer</button>
 			</div>
 			<div class="main-card mb-3">
 				<div class="card-body">
@@ -113,5 +117,9 @@
 			</div>
 		</div>
 
+	</layout:put>
+	<layout:put block="scriptsfile" type="REPLACE">
+		<script src="/delibdesign/js/Theme/script.js"></script>
+		<script src="/delibdesign/js/hotel/template.js"></script>
 	</layout:put>
 </layout:extends>

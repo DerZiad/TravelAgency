@@ -12,15 +12,14 @@
 			<div class="card-body">
 				<form class="form-group" action="/admin/lieux" method="POST">
 					<h5 class="card-title">Création d'un Lieu</h5>
-					<input name="id"
-									id="id"  type="hidden"
-									class="form-control" value="${lieu.id}">
+					<input name="id" id="id" type="hidden" class="form-control"
+						value="${lieu.id}">
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
 								<label for="name" class="">Label lieu</label><input name="name"
-									id="name" placeholder="Nom du Lieu" type="text" value="${lieu.label}"
-									class="form-control">
+									id="name" placeholder="Nom du Lieu" type="text"
+									value="${lieu.label}" class="form-control">
 							</div>
 							<p style="color: red;">
 
@@ -34,33 +33,30 @@
 
 
 					<div class="form-row">
-						<select name="keycountry" class="selectpicker"
+						<select id="slct" name="keycountry" class="selectpicker"
 							data-live-search="true">
-							<option selected="selected" value="${lieu.country.keyCountry}"><c:out  value="${lieu.country.valueCountry}">NOM PAYS</c:out></option>
+							<option selected="selected" value="${lieu.country.keyCountry}" id="option1"><c:out
+									value="${lieu.country.valueCountry}">NOM PAYS</c:out></option>
 							<c:forEach var="c" items="${country}">
-								<option data-tokens="${c.keyCountry}" value="${c.keyCountry}">${c.valueCountry}</option>
+								<option id="option2"data-tokens="${c.keyCountry}" value="${c.keyCountry}">${c.valueCountry}</option>
 							</c:forEach>
-							
+								<option value="0" >AAA</option>
 						</select>
 						<p style="color: red;">
 
-								<c:if test="${bool}">
-									<c:out value="${errors.label}"></c:out>
-								</c:if>
-							</p>
+							<c:if test="${bool}">
+								<c:out value="${errors.label}"></c:out>
+							</c:if>
+						</p>
 					</div>
 
-
-
-
-
-
-
-
-
-
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
+					
+
 				</form>
+				<button id="rst" class=" mt-2 btn btn-danger" value="Reset"
+						>Effacer</button>
+				
 			</div>
 			<div class="main-card mb-3">
 				<div class="card-body">
@@ -77,14 +73,12 @@
 						<tbody>
 							<c:forEach var="lieux" items="${lieux}">
 								<tr>
-									<td>
-										<a style="color: black"
-										href="/admin/lieux/${lieux.id}"> ${lieux.id}</a>
-									</td>
+									<td><a style="color: black"
+										href="/admin/lieux/${lieux.id}"> ${lieux.id}</a></td>
 									<td style="color: black">${lieux.label}</td>
 									<td style="color: black">${lieux.country.valueCountry}</td>
-									<td><a href="/admin/theme/deleteLieu/${themes.id}" class="delete"
-									><i class="bi bi-trash"></i>DELETE</a>
+									<td><a href="/admin/theme/deleteLieu/${themes.id}"
+										class="delete"><i class="bi bi-trash"></i>DELETE</a>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -93,5 +87,9 @@
 			</div>
 		</div>
 
+	</layout:put>
+	<layout:put block="scriptsfile" type="REPLACE">
+		<script src="/delibdesign/js/Lieu/script.js"></script>
+		<script src="/delibdesign/js/hotel/template.js"></script>
 	</layout:put>
 </layout:extends>

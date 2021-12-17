@@ -11,16 +11,18 @@
 
 		<div class="main-card mb-3 card">
 			<div class="card-body">
-				<form class="form-group" action="/admin/activite" method="POST">
+				<form id="frm" class="form-group" action="/admin/activite"
+					method="POST">
+
 					<h5 class="card-title">Création d'une Activite Voyage</h5>
 					<input name="id" id="id" type="hidden" class="form-control"
-						value="">
+						value="${activite.id}">
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
 								<label for="name" class="">Label Activite</label><input
 									name="name" id="name" placeholder="Label Theme" type="text"
-									class="form-control" value="">
+									class="form-control" value="${activite.nomActivite}">
 							</div>
 							<p style="color: red;">
 
@@ -35,9 +37,9 @@
 						<div class="col-md-6">
 							<div class="position-relative form-group">
 								<label for="name" class="">Description Activite</label><input
-									name="description" id="name"
+									name="description" id="dscp"
 									placeholder="Description du Theme " type="text"
-									class="form-control" value="${theme.description}">
+									class="form-control" value="${activite.description}">
 
 							</div>
 							<p style="color: red;">
@@ -52,10 +54,28 @@
 						<button class="add_form_field">
 							Ajouter Sous-Activite &nbsp; <span
 								style="font-size: 16px; font-weight: bold;">+ </span>
+
 						</button>
+						<c:if test="${bool}">
+							<c:forEach var="ss" items="${activite.sousActivites}">
+								<div>
+									<input name="sid" id="id" type="hidden" class="form-control"
+						value="${ss.id}">
+									<label for="name" class="">Label SousActivite</label> <input
+										type="text" value="${ss.titre}" name="myparams" /></br> <label
+										for="name" class="">Description SousActivite</label> <input
+										type="text" value="${ss.description}" name="SousActdescrip" />
+									<a href="#" class="delete">Delete</a>
+								</div>
+							</c:forEach>
+						</c:if>
 						<div>
 							<p style="color: red;">
 								<c:if test="${bool1}">
+									<c:out
+										value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
+								</c:if>
+								<c:if test="${b}">
 									<c:out
 										value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
 								</c:if>
@@ -64,20 +84,20 @@
 					</div>
 
 
-					<p style="color: red;">
-						<c:if test="${bool}">
-							<c:out value="${errors.picture}"></c:out>
-						</c:if>
-					</p>
+
 
 
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
+					
+
 				</form>
+					<button id="rst" class=" mt-2 btn btn-danger" 
+						>Effacer</button>
 			</div>
 			<c:set var="cmp" value="${cmp}" scope="request"></c:set>
 			<div class="main-card mb-3">
 				<div class="card-body">
-					<h5 class="card-title">Liste des Themes de Voyage</h5>
+					<h5 class="card-title">Liste des Activites de Voyage</h5>
 					<table class="mb-0 table table-striped">
 						<thead>
 							<tr>
@@ -95,12 +115,14 @@
 										href="/admin/activite/${activity.id}"> ${activity.id}</a></td>
 									<td style="color: black">${activity.nomActivite}</td>
 									<td style="color: black">${activity.description}</td>
-									<td><c:forEach var="s" items="${activity.sousActivites}" varStatus="status">
+									<td><c:forEach var="s" items="${activity.sousActivites}"
+											varStatus="status">
 											<li>${s.titre}</li>
 											<c:set var="cmp" value="${cmp + 1}"></c:set>
 
 										</c:forEach></td>
-									<td><a href="/admin/theme/deleteTheme/${themes.id}"
+									<td><a
+										href="/admin/activite/deleteActivite/${activity.id}"
 										class="delete"><i class="bi bi-trash"></i>DELETE</a>
 								</tr>
 							</c:forEach>
@@ -109,7 +131,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 	</layout:put>
 	<layout:put block="scriptsfile" type="REPLACE">
 		<script src="/delibdesign/js/Activite/script.js"></script>

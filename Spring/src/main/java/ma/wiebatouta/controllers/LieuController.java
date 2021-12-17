@@ -109,10 +109,10 @@ public class LieuController {
 			} else {
 				lieuMetier.save(lieu);
 			}
-		}
+		
 		List<Lieu> lieux = lieuMetier.listeLieux();
 		model.addObject(LIEUX, lieux);
-		model.addObject(DesignAttributes.ACTIVE_THEME_AJOUT, DesignAttributes.ACTIVE);
+		model.addObject(DesignAttributes.ACTIVE_THEME_AJOUT, DesignAttributes.ACTIVE);}
 		return model;
 	}
 

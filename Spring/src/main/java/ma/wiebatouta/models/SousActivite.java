@@ -69,10 +69,6 @@ public class SousActivite implements Serializable,Comparable<SousActivite>{
 		return titre.compareTo(o.getTitre());
 	}
 
-	@Override
-	public String toString() {
-		return "SousActivite [id=" + id + ", description=" + description + ", titre=" + titre + ", activite=" + activite
-				+ "]";
-	}
+	
 	
 }
