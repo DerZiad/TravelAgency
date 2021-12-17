@@ -58,13 +58,14 @@
 						<tbody>
 							<c:forEach var="picture" items="${pictures}">
 								<tr>
-									<td><img style='display: block; width: 50px; height: 50px;'
-									id='base64image'
-									src='data:image/jpeg;base64,${picture.getBase64()}' /></td>
+									<td><img
+										style='display: block; width: 50px; height: 50px;'
+										id='base64image'
+										src='data:image/jpeg;base64,${picture.getBase64()}' /></td>
 									<td style="color: black">${picture.type}</td>
-									<td style="color: black">${themes.description}</td>
-									<td><a href="/admin/theme/deleteTheme/${themes.id}"
-										class="delete"><i class="bi bi-trash"></i>DELETE</a>
+									<td><a
+										href="/admin/hotel/picture/delete?id=${picture.hotel.id}&idPicture=${picture.id}"
+										class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -159,4 +159,15 @@ public class HotelRestController {
 		hotelRepository.save(hotel);
 		return ResponseEntity.accepted().build();
 	}
+
+	@GetMapping("/pictures")
+	public HttpEntity<?> getPictures(@RequestParam("id") Long id) throws NotFoundException, DataEmptyException {
+		Hotel hotel = hotelRepository.findById(id).orElseThrow(() -> new NotFoundException("Id not found"));
+		if (hotel.getPictures().size() == 0) {
+			throw new DataEmptyException("The list of catalogs is empty");
+		} else {
+			return ResponseEntity.ok(hotel.getPictures());
+
+		}
+	}
 }

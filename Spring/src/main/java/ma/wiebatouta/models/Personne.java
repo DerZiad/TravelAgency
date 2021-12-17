@@ -3,6 +3,7 @@ package ma.wiebatouta.models;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,6 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lowagie.text.pdf.codec.Base64;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -141,7 +141,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	
 	
 	public String getBase64() {
-		String code = Base64.encodeBytes(image);
+		String code = Base64.getEncoder().encodeToString(image);
 		return code;
 	}
 }

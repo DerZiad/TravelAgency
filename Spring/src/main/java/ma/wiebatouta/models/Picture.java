@@ -2,6 +2,7 @@ package ma.wiebatouta.models;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Base64;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +19,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,12 +45,15 @@ public class Picture implements Serializable, Comparable<Picture> {
 	
 	@Lob
 	@NotNull(message = "On a besoin d'au moins d'une image")
+	@JsonIgnore
 	private byte[] picture;
 
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@JsonIgnore
 	private Voyage voyage;
 	
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@JsonIgnore
 	private Hotel hotel;
 
 	public Picture(byte[] picture, Voyage voyage) {
@@ -72,6 +78,14 @@ public class Picture implements Serializable, Comparable<Picture> {
 		} else {
 			return 1;
 		}
+	}
+	
+	public String getBase64() {
+		String c = "";
+		if(this.picture != null || this.picture.length != 0) {
+			c = Base64.getEncoder().encodeToString(this.picture);
+		}
+		return c;
 	}
 
 }

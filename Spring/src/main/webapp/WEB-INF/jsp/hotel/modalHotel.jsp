@@ -66,9 +66,10 @@
 					<p id="nomHotelErrorEdit" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Nombre etoiles</label> <span id="star1Edit" class="C2etoiles"><div></div></span>
-					<span id="star2Edit" class="C2etoiles"><div></div> </span> <span
-						id="star3Edit" class="C2etoiles"><div></div></span> <span id="star4Edit"
+					<label>Nombre etoiles</label> <span id="star1Edit"
+						class="C2etoiles"><div></div></span> <span id="star2Edit"
+						class="C2etoiles"><div></div> </span> <span id="star3Edit"
+						class="C2etoiles"><div></div></span> <span id="star4Edit"
 						class="C2etoiles"><div></div></span> <span id="star5Edit"
 						class="C2etoiles"><div></div></span> <input type="hidden"
 						name="starEdit" value="1" />
@@ -92,8 +93,8 @@
 			</div>
 			<div class="modal-footer">
 				<input type="button" class="btn btn-default" data-dismiss="modal"
-					value="Cancel" id="cancelEdit"> <input id="editEdit" type="submit"
-					name="edit" class="btn btn-success" value="Edit">
+					value="Cancel" id="cancelEdit"> <input id="editEdit"
+					type="submit" name="edit" class="btn btn-success" value="Edit">
 			</div>
 		</div>
 	</div>
@@ -149,20 +150,26 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Delete Employee</h4>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Pictures</h4>
 			</div>
 			<div class="modal-body">
-				<p>Are you sure you want to delete these Records?</p>
-				<p class="text-warning">
-					<small>This action cannot be undone.</small>
-				</p>
-			</div>
-			<div class="modal-footer">
-				<input type="button" class="btn btn-default" data-dismiss="modal"
-					value="Cancel"> <input data-dismiss="modal" type="submit"
-					name="deleteAll" class="btn btn-danger" value="Delete">
+				<div id="carouselExampleControls" class="carousel slide"
+					data-ride="carousel">
+					<div id="galerie" class="carousel-inner">
+						<div class="carousel-item active">
+							<img class="d-block w-100" src="/images/notfound.jpg" alt="First slide">
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleControls"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleControls"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>

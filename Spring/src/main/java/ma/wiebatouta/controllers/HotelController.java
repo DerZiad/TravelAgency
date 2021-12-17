@@ -23,6 +23,7 @@ import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Picture;
 import ma.wiebatouta.models.enums.TypePicture;
 import ma.wiebatouta.repositories.HotelRepository;
+import ma.wiebatouta.repositories.PictureRepository;
 
 @Controller
 @RequestMapping("/admin/hotel")
@@ -35,12 +36,17 @@ public class HotelController {
 	private final static String ATTRIBUT_ID_HOTEL = "idHotel";
 	private final static String ATTRIBUT_PICTURES = "pictures";
 	private final static String ATTRIBUT_ERRORS = "errors";
+	private final static String REDIRECT_PICTURES_HOTEL = "redirect:/admin/hotel/picture?id=%d";
+	
 	
 	@Autowired
 	private HotelServiceInterface hotelMetier;
 	
 	@Autowired
 	private HotelRepository hotelRepository;
+	
+	@Autowired
+	private PictureRepository pictureRepository;
 	
 	@GetMapping
 	public ModelAndView getPageHotel() {
@@ -81,6 +87,7 @@ public class HotelController {
 		
 		if(errors.size() == 0) {
 			picture.setHotel(hotel);
+			picture.setId(null);
 			hotel.getPictures().add(picture);
 			hotelRepository.save(hotel);
 		}else {
@@ -89,4 +96,12 @@ public class HotelController {
 		
 		return model;
 	}
+	
+	@GetMapping("/picture/delete")
+	public ModelAndView deletePicture(@RequestParam("id") Long id,@RequestParam("idPicture")Long idPicture) throws NotFoundException {
+		pictureRepository.deleteById(idPicture);
+		ModelAndView model = new ModelAndView(String.format(REDIRECT_PICTURES_HOTEL, id));
+		return model;
+	}
+	
 }

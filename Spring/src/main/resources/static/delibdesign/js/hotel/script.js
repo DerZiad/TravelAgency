@@ -68,7 +68,7 @@ function makeEditHotel(idHotel) {
 		var star = $('input[name=starEdit]').val();
 		var state = $('select[name=stateEdit]').val();
 		datas = {
-			'id':"" + idHotel,
+			'id': "" + idHotel,
 			'nomHotel': nomHotel,
 			'nombreEtoile': star,
 			'idLieu': state
@@ -206,6 +206,27 @@ function refreshLieux() {
 
 }
 
+function getPictures(idHotel) {
+	$.ajax({
+		url: '/api/hotel/pictures?id=' + idHotel,
+		type: 'get',
+		data: {},
+		success: function(response) {
+			pictures = response;
+			var contenue = "";
+			for (picture of pictures) {
+				contenue = contenue + '<div class="carousel-item active"><img class="d-block w-100" src="data:image/jpeg;base64,' + picture.base64 + '" alt="' + picture.id + '"></div>\n';
+			}
+
+			$('#galerie').html(contenue);
+		}, error: function(xhr, ajaxOptions, thrownError) {
+			var contenue = "";
+			contenue = contenue + '<div class="carousel-item active"><img class="d-block w-100" src="/images/notfound.jpg" alt="Not found"></div>\n';
+			$('#galerie').html(contenue);
+		}
+	});
+}
+
 function refreshotels() {
 	$.ajax({
 		url: '/api/hotel',
@@ -220,10 +241,10 @@ function refreshotels() {
 				contenue = contenue + '<td>' + hotel.nomHotel + '</td>\n'
 				contenue = contenue + '<td>' + hotel.nombreEtoile + '</td>\n'
 				contenue = contenue + '<td>' + hotel.ville.label + '</td>\n'
-				contenue = contenue + '<td><a href="#addImageModal" class="edit" data-toggle="modal"><i data-toggle="tooltip" title="Edit" class="fas fa-images"></i></a><a href="#editEmployeeModal" onclick="makeEditHotel(' + hotel.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + hotel.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a><a href="/admin/hotel/picture?id='+ hotel.id + '" class="edit" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a></td>\n'
+				contenue = contenue + '<td><a href="#addImageModal" onclick="getPictures(' + hotel.id + ')" class="addpicture" data-toggle="modal"><i data-toggle="tooltip" title="Edit" class="fas fa-images"></i></a><a href="#editEmployeeModal" onclick="makeEditHotel(' + hotel.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + hotel.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a><a href="/admin/hotel/picture?id=' + hotel.id + '" class="edit" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a></td>\n'
 				contenue = contenue + '</tr>\n'
 			}
-			 
+
 
 			$('#hotelslist').html(contenue);
 		}
