@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -89,7 +91,11 @@ public class Personne implements Serializable, Comparable<Personne> {
 	private String telephone;
 	@Email(message = "L'email n'est pas valide")
 	private String email;
-	
+
+	@Enumerated(EnumType.STRING)
+	@NotNull(message = "Le sexe ne doit pas être vide")
+	private Sexe sexe;
+
 	@Lob
 	@NotNull(message = "L'immage ne doit pas être vide")
 	private byte[] image;
@@ -116,7 +122,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 			int month = Integer.parseInt(date.substring(5, 7));
 			int day = Integer.parseInt(date.substring(8, 10));
 			this.dateNaissance = new Date(year, month, day);
-		}else {
+		} else {
 			date = null;
 		}
 	}
@@ -128,20 +134,41 @@ public class Personne implements Serializable, Comparable<Personne> {
 			this.marie = false;
 		}
 	}
-	
-	
+
 	public void setImagePart(MultipartFile file) throws IOException {
 		byte image[] = file.getBytes();
-		if(image != null && image.length != 0) {
+		if (image != null && image.length != 0) {
 			this.image = image;
-		}else {
+		} else {
 			this.image = null;
 		}
 	}
-	
-	
+
 	public String getBase64() {
-		String code = Base64.getEncoder().encodeToString(image);
-		return code;
+		String c = "";
+		if (this.image != null && this.image.length != 0) {
+			c = Base64.getEncoder().encodeToString(this.image);
+		}
+		return c;
 	}
+
+	@SuppressWarnings("deprecation")
+	public String getDateNaissanceDate() {
+		String date = "";
+		if (this.dateNaissance != null) {
+			date = date + this.dateNaissance.getYear() + "-";
+			String month = this.dateNaissance.getMonth() + "";
+			if (month.length() == 1) {
+				month = "0" + month;
+			}
+			date = date + month + "-";
+			String day = this.dateNaissance.getDay() + "";
+			if (day.length() == 1) {
+				day = "0" + day;
+			}
+			date = date + day;
+		}
+		return date;
+	}
+
 }

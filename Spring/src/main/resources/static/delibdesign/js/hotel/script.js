@@ -214,8 +214,15 @@ function getPictures(idHotel) {
 		success: function(response) {
 			pictures = response;
 			var contenue = "";
+			var i = 0;
 			for (picture of pictures) {
-				contenue = contenue + '<div class="carousel-item active"><img class="d-block w-100" src="data:image/jpeg;base64,' + picture.base64 + '" alt="' + picture.id + '"></div>\n';
+				if (i == 0) {
+					contenue = contenue + '<div class="carousel-item active"><img class="d-block w-100" style="height:200px;width:100px" src="data:image/jpeg;base64,' + picture.base64 + '" alt="' + picture.id + '"></div>\n';
+
+				} else {
+					contenue = contenue + '<div class="carousel-item"><img class="d-block w-100" style="height:200px;width:100px" src="data:image/jpeg;base64,' + picture.base64 + '" alt="' + picture.id + '"></div>\n';
+				}
+				i++;
 			}
 
 			$('#galerie').html(contenue);

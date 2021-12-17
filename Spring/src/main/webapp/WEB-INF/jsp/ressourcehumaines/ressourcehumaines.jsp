@@ -81,7 +81,7 @@
 								<div class="position-relative form-group">
 									<label for="dateNaissance" class="">Date de naissance</label><input
 										name="dateNaissanceDate" id="dateNaissance" type="date"
-										class="form-control" value="${personne.dateNaissance}">
+										class="form-control" value="${personne.dateNaissanceDate}">
 									<p class="error">
 										<c:out value="${errors.dateNaissance}" />
 									</p>
@@ -121,7 +121,7 @@
 													class="custom-control-label" for="male">Homme</label>
 											</div>
 											<div class="custom-radio custom-control">
-												<input type="radio" id="female" value="FEMME" name="gender"
+												<input type="radio" id="female" value="FEMME" name="sexe"
 													class="custom-control-input"><label
 													class="custom-control-label" for="female">Femme</label>
 											</div>
@@ -222,14 +222,14 @@
 									<div class="position-relative form-group">
 										<div>
 											<div class="custom-radio custom-control">
-												<input type="radio" id="marie" value="OUI"
+												<input type="radio" id="mariee" value="OUI"
 													name="marieString" class="custom-control-input" checked><label
-													class="custom-control-label" for="marie">Marié</label>
+													class="custom-control-label" for="mariee">Marié</label>
 											</div>
 											<div class="custom-radio custom-control">
-												<input type="radio" id="marie" value="NON" name="marie"
+												<input type="radio" id="celib" value="NON" name="marieString"
 													class="custom-control-input"><label
-													class="custom-control-label" for="marie">Célibataire</label>
+													class="custom-control-label" for="celib">Célibataire</label>
 											</div>
 										</div>
 										<p class="error">
@@ -256,5 +256,13 @@
 			</div>
 		</div>
 
+	</layout:put>
+	<layout:put block="cssfiles" type="REPLACE">
+		<style>
+			.error{
+				color:red;
+				font-size:15px;
+			}
+		</style>
 	</layout:put>
 </layout:extends>

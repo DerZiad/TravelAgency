@@ -74,17 +74,13 @@
 						
 					</ul></li>
 				<li><a href="#" aria-expanded="false"> <i
-						class="metismenu-icon pe-7s-id"></i> Voyage <i
+						class="metismenu-icon pe-7s-id"></i> Hotel <i
 						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
 				</a>
 					<ul class="mm-collapse" style="height: 7.04px;">
 						<li><a href="/admin/hotel"
 					class="${hotelActive}"> <i
 						class="metismenu-icon pe-7s-graph3"></i> Gérer hotel
-				</a></li>
-						<li><a href="/admin/lieu"
-					class="${choixElementList}"> <i
-						class="metismenu-icon pe-7s-graph3"></i> Gérer Ville
 				</a></li>
 					</ul></li>
 					
@@ -95,7 +91,7 @@
 				</a>
 					<ul class="mm-collapse" style="height: 7.04px;">
 						<li><a href="/admin/ressources"
-					class="${hotelActive}"> <i
+					class="${ressourceHumaine}"> <i
 						class="metismenu-icon pe-7s-graph3"></i> Ajouter ressource humairne
 				</a></li>
 					</ul></li>

@@ -82,7 +82,7 @@ public class Picture implements Serializable, Comparable<Picture> {
 	
 	public String getBase64() {
 		String c = "";
-		if(this.picture != null || this.picture.length != 0) {
+		if(this.picture != null && this.picture.length != 0) {
 			c = Base64.getEncoder().encodeToString(this.picture);
 		}
 		return c;

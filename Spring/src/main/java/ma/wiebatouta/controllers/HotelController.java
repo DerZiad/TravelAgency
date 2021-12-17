@@ -24,6 +24,7 @@ import ma.wiebatouta.models.Picture;
 import ma.wiebatouta.models.enums.TypePicture;
 import ma.wiebatouta.repositories.HotelRepository;
 import ma.wiebatouta.repositories.PictureRepository;
+import ma.wiebatouta.services.interfaces.HotelServiceInterface;
 
 @Controller
 @RequestMapping("/admin/hotel")

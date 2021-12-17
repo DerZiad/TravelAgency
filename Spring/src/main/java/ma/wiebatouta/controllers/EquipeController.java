@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
@@ -28,7 +27,6 @@ import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.EquipeRepository;
-import ma.wiebatouta.repositories.PersonneRepository;
 
 @Controller
 @RequestMapping("/admin/ressources")
@@ -54,12 +52,14 @@ public class EquipeController {
 	public ModelAndView getRessources() {
 		ModelAndView model = new ModelAndView(PAGE_LIST_EQUIPES);
 		model.addObject(ATTRIBUT_EQUIPES, equipeController.findAll());
+		model.addObject(DesignAttributes.ACTIVE_RESSOURCE_HUMAINE,DesignAttributes.ACTIVE);
 		return model;
 	}
 
 	@GetMapping("/add")
 	public ModelAndView getRessource(@RequestParam(name = "id", required = false) Long id) throws NotFoundException {
 		ModelAndView model = new ModelAndView(PAGE_AJOUT_EQUIPE);
+		model.addObject(DesignAttributes.ACTIVE_RESSOURCE_HUMAINE,DesignAttributes.ACTIVE);
 		List<Country> countries = countryRepository.findAll();
 		model.addObject(ATTRIBUT_COUNTRIES, countries);
 
@@ -107,8 +107,8 @@ public class EquipeController {
 			equipeController.save(equipe);
 			model = new ModelAndView(REDIRECT_LIST_EQUIPES);
 		} else {
-			System.out.println(errors);
 			model = new ModelAndView(PAGE_AJOUT_EQUIPE);
+			model.addObject(DesignAttributes.ACTIVE_RESSOURCE_HUMAINE,DesignAttributes.ACTIVE);
 			List<Country> countries = countryRepository.findAll();
 			model.addObject(ATTRIBUT_COUNTRIES, countries);
 			model.addObject(ATTRIBUT_ERRORS, errors);
