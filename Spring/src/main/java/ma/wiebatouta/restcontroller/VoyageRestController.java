@@ -59,14 +59,19 @@ public class VoyageRestController {
 		for (ConstraintViolation<Voyage> constraintViolation : violatons) {
 			errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 		}
+		
+		System.out.println(voyage);
 
 		if (errors.size() != 0) {
+			System.out.println("ERRORRR");
+			System.out.println(errors);
 			Gson gson = new Gson();
 			String json = gson.toJson(errors);
 			AddUnsatisfiedException exception = new AddUnsatisfiedException(json);
 			throw exception;
 		}
 		voyage.setId(null);
+		System.out.println("ok");
 		voyageRepository.save(voyage);
 		return ResponseEntity.ok(voyage);
 	}

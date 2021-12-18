@@ -1,5 +1,5 @@
 package ma.wiebatouta.models.enums;
 
 public enum TypePicture {
-	HEADER,SIMPLE;
+	HEADER,SIMPLE,TRAJET;
 }

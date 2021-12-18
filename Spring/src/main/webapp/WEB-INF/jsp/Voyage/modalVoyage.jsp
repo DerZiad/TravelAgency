@@ -7,39 +7,66 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Add Hotel</h4>
+				<h4 class="modal-title">Add Voyage</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>NomHotel</label> <input type="text" class="form-control"
-						name="hotelname" required>
-					<p id="nomHotelError" class="error"></p>
+					<label>Titre</label> <input type="text" class="form-control"
+						name="titre" required>
+					<p id="titreError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Nombre etoiles</label> <span id="star1" class="C2etoiles"><div></div></span>
-					<span id="star2" class="C2etoiles"><div></div> </span> <span
-						id="star3" class="C2etoiles"><div></div></span> <span id="star4"
-						class="C2etoiles"><div></div></span> <span id="star5"
-						class="C2etoiles"><div></div></span> <input type="hidden"
-						name="star" value="1" />
-					<p id="nombreEtoileError" class="error"></p>
+					<label>Destination</label> <select class="form-control"
+						name="destination" ></select>
+					<p id="destinationError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Pays</label> <select class="form-control" name="country">
-						<c:forEach var="country" items="${countries }">
-							<option value="${country.keyCountry}">${country.valueCountry}</option>
-						</c:forEach>
-					</select>
-					<p id="nombreEtoileError" class="error"></p>
+					<label>Description</label> <input type="text" class="form-control"
+						name="description">
+					<p id="descriptionError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Lieux</label> <select class="selectpicker form-control"
-						data-live-search="true" name="state">
+					<label>Prix</label> <input type="number" class="form-control"
+						name="prix" required>
+					<p id="prixError" class="error"></p>
+				</div>
+				<div class="form-row">
+					<div class="col-md-6">
+						<label>Nombre personne total</label> <input type="number" class="form-control"
+						name="nbrPersonnes" required/>
+					</div> 
+					<div class="col-md-6">
+						<label>Nombre kilomètres</label> <input type="number" class="form-control"
+						name="nbKilometres" required/>
+						<p id="nbKilometresError" class="error"></p>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-md-6">
+						<label>Age minimal</label> <input type="number" class="form-control"
+						name="ageMin" required/>
+						<p id="ageMinError" class="error"></p>
+					</div>
+					<div class="col-md-6">
+						<label>Age maximal</label><input type="number" class="form-control"
+						name="ageMax" required/>
+						<p id="ageMaxError" class="error"></p>
+					</div>
+				</div>
 
-					</select>
-					<p id="villeError" class="error"></p>
+				<div class="form-row">
+					<div class="col-md-6">
+						<label>Date départ</label> <input type="date" class="form-control"
+						name="dateDepartDate" required/>
+						<p id="dateDepartError" class="error"></p>
+					</div>
+					<div class="col-md-6">
+						<label>Date arrivée</label> <input type="date" class="form-control"
+						name="dateArriveeDate" required/>
+						<p id="dateArriveeError" class="error"></p>
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -61,40 +88,67 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>Nom Hotel</label> <input type="text" class="form-control"
-						name="hotelnameEdit" required>
-					<p id="nomHotelErrorEdit" class="error"></p>
+					<label>Titre</label> <input type="text" class="form-control"
+						name="titreEdit" required>
+					<p id="titreError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Nombre etoiles</label> <span id="star1Edit"
-						class="C2etoiles"><div></div></span> <span id="star2Edit"
-						class="C2etoiles"><div></div> </span> <span id="star3Edit"
-						class="C2etoiles"><div></div></span> <span id="star4Edit"
-						class="C2etoiles"><div></div></span> <span id="star5Edit"
-						class="C2etoiles"><div></div></span> <input type="hidden"
-						name="starEdit" value="1" />
-					<p id="nombreEtoileErrorEdit" class="error"></p>
+					<label>Destination</label> <select class="form-control"
+						name="destinationEdit" ></select>
+					<p id="destinationError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Pays</label> <select class="form-control" name="countryEdit">
-						<c:forEach var="country" items="${countries }">
-							<option value="${country.keyCountry}">${country.valueCountry}</option>
-						</c:forEach>
-					</select>
-					<p id="nombreEtoileErrorEdit" class="error"></p>
+					<label>Description</label> <input type="text" class="form-control"
+						name="descriptionEdit">
+					<p id="descriptionError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Lieux</label> <select class="selectpicker form-control"
-						data-live-search="true" name="stateEdit">
+					<label>Prix</label> <input type="number" class="form-control"
+						name="prixEdit" required>
+					<p id="prixError" class="error"></p>
+				</div>
+				<div class="form-row">
+					<div class="col-md-6">
+						<label>Nombre personne total</label> <input type="number" class="form-control"
+						name="nbrPersonnesEdit" required/>
+					</div> 
+					<div class="col-md-6">
+						<label>Nombre kilomètres</label> <input type="number" class="form-control"
+						name="nbKilometresEdit" required/>
+						<p id="nbKilometresError" class="error"></p>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-md-6">
+						<label>Age minimal</label> <input type="number" class="form-control"
+						name="ageMinEdit" required/>
+						<p id="ageMinError" class="error"></p>
+					</div>
+					<div class="col-md-6">
+						<label>Age maximal</label><input type="number" class="form-control"
+						name="ageMaxEdit" required/>
+						<p id="ageMaxError" class="error"></p>
+					</div>
+				</div>
 
-					</select>
-					<p id="villeErrorEdit" class="error"></p>
+				<div class="form-row">
+					<div class="col-md-6">
+						<label>Date départ</label> <input type="date" class="form-control"
+						name="dateDepartDateEdit" required/>
+						<p id="dateDepartError" class="error"></p>
+					</div>
+					<div class="col-md-6">
+						<label>Date arrivée</label> <input type="date" class="form-control"
+						name="dateArriveeDateEdit" required/>
+						<p id="dateArriveeError" class="error"></p>
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<input type="button" class="btn btn-default" data-dismiss="modal"
-					value="Cancel" id="cancelEdit"> <input id="editEdit"
-					type="submit" name="edit" class="btn btn-success" value="Edit">
+					value="Cancel" id="cancelAdd"> <input type="submit"
+					name="add" class="btn btn-success" value="Add">
+			</div>
 			</div>
 		</div>
 	</div>
@@ -157,7 +211,8 @@
 					data-ride="carousel">
 					<div id="galerie" class="carousel-inner">
 						<div class="carousel-item active">
-							<img class="d-block w-100" src="/images/notfound.jpg" alt="First slide">
+							<img class="d-block w-100" src="/images/notfound.jpg"
+								alt="First slide">
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#carouselExampleControls"
