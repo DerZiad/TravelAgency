@@ -68,11 +68,11 @@ public class ActiviteController {
 
 	@PostMapping
 	@RolesAllowed("ADMIN")
-	public ModelAndView createNewActivity(@RequestParam MultiValueMap<String, String> params)throws MessagingException {
+	public ModelAndView createNewActivity(@RequestParam(required = false) MultiValueMap<String, String> params)throws MessagingException {
 		String id = params.get("id").get(0);
 		ModelAndView model = new ModelAndView(REDIRECT_LIST_ACTIVITY);
 		Activite activite = null;
-		List<SousActivite> sousActivities = null;
+		List<SousActivite> sousActivities = new ArrayList<SousActivite>();
 		if (id.equals("")) {
 			HashMap<String, String> errors = new HashMap<String, String>();
 			HashMap<String, String> errors1 = new HashMap<String, String>();
@@ -83,6 +83,7 @@ public class ActiviteController {
 			activite.setNomActivite(labelActivite);
 			System.out.println(activite);
 			int tailleSousActivite = params.get("myparams").size();
+			System.out.println(tailleSousActivite);
 			sousActivities = new ArrayList<>(tailleSousActivite);
 			for (int i = 0; i < tailleSousActivite; i++) {
 				SousActivite sousActivite = new SousActivite();
@@ -106,20 +107,22 @@ public class ActiviteController {
 			boolean bool = false;
 			boolean bool1 = false;
 			System.out.println("errors " + errors.size());
-			System.out.println(errors.toString());
+			System.out.println(errors.get("nomActivite"));
 			System.out.println("errors2 " + errors1.size());
 			System.out.println(errors1.toString());
 			if (errors.size() != 0) {
 				model.addObject("errors", errors);
 				bool = true;
-				model.addObject("bool", bool);
+				System.out.println("TRUE");
+				model.addObject("err", bool);
+				return model;
 			} else if (errors1.size() != 0) {
 				model.addObject("errors1", errors1);
 				bool1 = true;
 				model.addObject("bool1", bool1);
 			} else {
 				activiteRepository.save(activite);
-				for (int i = 0; i < tailleSousActivite; i++) {
+				for (int i = 0; i < 10; i++) {
 					sousActiviteRepository.save(sousActivities.get(i));
 				}
 
@@ -145,9 +148,7 @@ public class ActiviteController {
 				tbdd.get(i).setDescription(params.get("SousActdescrip").get(i));
 				tbdd.get(i).setActivite(activite);
 				sousActivities.addAll(tbdd);
-					
-/*********PROBLEME*******************/
-			}
+								}
 			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 			Validator validator = factory.getValidator();
 			Set<ConstraintViolation<Activite>> violations = validator.validate(activite);
@@ -168,7 +169,7 @@ public class ActiviteController {
 			if (errors.size() != 0) {
 				model.addObject("errors", errors);
 				bool = true;
-				model.addObject("bool", bool);
+				model.addObject("err", bool);
 			} else if (errors1.size() != 0) {
 				model.addObject("errors1", errors1);
 				bool1 = true;

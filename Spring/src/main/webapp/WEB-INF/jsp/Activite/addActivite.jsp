@@ -24,12 +24,11 @@
 									name="name" id="name" placeholder="Label Theme" type="text"
 									class="form-control" value="${activite.nomActivite}">
 							</div>
-							<p style="color: red;">
-
-								<c:if test="${bool}">
-									<c:out value="${errors.nomActivite}"></c:out>
-								</c:if>
-							</p>
+							<c:if test="${err}">
+								<p style="color: red;">
+									<c:out value="${errors.nomActivite}">AAAA</c:out>
+								</p>
+							</c:if>
 						</div>
 					</div>
 
@@ -43,7 +42,7 @@
 
 							</div>
 							<p style="color: red;">
-								<c:if test="${bool}">
+								<c:if test="${err}">
 									<c:out value="${errors.description}"></c:out>
 								</c:if>
 							</p>
@@ -56,25 +55,28 @@
 								style="font-size: 16px; font-weight: bold;">+ </span>
 
 						</button>
+						<div>
+							<label for="name" class="">Label SousActivite</label> <input
+								id="ssa" type="text" value="" name="myparams" /></br> <label
+								for="name" class="">Description SousActivite</label> <input
+								type="text" id="dess" value="" name="SousActdescrip" /><a
+								href="#" class="delete">Delete</a>
+						</div>
 						<c:if test="${bool}">
 							<c:forEach var="ss" items="${activite.sousActivites}">
 								<div>
 									<input name="sid" id="id" type="hidden" class="form-control"
-						value="${ss.id}">
-									<label for="name" class="">Label SousActivite</label> <input
-										type="text" value="${ss.titre}" name="myparams" /></br> <label
-										for="name" class="">Description SousActivite</label> <input
-										type="text" value="${ss.description}" name="SousActdescrip" />
-									<a href="#" class="delete">Delete</a>
+										value="${ss.id}"> <label for="name" class="">Label
+										SousActivite</label> <input type="text" value="${ss.titre}"
+										name="myparams" /></br> <label for="name" class="">Description
+										SousActivite</label> <input type="text" value="${ss.description}"
+										name="SousActdescrip" /> <a href="#" class="delete">Delete</a>
 								</div>
 							</c:forEach>
 						</c:if>
 						<div>
 							<p style="color: red;">
-								<c:if test="${bool1}">
-									<c:out
-										value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
-								</c:if>
+
 								<c:if test="${b}">
 									<c:out
 										value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
@@ -88,11 +90,10 @@
 
 
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
-					
+
 
 				</form>
-					<button id="rst" class=" mt-2 btn btn-danger" 
-						>Effacer</button>
+				<button id="rst" class=" mt-2 btn btn-danger">CLEAR</button>
 			</div>
 			<c:set var="cmp" value="${cmp}" scope="request"></c:set>
 			<div class="main-card mb-3">
@@ -131,7 +132,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</layout:put>
 	<layout:put block="scriptsfile" type="REPLACE">
 		<script src="/delibdesign/js/Activite/script.js"></script>
