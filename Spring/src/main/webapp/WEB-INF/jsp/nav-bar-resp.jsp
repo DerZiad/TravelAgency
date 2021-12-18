@@ -37,7 +37,7 @@
 		<div class="app-sidebar__inner">
 			<ul class="vertical-nav-menu">
 				<li class="app-sidebar__heading">Accueil</li>
-				<li><a href="/" class="${dashboard}"> <i
+				<li><a href="/admin" class="${dashboard}"> <i
 						class="metismenu-icon pe-7s-rocket"></i> Tableau de bords
 				</a></li>
 				<li><a href="#" aria-expanded="false"> <i
@@ -81,6 +81,17 @@
 						<li><a href="/admin/hotel"
 					class="${hotelActive}"> <i
 						class="metismenu-icon pe-7s-graph3"></i> Gérer hotel
+				</a></li>
+					</ul></li>
+					
+					<li><a href="#" aria-expanded="false"> <i
+						class="metismenu-icon pe-7s-id"></i> Voyage <i
+						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+				</a>
+					<ul class="mm-collapse" style="height: 7.04px;">
+						<li><a href="/admin/voyage"
+					class="${voyage}"> <i
+						class="metismenu-icon pe-7s-graph3"></i> Gérer Voyage
 				</a></li>
 					</ul></li>
 					
