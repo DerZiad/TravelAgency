@@ -2,9 +2,9 @@ package ma.wiebatouta.models;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,21 +12,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
@@ -37,7 +32,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.asm.Advice.This;
 
 @Entity
 @Table(name = "personnes")
@@ -118,10 +112,8 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@SuppressWarnings("deprecation")
 	public void setDateNaissanceDate(String date) {
 		if (date != null && date.length() == 10) {
-			int year = Integer.parseInt(date.substring(0, 4));
-			int month = Integer.parseInt(date.substring(5, 7));
-			int day = Integer.parseInt(date.substring(8, 10));
-			this.dateNaissance = new Date(year, month, day);
+			date = date.replace("-", "/");
+			this.dateNaissance = new Date(date);
 		} else {
 			date = null;
 		}

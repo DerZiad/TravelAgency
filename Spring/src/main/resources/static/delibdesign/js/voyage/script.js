@@ -8,70 +8,69 @@ function deleteHotel(idHotel) {
 	deletetedId = idHotel;
 }
 
-function refreshCountryByVoyage(keyCountry) {
+function refreshCountryByVoyage(valueCountry) {
 	var contenue = "";
 	for (country of countries) {
-		if (keyCountry == country.keyCountry) {
-			contenue = contenue + '<option value="' + country.keyCountry + '" selected >' + country.valueCountry + '</option>';
+		if (valueCountry == country.valueCountry) {
+			contenue = contenue + '<option value="' + country.valueCountry + '" selected >' + country.valueCountry + '</option>';
 		} else {
-			contenue = contenue + '<option value="' + country.keyCountry + '">' + country.valueCountry + '</option>';
+			contenue = contenue + '<option value="' + country.valueCountry + '">' + country.valueCountry + '</option>';
 		}
 	}
 	$('select[name=destinationEdit]').html(contenue);
 }
 
-function makeEditHotel(idVoyage) {
+function makeEditVoyage(idVoyage) {
 	var selectedVoyage = null;
 	for (voyage of voyages) {
 		if (voyage.id == idVoyage) {
 			selectedVoyage = voyage;
 		}
 	}
-	voyage = selectedVoyage;
-	
-	var titre = $('input[name=titre]').val();
-	var destination = $('select[name=destination]').val();
-		var prix = $('input[name=prix]').val();
-		var nbrPersonnes = $('input[name=nbrPersonnes]').val();
-		var nbKilometres = $('input[name=nbKilometres]').val();
-		var ageMin = $('input[name=ageMin]').val();
-		var ageMax = $('input[name=ageMax]').val();
-		var dateDepartDate = $('input[name=dateDepartDate]').val();
-		var dateArriveeDate  = $('input[name=dateArriveeDate]').val();
-		var description = $('input[name=description]').val();
-	
-	
+	var voyage = selectedVoyage;	
 	$("input[name=titreEdit]").val(voyage.titre);
-	$("input[name=destinationEdit]").val(hotel.destination);
-	$("input[name=prixEdit]").val(hotel.prix);
-	$("input[name=nbrPersonnesEdit]").val(hotel.nbrPersonnes);
-	$("input[name=nbKilometresEdit]").val(hotel.nbKilometres);
-	$("input[name=ageMinEdit]").val(hotel.ageMin);
-	$("input[name=ageMaxEdit]").val(hotel.ageMax);
-	$("input[name=dateDepartDateEdit]").val(hotel.dateDepartDate);
-	$("input[name=dateArriveeDateEdit]").val(hotel.dateArriveeDate);
-	$("input[name=descriptionEdit]").val(hotel.description);
-	refreshCountryByVoyage(hotel.ville.country.keyCountry);
-	$('#editEdit').click(function() {
-		var nomHotel = $('input[name=hotelnameEdit]').val();
-		var star = $('input[name=starEdit]').val();
-		var state = $('select[name=stateEdit]').val();
+	$("input[name=prixEdit]").val(voyage.prix);
+	$("input[name=nbrPersonnesEdit]").val(voyage.nbrPersonnes);
+	$("input[name=nbKilometresEdit]").val(voyage.nbKilometres);
+	$("input[name=ageMinEdit]").val(voyage.ageMin);
+	$("input[name=ageMaxEdit]").val(voyage.ageMax);
+	$("input[name=dateDepartDateEdit]").val(voyage.dateDepartDate);
+	$("input[name=dateArriveeDateEdit]").val(voyage.dateArriveeDate);
+	$("input[name=descriptionEdit]").val(voyage.description);
+	refreshCountryByVoyage(voyage.destination);
+	$('input[name=edit]').click(function() {
+		var titre = $('input[name=titreEdit]').val();
+		var destination = $('select[name=destinationEdit]').val();
+		var prix = $('input[name=prixEdit]').val();
+		var nbrPersonnes = $('input[name=nbrPersonnesEdit]').val();
+		var nbKilometres = $('input[name=nbKilometresEdit]').val();
+		var ageMin = $('input[name=ageMinEdit]').val();
+		var ageMax = $('input[name=ageMaxEdit]').val();
+		var dateDepartDate = $('input[name=dateDepartDateEdit]').val();
+		var dateArriveeDate  = $('input[name=dateArriveeDateEdit]').val();
+		var description = $('input[name=descriptionEdit]').val();
 		datas = {
-			'id': "" + idHotel,
-			'nomHotel': nomHotel,
-			'nombreEtoile': star,
-			'idLieu': state
+			'id':idVoyage,
+			'titre': titre,
+			'destination': destination,
+			'prix': prix,
+			'nbrPersonnes': nbrPersonnes,
+			'nbKilometres': nbKilometres,
+			'ageMin': ageMin,
+			'ageMax': ageMax,
+			'dateDepartDate': dateDepartDate,
+			'dateArriveeDate': dateArriveeDate,
+			'description':description
 		}
 		datas = JSON.stringify(datas);
 		$.ajax({
 			type: "PUT",
 			headers: { Accept: "application/json" },
 			contentType: "application/json",
-			url: "/api/hotel",
+			url: "/api/voyage",
 			data: datas,
 			success: function(response) {
-				hotel = response;
-				refreshotels();
+				refreshvoyages();
 				clearAddCache();
 			}, error: function(xhr, ajaxOptions, thrownError) {
 				var message = xhr['responseJSON'].message;
@@ -88,28 +87,30 @@ function makeEditHotel(idVoyage) {
 
 
 function deleteAll() {
-	for (hotel of hotels) {
-		if ($('#checkbox' + hotel.id).is(":checked")) {
+	for (voyage of voyages) {
+		if ($('#checkbox' + voyage.id).is(":checked")) {
 			$.ajax({
 				type: "Delete",
-				url: "/api/hotel?id=" + hotel.id,
+				url: "/api/voyage?id=" + voyage.id,
 				success: function(response) {
 					refreshotels();
 				}
 			});
 		}
 	}
-	refreshotels();
+	refreshvoyages();
 }
 
 function clearAddCache() {
-
-	$('input[name=hotelname]').val("");
-	$('input[name=star]').val("1");
-	$('#nomHotelError').html("");
-	$('#nombreEtoileError').html("");
-	$('#villeError').html("");
-	refreshLieux();
+	$('input[name=titre]').val("");
+	$('input[name=prix]').val("");
+	$('input[name=nbrPersonnes]').val("");
+	$('input[name=nbKilometres]').val("");
+	$('input[name=ageMin]').val("");
+	$('input[name=ageMax]').val("");
+	$('input[name=dateDepartDate]').val("");
+	$('input[name=dateArriveeDate]').val("");
+	$('input[name=description]').val("");
 	refreshCountry();
 }
 
@@ -162,14 +163,14 @@ function refreshvoyages() {
 				contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox' + voyage.id + '" name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n';
 				contenue = contenue + '<td>' + voyage.titre + '</td>\n'
 				contenue = contenue + '<td>' + voyage.destination + '</td>\n'
-				contenue = contenue + '<td>' + voyage.dateDepart + '</td>\n'
-				contenue = contenue + '<td>' + voyage.dateArrivee + '</td>\n'
+				contenue = contenue + '<td>' + voyage.dateDepartDate + '</td>\n'
+				contenue = contenue + '<td>' + voyage.dateArriveeDate + '</td>\n'
 				contenue = contenue + '<td>' + voyage.description + '</td>\n'
-				contenue = contenue + '<td>' + voyage.nombrePersonneEnGroupe+ '</td>\n'
+				contenue = contenue + '<td>' + voyage.nbrPersonnes + '</td>\n'
 				contenue = contenue + '<td>' + voyage.nombrePersonneTotal+ '</td>\n'
 				contenue = contenue + '<td>' + voyage.prix+ '</td>\n'
 				contenue = contenue + '<td>' + voyage.reduction+ '</td>\n'
-				contenue = contenue + '<td><a href="#addImageModal" onclick="getPictures(' + voyage.id + ')" class="addpicture" data-toggle="modal"><i data-toggle="tooltip" title="Edit" class="fas fa-images"></i></a><a href="#editEmployeeModal" onclick="makeEditHotel(' + voyage.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + voyage.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a><a href="/admin/hotel/picture?id=' + voyage.id + '" class="edit" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a></td>\n'
+				contenue = contenue + '<td><a href="#addImageModal" onclick="getPictures(' + voyage.id + ')" class="addpicture" data-toggle="modal"><i data-toggle="tooltip" title="Edit" class="fas fa-images"></i></a><a href="#editEmployeeModal" onclick="makeEditVoyage(' + voyage.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + voyage.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a><a href="/admin/hotel/picture?id=' + voyage.id + '" class="edit" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a></td>\n'
 				contenue = contenue + '</tr>\n'
 			}
 
@@ -232,9 +233,9 @@ jQuery(document).ready(function() {
 	$('input[name=delete]').click(function() {
 		$.ajax({
 			type: "Delete",
-			url: "/api/hotel?id=" + deletetedId,
+			url: "/api/voyage?id=" + deletetedId,
 			success: function(response) {
-				refreshotels();
+				refreshvoyages();
 			}
 		});
 	});

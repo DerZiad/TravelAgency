@@ -33,8 +33,8 @@
 						<th>Date départ</th>
 						<th>Date arrivée</th>
 						<th>Description</th>
-						<th>Nombre personne en groupe</th>
-						<th>Nombre personne en total</th>
+						<th>Nombre personnes inscrits</th>
+						<th>Nombre personnes totale</th>
 						<th>Prix</th>
 						<th>Reduction</th>
 						<th>Actions</th>

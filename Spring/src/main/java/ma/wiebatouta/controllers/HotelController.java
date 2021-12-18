@@ -19,7 +19,6 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Hotel;
-import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Picture;
 import ma.wiebatouta.models.enums.TypePicture;
 import ma.wiebatouta.repositories.HotelRepository;
