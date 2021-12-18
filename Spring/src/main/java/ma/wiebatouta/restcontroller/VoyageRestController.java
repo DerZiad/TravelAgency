@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -30,10 +29,7 @@ import com.google.gson.Gson;
 import ma.wiebatouta.exceptions.AddUnsatisfiedException;
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
-import ma.wiebatouta.models.Hotel;
-import ma.wiebatouta.models.Lieu;
 import ma.wiebatouta.models.Voyage;
-import ma.wiebatouta.repositories.HotelRepository;
 import ma.wiebatouta.repositories.LieuRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
@@ -63,15 +59,12 @@ public class VoyageRestController {
 		System.out.println(voyage);
 
 		if (errors.size() != 0) {
-			System.out.println("ERRORRR");
-			System.out.println(errors);
 			Gson gson = new Gson();
 			String json = gson.toJson(errors);
 			AddUnsatisfiedException exception = new AddUnsatisfiedException(json);
 			throw exception;
 		}
 		voyage.setId(null);
-		System.out.println("ok");
 		voyageRepository.save(voyage);
 		return ResponseEntity.ok(voyage);
 	}
@@ -79,20 +72,12 @@ public class VoyageRestController {
 	@PutMapping
 	@RolesAllowed("ADMIN")
 	public HttpEntity<?> editHotel(@RequestBody Voyage voyage) throws AddUnsatisfiedException {
-		/*HashMap<String, String> errors = new HashMap<String, String>();
-		if (voyage.getIdLieu() != null) {
-			try {
-				voyage.setVille(lieuRepository.findById(voyage.getIdLieu())
-						.orElseThrow(() -> new NotFoundException("L'id lieu n'est pas trouvé")));
-			} catch (NotFoundException e) {
-				voyage.setVille(null);
-			}
-		}
+		HashMap<String, String> errors = new HashMap<String, String>();
 
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<Hotel>> violatons = validator.validate(voyage);
-		for (ConstraintViolation<Hotel> constraintViolation : violatons) {
+		Set<ConstraintViolation<Voyage>> violatons = validator.validate(voyage);
+		for (ConstraintViolation<Voyage> constraintViolation : violatons) {
 			errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 		}
 		if (errors.size() != 0) {
@@ -102,8 +87,7 @@ public class VoyageRestController {
 			throw exception;
 		}
 		voyage = voyageRepository.save(voyage);
-		return ResponseEntity.ok(voyage);*/
-		return null;
+		return ResponseEntity.ok(voyage);
 	}
 	
 	@DeleteMapping

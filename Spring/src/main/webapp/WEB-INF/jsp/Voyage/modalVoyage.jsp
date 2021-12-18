@@ -147,7 +147,7 @@
 			<div class="modal-footer">
 				<input type="button" class="btn btn-default" data-dismiss="modal"
 					value="Cancel" id="cancelAdd"> <input type="submit"
-					name="add" class="btn btn-success" value="Add">
+					name="edit" class="btn btn-success" value="Add">
 			</div>
 			</div>
 		</div>

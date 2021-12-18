@@ -17,7 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
@@ -104,11 +103,10 @@ public class Voyage {
 
 	@SuppressWarnings("deprecation")
 	public void setDateDepartDate(String date) {
+		System.out.println(date);
 		if (date != null && date.length() == 10) {
-			int year = Integer.parseInt(date.substring(0, 4));
-			int month = Integer.parseInt(date.substring(5, 7));
-			int day = Integer.parseInt(date.substring(8, 10));
-			this.dateDepart = new Date(year, month, day);
+			date = date.replace("-", "/");
+			this.dateDepart = new Date(date);
 		} else {
 			date = null;
 		}
@@ -116,12 +114,51 @@ public class Voyage {
 	@SuppressWarnings("deprecation")
 	public void setDateArriveeDate(String date) {
 		if (date != null && date.length() == 10) {
-			int year = Integer.parseInt(date.substring(0, 4));
-			int month = Integer.parseInt(date.substring(5, 7));
-			int day = Integer.parseInt(date.substring(8, 10));
-			this.dateArrivee = new Date(year, month, day);
+			date = date.replace("-", "/");
+			this.dateArrivee = new Date(date);
 		} else {
 			date = null;
 		}
+		System.out.println(dateArrivee);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getDateArriveeDate() {
+		String date = "";
+		if (this.dateArrivee != null) {
+			date = date + this.dateArrivee.getYear() + "-";
+			String month = this.dateArrivee.getMonth() + "";
+			if (month.length() == 1) {
+				month = "0" + month;
+			}
+			date = date + month + "-";
+			String day = this.dateArrivee.getDay() + "";
+			if (day.length() == 1) {
+				day = "0" + day;
+			}
+			date = date + day;
+		}
+		return date;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getDateDepartDate() {
+		String date = "";
+		if (this.dateDepart != null) {
+			date = date + this.dateDepart.getYear() + "-";
+			String month = this.dateDepart.getMonth() + "";
+			if (month.length() == 1) {
+				month = "0" + month;
+			}
+			date = date + month + "-";
+			String day = this.dateDepart.getDay() + "";
+			if (day.length() == 1) {
+				day = "0" + day;
+			}
+			date = date + day;
+			System.out.println(date);
+			System.out.println(this.dateDepart);
+		}
+		return date;
 	}
 }
