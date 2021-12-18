@@ -135,9 +135,10 @@ public class ThemeController {
 
 	}
 	
-	@GetMapping("/deleteLieu/{id}")
+	@GetMapping("/deleteTheme/{id}")
 	@RolesAllowed("ADMIN")
 	public ModelAndView delete(@PathVariable("id")Long idTheme) {
+		System.out.println(idTheme);
 		themeMetier.deleteTheme(idTheme);
 		ModelAndView model = new ModelAndView(REDIRECT_LIST_THEMES);
 		return model;

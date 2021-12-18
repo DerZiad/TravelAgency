@@ -33,14 +33,17 @@
 
 
 					<div class="form-row">
-						<select id="slct" name="keycountry" class="selectpicker"
+					<div class="col-md-6">
+						<select id="slct" name="keycountry" class="form-control"
 							data-live-search="true">
+							<c:if test="${not empty lieu.country.keyCountry}">
 							<option selected="selected" value="${lieu.country.keyCountry}" id="option1"><c:out
 									value="${lieu.country.valueCountry}">NOM PAYS</c:out></option>
+							</c:if>
 							<c:forEach var="c" items="${country}">
 								<option id="option2"data-tokens="${c.keyCountry}" value="${c.keyCountry}">${c.valueCountry}</option>
 							</c:forEach>
-								<option value="0" >AAA</option>
+								
 						</select>
 						<p style="color: red;">
 
@@ -48,6 +51,7 @@
 								<c:out value="${errors.country.valueCountry}"></c:out>
 							</c:if>
 						</p>
+						</div>
 					</div>
 
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
@@ -77,7 +81,7 @@
 										href="/admin/lieux/${lieux.id}"> ${lieux.id}</a></td>
 									<td style="color: black">${lieux.label}</td>
 									<td style="color: black">${lieux.country.valueCountry}</td>
-									<td><a href="/admin/theme/deleteLieu/${themes.id}"
+									<td><a href="/admin/lieux/deleteLieu/${lieux.id}"
 										class="delete"><i class="bi bi-trash"></i>DELETE</a>
 								</tr>
 							</c:forEach>

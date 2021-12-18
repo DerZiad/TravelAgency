@@ -68,9 +68,10 @@ public class ActiviteController {
 
 	@PostMapping
 	@RolesAllowed("ADMIN")
-	public ModelAndView createNewActivity(@RequestParam(required = false) MultiValueMap<String, String> params)throws MessagingException {
+	public ModelAndView createNewActivity(@RequestParam(required = false) MultiValueMap<String, String> params)
+			throws MessagingException {
 		String id = params.get("id").get(0);
-		ModelAndView model = new ModelAndView(REDIRECT_LIST_ACTIVITY);
+		ModelAndView model = new ModelAndView(PATH_ACTIVTE);
 		Activite activite = null;
 		List<SousActivite> sousActivities = new ArrayList<SousActivite>();
 		if (id.equals("")) {
@@ -84,7 +85,7 @@ public class ActiviteController {
 			System.out.println(activite);
 			int tailleSousActivite = params.get("myparams").size();
 			System.out.println(tailleSousActivite);
-			sousActivities = new ArrayList<>(tailleSousActivite);
+			
 			for (int i = 0; i < tailleSousActivite; i++) {
 				SousActivite sousActivite = new SousActivite();
 				sousActivite.setTitre(params.get("myparams").get(i));
@@ -115,21 +116,26 @@ public class ActiviteController {
 				bool = true;
 				System.out.println("TRUE");
 				model.addObject("err", bool);
-				return model;
 			} else if (errors1.size() != 0) {
 				model.addObject("errors1", errors1);
 				bool1 = true;
 				model.addObject("bool1", bool1);
 			} else {
 				activiteRepository.save(activite);
-				for (int i = 0; i < 10; i++) {
+				for (int i = 0; i < tailleSousActivite; i++) {
 					sousActiviteRepository.save(sousActivities.get(i));
 				}
-
+				List<Activite> activities = activiteRepository.findAll();
+				for (Activite ac : activities) {
+					List<SousActivite> act = sousActiviteRepository.getSousActiviteByActivite(activite);
+					model.addObject("sousActivite", act);
+					
+				}
+				return new ModelAndView(REDIRECT_LIST_ACTIVITY);
 			}
 		} else {
 			Long idActivite = Long.parseLong(id);
-			System.out.println("idAct "+idActivite);
+			System.out.println("idAct " + idActivite);
 			HashMap<String, String> errors = new HashMap<String, String>();
 			HashMap<String, String> errors1 = new HashMap<String, String>();
 
@@ -139,7 +145,7 @@ public class ActiviteController {
 			activite.setDescription(descriptionActivite);
 			activite.setNomActivite(labelActivite);
 			List<SousActivite> tbdd = sousActiviteRepository.getSousActiviteByActivite(activite);
-			/*int tailleSousActivite = tbdd.size();*/
+			/* int tailleSousActivite = tbdd.size(); */
 			int tailleparams = params.get("myparams").size();
 			sousActivities = new ArrayList<>(tailleparams);
 			for (int i = 0; i < tailleparams; i++) {
@@ -148,7 +154,7 @@ public class ActiviteController {
 				tbdd.get(i).setDescription(params.get("SousActdescrip").get(i));
 				tbdd.get(i).setActivite(activite);
 				sousActivities.addAll(tbdd);
-								}
+			}
 			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 			Validator validator = factory.getValidator();
 			Set<ConstraintViolation<Activite>> violations = validator.validate(activite);
@@ -162,27 +168,35 @@ public class ActiviteController {
 			}
 			boolean bool = false;
 			boolean bool1 = false;
-			System.out.println("errors " + errors.size());
-			System.out.println(errors.toString());
-			System.out.println("errors2 " + errors1.size());
-			System.out.println(errors1.toString());
-			if (errors.size() != 0) {
+	
+			if (errors.size() != 0 && errors1.size() != 0) {
+				model.addObject("errors", errors);
+				bool = true;
+				model.addObject("err", bool);
+				/*******/
+				model.addObject("errors1", errors1);
+				bool1 = true;
+				model.addObject("err1", bool1);
+			} else if (errors.size() != 0) {
+
 				model.addObject("errors", errors);
 				bool = true;
 				model.addObject("err", bool);
 			} else if (errors1.size() != 0) {
 				model.addObject("errors1", errors1);
-				bool1 = true;
-				model.addObject("bool1", bool1);
+				bool = true;
+				model.addObject("bool", bool);
 			} else {
 				activiteRepository.save(activite);
 				for (int i = 0; i < tailleparams; i++) {
 					sousActiviteRepository.save(sousActivities.get(i));
-					System.out.println("ss");
 				}
 
 			}
 		}
+		List<Activite> activities = activiteRepository.findAll();
+		model.addObject(DesignAttributes.ACTIVE_ACTIVITY_AJOUT, DesignAttributes.ACTIVE);
+		model.addObject("activities", activities);
 		return model;
 	}
 
@@ -196,15 +210,15 @@ public class ActiviteController {
 		model.addObject("activities", activites);
 		model.addObject("activite", activite);
 		model.addObject("etat", activite);
-		model.addObject("bool", bool);
+		model.addObject("modify", bool);
 		return model;
 	}
-	
+
 	@GetMapping("/deleteActivite/{id}")
 	@RolesAllowed("ADMIN")
-	public ModelAndView delete(@PathVariable("id")Long idActivite ) {
+	public ModelAndView delete(@PathVariable("id") Long idActivite) {
 		activiteRepository.deleteById(idActivite);
-		ModelAndView model = new ModelAndView(REDIRECT_LIST_ACTIVITY);	
+		ModelAndView model = new ModelAndView(REDIRECT_LIST_ACTIVITY);
 		return model;
 	}
 }

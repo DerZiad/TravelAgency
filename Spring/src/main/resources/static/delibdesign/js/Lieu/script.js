@@ -10,7 +10,7 @@ function clearAddCache() {
 	$('input[name=id]').val("");
 	$('input[name=name]').val("");
 	$('input[name=description]').val("");
-	document.getElementById('slct').value='';
+	document.getElementById('slct').value='NOM DU PAYS';
 	/*$('img').​
 	$('input[name=SousActdescrip]').val("");*/
 	
