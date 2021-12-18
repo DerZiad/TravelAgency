@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -67,12 +68,16 @@ public class Voyage {
 	@NotNull(message = "Le titre de voyage est important")
 	@Length(min = 5, max = 45, message = "Le titre de voyage doît être entre 5 et 45")
 	private String titre;
+	@Lob
 	@NotNull(message = "Le trajet ne doit pas être vide")
 	private byte[] trajet;
 	@Column
 	private double nbKilometres;
 	@Column
 	private int nbrPersonnes;
+	@Column
+	private String destination;
+	
 	/**
 	 * Relations
 	 */

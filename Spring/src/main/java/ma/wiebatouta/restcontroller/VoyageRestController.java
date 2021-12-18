@@ -36,9 +36,9 @@ import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.HotelRepository;
 import ma.wiebatouta.repositories.LieuRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
-/*
+
 @RestController
-@RequestMapping(name = "/api/hotel", produces = MediaType.APPLICATION_JSON_VALUE, value = "/api/hotel")
+@RequestMapping(name = "/api/voyage", produces = MediaType.APPLICATION_JSON_VALUE, value = "/api/voyage")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class VoyageRestController {
 	
@@ -50,7 +50,7 @@ public class VoyageRestController {
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	@RolesAllowed("ADMIN")
-	public HttpEntity<?> addHotel(@RequestBody Voyage voyage) throws AddUnsatisfiedException {
+	public HttpEntity<?> addVoyage(@RequestBody Voyage voyage) throws AddUnsatisfiedException {
 		HashMap<String, String> errors = new HashMap<String, String>();
 	
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -73,20 +73,20 @@ public class VoyageRestController {
 
 	@PutMapping
 	@RolesAllowed("ADMIN")
-	public HttpEntity<?> editHotel(@RequestBody Hotel hotel) throws AddUnsatisfiedException {
-		HashMap<String, String> errors = new HashMap<String, String>();
-		if (hotel.getIdLieu() != null) {
+	public HttpEntity<?> editHotel(@RequestBody Voyage voyage) throws AddUnsatisfiedException {
+		/*HashMap<String, String> errors = new HashMap<String, String>();
+		if (voyage.getIdLieu() != null) {
 			try {
-				hotel.setVille(lieuRepository.findById(hotel.getIdLieu())
+				voyage.setVille(lieuRepository.findById(voyage.getIdLieu())
 						.orElseThrow(() -> new NotFoundException("L'id lieu n'est pas trouvé")));
 			} catch (NotFoundException e) {
-				hotel.setVille(null);
+				voyage.setVille(null);
 			}
 		}
 
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<Hotel>> violatons = validator.validate(hotel);
+		Set<ConstraintViolation<Hotel>> violatons = validator.validate(voyage);
 		for (ConstraintViolation<Hotel> constraintViolation : violatons) {
 			errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 		}
@@ -96,15 +96,15 @@ public class VoyageRestController {
 			AddUnsatisfiedException exception = new AddUnsatisfiedException(json);
 			throw exception;
 		}
-		hotel = voyageRepository.save(hotel);
-		return ResponseEntity.ok(hotel);
+		voyage = voyageRepository.save(voyage);
+		return ResponseEntity.ok(voyage);*/
+		return null;
 	}
 	
 	@DeleteMapping
 	@RolesAllowed("ADMIN")
-	public ResponseEntity<?> deleteCatalog(@RequestParam("id") Long id) throws NotFoundException {
-		Hotel hotel = voyageRepository.findById(id).orElseThrow(() -> new NotFoundException("Id Not found"));
-		voyageRepository.delete(hotel);
+	public ResponseEntity<?> deleteCatalog(@RequestParam("id") Long id) {
+		voyageRepository.deleteById(id);
 		return ResponseEntity.accepted().build();
 	}
 
@@ -112,42 +112,29 @@ public class VoyageRestController {
 	@RolesAllowed("ADMIN")
 	public ResponseEntity<?> findCatalogs(@RequestParam(name = "id", required = false) Long id)
 			throws DataEmptyException, NotFoundException {
-		List<Hotel> hotels = voyageRepository.findAll();
-		if (hotels.size() == 0) {
+		List<Voyage> voyages = voyageRepository.findAll();
+		if (voyages.size() == 0) {
 			throw new DataEmptyException("The list of catalogs is empty");
 		} else {
 			if (id != null) {
-				Hotel hotel = voyageRepository.findById(id)
+				Voyage voyage = voyageRepository.findById(id)
 						.orElseThrow(() -> new NotFoundException("The id is not found"));
-				return ResponseEntity.ok(hotel);
+				return ResponseEntity.ok(voyage);
 			} else {
-				return ResponseEntity.ok(hotels);
+				return ResponseEntity.ok(voyages);
 			}
 		}
 
 	}
 
-	@PostMapping("/setlieu")
-	@RolesAllowed("ADMIN")
-	public HttpEntity<?> addLieu(@RequestParam("LieuId") Long idLieu, @RequestParam("HotelId") Long idHotel)
-			throws NotFoundException {
-		Lieu lieu = lieuRepository.findById(idLieu)
-				.orElseThrow(() -> new NotFoundException("L'id lieu n'est pas trouvé"));
-		Hotel hotel = voyageRepository.findById(idHotel)
-				.orElseThrow(() -> new NotFoundException("L'id hotel n'est pas trouvé"));
-		hotel.setVille(lieu);
-		voyageRepository.save(hotel);
-		return ResponseEntity.accepted().build();
-	}
-
 	@GetMapping("/pictures")
 	public HttpEntity<?> getPictures(@RequestParam("id") Long id) throws NotFoundException, DataEmptyException {
-		Hotel hotel = voyageRepository.findById(id).orElseThrow(() -> new NotFoundException("Id not found"));
-		if (hotel.getPictures().size() == 0) {
+		Voyage voyage = voyageRepository.findById(id).orElseThrow(() -> new NotFoundException("Id not found"));
+		if (voyage.getPictures().size() == 0) {
 			throw new DataEmptyException("The list of catalogs is empty");
 		} else {
-			return ResponseEntity.ok(hotel.getPictures());
+			return ResponseEntity.ok(voyage.getPictures());
 
 		}
 	}
-}*/
+}
