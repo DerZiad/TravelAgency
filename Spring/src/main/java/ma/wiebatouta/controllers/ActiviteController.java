@@ -137,16 +137,15 @@ public class ActiviteController {
 			activite.setNomActivite(labelActivite);
 			List<SousActivite> tbdd = sousActiviteRepository.getSousActiviteByActivite(activite);
 			/*int tailleSousActivite = tbdd.size();*/
-			int tailleSousActivite = params.get("myparams").size();
-			if(tbdd==null) {
-			sousActivities = new ArrayList<>(tailleSousActivite);
-			for (int i = 0; i < tailleSousActivite; i++) {
-				SousActivite sousActivite = new SousActivite();
-				sousActivite.setId(tbdd.get(i).getId());
-				sousActivite.setTitre(params.get("myparams").get(i));
-				sousActivite.setDescription(params.get("SousActdescrip").get(i));
-				sousActivite.setActivite(activite);
-				sousActivities.add(sousActivite);
+			int tailleparams = params.get("myparams").size();
+			sousActivities = new ArrayList<>(tailleparams);
+			for (int i = 0; i < tailleparams; i++) {
+				tbdd.get(i).setId(tbdd.get(i).getId());
+				tbdd.get(i).setTitre(params.get("myparams").get(i));
+				tbdd.get(i).setDescription(params.get("SousActdescrip").get(i));
+				tbdd.get(i).setActivite(activite);
+				sousActivities.addAll(tbdd);
+					
 /*********PROBLEME*******************/
 			}
 			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -176,17 +175,13 @@ public class ActiviteController {
 				model.addObject("bool1", bool1);
 			} else {
 				activiteRepository.save(activite);
-				for (int i = 0; i < tailleSousActivite; i++) {
+				for (int i = 0; i < tailleparams; i++) {
 					sousActiviteRepository.save(sousActivities.get(i));
 					System.out.println("ss");
 				}
 
 			}
-		}else {
-			boolean b = true ;
-			model.addObject("b", b);
-			model.addObject("erreur", "SousActivite !!!");
-		}}
+		}
 		return model;
 	}
 
@@ -201,6 +196,14 @@ public class ActiviteController {
 		model.addObject("activite", activite);
 		model.addObject("etat", activite);
 		model.addObject("bool", bool);
+		return model;
+	}
+	
+	@GetMapping("/deleteActivite/{id}")
+	@RolesAllowed("ADMIN")
+	public ModelAndView delete(@PathVariable("id")Long idActivite ) {
+		activiteRepository.deleteById(idActivite);
+		ModelAndView model = new ModelAndView(REDIRECT_LIST_ACTIVITY);	
 		return model;
 	}
 }

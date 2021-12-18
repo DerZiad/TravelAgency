@@ -45,7 +45,7 @@
 						<p style="color: red;">
 
 							<c:if test="${bool}">
-								<c:out value="${errors.label}"></c:out>
+								<c:out value="${errors.country.valueCountry}"></c:out>
 							</c:if>
 						</p>
 					</div>

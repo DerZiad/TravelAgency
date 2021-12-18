@@ -90,7 +90,7 @@ public class Activite implements Serializable, Comparable<Activite> {
 	@Override
 	public String toString() {
 		return "Activite [id=" + id + ", nomActivite=" + nomActivite + ", description=" + description
-				+ ", sousActivites=" + sousActivites + ", voyage=" + voyage + "]";
+				;
 	}
 	
 

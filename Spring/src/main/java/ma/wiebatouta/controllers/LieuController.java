@@ -101,9 +101,14 @@ public class LieuController {
 			for (ConstraintViolation<Lieu> constraintViolation : violations) {
 				errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 			}
+			Set<ConstraintViolation<Country>> violations1 = validator.validate(country);
+			for (ConstraintViolation<Country> constraintViolation : violations1) {
+				errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
+			}
 			boolean bool = false;
 			if (errors.size() != 0) {
 				model.addObject("errors", errors);
+				
 				bool = true;
 				model.addObject("bool", bool);
 			} else {
