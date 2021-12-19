@@ -30,6 +30,7 @@ import ma.wiebatouta.metier.LieuxMetier;
 import ma.wiebatouta.models.Country;
 import ma.wiebatouta.models.Lieu;
 import ma.wiebatouta.models.Theme;
+import ma.wiebatouta.repositories.LieuRepository;
 
 @Controller
 @RequestMapping("/admin/lieux")
@@ -42,7 +43,8 @@ public class LieuController {
 	private LieuxMetier lieuMetier;
 	@Autowired
 	private CountryMetier cm;
-
+	@Autowired
+	private LieuRepository lieuRepository ;
 	@GetMapping
 	@RolesAllowed("ADMIN")
 	public ModelAndView listeLieux() {
@@ -107,16 +109,19 @@ public class LieuController {
 			}
 			boolean bool = false;
 			if (errors.size() != 0) {
-				model.addObject("errors", errors);
-				
+				System.out.println(errors.get("label"));
 				bool = true;
 				model.addObject("bool", bool);
+				model.addObject("errors", errors);
+
 			} else {
 				lieuMetier.save(lieu);
 			}
 		
 		List<Lieu> lieux = lieuMetier.listeLieux();
 		model.addObject(LIEUX, lieux);
+		List<Country> countries = cm.listeCountries();
+		model.addObject(COUNTRY, countries);
 		model.addObject(DesignAttributes.ACTIVE_THEME_AJOUT, DesignAttributes.ACTIVE);}
 		return model;
 	}
@@ -132,7 +137,7 @@ public class LieuController {
 		model.addObject(LIEUX, lieux);
 		model.addObject("lieu", lieu);
 		List<Country> country = cm.listeCountries();
-		model.addObject(COUNTRY, country);
+		model.addObject("country", country);
 		return model;
 
 	}
@@ -140,7 +145,8 @@ public class LieuController {
 	@GetMapping("/deleteLieu/{id}")
 	@RolesAllowed("ADMIN")
 	public ModelAndView delete(@PathVariable("id")Long idLieu) {
-		lieuMetier.deleteLieu(idLieu);
+		System.out.println(idLieu);
+		lieuRepository.delete(lieuRepository.getById(idLieu));
 		ModelAndView model = new ModelAndView(REDIRECT_LIST_LIEUX);
 		return model;
 	}

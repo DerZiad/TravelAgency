@@ -49,6 +49,7 @@ public class Activite implements Serializable, Comparable<Activite> {
 	 */
 	@OneToMany(cascade = {
 			CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "activite", targetEntity = SousActivite.class)
+	@NotNull(message="erreur")
 	private List<SousActivite> sousActivites = new ArrayList<SousActivite>();
 
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })

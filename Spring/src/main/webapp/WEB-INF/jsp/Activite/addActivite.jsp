@@ -23,12 +23,21 @@
 								<label for="name" class="">Label Activite</label><input
 									name="name" id="name" placeholder="Label Theme" type="text"
 									class="form-control" value="${activite.nomActivite}">
+								<c:choose>
+									<c:when test="${ empty errors}">
+										<p style="color: red;">
+											<c:out value="${errors.nomActivite}"></c:out>
+										</p>
+									</c:when>
+									<c:otherwise>
+										<p style="color: red;">
+											<c:out value="${errors.nomActivite}"></c:out>
+										</p>
+									</c:otherwise>
+								</c:choose>
+
 							</div>
-							<c:if test="${err}">
-								<p style="color: red;">
-									<c:out value="${errors.nomActivite}">AAAA</c:out>
-								</p>
-							</c:if>
+
 						</div>
 					</div>
 
@@ -39,13 +48,13 @@
 									name="description" id="dscp"
 									placeholder="Description du Theme " type="text"
 									class="form-control" value="${activite.description}">
-
+								<p style="color: red;">
+									<c:if test="${not empty errors}">
+										<c:out value="${errors.description}"></c:out>
+									</c:if>
+								</p>
 							</div>
-							<p style="color: red;">
-								<c:if test="${err}">
-									<c:out value="${errors.description}"></c:out>
-								</c:if>
-							</p>
+
 						</div>
 					</div>
 
@@ -55,14 +64,16 @@
 								style="font-size: 16px; font-weight: bold;">+ </span>
 
 						</button>
-						<div>
+						<c:if test="${! modify}">
+						<div >
 							<label for="name" class="">Label SousActivite</label> <input
 								id="ssa" type="text" value="" name="myparams" /></br> <label
 								for="name" class="">Description SousActivite</label> <input
 								type="text" id="dess" value="" name="SousActdescrip" /><a
 								href="#" class="delete">Delete</a>
 						</div>
-						<c:if test="${bool}">
+						</c:if>
+						<c:if test="${modify}">
 							<c:forEach var="ss" items="${activite.sousActivites}">
 								<div>
 									<input name="sid" id="id" type="hidden" class="form-control"
@@ -77,7 +88,7 @@
 						<div>
 							<p style="color: red;">
 
-								<c:if test="${b}">
+								<c:if test="${bool}">
 									<c:out
 										value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
 								</c:if>
