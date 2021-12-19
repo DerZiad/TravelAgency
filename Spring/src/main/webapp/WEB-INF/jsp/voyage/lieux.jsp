@@ -10,31 +10,31 @@
 
 		<div class="main-card mb-3 card">
 			<div class="card-body">
-				<form class="form-group" action="/admin/hotel/picture?id=${idHotel}"
+				<form class="form-group"
+					action="/admin/voyage/lieux?id=${idVoyage}"
 					enctype="multipart/form-data" method="POST">
 					<h5 class="card-title">Ajout image</h5>
 					<input name="id" id="id" type="hidden" class="form-control"
-						value="${idHotel}">
+						value="${idVoyage}">
 					<div class="form-row">
-						<div class="position-relative form-group">
-							<div class="col-md-6">
-								<label for="photo" class="">Inserer Photo</label> <input
-									name="picturePart" id="file" type="file" />
+						<div class="col-md-6">
+							<div class="position-relative form-group">
+								<label for="type" class="">Pays</label> <select id="pays" name="pays"
+									class="form-control">
+									<c:forEach var="country" items="${countries}">
+										<option value="${country.keyCountry}">${country.valueCountry}</option>
+									</c:forEach>
+								</select>
 							</div>
 
 						</div>
+
 					</div>
-
 					<div class="form-row">
-						<div class="position-relative form-group">
-							<div class="col-md-6">
-								<label for="type" class="">Type</label> <select name="type"
+						<div class="col-md-6">
+							<div class="position-relative form-group">
+								<label for="type" class="">Lieu</label> <select name="lieu"
 									id="type" class="form-control">
-									<c:forEach var="type" items="${types}">
-
-										<option value="${type}">${type}</option>
-
-									</c:forEach>
 								</select>
 							</div>
 
@@ -50,22 +50,20 @@
 					<table class="mb-0 table table-striped">
 						<thead>
 							<tr>
-								<th>Picture</th>
-								<th>Type</th>
+								<th>Lieu</th>
+								<th>Pays</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="picture" items="${pictures}">
+							<c:forEach var="lieu" items="${lieux}">
 								<tr>
-									<td><img
-										style='display: block; width: 50px; height: 50px;'
-										id='base64image'
-										src='data:image/jpeg;base64,${picture.getBase64()}' /></td>
-									<td style="color: black">${picture.type}</td>
+									<td style="color: black">${lieu.label}</td>
+									<td style="color: black">${lieu.country.valueCountry}</td>
 									<td><a
-										href="/admin/hotel/picture/delete?id=${picture.hotel.id}&idPicture=${picture.id}"
-										class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+										href="/admin/voyage/lieux/delete?id=${idVoyage}&idLieu=${lieu.id}"
+										class="delete"><i class="material-icons"
+											data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -73,6 +71,9 @@
 				</div>
 			</div>
 		</div>
-
+		<layout:put block="scriptsfile" type="REPLACE">
+			<script src="/delibdesign/js/voyage/lieux.js"></script>
+			<script src="/delibdesign/js/voyage/template.js"></script>
+		</layout:put>
 	</layout:put>
 </layout:extends>

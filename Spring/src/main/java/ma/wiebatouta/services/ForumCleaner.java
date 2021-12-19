@@ -51,7 +51,6 @@ public class ForumCleaner implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println(System.currentTimeMillis());
 		while (true) {
 			Calendar rightNow = Calendar.getInstance();
 			int hour = rightNow.get(Calendar.HOUR_OF_DAY);

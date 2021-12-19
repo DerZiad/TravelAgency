@@ -122,9 +122,9 @@ function refreshCountry() {
 	$('select[name=destination]').html(contenue);
 }
 
-function getPictures(idHotel) {
+function getPictures(idVoyage) {
 	$.ajax({
-		url: '/api/hotel/pictures?id=' + idHotel,
+		url: '/api/voyage/pictures?id=' + idVoyage,
 		type: 'get',
 		data: {},
 		success: function(response) {
@@ -170,11 +170,13 @@ function refreshvoyages() {
 				contenue = contenue + '<td>' + voyage.nombrePersonneTotal+ '</td>\n'
 				contenue = contenue + '<td>' + voyage.prix+ '</td>\n'
 				contenue = contenue + '<td>' + voyage.reduction+ '</td>\n'
-				contenue = contenue + '<td><a href="#addImageModal" onclick="getPictures(' + voyage.id + ')" class="addpicture" data-toggle="modal"><i data-toggle="tooltip" title="Edit" class="fas fa-images"></i></a><a href="#editEmployeeModal" onclick="makeEditVoyage(' + voyage.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + voyage.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a><a href="/admin/hotel/picture?id=' + voyage.id + '" class="edit" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a></td>\n'
+				contenue = contenue + '<td><a href="#addImageModal" onclick="getPictures(' + voyage.id + ')" class="addpicture" data-toggle="modal"><i data-toggle="tooltip" title="Edit" class="fas fa-images"></i></a><a href="#editEmployeeModal" onclick="makeEditVoyage(' + voyage.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + voyage.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a><a href="/admin/voyage/picture?id=' + voyage.id + '" class="edit" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a>			<a href="/admin/voyage/themes?id=' + voyage.id + '" class="theme" data-toggle="modal"><i class="fab fa-themeco"></i></a><a href="/admin/voyage/hoteles?id=' + voyage.id + '" class="hotele" data-toggle="modal"><i class="fas fa-hotel"></i></a><a href="/admin/voyage/lieux?id=' + voyage.id + '" class="lieux" data-toggle="modal"><i class="fas fa-city"></i></a></td>\n'
 				contenue = contenue + '</tr>\n'
 			}
 
-
+			
+			
+			
 			$('#voyageslist').html(contenue);
 		}
 	});

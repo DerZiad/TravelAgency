@@ -86,7 +86,7 @@ public class Voyage {
 	private List<Activite> activites = new ArrayList<Activite>();
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,
-			CascadeType.MERGE }, mappedBy = "voyages", targetEntity = Lieu.class, fetch = FetchType.LAZY)
+			CascadeType.MERGE }, mappedBy = "voyages", targetEntity = Lieu.class)
 	private List<Lieu> lieux = new ArrayList<Lieu>();
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE,
@@ -99,6 +99,7 @@ public class Voyage {
 	private Equipe equipe;
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage")
+	@JsonIgnore
 	private List<Reservation> reservations = new ArrayList<Reservation>();
 
 	@SuppressWarnings("deprecation")
@@ -160,5 +161,9 @@ public class Voyage {
 			System.out.println(this.dateDepart);
 		}
 		return date;
+	}
+	
+	public void addLieu(Lieu lieu) {
+		lieux.add(lieu);
 	}
 }

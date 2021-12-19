@@ -41,8 +41,6 @@ public class VoyageRestController {
 	@Autowired
 	private VoyageRepository voyageRepository;
 
-	@Autowired
-	private LieuRepository lieuRepository;
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	@RolesAllowed("ADMIN")
