@@ -62,8 +62,23 @@ function refreshReservationBYcountry() {
 }
 function refreshReservationByDATEARV(){
 	var date=$('input[name=dateArriveDate]').val();
-	console.log(date);	
-
+	var contenue ="";
+	for(rese of reservations){
+		if( rese['voyage']['dateArriveeDate'] === date){
+			contenue = contenue + '<tr>\n';
+			
+			contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox' + rese['id']['idVoyage'] + '" name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n'
+			contenue = contenue + '<td>' +rese['voyage']['titre'] +'</td>\n'
+			contenue = contenue + '<td>' + rese['person']['cne'] + " " + rese['person']['prenom'] + " " + rese['person']['nom'] + '</td>\n'
+			if (rese.confirmed) {
+				etat1 = "Confirmee"
+			}
+			contenue = contenue + '<td>' + "Reservee" + '</td>\n'
+			contenue = contenue + '<td>' + etat1 + '</td>\n'
+			contenue = contenue + '</tr>\n'
+		}
+		
+	}
 }
 /*function getCountryByKey(keyCountry){
 	var daata=JSON.stringify(keyCountry);

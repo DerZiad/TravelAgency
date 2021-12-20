@@ -148,7 +148,9 @@ public class Personne implements Serializable, Comparable<Personne> {
 
 	@SuppressWarnings("deprecation")
 	public String getDateNaissanceDate() {
-		String date = "";
+		java.sql.Date sDate = new java.sql.Date(this.dateNaissance.getTime());
+
+		/*String date = "";
 		if (this.dateNaissance != null) {
 			date = date + this.dateNaissance.getYear() + "-";
 			String month = this.dateNaissance.getMonth() + "";
@@ -162,7 +164,8 @@ public class Personne implements Serializable, Comparable<Personne> {
 			}
 			date = date + day;
 		}
-		return date;
+		return date;*/
+		return sDate.toString();
 	}
 
 }

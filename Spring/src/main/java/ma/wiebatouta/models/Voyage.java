@@ -128,8 +128,9 @@ public class Voyage {
 	
 	@SuppressWarnings("deprecation")
 	public String getDateArriveeDate() {
-
-		String date = "";
+		java.sql.Date sDate = new java.sql.Date(this.dateArrivee.getTime());
+		
+		/*String date = "";
 		if (this.dateArrivee != null) {
 			date = date + this.dateArrivee.getYear() + "-";
 			String month = this.dateArrivee.getMonth() + "";
@@ -142,13 +143,15 @@ public class Voyage {
 				day = "0" + day;
 			}
 			date = date + day;
-		}
-		return date;
+		}return date;*/
+		return sDate.toString();
 	}
 	
 	@SuppressWarnings("deprecation")
 	public String getDateDepartDate() {
-		String date = "";
+		java.sql.Date sDate = new java.sql.Date(this.dateDepart.getTime());
+
+		/*String date = "";
 		if (this.dateDepart != null) {
 			date = date + this.dateDepart.getYear() + "-";
 			String month = this.dateDepart.getMonth() + "";
@@ -162,7 +165,8 @@ public class Voyage {
 			}
 			date = date + day;
 		}
-		return date;
+		return date;*/
+		return sDate.toString();
 	}
 	
 	public void addLieu(Lieu lieu) {
