@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
@@ -68,6 +69,9 @@ public class Voyage {
 	@Column
 	private String destination;
 	
+	@Transient
+	private Long idEquipe;
+	
 	/**
 	 * Relations
 	 */
@@ -95,7 +99,6 @@ public class Voyage {
 	private List<Personne> personnes = new ArrayList<Personne>();
 
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH })
-	@JsonIgnore
 	private Equipe equipe;
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage")
@@ -125,6 +128,7 @@ public class Voyage {
 	
 	@SuppressWarnings("deprecation")
 	public String getDateArriveeDate() {
+
 		String date = "";
 		if (this.dateArrivee != null) {
 			date = date + this.dateArrivee.getYear() + "-";
@@ -157,8 +161,6 @@ public class Voyage {
 				day = "0" + day;
 			}
 			date = date + day;
-			System.out.println(date);
-			System.out.println(this.dateDepart);
 		}
 		return date;
 	}

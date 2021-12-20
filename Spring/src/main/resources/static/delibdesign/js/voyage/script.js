@@ -3,9 +3,21 @@ deletetedId = null;
 voyages = [];
 lieux = [];
 countries = [];
-
+equipes = [];
 function deleteHotel(idHotel) {
 	deletetedId = idHotel;
+}
+
+function refreshEquipeByVoyage(idEquipe) {
+	var contenue = "";
+	for (equipe of equipes) {
+		if (idEquipe == equipe.id) {
+			contenue = contenue + '<option value="' + equipe.id + '" selected >' + equipe.label + '</option>';
+		} else {
+			contenue = contenue + '<option value="' + equipe.id + '">' + equipe.label + '</option>';
+		}
+	}
+	$('select[name=idequipeEdit]').html(contenue);
 }
 
 function refreshCountryByVoyage(valueCountry) {
@@ -38,6 +50,7 @@ function makeEditVoyage(idVoyage) {
 	$("input[name=dateArriveeDateEdit]").val(voyage.dateArriveeDate);
 	$("input[name=descriptionEdit]").val(voyage.description);
 	refreshCountryByVoyage(voyage.destination);
+	refreshEquipeByVoyage(voyage.equipe.id)
 	$('input[name=edit]').click(function() {
 		var titre = $('input[name=titreEdit]').val();
 		var destination = $('select[name=destinationEdit]').val();
@@ -49,6 +62,7 @@ function makeEditVoyage(idVoyage) {
 		var dateDepartDate = $('input[name=dateDepartDateEdit]').val();
 		var dateArriveeDate  = $('input[name=dateArriveeDateEdit]').val();
 		var description = $('input[name=descriptionEdit]').val();
+		var equipe = $('select[name=idequipeEdit]').val();
 		datas = {
 			'id':idVoyage,
 			'titre': titre,
@@ -60,7 +74,8 @@ function makeEditVoyage(idVoyage) {
 			'ageMax': ageMax,
 			'dateDepartDate': dateDepartDate,
 			'dateArriveeDate': dateArriveeDate,
-			'description':description
+			'description':description,
+			'idEquipe':equipe
 		}
 		datas = JSON.stringify(datas);
 		$.ajax({
@@ -112,6 +127,14 @@ function clearAddCache() {
 	$('input[name=dateArriveeDate]').val("");
 	$('input[name=description]').val("");
 	refreshCountry();
+}
+
+function refreshEquipe(){
+	var contenue = "";
+	for (equipe of equipes) {
+		contenue = contenue + '<option value="' + equipe.id + '">' + equipe.label + '</option>';
+	}
+	$('select[name=idequipe]').html(contenue);
 }
 
 function refreshCountry() {
@@ -170,7 +193,7 @@ function refreshvoyages() {
 				contenue = contenue + '<td>' + voyage.nombrePersonneTotal+ '</td>\n'
 				contenue = contenue + '<td>' + voyage.prix+ '</td>\n'
 				contenue = contenue + '<td>' + voyage.reduction+ '</td>\n'
-				contenue = contenue + '<td><a href="#addImageModal" onclick="getPictures(' + voyage.id + ')" class="addpicture" data-toggle="modal"><i data-toggle="tooltip" title="Edit" class="fas fa-images"></i></a><a href="#editEmployeeModal" onclick="makeEditVoyage(' + voyage.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + voyage.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a><a href="/admin/voyage/picture?id=' + voyage.id + '" class="edit" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a>			<a href="/admin/voyage/themes?id=' + voyage.id + '" class="theme" data-toggle="modal"><i class="fab fa-themeco"></i></a><a href="/admin/voyage/hoteles?id=' + voyage.id + '" class="hotele" data-toggle="modal"><i class="fas fa-hotel"></i></a><a href="/admin/voyage/lieux?id=' + voyage.id + '" class="lieux" data-toggle="modal"><i class="fas fa-city"></i></a><a href="/admin/activite?id=' + voyage.id + '" data-toggle="modal"><i class="fas fa-snowboarding"></i></a></td>\n'
+				contenue = contenue + '<td><a href="#addImageModal" onclick="getPictures(' + voyage.id + ')" class="addpicture" data-toggle="modal"><i data-toggle="tooltip" title="Edit" class="fas fa-images"></i></a><a href="#editEmployeeModal" onclick="makeEditVoyage(' + voyage.id + ')" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a href="#deleteEmployeeModal" onclick="deleteHotel(' + voyage.id + ')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a><a href="/admin/voyage/picture?id=' + voyage.id + '" class="edit" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a>			<a href="/admin/voyage/themes?id=' + voyage.id + '" class="theme" data-toggle="modal"><i class="fas fa-archive"></i></a><a href="/admin/voyage/hoteles?id=' + voyage.id + '" class="hotele" data-toggle="modal"><i class="fas fa-hotel"></i></a><a href="/admin/voyage/lieux?id=' + voyage.id + '" class="lieux" data-toggle="modal"><i class="fas fa-city"></i></a><a href="/admin/activite?id=' + voyage.id + '" data-toggle="modal"><i class="fas fa-snowboarding"></i></a></td>\n'
 				contenue = contenue + '</tr>\n'
 			}
 		
@@ -192,6 +215,7 @@ function initialize() {
 		var dateDepartDate = $('input[name=dateDepartDate]').val();
 		var dateArriveeDate  = $('input[name=dateArriveeDate]').val();
 		var description = $('input[name=description]').val();
+		var equipe = $('select[name=idequipe]').val();
 		datas = {
 			'titre': titre,
 			'destination': destination,
@@ -202,9 +226,11 @@ function initialize() {
 			'ageMax': ageMax,
 			'dateDepartDate': dateDepartDate,
 			'dateArriveeDate': dateArriveeDate,
-			'description':description
+			'description':description,
+			'idEquipe':equipe
 		}
 		datas = JSON.stringify(datas);
+		console.log(datas)
 		$.ajax({
 			type: "POST",
 			headers: { Accept: "application/json" },
@@ -251,6 +277,16 @@ jQuery(document).ready(function() {
 		success: function(response) {
 			countries = response;
 			refreshCountry();
+		}
+	});
+	
+	$.ajax({
+		url: '/api/equipes',
+		type: 'get',
+		data: {},
+		success: function(response) {
+			equipes = response;
+			refreshEquipe();
 		}
 	});
 });

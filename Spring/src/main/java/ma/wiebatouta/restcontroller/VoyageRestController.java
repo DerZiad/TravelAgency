@@ -29,7 +29,10 @@ import com.google.gson.Gson;
 import ma.wiebatouta.exceptions.AddUnsatisfiedException;
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
+import ma.wiebatouta.models.Activite;
+import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Voyage;
+import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.LieuRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
@@ -41,12 +44,16 @@ public class VoyageRestController {
 	@Autowired
 	private VoyageRepository voyageRepository;
 
+	@Autowired
+	private EquipeRepository equipeRepository;
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	@RolesAllowed("ADMIN")
-	public HttpEntity<?> addVoyage(@RequestBody Voyage voyage) throws AddUnsatisfiedException {
+	public HttpEntity<?> addVoyage(@RequestBody Voyage voyage) throws AddUnsatisfiedException, NotFoundException {
+		System.out.println(voyage);
 		HashMap<String, String> errors = new HashMap<String, String>();
-	
+		Equipe equipe = equipeRepository.findById(voyage.getIdEquipe()).orElseThrow(() -> new NotFoundException());
+		voyage.setEquipe(equipe);
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<Voyage>> violatons = validator.validate(voyage);
@@ -69,9 +76,10 @@ public class VoyageRestController {
 
 	@PutMapping
 	@RolesAllowed("ADMIN")
-	public HttpEntity<?> editHotel(@RequestBody Voyage voyage) throws AddUnsatisfiedException {
+	public HttpEntity<?> editHotel(@RequestBody Voyage voyage) throws AddUnsatisfiedException, NotFoundException {
 		HashMap<String, String> errors = new HashMap<String, String>();
-
+		Equipe equipe = equipeRepository.findById(voyage.getIdEquipe()).orElseThrow(() -> new NotFoundException());
+		voyage.setEquipe(equipe);
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<Voyage>> violatons = validator.validate(voyage);

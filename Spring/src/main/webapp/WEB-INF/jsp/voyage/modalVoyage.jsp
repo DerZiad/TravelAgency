@@ -68,6 +68,11 @@
 						<p id="dateArriveeError" class="error"></p>
 					</div>
 				</div>
+				<div class="form-group">
+					<label>Equipe</label> <select class="form-control"
+						name="idequipe" ></select>
+					<p id="equipeError" class="error"></p>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<input type="button" class="btn btn-default" data-dismiss="modal"
@@ -142,6 +147,11 @@
 						name="dateArriveeDateEdit" required/>
 						<p id="dateArriveeError" class="error"></p>
 					</div>
+				</div>
+				<div class="form-group">
+					<label>Equipe</label> <select class="form-control"
+						name="idequipeEdit" ></select>
+					<p id="equipeErrorEdit" class="error"></p>
 				</div>
 			</div>
 			<div class="modal-footer">
