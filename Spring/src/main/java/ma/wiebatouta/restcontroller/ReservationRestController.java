@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.net.MediaType;
-
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Reservation;

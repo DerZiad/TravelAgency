@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
@@ -58,7 +59,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@NotNull(message = "Le prenom ne doit pas être vide")
 	@Length(min = 2, max = 20, message = "Le prenom doit être entre 2 et 20 caracètres")
 	private String prenom;
-	@FutureOrPresent(message = "La date de naissance doît être dans le passé")
+	@Past(message = "La date de naissance doît être dans le passé")
 	@NotNull(message = "La date de naissance ne doît pas être vide")
 	private Date dateNaissance;
 	@NotNull(message = "Le code postal ne doît pas être vide")
@@ -102,6 +103,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "person")
+	@JsonIgnore
 	private List<Reservation> reservations = new ArrayList<Reservation>();
 
 	@Override
