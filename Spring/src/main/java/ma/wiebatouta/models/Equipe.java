@@ -29,6 +29,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class Equipe implements Serializable,Comparable<Equipe>{
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -48,7 +50,7 @@ public class Equipe implements Serializable,Comparable<Equipe>{
 
 	@Override
 	public int compareTo(Equipe o) {
-		if(id < o.getId()) {
+		if(voyages.size() < o.getVoyages().size()) {
 			return 1;
 		}else {
 			return -1;

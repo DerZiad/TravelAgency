@@ -25,12 +25,15 @@
 		'packages' : [ 'bar' ]
 	});
 	google.charts.setOnLoadCallback(drawChart);
+	
 
+	
+	
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
-				[ 'Filières', 'validé', 'rattrapage', 'Non validé' ],
-				[ 'BGI', 1000, 400, 200 ], [ 'BGB', 1170, 460, 250 ],
-				[ 'BCA', 660, 1120, 300 ], [ 'SMIA', 1030, 540, 350 ] ]);
+				[ 'Pays', 'Réservations faites'],
+				[ 'Réservé avec confirmation', ${reservationsdonenumber}],
+				[ 'Réservé sans confirmation', ${reservationsnotdonenumber}]]);
 
 		var options = {
 			chart : {
