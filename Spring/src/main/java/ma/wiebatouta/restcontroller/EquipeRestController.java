@@ -1,5 +1,8 @@
 package ma.wiebatouta.restcontroller;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
@@ -24,7 +27,7 @@ public class EquipeRestController {
 	
 	@GetMapping("/api/equipes")
 	@RolesAllowed("ADMIN")
-	public ResponseEntity<?> findCatalogs(@RequestParam(name = "id", required = false) Long id)
+	public ResponseEntity<?> findEquipes(@RequestParam(name = "id", required = false) Long id)
 			throws DataEmptyException, NotFoundException {
 		List<Equipe> equipes = equipeRepository.findAll();
 		if (equipes.size() == 0) {
@@ -38,6 +41,6 @@ public class EquipeRestController {
 				return ResponseEntity.ok(equipes);
 			}
 		}
-
+		
 	}
 }

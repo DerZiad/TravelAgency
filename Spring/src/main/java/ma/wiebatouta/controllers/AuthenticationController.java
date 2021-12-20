@@ -1,10 +1,13 @@
 package ma.wiebatouta.controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,16 +27,23 @@ import ma.wiebatouta.repositories.VoyageRepository;
 @Controller
 public class AuthenticationController {
 
-	@Autowired private VoyageRepository voyageRepository;
-	@Autowired private HotelRepository hotelRepository;
-	@Autowired private ReservationRepository reservationRepository;
-	@Autowired private EquipeRepository equipeRepository;
-	
-	
-	
+	@Autowired
+	private VoyageRepository voyageRepository;
+	@Autowired
+	private HotelRepository hotelRepository;
+	@Autowired
+	private ReservationRepository reservationRepository;
+	@Autowired
+	private EquipeRepository equipeRepository;
+
+	private static final String ATTRIBUT_HOTELS_NUMBER = "hotelsnumber";
+	private static final String ATTRIBUT_RESERVATIONS_NUMBER = "reservationsnumber";
+	private static final String ATTRIBUT_EQUIPES_NUMBER = "equipesnumber";
+	private static final String ATTRIBUT_VOYAGES_NUMBER = "voyagesnumber";
+	private static final String ATTRIBUT_EQUIPES = "equipes";
 	private static final String PATH_ADMIN_LOGIN = "login";
 	private static final String PATH_ADMIN_PAGE = "index-a";
-	
+
 	private static final String ATTRIBUT_ERROR = "error";
 	private static final String REDIRECT_ADMIN_SPACE = "redirect:/admin/";
 
@@ -52,13 +62,33 @@ public class AuthenticationController {
 		}
 		return model;
 	}
-	
+
 	@GetMapping("/admin")
 	public ModelAndView getIndexAdmin() {
+		ModelAndView model = new ModelAndView(PATH_ADMIN_PAGE);
 		List<Voyage> voyages = voyageRepository.findAll();
 		List<Hotel> hotels = hotelRepository.findAll();
 		List<Reservation> reservations = reservationRepository.findAll();
 		List<Equipe> equipes = equipeRepository.findAll();
-		return new ModelAndView(PATH_ADMIN_PAGE);
+		model.addObject(ATTRIBUT_HOTELS_NUMBER, hotels.size());
+		model.addObject(ATTRIBUT_RESERVATIONS_NUMBER, reservations.size());
+		model.addObject(ATTRIBUT_EQUIPES_NUMBER, equipes.size());
+		model.addObject(ATTRIBUT_VOYAGES_NUMBER, voyages.size());
+		
+
+		Collections.sort(equipes);
+		if (equipes.size() <= 4) {
+			model.addObject(ATTRIBUT_EQUIPES, equipes);
+		} else {
+			List<Equipe> newlist = new ArrayList<Equipe>();
+			newlist.add(equipes.get(0));
+			newlist.add(equipes.get(1));
+			newlist.add(equipes.get(2));
+			newlist.add(equipes.get(3));
+			model.addObject(ATTRIBUT_EQUIPES, newlist);
+		}
+		
+		return model;
+
 	}
 }

@@ -25,12 +25,31 @@
 		'packages' : [ 'bar' ]
 	});
 	google.charts.setOnLoadCallback(drawChart);
-
+	
+	reservations = [];
+	
+	$.ajax({
+		url: '/api/reservation',
+		type: 'get',
+		data: {},
+		success: function(response) {
+			reservations = response;
+		}
+	});
+	
+	function getMostCountry{
+		
+		for(reservation in reservations){
+			
+		}
+	}
+	
+	
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
-				[ 'Filières', 'validé', 'rattrapage', 'Non validé' ],
-				[ 'BGI', 1000, 400, 200 ], [ 'BGB', 1170, 460, 250 ],
-				[ 'BCA', 660, 1120, 300 ], [ 'SMIA', 1030, 540, 350 ] ]);
+				[ 'Pays', 'Réservé avec confirmation', 'Reservé sans confirmation' ],
+				[ 'BGI', 1000, 400 ], [ 'BGB', 1170, 460 ],
+				[ 'BCA', 660, 1120 ], [ 'SMIA', 1030, 540 ] ]);
 
 		var options = {
 			chart : {
