@@ -85,7 +85,7 @@ public class ActiviteController {
 			System.out.println(activite);
 			int tailleSousActivite = params.get("myparams").size();
 			System.out.println(tailleSousActivite);
-			
+
 			for (int i = 0; i < tailleSousActivite; i++) {
 				SousActivite sousActivite = new SousActivite();
 				sousActivite.setTitre(params.get("myparams").get(i));
@@ -129,7 +129,7 @@ public class ActiviteController {
 				for (Activite ac : activities) {
 					List<SousActivite> act = sousActiviteRepository.getSousActiviteByActivite(activite);
 					model.addObject("sousActivite", act);
-					
+
 				}
 				return new ModelAndView(REDIRECT_LIST_ACTIVITY);
 			}
@@ -144,15 +144,26 @@ public class ActiviteController {
 			String descriptionActivite = params.get("description").get(0);
 			activite.setDescription(descriptionActivite);
 			activite.setNomActivite(labelActivite);
-			List<SousActivite> tbdd = sousActiviteRepository.getSousActiviteByActivite(activite);
+			List<SousActivite> tbdd = /*sousActiviteRepository.getSousActiviteByActivite(activite);*/activite.getSousActivites();
+			System.out.println(tbdd);
 			/* int tailleSousActivite = tbdd.size(); */
 			int tailleparams = params.get("myparams").size();
+			System.out.println(tailleparams);
 			sousActivities = new ArrayList<>(tailleparams);
 			for (int i = 0; i < tailleparams; i++) {
-				tbdd.get(i).setId(tbdd.get(i).getId());
-				tbdd.get(i).setTitre(params.get("myparams").get(i));
-				tbdd.get(i).setDescription(params.get("SousActdescrip").get(i));
-				tbdd.get(i).setActivite(activite);
+				if (i < tbdd.size()) {
+					tbdd.get(i).setId(tbdd.get(i).getId());
+					tbdd.get(i).setTitre(params.get("myparams").get(i));
+					tbdd.get(i).setDescription(params.get("SousActdescrip").get(i));
+					tbdd.get(i).setActivite(activite);
+				} else {
+					SousActivite ss = new SousActivite();
+					ss.setTitre(params.get("myparams").get(i));
+					ss.setDescription(params.get("SousActdescrip").get(i));
+					ss.setActivite(activite);
+					sousActivities.add(ss);
+					System.out.println(ss);
+				}
 				sousActivities.addAll(tbdd);
 			}
 			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -168,7 +179,7 @@ public class ActiviteController {
 			}
 			boolean bool = false;
 			boolean bool1 = false;
-	
+
 			if (errors.size() != 0 && errors1.size() != 0) {
 				model.addObject("errors", errors);
 				bool = true;
