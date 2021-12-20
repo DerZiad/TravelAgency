@@ -31,6 +31,7 @@ public class ReservationRestController {
 	@RolesAllowed("ADMIN")
 	public ResponseEntity<?> getReservations(@RequestParam(name="id",required=false)Long id ) throws DataEmptyException, NotFoundException{
 		List<Reservation> reservations = reservationRepository.findAll();
+		System.out.println("test");
 		if(reservations.size() == 0) {
 			throw new DataEmptyException("La liste est vide ");
 		}else {
