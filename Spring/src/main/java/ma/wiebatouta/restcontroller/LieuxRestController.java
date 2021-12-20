@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.metier.LieuxMetier;
+import ma.wiebatouta.models.Country;
 import ma.wiebatouta.models.Lieu;
+import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.LieuRepository;
 
 @RestController
@@ -27,6 +29,8 @@ public class LieuxRestController {
 	
 	@Autowired
 	private LieuRepository lieuRepository;
+	@Autowired 
+	private CountryRepository countryRepository;
 	
 	@GetMapping
 	@RolesAllowed("ADMIN")
@@ -47,8 +51,10 @@ public class LieuxRestController {
 	
 	@PostMapping
 	@RolesAllowed("ADMIN")
-	public Lieu saveLieu(@RequestBody Lieu l) {
-		return lieuxmetier.save(l);
+	public ResponseEntity<?> getLieu(@RequestParam(name="keyCountry")String keyCountry) throws NotFoundException {
+		Country country = countryRepository.findById(keyCountry).orElseThrow(() -> new NotFoundException("The id is not found"));
+		return ResponseEntity.ok(country);
+
 	}
 	
 	

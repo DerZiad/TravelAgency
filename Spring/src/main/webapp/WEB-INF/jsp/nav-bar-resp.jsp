@@ -83,6 +83,17 @@
 						class="metismenu-icon pe-7s-graph3"></i> Gérer Voyage
 				</a></li>
 					</ul></li>
+					<li><a href="#" aria-expanded="false"> <i
+						class="metismenu-icon pe-7s-id"></i> Reservation <i
+						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+				</a>
+					<ul class="mm-collapse" style="height: 7.04px;">
+						<li><a href="/admin/reservation"
+					class="${reservationAjout}"> <i
+						class="metismenu-icon pe-7s-graph3"></i>Liste des Reservations
+				</a></li>
+						
+					</ul></li>
 					
 				
 				<li><a href="#" aria-expanded="false"> <i

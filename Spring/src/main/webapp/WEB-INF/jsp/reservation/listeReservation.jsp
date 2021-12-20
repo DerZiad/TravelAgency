@@ -7,15 +7,39 @@
 <layout:extends name="../layout-resp.jsp">
 	<layout:put block="content" type="REPLACE">
 		<div class="table-wrapper">
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-6">
-						<h2>
-							Reservations
-						</h2>
-					</div>
-					
+
+			<div>
+				<label>DESTINATION</label> <select class="form-control"
+					name="country">
+					<c:forEach var="country" items="${countries}">
+						<option value="${country.valueCountry}">${country.valueCountry}</option>
+					</c:forEach>
+				</select>
+				<p id="nombreEtoileError" class="error"></p>
+			</div>
+			<div class="form-group">
+				<label>NB ETOILES</label> <select class="selectpicker form-control"
+					data-live-search="true" name="state">
+
+				</select>
+			</div>
+			<div class="form-row">
+				<div class="col-md-6">
+					<label>Date D'Arrivee</label> <input type="date"
+						class="form-control" name="dateArriveDate" required />
+					<p id="dateDepartError" class="error"></p>
 				</div>
+			</div>
+
+		</div>
+
+		<div></div>
+		<div class="table-title">
+			<div class="row">
+				<div class="col-sm-6">
+					<h2>Reservations</h2>
+				</div>
+
 			</div>
 			<table class="table table-striped table-hover">
 				<thead>
@@ -23,28 +47,29 @@
 						<th><span class="custom-checkbox"> <input
 								type="checkbox" id="selectAll"> <label for="selectAll"></label>
 						</span></th>
-						<th>Id Voyage</th>
+						<th>Label Voyage</th>
+						<th>Informations Client</th>
+
 						<th>Reserved</th>
 						<th>Confirmed</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
-				<tbody id="reservationslist">
+				<tbody id="reservationslist" style="color: black;">
 
 				</tbody>
 			</table>
 		</div>
-
 	</layout:put>
 
-	
+
 	<layout:put block="cssfiles" type="REPLACE">
 		<style>
-			.error {
-				color: red;
-				font-size: 15px;
-			}
-		</style>
+.error {
+	color: red;
+	font-size: 15px;
+}
+</style>
 		<link rel="stylesheet" href="/delibdesign/css/hotel/style.css" />
 	</layout:put>
 
