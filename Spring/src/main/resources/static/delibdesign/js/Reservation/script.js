@@ -6,10 +6,10 @@ $(document).ready(function() {
 	refreshReservation();
 	$('select[name=country]').change(function() {
 		refreshReservationBYcountry();
-		refreshReservationBYBudget();
 
 	});
 	$('input[name=dateArriveDate]').change(function() {
+		
 		refreshReservationByDATEARV();
 	});
 	$('input[name=budget]').change(function() {
