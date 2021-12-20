@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.metier.LieuxMetier;
-import ma.wiebatouta.models.Hotel;
 import ma.wiebatouta.models.Lieu;
 import ma.wiebatouta.repositories.LieuRepository;
 

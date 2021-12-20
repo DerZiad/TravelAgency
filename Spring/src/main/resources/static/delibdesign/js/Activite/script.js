@@ -13,9 +13,9 @@ $(document).ready(function() {
         e.preventDefault();
         if (x < max_fields) {
             x++;
-            $(wrapper).append('<div><label for="name" class="">Label SousActivite</label><input id="ssa" type="text" value=""name="myparams"/></br><label for="name" class="">Description SousActivite</label><input type="text" id="dess" value=""name="SousActdescrip"/><a href="#" class="delete">Delete</a></div>'); //add input box
+            $(wrapper).append('<div class="form-row"><div class="col-md-6"><div class="position-relative form-group"><label for="name" class="">Label SousActivite</label><input id="ssa" type="text" value=""name="myparams" class="form-control"/></br><label for="name" class="">Description SousActivite</label><input type="text" id="dess" value=""name="SousActdescrip" class="form-control"/><a class="btn btn-danger delete" href="#"><i class="fas fa-backspace"></i></a></div></div></div>'); //add input box
         } else {
-            alert('Ca se suffit ?!!')
+            alert('Ca se suffit ?!!');
         }
     });
 
@@ -33,5 +33,3 @@ function clearAddCache() {
 	$('input[name=SousActdescrip]').val("");
 	
 }
-
-

@@ -57,54 +57,64 @@
 
 						</div>
 					</div>
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="position-relative form-group">
+								<div class="container1">
+									<button class="btn btn-info add_form_field">
+										Ajouter Sous-Activite &nbsp; <span
+											style="font-size: 16px; font-weight: bold;">+ </span>
 
-					<div class="container1">
-						<button class="add_form_field">
-							Ajouter Sous-Activite &nbsp; <span
-								style="font-size: 16px; font-weight: bold;">+ </span>
+									</button>
+									<c:if test="${! modify}">
+										<div class="form-row">
+											<div class="col-md-6">
+												<div class="position-relative form-group">
+													<label for="name" class="">Label SousActivite</label> <input
+														id="ssa" type="text" value="" name="myparams"
+														class="form-control" /></br> <label for="name" class="">Description
+														SousActivite</label> <input type="text" id="dess" value=""
+														name="SousActdescrip" class="form-control" />
+												</div>
+											</div>
+										</div>
+									</c:if>
+									<c:if test="${modify}">
+										<c:forEach var="ss" items="${activite.sousActivites}">
+											<div>
+												<input name="sid" id="id" type="hidden" class="form-control"
+													value="${ss.id}"> <label for="name" class="">Label
+													SousActivite</label> <input type="text" value="${ss.titre}"
+													name="myparams" /></br> <label for="name" class="">Description
+													SousActivite</label> <input type="text" value="${ss.description}"
+													name="SousActdescrip" /> <a href="#" class="delete">Delete</a>
+											</div>
+										</c:forEach>
+									</c:if>
+									<div>
+										<p style="color: red;">
 
-						</button>
-						<c:if test="${! modify}">
-						<div >
-							<label for="name" class="">Label SousActivite</label> <input
-								id="ssa" type="text" value="" name="myparams" /></br> <label
-								for="name" class="">Description SousActivite</label> <input
-								type="text" id="dess" value="" name="SousActdescrip" /><a
-								href="#" class="delete">Delete</a>
-						</div>
-						</c:if>
-						<c:if test="${modify}">
-							<c:forEach var="ss" items="${activite.sousActivites}">
-								<div>
-									<input name="sid" id="id" type="hidden" class="form-control"
-										value="${ss.id}"> <label for="name" class="">Label
-										SousActivite</label> <input type="text" value="${ss.titre}"
-										name="myparams" /></br> <label for="name" class="">Description
-										SousActivite</label> <input type="text" value="${ss.description}"
-										name="SousActdescrip" /> <a href="#" class="delete">Delete</a>
+											<c:if test="${bool}">
+												<c:out
+													value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
+											</c:if>
+										</p>
+									</div>
 								</div>
-							</c:forEach>
-						</c:if>
-						<div>
-							<p style="color: red;">
-
-								<c:if test="${bool}">
-									<c:out
-										value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
-								</c:if>
-							</p>
+							</div>
 						</div>
 					</div>
 
 
 
-
-
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
 
-
 				</form>
-				<button id="rst" class=" mt-2 btn btn-danger">CLEAR</button>
+			</div>
+			<div class='row'>
+				<div class="col-md-6">
+					<button id="rst" class=" mt-2 btn btn-danger">CLEAR</button>
+				</div>
 			</div>
 			<c:set var="cmp" value="${cmp}" scope="request"></c:set>
 			<div class="main-card mb-3">
@@ -113,7 +123,6 @@
 					<table class="mb-0 table table-striped">
 						<thead>
 							<tr>
-								<th>ID</th>
 								<th>LABEL</th>
 								<th>DESCRIPTION</th>
 								<th>Sous Activites</th>
@@ -123,8 +132,6 @@
 						<tbody>
 							<c:forEach var="activity" items="${activities}">
 								<tr>
-									<td><a style="color: black"
-										href="/admin/activite/${activity.id}"> ${activity.id}</a></td>
 									<td style="color: black">${activity.nomActivite}</td>
 									<td style="color: black">${activity.description}</td>
 									<td><c:forEach var="s" items="${activity.sousActivites}"
@@ -133,9 +140,13 @@
 											<c:set var="cmp" value="${cmp + 1}"></c:set>
 
 										</c:forEach></td>
-									<td><a
-										href="/admin/activite/deleteActivite/${activity.id}"
-										class="delete"><i class="bi bi-trash"></i>DELETE</a>
+									<td><a style="color: black"
+										href="/admin/activite/${activity.id}"> <i
+											class="material-icons" data-toggle="tooltip" title="Edit" style="color:#1de9b6">&#xE254;</i></a>
+
+										<a href="/admin/activite/deleteActivite/${activity.id}"
+										class="delete"><i class="material-icons"
+											data-toggle="tooltip" title="Delete" style="color:#f44336;">&#xE872;</i></a>
 								</tr>
 							</c:forEach>
 						</tbody>

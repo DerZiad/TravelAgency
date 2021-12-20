@@ -16,18 +16,18 @@
 					<input name="id" id="id" type="hidden" class="form-control"
 						value="${idHotel}">
 					<div class="form-row">
-						<div class="position-relative form-group">
-							<div class="col-md-6">
+						<div class="col-md-6">
+							<div class="position-relative form-group">
 								<label for="photo" class="">Inserer Photo</label> <input
-									name="picturePart" id="file" type="file" />
+									name="picturePart" id="file" type="file" class="form-control" />
 							</div>
 
 						</div>
 					</div>
 
 					<div class="form-row">
-						<div class="position-relative form-group">
-							<div class="col-md-6">
+						<div class="col-md-6">
+							<div class="position-relative form-group">
 								<label for="type" class="">Type</label> <select name="type"
 									id="type" class="form-control">
 									<c:forEach var="type" items="${types}">
@@ -65,7 +65,8 @@
 									<td style="color: black">${picture.type}</td>
 									<td><a
 										href="/admin/hotel/picture/delete?id=${picture.hotel.id}&idPicture=${picture.id}"
-										class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+										class="delete"><i class="material-icons"
+											data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 								</tr>
 							</c:forEach>
 						</tbody>
