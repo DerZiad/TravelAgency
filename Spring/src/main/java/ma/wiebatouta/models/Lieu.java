@@ -43,15 +43,15 @@ public class Lieu implements Serializable, Comparable<Lieu> {
 	@Length(min = 4, max = 35, message = "le nom de lieu doit être entre 4 et 35")
 	private String label;
 
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@ManyToOne
 	@NotNull(message = "Le lieu doit avoir au moins un pays")
 	private Country country;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Hotel.class)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Hotel.class,mappedBy = "ville")
 	@JsonIgnore
 	private List<Hotel> hotel = new ArrayList<Hotel>();
 
-	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH ,CascadeType.DETACH}, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 

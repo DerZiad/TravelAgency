@@ -33,34 +33,35 @@
 
 
 					<div class="form-row">
-					<div class="col-md-6">
-						<select id="slct" name="keycountry" class="form-control"
-							data-live-search="true">
-							<c:if test="${not empty lieu.country.keyCountry}">
-							<option selected="selected" value="${lieu.country.keyCountry}" id="option1"><c:out
-									value="${lieu.country.valueCountry}">NOM PAYS</c:out></option>
-							</c:if>
-							<c:forEach var="c" items="${country}">
-								<option id="option2"data-tokens="${c.keyCountry}" value="${c.keyCountry}">${c.valueCountry}</option>
-							</c:forEach>
-								
-						</select>
-						<p style="color: red;">
+						<div class="col-md-6">
+							<select id="slct" name="keycountry" class="form-control"
+								data-live-search="true">
+								<c:if test="${not empty lieu.country.keyCountry}">
+									<option selected="selected" value="${lieu.country.keyCountry}"
+										id="option1"><c:out
+											value="${lieu.country.valueCountry}">NOM PAYS</c:out></option>
+								</c:if>
+								<c:forEach var="c" items="${country}">
+									<option id="option2" data-tokens="${c.keyCountry}"
+										value="${c.keyCountry}">${c.valueCountry}</option>
+								</c:forEach>
 
-							<c:if test="${bool}">
-								<c:out value="${errors.country.valueCountry}"></c:out>
-							</c:if>
-						</p>
+							</select>
+							<p style="color: red;">
+
+								<c:if test="${bool}">
+									<c:out value="${errors.country.valueCountry}"></c:out>
+								</c:if>
+							</p>
 						</div>
 					</div>
 
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
-					
+
 
 				</form>
-				<button id="rst" class=" mt-2 btn btn-danger" value="Reset"
-						>Effacer</button>
-				
+				<button id="rst" class=" mt-2 btn btn-danger" value="Reset">Effacer</button>
+
 			</div>
 			<div class="main-card mb-3">
 				<div class="card-body">
@@ -68,7 +69,6 @@
 					<table class="mb-0 table table-striped">
 						<thead>
 							<tr>
-								<th>ID</th>
 								<th>LABEL</th>
 								<th>COUNTRY</th>
 								<th>Actions</th>
@@ -77,12 +77,16 @@
 						<tbody>
 							<c:forEach var="lieux" items="${lieux}">
 								<tr>
-									<td><a style="color: black"
-										href="/admin/lieux/${lieux.id}"> ${lieux.id}</a></td>
 									<td style="color: black">${lieux.label}</td>
 									<td style="color: black">${lieux.country.valueCountry}</td>
-									<td><a href="/admin/lieux/deleteLieu/${lieux.id}"
-										class="delete"><i class="bi bi-trash"></i>DELETE</a>
+									<td><a style="color: black"
+										href="/admin/lieux/${lieux.id}"> <i class="material-icons"
+											data-toggle="tooltip" title="Edit" style="color: #1de9b6">&#xE254;</i></a>
+										<a href="/admin/lieux/deleteLieu/${lieux.id}" class="delete"><i
+											class="bi bi-trash"></i><i class="material-icons"
+											data-toggle="tooltip" title="Delete" style="color: #f44336;">&#xE872;</i></a>
+
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
