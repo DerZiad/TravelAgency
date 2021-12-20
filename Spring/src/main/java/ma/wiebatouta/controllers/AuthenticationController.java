@@ -3,6 +3,7 @@ package ma.wiebatouta.controllers;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,6 +41,8 @@ public class AuthenticationController {
 	private static final String ATTRIBUT_RESERVATIONS_NUMBER = "reservationsnumber";
 	private static final String ATTRIBUT_EQUIPES_NUMBER = "equipesnumber";
 	private static final String ATTRIBUT_VOYAGES_NUMBER = "voyagesnumber";
+	private static final String ATTRIBUT_RESERVATION_EFFECTUE_NUMBER = "reservationsdonenumber";
+	private static final String ATTRIBUT_RESERVATION_NON_EFFECTUE_NUMBER = "reservationsnotdonenumber";
 	private static final String ATTRIBUT_EQUIPES = "equipes";
 	private static final String PATH_ADMIN_LOGIN = "login";
 	private static final String PATH_ADMIN_PAGE = "index-a";
@@ -75,7 +78,13 @@ public class AuthenticationController {
 		model.addObject(ATTRIBUT_EQUIPES_NUMBER, equipes.size());
 		model.addObject(ATTRIBUT_VOYAGES_NUMBER, voyages.size());
 		
+		
+		List<Reservation> reservationNotDone = reservations.stream().filter((r)-> r.isReserved() && !r.isConfirmed()).collect(Collectors.toList());
+		model.addObject(ATTRIBUT_RESERVATION_NON_EFFECTUE_NUMBER,reservationNotDone.size());
 
+		List<Reservation> reservationDone = reservations.stream().filter((r)-> r.isReserved() && r.isConfirmed()).collect(Collectors.toList());
+		model.addObject(ATTRIBUT_RESERVATION_EFFECTUE_NUMBER,reservationDone.size());
+		
 		Collections.sort(equipes);
 		if (equipes.size() <= 4) {
 			model.addObject(ATTRIBUT_EQUIPES, equipes);

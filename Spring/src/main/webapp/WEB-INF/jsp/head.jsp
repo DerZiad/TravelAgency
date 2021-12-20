@@ -26,30 +26,14 @@
 	});
 	google.charts.setOnLoadCallback(drawChart);
 	
-	reservations = [];
-	
-	$.ajax({
-		url: '/api/reservation',
-		type: 'get',
-		data: {},
-		success: function(response) {
-			reservations = response;
-		}
-	});
-	
-	function getMostCountry{
-		
-		for(reservation in reservations){
-			
-		}
-	}
+
 	
 	
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
-				[ 'Pays', 'Réservé avec confirmation', 'Reservé sans confirmation' ],
-				[ 'BGI', 1000, 400 ], [ 'BGB', 1170, 460 ],
-				[ 'BCA', 660, 1120 ], [ 'SMIA', 1030, 540 ] ]);
+				[ 'Pays', 'Réservations faites'],
+				[ 'Réservé avec confirmation', ${reservationsdonenumber}],
+				[ 'Réservé sans confirmation', ${reservationsnotdonenumber}]]);
 
 		var options = {
 			chart : {
