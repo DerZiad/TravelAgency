@@ -61,13 +61,12 @@
 								</a>
 								<div tabindex="-1" role="menu" aria-hidden="true"
 									class="dropdown-menu dropdown-menu-right">
-									<a href="/gestioncompte" tabindex="0" class="dropdown-item">User
-										Setting</a>
+									<a href="/logout" tabindex="0" class="dropdown-item">Logout</a>
 								</div>
 							</div>
 						</div>
 						<div class="widget-content-left  ml-3 header-user-info">
-							<div class="widget-heading">${user.username}</div>
+							<div class="widget-heading">Admin</div>
 						</div>
 					</div>
 				</div>

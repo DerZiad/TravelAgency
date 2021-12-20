@@ -106,12 +106,6 @@
 						class="metismenu-icon pe-7s-graph3"></i> Ajouter ressource humairne
 				</a></li>
 					</ul></li>
-		
-					
-				<li><a href="/logout"
-					class=""> <i
-						class="metismenu-icon pe-7s-graph3"></i> Se déconnecter
-				</a></li>
 			</ul>
 		</div>
 	</div>
