@@ -31,27 +31,33 @@ import ma.wiebatouta.metier.ActivityMetier;
 import ma.wiebatouta.models.Activite;
 import ma.wiebatouta.models.Lieu;
 import ma.wiebatouta.models.SousActivite;
+import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.ActiviteRepository;
 import ma.wiebatouta.repositories.SousActiviteRepository;
+import ma.wiebatouta.repositories.VoyageRepository;
 
 @Controller
 @RequestMapping("/admin/activite")
 public class ActiviteController {
 	private final static String PATH_ACTIVTE = "Activite/addActivite";
-	private final static String REDIRECT_LIST_ACTIVITY = "redirect:/admin/activite";
+	private final static String REDIRECT_LIST_ACTIVITY = "redirect:/admin/activite?id=%d";
 	@Autowired
 	private ActiviteRepository activiteRepository;
 	@Autowired
 	private SousActiviteRepository sousActiviteRepository;
-
+	
+	@Autowired
+	private VoyageRepository voyageRepository;
+	
 	@Autowired
 	public ActivityMetier activityMetier;
 
 	@GetMapping
 	@RolesAllowed("ADMIN")
-	public ModelAndView listeActivite() {
+	public ModelAndView listeActivite(@RequestParam("id") Long idVoyage) throws NotFoundException {
 		ModelAndView model = new ModelAndView(PATH_ACTIVTE);
-		List<Activite> activities = activiteRepository.findAll();
+		Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id not found"));
+		List<Activite> activities = voyage.getActivites();
 		int x = 0;
 		int cmp = 0;
 		for (Activite activite : activities) {
@@ -62,29 +68,30 @@ public class ActiviteController {
 		model.addObject(DesignAttributes.ACTIVE_ACTIVITY_AJOUT, DesignAttributes.ACTIVE);
 		model.addObject("activities", activities);
 		model.addObject("cmp", cmp);
-
+		model.addObject("idVoyage",idVoyage);
 		return model;
 	}
 
 	@PostMapping
 	@RolesAllowed("ADMIN")
-	public ModelAndView createNewActivity(@RequestParam(required = false) MultiValueMap<String, String> params)
-			throws MessagingException {
+	public ModelAndView createNewActivity(@RequestParam("idVoyage") Long idVoyage,@RequestParam(required = false) MultiValueMap<String, String> params)
+			throws MessagingException, NotFoundException {
 		String id = params.get("id").get(0);
 		ModelAndView model = new ModelAndView(PATH_ACTIVTE);
 		Activite activite = null;
 		List<SousActivite> sousActivities = new ArrayList<SousActivite>();
+		
 		if (id.equals("")) {
+			Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id not found"));
 			HashMap<String, String> errors = new HashMap<String, String>();
 			HashMap<String, String> errors1 = new HashMap<String, String>();
 			String labelActivite = params.get("name").get(0);
 			String descriptionActivite = params.get("description").get(0);
 			activite = new Activite();
+			activite.setVoyage(voyage);
 			activite.setDescription(descriptionActivite);
 			activite.setNomActivite(labelActivite);
-			System.out.println(activite);
 			int tailleSousActivite = params.get("myparams").size();
-			System.out.println(tailleSousActivite);
 
 			for (int i = 0; i < tailleSousActivite; i++) {
 				SousActivite sousActivite = new SousActivite();
@@ -107,10 +114,6 @@ public class ActiviteController {
 			}
 			boolean bool = false;
 			boolean bool1 = false;
-			System.out.println("errors " + errors.size());
-			System.out.println(errors.get("nomActivite"));
-			System.out.println("errors2 " + errors1.size());
-			System.out.println(errors1.toString());
 			if (errors.size() != 0) {
 				model.addObject("errors", errors);
 				bool = true;
@@ -131,11 +134,10 @@ public class ActiviteController {
 					model.addObject("sousActivite", act);
 
 				}
-				return new ModelAndView(REDIRECT_LIST_ACTIVITY);
+				return new ModelAndView(String.format(REDIRECT_LIST_ACTIVITY,idVoyage));
 			}
 		} else {
 			Long idActivite = Long.parseLong(id);
-			System.out.println("idAct " + idActivite);
 			HashMap<String, String> errors = new HashMap<String, String>();
 			HashMap<String, String> errors1 = new HashMap<String, String>();
 
@@ -145,7 +147,6 @@ public class ActiviteController {
 			activite.setDescription(descriptionActivite);
 			activite.setNomActivite(labelActivite);
 			List<SousActivite> tbdd = /*sousActiviteRepository.getSousActiviteByActivite(activite);*/activite.getSousActivites();
-			System.out.println(tbdd);
 			/* int tailleSousActivite = tbdd.size(); */
 			int tailleparams = params.get("myparams").size();
 			System.out.println(tailleparams);
@@ -205,9 +206,10 @@ public class ActiviteController {
 
 			}
 		}
-		List<Activite> activities = activiteRepository.findAll();
+		Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id not found"));
 		model.addObject(DesignAttributes.ACTIVE_ACTIVITY_AJOUT, DesignAttributes.ACTIVE);
-		model.addObject("activities", activities);
+		model.addObject("activities", voyage.getActivites());
+		model.addObject("idVoyage",idVoyage);
 		return model;
 	}
 
@@ -220,6 +222,7 @@ public class ActiviteController {
 		Activite activite = activiteRepository.findById(idActivite).orElseThrow(() -> new NotFoundException());
 		model.addObject("activities", activites);
 		model.addObject("activite", activite);
+		model.addObject("idVoyage",activite.getVoyage().getId());
 		model.addObject("etat", activite);
 		model.addObject("modify", bool);
 		return model;
@@ -227,9 +230,9 @@ public class ActiviteController {
 
 	@GetMapping("/deleteActivite/{id}")
 	@RolesAllowed("ADMIN")
-	public ModelAndView delete(@PathVariable("id") Long idActivite) {
+	public ModelAndView delete(@RequestParam("idVoyage") Long idVoyage,@PathVariable("id") Long idActivite) {
 		activiteRepository.deleteById(idActivite);
-		ModelAndView model = new ModelAndView(REDIRECT_LIST_ACTIVITY);
+		ModelAndView model = new ModelAndView(String.format(REDIRECT_LIST_ACTIVITY,idVoyage));
 		return model;
 	}
 }

@@ -16,7 +16,8 @@
 
 					<h5 class="card-title">Création d'une Activite Voyage</h5>
 					<input name="id" id="id" type="hidden" class="form-control"
-						value="${activite.id}">
+						value="${activite.id}"> <input name="idVoyage" id="id"
+						type="hidden" class="form-control" value="${idVoyage}">
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
@@ -81,13 +82,20 @@
 									</c:if>
 									<c:if test="${modify}">
 										<c:forEach var="ss" items="${activite.sousActivites}">
-											<div>
-												<input name="sid" id="id" type="hidden" class="form-control"
-													value="${ss.id}"> <label for="name" class="">Label
-													SousActivite</label> <input type="text" value="${ss.titre}"
-													name="myparams" /></br> <label for="name" class="">Description
-													SousActivite</label> <input type="text" value="${ss.description}"
-													name="SousActdescrip" /> <a href="#" class="delete">Delete</a>
+											<div class="form-row">
+												<div class="col-md-6">
+													<div class="position-relative form-group">
+														<input name="sid" id="id" type="hidden"
+															 value="${ss.id}"> 
+															 <label
+															for="name" class="">Label SousActivite</label> <input
+															type="text" value="${ss.titre}" name="myparams" class="form-control" /></br> <label
+															for="name" class="">Description SousActivite</label> <input
+															type="text" value="${ss.description}"
+															name="SousActdescrip"  class="form-control"/> <a href="#"
+															class="delete">Delete</a>
+													</div>
+												</div>
 											</div>
 										</c:forEach>
 									</c:if>
@@ -141,12 +149,13 @@
 
 										</c:forEach></td>
 									<td><a style="color: black"
-										href="/admin/activite/${activity.id}"> <i
-											class="material-icons" data-toggle="tooltip" title="Edit" style="color:#1de9b6">&#xE254;</i></a>
-
-										<a href="/admin/activite/deleteActivite/${activity.id}"
+										href="/admin/activite/${activity.id}?idVoyage=${idVoyage}">
+											<i class="material-icons" data-toggle="tooltip" title="Edit"
+											style="color: #1de9b6">&#xE254;</i>
+									</a> <a
+										href="/admin/activite/deleteActivite/${activity.id}?idVoyage=${idVoyage}"
 										class="delete"><i class="material-icons"
-											data-toggle="tooltip" title="Delete" style="color:#f44336;">&#xE872;</i></a>
+											data-toggle="tooltip" title="Delete" style="color: #f44336;">&#xE872;</i></a>
 								</tr>
 							</c:forEach>
 						</tbody>
