@@ -7,10 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Feedback")
@@ -31,7 +34,10 @@ public class Feedback implements Serializable, Comparable<Feedback> {
 	@Length(min = 2, max = 20, message = "Le titre doit être entre 2 et 20 caracètres")
 	private String titre;
 	
-
+	@OneToOne
+	@JsonIgnore
+	private Reservation reservation;
+	
 	@Override
 	public int compareTo(Feedback o) {
 		// TODO Auto-generated method stub
