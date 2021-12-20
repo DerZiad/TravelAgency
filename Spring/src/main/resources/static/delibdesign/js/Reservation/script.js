@@ -16,9 +16,7 @@ function refreshReservation() {
 			var contenue = "";
 			for (rese of reservations) {
 				contenue = contenue + '<tr>\n';
-				console.log(rese.id)
-				contenue=contenue+'<td>'+"AAA"+'</td>\n'
-				if (rese.isConfirmed == '1') {
+				if (rese.confirmed) {
 					etat1 = "Confirmee"
 				}
 				contenue = contenue + '<td>' + "Reservee" + '</td>\n'

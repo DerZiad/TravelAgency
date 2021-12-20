@@ -177,13 +177,13 @@ public class ActiviteController {
 			for (ConstraintViolation<List<SousActivite>> constraintViolation : violations1) {
 				errors1.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 			}
-			boolean bool = false;
+			boolean boolg = false;
 			boolean bool1 = false;
-
+			boolean bool2=false;
 			if (errors.size() != 0 && errors1.size() != 0) {
 				model.addObject("errors", errors);
-				bool = true;
-				model.addObject("err", bool);
+				boolg = true;
+				model.addObject("err", boolg);
 				/*******/
 				model.addObject("errors1", errors1);
 				bool1 = true;
@@ -191,12 +191,12 @@ public class ActiviteController {
 			} else if (errors.size() != 0) {
 
 				model.addObject("errors", errors);
-				bool = true;
-				model.addObject("err", bool);
+				bool1 = true;
+				model.addObject("err", bool1);
 			} else if (errors1.size() != 0) {
 				model.addObject("errors1", errors1);
-				bool = true;
-				model.addObject("bool", bool);
+				bool2 = true;
+				model.addObject("bool", bool2);
 			} else {
 				activiteRepository.save(activite);
 				for (int i = 0; i < tailleparams; i++) {
