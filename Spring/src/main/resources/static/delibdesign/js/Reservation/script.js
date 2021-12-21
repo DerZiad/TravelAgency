@@ -82,7 +82,7 @@ function refreshReservationBYBudget() {
 	console.log(prix);
 	var contenue = "";
 	for (rese of reservations) {
-		if (rese['voyage']['prix'] == prix) {
+		if (rese['voyage']['prix'] <= prix) {
 			contenue = contenue + '<tr>\n';
 
 			contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox' + rese['id']['idVoyage'] + '" name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n'

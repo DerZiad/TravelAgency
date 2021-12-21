@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.swagger.models.Model;
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.metier.ActiviteMetierIMP;
 import ma.wiebatouta.metier.ActivityMetier;
@@ -121,7 +122,7 @@ public class ActiviteController {
 			}else {
 				System.out.println("pas d'erreurs");
 			}
-			/*boolean boolg = false;
+			boolean boolg = false;
 			boolean bool1 = false;
 			boolean bool2 = false ;
 			System.out.println("err"+errors.size());
@@ -134,7 +135,6 @@ public class ActiviteController {
 				bool1 = true;
 				model.addObject("err1", bool1);
 			} else if (errors.size() != 0) {
-
 				model.addObject("errors", errors);
 				bool1 = true;
 				model.addObject("err", bool1);
@@ -147,13 +147,12 @@ public class ActiviteController {
 				for (int i = 0; i < tailleSousActivite; i++) {
 					sousActiviteRepository.save(sousActivities.get(i));
 				}
-				/*List<Activite> activities = activiteRepository.findAll();
+				List<Activite> activities = activiteRepository.findAll();
 				for (Activite ac : activities) {
 					List<SousActivite> act = sousActiviteRepository.getSousActiviteByActivite(activite);
 					model.addObject("sousActivite", act);
-
 				}
-			}*/
+			}
 			return new ModelAndView(String.format(REDIRECT_LIST_ACTIVITY,idVoyage));
 
 		} else {
@@ -206,16 +205,7 @@ public class ActiviteController {
 			boolean boolg = false;
 			boolean bool1 = false;
 			boolean bool2=false;
-			/***BRAZUL = 370*670
-			 * TURKEY = 770 *320
-			 * **/
-			if(errors.size()!=0) {
-				model.addObject("errors", errors);
-				System.out.println("Il y a des erreurs");
-			}else {
-				System.out.println("pas d'erreurs");
-			}
-			/*if (errors.size() != 0 && errors1.size() != 0) {
+			if (errors.size() != 0 && errors1.size() != 0) {
 				model.addObject("errors", errors);
 				boolg = true;
 				model.addObject("err", boolg);
@@ -223,7 +213,6 @@ public class ActiviteController {
 				bool1 = true;
 				model.addObject("err1", bool1);
 			} else if (errors.size() != 0) {
-
 				model.addObject("errors", errors);
 				bool1 = true;
 				model.addObject("err", bool1);
@@ -236,13 +225,13 @@ public class ActiviteController {
 				for (int i = 0; i < tailleparams; i++) {
 					sousActiviteRepository.save(sousActivities.get(i));
 				}
-
-			}**/
+				Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id not found"));
+				model.addObject(DesignAttributes.ACTIVE_ACTIVITY_AJOUT, DesignAttributes.ACTIVE);
+				model.addObject("activities", voyage.getActivites());
+				model.addObject("idVoyage",idVoyage);
+			}
 		}
-		Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id not found"));
-		model.addObject(DesignAttributes.ACTIVE_ACTIVITY_AJOUT, DesignAttributes.ACTIVE);
-		model.addObject("activities", voyage.getActivites());
-		model.addObject("idVoyage",idVoyage);
+		
 		return model;
 	}
 

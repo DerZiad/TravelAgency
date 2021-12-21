@@ -38,7 +38,7 @@
 						</div>
 					</div>
 					<div class="content">
-						<input name="budget" type="range" min="1" max="100" value="20"
+						<input name="budget" type="range" min="10" max="1000" value="30"
 							data-rangeslider>
 					</div>
 					<div class="footer clearfix">
