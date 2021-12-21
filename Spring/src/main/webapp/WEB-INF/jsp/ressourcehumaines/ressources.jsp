@@ -38,7 +38,6 @@
 									id='base64image'
 									src='data:image/jpeg;base64,${equipe.personne.getBase64()}' /></td>
 								<td><a style="color: black" href="/admin/ressources/edit?">${equipe.label}</a></td>
-								<td><a style="color: black" href="/admin/ressources/edit?">${equipe.label}</a></td>
 								<td><a style="color: black" href="/admin/ressources/edit?">${equipe.personne.nom}</a></td>
 								<td><a style="color: black" href="/admin/ressources/edit?">${equipe.personne.prenom}</a></td>
 								<td><a href="/admin/ressources/add?id=${equipe.id}"

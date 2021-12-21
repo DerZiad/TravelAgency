@@ -89,8 +89,8 @@ $(document).ready(function(){
     // 3.Countdown timer 
         
         function makeTimer() {
-
-                var endTime = new Date("March 7, 2018 12:00:00 PDT");            
+				
+                var endTime = new Date($('input[name=timelong]').val());            
                 var endTime = (Date.parse(endTime)) / 1000;
 
                 var now = new Date();

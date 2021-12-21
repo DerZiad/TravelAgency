@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -19,7 +20,7 @@
 	rel="stylesheet" />
 
 <!-- TITLE OF SITE -->
-<title>Travel</title>
+<title>WIEBATOUTA</title>
 
 <!-- favicon img -->
 <link rel="shortcut icon" type="image/icon"
@@ -963,390 +964,75 @@
 	<!--/.gallery-->
 	<!--gallery end-->
 
-
 	<!--discount-offer start-->
 	<section class="discount-offer">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="dicount-offer-content text-center">
-						<h2>Join with us within 21 January, 2018 and get upto 40%
-							Discount</h2>
-						<div class="campaign-timer">
-							<div id="timer">
-								<div class="time time-after" id="days">
-									<span></span>
+		<c:if test="${voyageReduction ne null }">
+			<div class="container">
+				<input type="hidden" name="timelong" value="${timelong}" />
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="dicount-offer-content text-center">
+							<h2>Notre offre est près de finir
+								${voyageReduction.reduction}% Discount</h2>
+							<div class="campaign-timer">
+								<div id="timer">
+									<div class="time time-after" id="days">
+										<span></span>
+									</div>
+									<!--/.time-->
+									<div class="time time-after" id="hours"></div>
+									<!--/.time-->
+									<div class="time time-after" id="minutes"></div>
+									<!--/.time-->
+									<div class="time" id="seconds"></div>
+									<!--/.time-->
 								</div>
-								<!--/.time-->
-								<div class="time time-after" id="hours"></div>
-								<!--/.time-->
-								<div class="time time-after" id="minutes"></div>
-								<!--/.time-->
-								<div class="time" id="seconds"></div>
-								<!--/.time-->
+								<!--/.timer-->
 							</div>
-							<!--/.timer-->
-						</div>
-						<!--/.campaign-timer-->
-						<div class="about-btn">
-							<button class="about-view discount-offer-btn">join now</button>
-						</div>
-						<!--/.about-btn-->
+							<!--/.campaign-timer-->
+							<div class="about-btn">
+								<button onclick="addToChart(${voyageReduction.id})"
+									class="about-view discount-offer-btn">join now</button>
+							</div>
+							<!--/.about-btn-->
 
 
+						</div>
+						<!-- /.dicount-offer-content-->
 					</div>
-					<!-- /.dicount-offer-content-->
+					<!-- /.col-->
 				</div>
-				<!-- /.col-->
+				<!-- /.row-->
 			</div>
-			<!-- /.row-->
-		</div>
-		<!-- /.container-->
-
+			<!-- /.container-->
+		</c:if>
 	</section>
+
 	<!-- /.discount-offer-->
 	<!--discount-offer end-->
 
 	<!--packages start-->
 	<section id="pack" class="packages">
-		<jsp:include page="packages.jsp"/>
+		<jsp:include page="packages.jsp" />
 	</section>
 	<!--/.packages-->
 	<!--packages end-->
 
 	<!-- testemonial Start -->
 	<section class="testemonial">
-		<div class="container">
 
-			<div class="gallary-header text-center">
-				<h2>clients reviews</h2>
-				<p>Duis aute irure dolor in velit esse cillum dolore eu fugiat
-					nulla.</p>
-
-			</div>
-			<!--/.gallery-header-->
-
-			<div class="owl-carousel owl-theme" id="testemonial-carousel">
-
-				<div class="home1-testm item">
-					<div class="home1-testm-single text-center">
-						<div class="home1-testm-img">
-							<img src="assets/images/client/testimonial1.jpg" alt="img" />
-						</div>
-						<!--/.home1-testm-img-->
-						<div class="home1-testm-txt">
-							<span class="icon section-icon"> <i
-								class="fa fa-quote-left" aria-hidden="true"></i>
-							</span>
-							<p>Lorem ipsum dolor sit amet, contur adip elit, sed do mod
-								incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-							</p>
-							<h3>
-								<a href="#"> kevin watson </a>
-							</h3>
-							<h4>london, england</h4>
-						</div>
-						<!--/.home1-testm-txt-->
-					</div>
-					<!--/.home1-testm-single-->
-
-				</div>
-				<!--/.item-->
-
-				<div class="home1-testm item">
-					<div class="home1-testm-single text-center">
-						<div class="home1-testm-img">
-							<img src="assets/images/client/testimonial2.jpg" alt="img" />
-						</div>
-						<!--/.home1-testm-img-->
-						<div class="home1-testm-txt">
-							<span class="icon section-icon"> <i
-								class="fa fa-quote-left" aria-hidden="true"></i>
-							</span>
-							<p>Lorem ipsum dolor sit amet, contur adip elit, sed do mod
-								incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-							</p>
-							<h3>
-								<a href="#"> kevin watson </a>
-							</h3>
-							<h4>london, england</h4>
-						</div>
-						<!--/.home1-testm-txt-->
-					</div>
-					<!--/.home1-testm-single-->
-
-				</div>
-				<!--/.item-->
-
-				<div class="home1-testm item">
-					<div class="home1-testm-single text-center">
-						<div class="home1-testm-img">
-							<img src="assets/images/client/testimonial1.jpg" alt="img" />
-						</div>
-						<!--/.home1-testm-img-->
-						<div class="home1-testm-txt">
-							<span class="icon section-icon"> <i
-								class="fa fa-quote-left" aria-hidden="true"></i>
-							</span>
-							<p>Lorem ipsum dolor sit amet, contur adip elit, sed do mod
-								incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-							</p>
-							<h3>
-								<a href="#"> kevin watson </a>
-							</h3>
-							<h4>london, england</h4>
-						</div>
-						<!--/.home1-testm-txt-->
-					</div>
-					<!--/.home1-testm-single-->
-
-				</div>
-				<!--/.item-->
-
-				<div class="home1-testm item">
-					<div class="home1-testm-single text-center">
-						<div class="home1-testm-img">
-							<img src="assets/images/client/testimonial1.jpg" alt="img" />
-						</div>
-						<!--/.home1-testm-img-->
-						<div class="home1-testm-txt">
-							<span class="icon section-icon"> <i
-								class="fa fa-quote-left" aria-hidden="true"></i>
-							</span>
-							<p>Lorem ipsum dolor sit amet, contur adip elit, sed do mod
-								incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-							</p>
-							<h3>
-								<a href="#"> kevin watson </a>
-							</h3>
-							<h4>london, england</h4>
-						</div>
-						<!--/.home1-testm-txt-->
-					</div>
-					<!--/.home1-testm-single-->
-
-				</div>
-				<!--/.item-->
-
-				<div class="home1-testm item">
-					<div class="home1-testm-single text-center">
-						<div class="home1-testm-img">
-							<img src="assets/images/client/testimonial2.jpg" alt="img" />
-						</div>
-						<!--/.home1-testm-img-->
-						<div class="home1-testm-txt">
-							<span class="icon section-icon"> <i
-								class="fa fa-quote-left" aria-hidden="true"></i>
-							</span>
-							<p>Lorem ipsum dolor sit amet, contur adip elit, sed do mod
-								incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-							</p>
-							<h3>
-								<a href="#"> kevin watson </a>
-							</h3>
-							<h4>london, england</h4>
-						</div>
-						<!--/.home1-testm-txt-->
-					</div>
-					<!--/.home1-testm-single-->
-
-				</div>
-				<!--/.item-->
-
-				<div class="home1-testm item">
-					<div class="home1-testm-single text-center">
-						<div class="home1-testm-img">
-							<img src="assets/images/client/testimonial1.jpg" alt="img" />
-						</div>
-						<!--/.home1-testm-img-->
-						<div class="home1-testm-txt">
-							<span class="icon section-icon"> <i
-								class="fa fa-quote-left" aria-hidden="true"></i>
-							</span>
-							<p>Lorem ipsum dolor sit amet, contur adip elit, sed do mod
-								incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-							</p>
-							<h3>
-								<a href="#"> kevin watson </a>
-							</h3>
-							<h4>london, england</h4>
-						</div>
-						<!--/.home1-testm-txt-->
-					</div>
-					<!--/.home1-testm-single-->
-
-				</div>
-				<!--/.item-->
-
-				<div class="home1-testm item">
-					<div class="home1-testm-single text-center">
-						<div class="home1-testm-img">
-							<img src="assets/images/client/testimonial1.jpg" alt="img" />
-						</div>
-						<!--/.home1-testm-img-->
-						<div class="home1-testm-txt">
-							<span class="icon section-icon"> <i
-								class="fa fa-quote-left" aria-hidden="true"></i>
-							</span>
-							<p>Lorem ipsum dolor sit amet, contur adip elit, sed do mod
-								incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-							</p>
-							<h3>
-								<a href="#"> kevin watson </a>
-							</h3>
-							<h4>london, england</h4>
-						</div>
-						<!--/.home1-testm-txt-->
-					</div>
-					<!--/.home1-testm-single-->
-
-				</div>
-				<!--/.item-->
-
-				<div class="home1-testm item">
-					<div class="home1-testm-single text-center">
-						<div class="home1-testm-img">
-							<img src="assets/images/client/testimonial2.jpg" alt="img" />
-						</div>
-						<!--/.home1-testm-img-->
-						<div class="home1-testm-txt">
-							<span class="icon section-icon"> <i
-								class="fa fa-quote-left" aria-hidden="true"></i>
-							</span>
-							<p>Lorem ipsum dolor sit amet, contur adip elit, sed do mod
-								incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-							</p>
-							<h3>
-								<a href="#"> kevin watson </a>
-							</h3>
-							<h4>london, england</h4>
-						</div>
-						<!--/.home1-testm-txt-->
-					</div>
-					<!--/.home1-testm-single-->
-
-				</div>
-				<!--/.item-->
-
-				<div class="home1-testm item">
-					<div class="home1-testm-single text-center">
-						<div class="home1-testm-img">
-							<img src="assets/images/client/testimonial1.jpg" alt="img" />
-						</div>
-						<!--/.home1-testm-img-->
-						<div class="home1-testm-txt">
-							<span class="icon section-icon"> <i
-								class="fa fa-quote-left" aria-hidden="true"></i>
-							</span>
-							<p>Lorem ipsum dolor sit amet, contur adip elit, sed do mod
-								incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-							</p>
-							<h3>
-								<a href="#"> kevin watson </a>
-							</h3>
-							<h4>london, england</h4>
-						</div>
-						<!--/.home1-testm-txt-->
-					</div>
-					<!--/.home1-testm-single-->
-
-				</div>
-				<!--/.item-->
-
-			</div>
-			<!--/.testemonial-carousel-->
-		</div>
-		<!--/.container-->
-
+		<jsp:include page="equipes.jsp" />
 	</section>
+
 	<!--/.testimonial-->
 	<!-- testemonial End -->
 
 
 	<!--special-offer start-->
-	<section id="spo" class="special-offer">
-		<div class="container">
-			<div class="special-offer-content">
-				<div class="row">
-					<div class="col-sm-8">
-						<div class="single-special-offer">
-							<div class="single-special-offer-txt">
-								<h2>thiland</h2>
-								<div class="packages-review special-offer-review">
-									<p>
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <span>2544 review</span>
-									</p>
-								</div>
-								<!--/.packages-review-->
-								<div class="packages-para special-offer-para">
-									<p>
-										<span> <i class="fa fa-angle-right"></i> 5 daays 6
-											nights
-										</span> <span> <i class="fa fa-angle-right"></i> 2 person
-										</span> <span> <i class="fa fa-angle-right"></i> 5 star
-											accomodation
-										</span>
-									</p>
-									<p>
-										<span> <i class="fa fa-angle-right"></i> transportation
-										</span> <span> <i class="fa fa-angle-right"></i> food
-											facilities
-										</span>
-									</p>
-									<p class="offer-para">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-										do eiusmod tem ut labore et dolore magna aliqua. Ut enim ad
-										minim veniam, quis nostrud exercitation una <br> ullamco
-										laboris nisi ut aliquip ex ea commodo consequat.
-									</p>
-								</div>
-								<!--/.packages-para-->
-								<div class="offer-btn-group">
-									<div class="about-btn">
-										<button class="about-view packages-btn offfer-btn">
-											make tour</button>
-									</div>
-									<!--/.about-btn-->
-									<div class="about-btn">
-										<button class="about-view packages-btn">book now</button>
-									</div>
-									<!--/.about-btn-->
-								</div>
-								<!--/.offer-btn-group-->
-							</div>
-							<!--/.single-special-offer-txt-->
-						</div>
-						<!--/.single-special-offer-->
-					</div>
-					<!--/.col-->
-					<div class="col-sm-4">
-						<div class="single-special-offer">
-							<div class="single-special-offer-bg">
-								<img src="assets/images/offer/offer-shape.png" alt="offer-shape">
-							</div>
-							<!--/.single-special-offer-bg-->
-							<div class="single-special-shape-txt">
-								<h3>special offer</h3>
-								<h4>
-									<span>40%</span><br>off
-								</h4>
-								<p>
-									<span>$999</span><br>reguler $ 1450
-								</p>
-							</div>
-							<!--/.single-special-shape-txt-->
-						</div>
-						<!--/.single-special-offer-->
-					</div>
-					<!--/.col-->
-				</div>
-				<!--/.row-->
-			</div>
-			<!--/.special-offer-content-->
-		</div>
-		<!--/.container-->
+	<section id="spo" class="special-offer" style="background:url(data:image/jpeg;base64,${voyageReduction.banner}) no-repeat center;">
+		<c:if test="${voyageReduction ne null}">
+			<jsp:include page="reduction.jsp"></jsp:include>
+		</c:if>
 
 	</section>
 	<!--/.special-offer end-->

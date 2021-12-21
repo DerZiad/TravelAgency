@@ -12,15 +12,15 @@
 			<c:forEach var="voyage" items="${voyagesBest}">
 			<div class="col-md-4 col-sm-6">
 				<div class="single-package-item">
-					<img src="data:image/jpeg;base64,${voyage.base64}" alt="package-place">
+					<img src="data:image/jpeg;base64,${voyage.header}" alt="package-place">
 					<div class="single-package-item-txt">
 						<h3>
 							${voyage.destination} <span class="pull-right">€${voyage.prix}</span>
 						</h3>
 						<div class="packages-para">
 							<p>
-								<span> <i class="fa fa-angle-right"></i> ${voyage}
-								</span> <i class="fa fa-angle-right"></i> ${voyage.stars} star accomodation
+								<span> <i class="fa fa-angle-right"></i>  5 days 6 night
+								</span> <i class="fa fa-angle-right"></i> 5 star accomodation
 							</p>
 							<p>
 								<span> <i class="fa fa-angle-right"></i> transportation
@@ -37,7 +37,7 @@
 						</div>
 						<!--/.packages-review-->
 						<div class="about-btn">
-							<button class="about-view packages-btn">book now</button>
+							<button onclick="addToChart(${voyage.id})" class="about-view packages-btn">book now</button>
 						</div>
 						<!--/.about-btn-->
 					</div>

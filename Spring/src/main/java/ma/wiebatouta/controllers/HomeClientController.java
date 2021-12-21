@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Voyage;
+import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
 @Controller
@@ -20,12 +23,17 @@ public class HomeClientController {
 
 	private final static String PATH_HOME_PAGE = "client/index";
 	private final static String ATTRIBUT_BEST_VOYAGE = "voyagesBest";
+	private final static String ATTRIBUT_BEST_EQUIPE = "equipesBest";
+	private final static String ATTRIBUT_BEST_VOYAGE_REDUCTION = "voyageReduction";
+	
 	
 	private int nombreVoyagesBest = 6;
-	
+	private int nombreEquipeBest = 9;
 	@Autowired
 	private VoyageRepository voyageRepository;
 	
+	@Autowired
+	private EquipeRepository equipeRepository;
 	@GetMapping
 	public ModelAndView getPrincipalPage() {
 		ModelAndView model = new ModelAndView(PATH_HOME_PAGE);
@@ -45,6 +53,42 @@ public class HomeClientController {
 			}
 			model.addObject(ATTRIBUT_BEST_VOYAGE,sortedVoyages);
 		}
+		
+		/**
+		 * Voyages reduction
+		 * **/
+		List<Voyage> voyagesReduction = new ArrayList<Voyage>();
+		for(Voyage voyage:voyages) {
+			if(voyage.isSolded()) {
+				voyagesReduction.add(voyage);
+			}
+		}
+		if(voyagesReduction.size() != 0) {
+			Random random = new Random();
+			int indice = random.nextInt(voyagesReduction.size());
+			model.addObject(ATTRIBUT_BEST_VOYAGE_REDUCTION,voyagesReduction.get(indice));
+			model.addObject("timelong",voyagesReduction.get(indice).getDateDepart().toGMTString());
+		}
+		
+		/**
+		 * Selecting equipe
+		 * */
+		List<Equipe> equipes = equipeRepository.findAll();
+		Collections.sort(equipes);
+		if(voyages.size() < nombreEquipeBest) {
+			model.addObject(ATTRIBUT_BEST_EQUIPE,equipes);
+		}else {
+			List<Equipe> sortedEquipes = new ArrayList<Equipe>();
+			for (int i = 0; i < nombreEquipeBest; i++) {
+				sortedEquipes.add(equipes.get(i));
+				
+			}
+			model.addObject(ATTRIBUT_BEST_VOYAGE,sortedEquipes);
+		}
+		
+		
+		
+		
 		
 		
 		return model;

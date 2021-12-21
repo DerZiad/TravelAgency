@@ -2,9 +2,9 @@ package ma.wiebatouta.models;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,7 +20,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -141,30 +140,17 @@ public class Personne implements Serializable, Comparable<Personne> {
 	public String getBase64() {
 		String c = "";
 		if (this.image != null && this.image.length != 0) {
+			System.out.println("OK");
 			c = Base64.getEncoder().encodeToString(this.image);
+			System.out.println(c);
 		}
+		System.out.println("OK");
+		System.out.println(c);
 		return c;
 	}
 
-	@SuppressWarnings("deprecation")
 	public String getDateNaissanceDate() {
 		java.sql.Date sDate = new java.sql.Date(this.dateNaissance.getTime());
-
-		/*String date = "";
-		if (this.dateNaissance != null) {
-			date = date + this.dateNaissance.getYear() + "-";
-			String month = this.dateNaissance.getMonth() + "";
-			if (month.length() == 1) {
-				month = "0" + month;
-			}
-			date = date + month + "-";
-			String day = this.dateNaissance.getDay() + "";
-			if (day.length() == 1) {
-				day = "0" + day;
-			}
-			date = date + day;
-		}
-		return date;*/
 		return sDate.toString();
 	}
 

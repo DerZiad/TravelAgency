@@ -3,6 +3,7 @@ package ma.wiebatouta.models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.wiebatouta.models.enums.TypePicture;
 
 @Entity
 @Table(name = "voyages")
@@ -57,7 +59,7 @@ public class Voyage implements Comparable<Voyage>{
 	private int nombrePersonneTotal;
 	@Range(min = 0, message = "Le prix doit être 0 ou supérieur à 0")
 	private double prix;
-	private boolean reduction = false;
+	private double reduction = 0;
 	@Column(length = 45)
 	@NotNull(message = "Le titre de voyage est important")
 	@Length(min = 5, max = 45, message = "Le titre de voyage doît être entre 5 et 45")
@@ -109,7 +111,6 @@ public class Voyage implements Comparable<Voyage>{
 
 	@SuppressWarnings("deprecation")
 	public void setDateDepartDate(String date) {
-		System.out.println(date);
 		if (date != null && date.length() == 10) {
 			date = date.replace("-", "/");
 			this.dateDepart = new Date(date);
@@ -125,7 +126,6 @@ public class Voyage implements Comparable<Voyage>{
 		} else {
 			date = null;
 		}
-		System.out.println(dateArrivee);
 	}
 	
 	public String getDateArriveeDate() {
@@ -141,9 +141,47 @@ public class Voyage implements Comparable<Voyage>{
 	public void addLieu(Lieu lieu) {
 		lieux.add(lieu);
 	}
+	
+	public String getHeader() {
+		List<Picture> pictures  = this.pictures.stream().filter((p) -> {
+			return p.getType().equals(TypePicture.HEADER);
+		}).collect(Collectors.toList());
+	
+		if(pictures.size() >= 1) {
+			return pictures.get(0).getBase64();
+		}else {
+			return "";
+		}
+	}
+	
+	public String getBanner() {
+		List<Picture> pictures  = this.pictures.stream().filter((p) -> {
+			return p.getType().equals(TypePicture.BANNER);
+		}).collect(Collectors.toList());
+	
+		if(pictures.size() >= 1) {
+			return pictures.get(0).getBase64();
+		}else {
+			return "";
+		}
+	}
+	
 	@Override
 	public int compareTo(Voyage o) {
 		return review - o.getReview();
+	}
+	
+	public boolean isSolded() {
+		if(reduction == 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public double getReductionPrix() {
+		double prix = this.prix - (this.prix * this.reduction / 100);
+		return prix;
 	}
 	
 }
