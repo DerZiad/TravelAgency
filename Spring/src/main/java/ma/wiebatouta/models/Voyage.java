@@ -33,7 +33,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Voyage {
+public class Voyage implements Comparable<Voyage>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -71,6 +71,8 @@ public class Voyage {
 	
 	@Transient
 	private Long idEquipe;
+	
+	private int review = 0;
 	
 	/**
 	 * Relations
@@ -126,50 +128,22 @@ public class Voyage {
 		System.out.println(dateArrivee);
 	}
 	
-	@SuppressWarnings("deprecation")
 	public String getDateArriveeDate() {
 		java.sql.Date sDate = new java.sql.Date(this.dateArrivee.getTime());
-		
-		/*String date = "";
-		if (this.dateArrivee != null) {
-			date = date + this.dateArrivee.getYear() + "-";
-			String month = this.dateArrivee.getMonth() + "";
-			if (month.length() == 1) {
-				month = "0" + month;
-			}
-			date = date + month + "-";
-			String day = this.dateArrivee.getDay() + "";
-			if (day.length() == 1) {
-				day = "0" + day;
-			}
-			date = date + day;
-		}return date;*/
 		return sDate.toString();
 	}
 	
-	@SuppressWarnings("deprecation")
 	public String getDateDepartDate() {
 		java.sql.Date sDate = new java.sql.Date(this.dateDepart.getTime());
-
-		/*String date = "";
-		if (this.dateDepart != null) {
-			date = date + this.dateDepart.getYear() + "-";
-			String month = this.dateDepart.getMonth() + "";
-			if (month.length() == 1) {
-				month = "0" + month;
-			}
-			date = date + month + "-";
-			String day = this.dateDepart.getDay() + "";
-			if (day.length() == 1) {
-				day = "0" + day;
-			}
-			date = date + day;
-		}
-		return date;*/
 		return sDate.toString();
 	}
 	
 	public void addLieu(Lieu lieu) {
 		lieux.add(lieu);
 	}
+	@Override
+	public int compareTo(Voyage o) {
+		return review - o.getReview();
+	}
+	
 }
