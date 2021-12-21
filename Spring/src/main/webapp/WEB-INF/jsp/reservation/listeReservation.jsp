@@ -30,6 +30,24 @@
 					<p id="dateDepartError" class="error"></p>
 				</div>
 			</div>
+			<div class="budget-wrap">
+				<div class="budget">
+					<div class="header">
+						<div class="title clearfix">
+							Set your budget! <span class="pull-right"></span>
+						</div>
+					</div>
+					<div class="content">
+						<input name="budget" type="range" min="1" max="100" value="20" data-rangeslider>
+					</div>
+					<div class="footer clearfix">
+						<div class="pull-right">
+							<a href="javascript:void(0)" class="btn btn-def">Back</a> <a
+								href="javascript:void(0)" class="btn btn-pri">Next</a>
+						</div>
+					</div>
+				</div>
+			</div>
 
 		</div>
 
@@ -52,7 +70,6 @@
 
 						<th>Reserved</th>
 						<th>Confirmed</th>
-						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody id="reservationslist" style="color: black;">
@@ -70,7 +87,7 @@
 	font-size: 15px;
 }
 </style>
-		<link rel="stylesheet" href="/delibdesign/css/hotel/style.css" />
+		<link rel="stylesheet" href="/delibdesign/css/reservation/style.css" />
 	</layout:put>
 
 	<layout:put block="scriptsfile" type="REPLACE">
