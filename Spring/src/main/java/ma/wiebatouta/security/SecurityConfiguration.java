@@ -34,10 +34,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint() {
 		}).and().authenticationProvider(authenticationProvider()).authorizeRequests().antMatchers("/").permitAll()
 				.antMatchers(ServerRole.ADMIN.getSpace()).hasRole(ServerRole.ADMIN.getRole())
-				.antMatchers("/admin/login").permitAll().antMatchers("/signup").permitAll().antMatchers("/logout")
-				.authenticated().anyRequest().permitAll().and().formLogin().loginProcessingUrl("/admin/login")
-				.permitAll().loginPage("/admin/login").permitAll().successHandler(mySimpleUrlAuthenticationHandler())
-				.failureUrl("/admin/login?error=true").usernameParameter("username").passwordParameter("password").and()
+				.antMatchers("/login").permitAll().antMatchers("/signup").permitAll().antMatchers("/logout")
+				.authenticated().anyRequest().permitAll().and().formLogin().loginProcessingUrl("/login")
+				.permitAll().loginPage("/login").permitAll().successHandler(mySimpleUrlAuthenticationHandler())
+				.failureUrl("/login?error=true").usernameParameter("username").passwordParameter("password").and()
 				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
 				.rememberMe().tokenValiditySeconds(30000).key("mySecret!")
 				.userDetailsService(userPrincipalDetailsService).rememberMeParameter("checkRememberMe");

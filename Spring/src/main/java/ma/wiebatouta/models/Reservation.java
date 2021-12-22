@@ -32,10 +32,7 @@ public class Reservation implements Serializable,Comparable<Reservation>,Statist
 	
 	@Column
 	boolean isConfirmed = false;
-	
-	@Column
-	boolean isReserved = false;
-	
+		
 	/**
 	 * Relations
 	 * */

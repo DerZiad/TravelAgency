@@ -44,20 +44,25 @@ public class AuthenticationController {
 	private static final String ATTRIBUT_RESERVATION_EFFECTUE_NUMBER = "reservationsdonenumber";
 	private static final String ATTRIBUT_RESERVATION_NON_EFFECTUE_NUMBER = "reservationsnotdonenumber";
 	private static final String ATTRIBUT_EQUIPES = "equipes";
-	private static final String PATH_ADMIN_LOGIN = "login";
+	private static final String ATTRIBUT_LOGIN = "isLogin";
+	
+	private static final String PATH_LOGIN = "client/loginclient";
 	private static final String PATH_ADMIN_PAGE = "index-a";
 
 	private static final String ATTRIBUT_ERROR = "error";
-	private static final String REDIRECT_ADMIN_SPACE = "redirect:/admin/";
-
-	@GetMapping("/admin/login")
+	private static final String REDIRECT_HOME_SPACE = "redirect:/";
+	
+	
+	
+	@GetMapping("/login")
 	public ModelAndView getPageLoginAdmin(HttpServletRequest request) {
 		ModelAndView model = null;
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
-			model = new ModelAndView(REDIRECT_ADMIN_SPACE);
+			model = new ModelAndView(REDIRECT_HOME_SPACE);
 		} else {
-			model = new ModelAndView(PATH_ADMIN_LOGIN);
+			model = new ModelAndView(PATH_LOGIN);
+			model.addObject(ATTRIBUT_LOGIN,true);
 			String err = request.getParameter(ATTRIBUT_ERROR);
 			if (err != null && err.equals("true")) {
 				model.addObject(ATTRIBUT_ERROR, "Vos identifiants sont incorrects.");
@@ -77,14 +82,15 @@ public class AuthenticationController {
 		model.addObject(ATTRIBUT_RESERVATIONS_NUMBER, reservations.size());
 		model.addObject(ATTRIBUT_EQUIPES_NUMBER, equipes.size());
 		model.addObject(ATTRIBUT_VOYAGES_NUMBER, voyages.size());
-		
-		
-		List<Reservation> reservationNotDone = reservations.stream().filter((r)-> r.isReserved() && !r.isConfirmed()).collect(Collectors.toList());
-		model.addObject(ATTRIBUT_RESERVATION_NON_EFFECTUE_NUMBER,reservationNotDone.size());
 
-		List<Reservation> reservationDone = reservations.stream().filter((r)-> r.isReserved() && r.isConfirmed()).collect(Collectors.toList());
-		model.addObject(ATTRIBUT_RESERVATION_EFFECTUE_NUMBER,reservationDone.size());
-		
+		List<Reservation> reservationNotDone = reservations.stream().filter((r) -> !r.isConfirmed())
+				.collect(Collectors.toList());
+		model.addObject(ATTRIBUT_RESERVATION_NON_EFFECTUE_NUMBER, reservationNotDone.size());
+
+		List<Reservation> reservationDone = reservations.stream().filter((r) -> r.isConfirmed())
+				.collect(Collectors.toList());
+		model.addObject(ATTRIBUT_RESERVATION_EFFECTUE_NUMBER, reservationDone.size());
+
 		Collections.sort(equipes);
 		if (equipes.size() <= 4) {
 			model.addObject(ATTRIBUT_EQUIPES, equipes);
@@ -96,8 +102,9 @@ public class AuthenticationController {
 			newlist.add(equipes.get(3));
 			model.addObject(ATTRIBUT_EQUIPES, newlist);
 		}
-		
+
 		return model;
 
 	}
+
 }

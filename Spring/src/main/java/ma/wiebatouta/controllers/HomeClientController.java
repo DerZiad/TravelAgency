@@ -21,12 +21,10 @@ import ma.wiebatouta.repositories.VoyageRepository;
 @RequestMapping("/")
 public class HomeClientController {
 
-	private final static String PATH_HOME_PAGE = "client/index";
+	private final static String PATH_HOME_PAGE = "client/corps";
 	private final static String ATTRIBUT_BEST_VOYAGE = "voyagesBest";
 	private final static String ATTRIBUT_BEST_EQUIPE = "equipesBest";
 	private final static String ATTRIBUT_BEST_VOYAGE_REDUCTION = "voyageReduction";
-	
-	
 	private int nombreVoyagesBest = 6;
 	private int nombreEquipeBest = 9;
 	@Autowired
@@ -85,12 +83,9 @@ public class HomeClientController {
 			}
 			model.addObject(ATTRIBUT_BEST_VOYAGE,sortedEquipes);
 		}
-		
-		
-		
-		
-		
+			
 		
 		return model;
 	}
+	
 }
