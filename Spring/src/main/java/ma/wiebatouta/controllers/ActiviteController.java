@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.swagger.models.Model;
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.metier.ActiviteMetierIMP;
 import ma.wiebatouta.metier.ActivityMetier;
@@ -82,6 +83,7 @@ public class ActiviteController {
 		List<SousActivite> sousActivities = new ArrayList<SousActivite>();
 		
 		if (id.equals("")) {
+			System.out.println("id"+id);
 			Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id not found"));
 			HashMap<String, String> errors = new HashMap<String, String>();
 			HashMap<String, String> errors1 = new HashMap<String, String>();
@@ -92,38 +94,55 @@ public class ActiviteController {
 			activite.setDescription(descriptionActivite);
 			activite.setNomActivite(labelActivite);
 			int tailleSousActivite = params.get("myparams").size();
-
+			System.out.println(tailleSousActivite);
 			for (int i = 0; i < tailleSousActivite; i++) {
 				SousActivite sousActivite = new SousActivite();
 				sousActivite.setTitre(params.get("myparams").get(i));
 				sousActivite.setDescription(params.get("SousActdescrip").get(i));
 				sousActivite.setActivite(activite);
 				sousActivities.add(sousActivite);
-
+				System.out.println(sousActivite +" ;");
 			}
+			activite.setSousActivites(sousActivities);
 			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 			Validator validator = factory.getValidator();
 			Set<ConstraintViolation<Activite>> violations = validator.validate(activite);
 			for (ConstraintViolation<Activite> constraintViolation : violations) {
 				errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 			}
-
+			System.out.println(errors);
 			Set<ConstraintViolation<List<SousActivite>>> violations1 = validator.validate(sousActivities);
 			for (ConstraintViolation<List<SousActivite>> constraintViolation : violations1) {
-				errors1.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
+				errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
+				System.out.println(constraintViolation.getMessage());
 			}
-			boolean bool = false;
-			boolean bool1 = false;
-			if (errors.size() != 0) {
+			if(errors.size()!=0) {
 				model.addObject("errors", errors);
-				bool = true;
-				System.out.println("TRUE");
-				model.addObject("err", bool);
-			} else if (errors1.size() != 0) {
+				System.out.println("Il y a des erreurs");
+			}else {
+				System.out.println("pas d'erreurs");
+			}
+			boolean boolg = false;
+			boolean bool1 = false;
+			boolean bool2 = false ;
+			System.out.println("err"+errors.size());
+			System.out.println("err1"+errors1.size());
+			if (errors.size() != 0 && errors1.size() != 0) {
+				model.addObject("errors", errors);
+				boolg = true;
+				model.addObject("err", boolg);
 				model.addObject("errors1", errors1);
 				bool1 = true;
-				model.addObject("bool1", bool1);
-			} else {
+				model.addObject("err1", bool1);
+			} else if (errors.size() != 0) {
+				model.addObject("errors", errors);
+				bool1 = true;
+				model.addObject("err", bool1);
+			} else if (errors1.size() != 0) {
+				model.addObject("errors1", errors1);
+				bool2 = true;
+				model.addObject("bool", bool2);
+			}  else {
 				activiteRepository.save(activite);
 				for (int i = 0; i < tailleSousActivite; i++) {
 					sousActiviteRepository.save(sousActivities.get(i));
@@ -132,10 +151,10 @@ public class ActiviteController {
 				for (Activite ac : activities) {
 					List<SousActivite> act = sousActiviteRepository.getSousActiviteByActivite(activite);
 					model.addObject("sousActivite", act);
-
 				}
-				return new ModelAndView(String.format(REDIRECT_LIST_ACTIVITY,idVoyage));
 			}
+			return new ModelAndView(String.format(REDIRECT_LIST_ACTIVITY,idVoyage));
+
 		} else {
 			Long idActivite = Long.parseLong(id);
 			HashMap<String, String> errors = new HashMap<String, String>();
@@ -149,7 +168,7 @@ public class ActiviteController {
 			List<SousActivite> tbdd = /*sousActiviteRepository.getSousActiviteByActivite(activite);*/activite.getSousActivites();
 			/* int tailleSousActivite = tbdd.size(); */
 			int tailleparams = params.get("myparams").size();
-			System.out.println(tailleparams);
+			System.out.println("taillePARAMS"+tailleparams);
 			sousActivities = new ArrayList<>(tailleparams);
 			for (int i = 0; i < tailleparams; i++) {
 				if (i < tbdd.size()) {
@@ -166,18 +185,23 @@ public class ActiviteController {
 					System.out.println(ss);
 				}
 				sousActivities.addAll(tbdd);
+				
 			}
+			activite.setSousActivites(sousActivities);
 			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 			Validator validator = factory.getValidator();
 			Set<ConstraintViolation<Activite>> violations = validator.validate(activite);
 			for (ConstraintViolation<Activite> constraintViolation : violations) {
 				errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 			}
-
-			Set<ConstraintViolation<List<SousActivite>>> violations1 = validator.validate(sousActivities);
-			for (ConstraintViolation<List<SousActivite>> constraintViolation : violations1) {
-				errors1.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
+			for(int i=0;i<sousActivities.size();i++) {
+			Set<ConstraintViolation<SousActivite>> violations1 = validator.validate(sousActivities.get(i));
+			for (ConstraintViolation<SousActivite> constraintViolation : violations1) {
+				errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 			}
+			}
+			System.out.println(errors);
+
 			boolean boolg = false;
 			boolean bool1 = false;
 			boolean bool2=false;
@@ -185,12 +209,10 @@ public class ActiviteController {
 				model.addObject("errors", errors);
 				boolg = true;
 				model.addObject("err", boolg);
-				/*******/
 				model.addObject("errors1", errors1);
 				bool1 = true;
 				model.addObject("err1", bool1);
 			} else if (errors.size() != 0) {
-
 				model.addObject("errors", errors);
 				bool1 = true;
 				model.addObject("err", bool1);
@@ -203,22 +225,23 @@ public class ActiviteController {
 				for (int i = 0; i < tailleparams; i++) {
 					sousActiviteRepository.save(sousActivities.get(i));
 				}
-
+				Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id not found"));
+				model.addObject(DesignAttributes.ACTIVE_ACTIVITY_AJOUT, DesignAttributes.ACTIVE);
+				model.addObject("activities", voyage.getActivites());
+				model.addObject("idVoyage",idVoyage);
 			}
 		}
-		Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id not found"));
-		model.addObject(DesignAttributes.ACTIVE_ACTIVITY_AJOUT, DesignAttributes.ACTIVE);
-		model.addObject("activities", voyage.getActivites());
-		model.addObject("idVoyage",idVoyage);
+		
 		return model;
 	}
 
 	@GetMapping("/{id}")
 	@RolesAllowed("ADMIN")
-	public ModelAndView modify(@PathVariable("id") Long idActivite) throws NotFoundException {
+	public ModelAndView modify(@RequestParam("idVoyage") Long idVoyage,@PathVariable("id") Long idActivite) throws NotFoundException {
 		ModelAndView model = new ModelAndView(PATH_ACTIVTE);
+		Voyage voyage = voyageRepository.getById(idVoyage);
 		boolean bool = true;
-		List<Activite> activites = activiteRepository.findAll();
+		List<Activite> activites = voyage.getActivites();
 		Activite activite = activiteRepository.findById(idActivite).orElseThrow(() -> new NotFoundException());
 		model.addObject("activities", activites);
 		model.addObject("activite", activite);

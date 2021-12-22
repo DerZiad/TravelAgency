@@ -102,9 +102,9 @@
 									<div>
 										<p style="color: red;">
 
-											<c:if test="${bool}">
+											<c:if test="${not empty errors}">
 												<c:out
-													value="SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune"></c:out>
+													value="${errors}">SousActivite doivent contenir un titre et une description qui depassent au moins 6 caraceters pour chacune</c:out>
 											</c:if>
 										</p>
 									</div>

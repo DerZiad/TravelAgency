@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('button[id=rst]').click(function(){
 		clearAddCache();
-		window.location.href = '/admin/activite';
+		window.history.back();
 
 		});
     var max_fields = 10;

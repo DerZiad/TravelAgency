@@ -9,7 +9,6 @@ $(document).ready(function() {
 
 	});
 	$('input[name=dateArriveDate]').change(function() {
-		
 		refreshReservationByDATEARV();
 	});
 	$('input[name=budget]').change(function() {
@@ -26,14 +25,21 @@ function refreshReservation() {
 			var contenue = "";
 			for (rese of reservations) {
 				contenue = contenue + '<tr>\n';
-				contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n';
+
+				contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox' + rese['id']['idVoyage'] + '" name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n'
 				contenue = contenue + '<td>' + rese['voyage']['titre'] + '</td>\n'
 				contenue = contenue + '<td>' + rese['person']['cne'] + " " + rese['person']['prenom'] + " " + rese['person']['nom'] + '</td>\n'
+				contenue = contenue + '<td>' + rese['voyage']['destination'] + '</td>\n'
+				contenue = contenue + '<td>' + rese['voyage']['prix'] + '</td>\n'
+
 				if (rese.confirmed) {
 					etat1 = "Confirmee"
+					contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
+				} else {
+					etat1 = "Pas Confirmee"
+					contenue = conteneue + '<td class="text-center danger">' + etat1 + '</td>\n'
 				}
-				contenue = contenue + '<td>' + "Reservee" + '</td>\n'
-				contenue = contenue + '<td>' + etat1 + '</td>\n'
+
 				contenue = contenue + '</tr>\n'
 			}
 			$('#reservationslist').html(contenue);
@@ -54,11 +60,17 @@ function refreshReservationBYcountry() {
 			contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox' + rese['id']['idVoyage'] + '" name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n'
 			contenue = contenue + '<td>' + rese['voyage']['titre'] + '</td>\n'
 			contenue = contenue + '<td>' + rese['person']['cne'] + " " + rese['person']['prenom'] + " " + rese['person']['nom'] + '</td>\n'
+			contenue = contenue + '<td>' + rese['voyage']['destination'] + '</td>\n'
+			contenue = contenue + '<td>' + rese['voyage']['prix'] + '</td>\n'
+
 			if (rese.confirmed) {
 				etat1 = "Confirmee"
+				contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
+			} else {
+				etat1 = "Pas Confirmee"
+				contenue = conteneue + '<td class="text-center danger">' + etat1 + '</td>\n'
 			}
-			contenue = contenue + '<td>' + "Reservee" + '</td>\n'
-			contenue = contenue + '<td>' + etat1 + '</td>\n'
+
 			contenue = contenue + '</tr>\n'
 		}
 	}
@@ -70,17 +82,23 @@ function refreshReservationBYBudget() {
 	console.log(prix);
 	var contenue = "";
 	for (rese of reservations) {
-		if (rese['voyage']['prix'] == prix) {
+		if (rese['voyage']['prix'] <= prix) {
 			contenue = contenue + '<tr>\n';
-			console.log(rese['voyage']['prix']);
+
 			contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox' + rese['id']['idVoyage'] + '" name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n'
 			contenue = contenue + '<td>' + rese['voyage']['titre'] + '</td>\n'
 			contenue = contenue + '<td>' + rese['person']['cne'] + " " + rese['person']['prenom'] + " " + rese['person']['nom'] + '</td>\n'
+			contenue = contenue + '<td>' + rese['voyage']['destination'] + '</td>\n'
+			contenue = contenue + '<td>' + rese['voyage']['prix'] + '</td>\n'
+
 			if (rese.confirmed) {
 				etat1 = "Confirmee"
+				contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
+			} else {
+				etat1 = "Pas Confirmee"
+				contenue = conteneue + '<td class="text-center danger">' + etat1 + '</td>\n'
 			}
-			contenue = contenue + '<td>' + "Reservee" + '</td>\n'
-			contenue = contenue + '<td>' + etat1 + '</td>\n'
+
 			contenue = contenue + '</tr>\n'
 		}
 	}
@@ -101,11 +119,17 @@ function refreshReservationByDATEARV() {
 			contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox' + rese['id']['idVoyage'] + '" name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n'
 			contenue = contenue + '<td>' + rese['voyage']['titre'] + '</td>\n'
 			contenue = contenue + '<td>' + rese['person']['cne'] + " " + rese['person']['prenom'] + " " + rese['person']['nom'] + '</td>\n'
+			contenue = contenue + '<td>' + rese['voyage']['destination'] + '</td>\n'
+			contenue = contenue + '<td>' + rese['voyage']['prix'] + '</td>\n'
+
 			if (rese.confirmed) {
 				etat1 = "Confirmee"
+				contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
+			} else {
+				etat1 = "Pas Confirmee"
+				contenue = conteneue + '<td class="text-center danger">' + etat1 + '</td>\n'
 			}
-			contenue = contenue + '<td>' + "Reservee" + '</td>\n'
-			contenue = contenue + '<td>' + etat1 + '</td>\n'
+
 			contenue = contenue + '</tr>\n'
 		}
 

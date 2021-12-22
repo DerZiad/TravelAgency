@@ -38,7 +38,8 @@
 						</div>
 					</div>
 					<div class="content">
-						<input name="budget" type="range" min="1" max="100" value="20" data-rangeslider>
+						<input name="budget" type="range" min="10" max="1000" value="30"
+							data-rangeslider>
 					</div>
 					<div class="footer clearfix">
 						<div class="pull-right">
@@ -67,8 +68,8 @@
 						</span></th>
 						<th>Label Voyage</th>
 						<th>Informations Client</th>
-
-						<th>Reserved</th>
+						<th>Pays de Destination</th>
+						<th>Prix</th>
 						<th>Confirmed</th>
 					</tr>
 				</thead>
