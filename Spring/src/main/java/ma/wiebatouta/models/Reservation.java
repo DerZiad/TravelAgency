@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,6 +49,12 @@ public class Reservation implements Serializable,Comparable<Reservation>,Statist
 	
 	@OneToOne(cascade = {CascadeType.ALL},mappedBy = "reservation")
 	private Feedback feedback = new Feedback();
+	
+	@Transient
+	private Long idPerson;
+	
+	@Transient
+	private Long idVoyage;
 	
 	@Override
 	public int compareTo(Reservation o) {

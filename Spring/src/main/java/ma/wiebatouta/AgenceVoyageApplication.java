@@ -1,5 +1,6 @@
 package ma.wiebatouta;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import ma.wiebatouta.models.Personne;
+import ma.wiebatouta.models.Sexe;
 import ma.wiebatouta.models.User;
 import ma.wiebatouta.models.enums.ServerRole;
+import ma.wiebatouta.repositories.PersonneRepository;
 import ma.wiebatouta.repositories.UserRepository;
 import ma.wiebatouta.services.ForumCleaner;
 
@@ -30,6 +34,9 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 	@Autowired
 	private CountryInitializer countryInitializer;
 	
+	@Autowired
+	private PersonneRepository personneRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AgenceVoyageApplication.class, args);
 	}
@@ -47,11 +54,27 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 			user.addRole(ServerRole.ADMIN);
 			userRepository.save(user);
 			
+			Personne person = new Personne();
+			person.setCne("D83221dd7");
+			person.setNom("Bougrine");
+			person.setPrenom("Ziad");
+			person.setCodePostal(50000l);
+			person.setDateNaissance(new Date("2002/01/02"));
+			person.setEtatSocial("Marie");
+			person.setImage(null);
+			person.setEmail("ziadbougrine@gmail.com");
+			person.setNationalite("Morroco");
+			person.setTravaille("Bachelor");
+			person.setNombreEnfant(1);
+			person.setSexe(Sexe.HOMME);
+			person.setTelephone("+212641408306");
+			person.setImage(new byte[] {0});
 			User user2 = new User();
 			user2.setUsername("ziadbougrine");
 			user2.setPassword(passwordEncoder.encode("ziad2002+"));
 			user2.addRole(ServerRole.CLIENT);
-			userRepository.save(user2);
+			person.setUser(user2);
+			personneRepository.save(person);
 			System.out.println("[ + ] - Admin initialized");
 		}else {
 			System.out.println("[ + ] - Admin not initialized");

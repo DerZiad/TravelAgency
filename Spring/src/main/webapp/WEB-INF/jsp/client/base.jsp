@@ -73,8 +73,8 @@
 										<li class="btn btn-primary"><a href="/signup">Sign up</a></li>
 									</c:if>
 									<c:if test="${authentificated}">
-										<li class="btn btn-primary">${username}</li>
-										<li class="btn btn-primary"><a href="/logout">Deconnecter</a></li>
+										<input type="hidden" name="idPerson" value="${idPerson}"/>
+										<li class="btn btn-primary"><a href="/logout">Deconnecter <br> ${username}</a></li>
 									</c:if>
 
 								</ul>

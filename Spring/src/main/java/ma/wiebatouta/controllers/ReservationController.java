@@ -8,11 +8,14 @@ import org.hibernate.query.criteria.internal.expression.function.AggregationFunc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ma.wiebatouta.metier.CountryMetier;
 import ma.wiebatouta.models.Country;
+import ma.wiebatouta.models.Reservation;
 
 @Controller
 @RequestMapping("/admin/reservation")
@@ -32,5 +35,4 @@ public class ReservationController {
 		model.addObject(COUNTRY, countries);
 		return model;
 	}
-
 }

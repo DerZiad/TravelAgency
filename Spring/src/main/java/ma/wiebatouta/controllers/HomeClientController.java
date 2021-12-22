@@ -10,14 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ma.wiebatouta.models.Equipe;
+import ma.wiebatouta.models.User;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.EquipeRepository;
+import ma.wiebatouta.repositories.UserRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
 @Controller
@@ -30,6 +33,7 @@ public class HomeClientController {
 	private final static String ATTRIBUT_BEST_VOYAGE_REDUCTION = "voyageReduction";
 	private final static String ATTRIBUT_AUTHENTIFICATED = "authentificated";
 	private final static String ATTRIBUT_AUTHENTIFICATED_USERNAME = "username";
+	private final static String ATTRIBUT_AUTHENTIFICATED_PERSON_ID = "idPerson";
 	private int nombreVoyagesBest = 6;
 	private int nombreEquipeBest = 9;
 	@Autowired
@@ -37,6 +41,9 @@ public class HomeClientController {
 	
 	@Autowired
 	private EquipeRepository equipeRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	@GetMapping
 	public ModelAndView getPrincipalPage() {
 		ModelAndView model = new ModelAndView(PATH_HOME_PAGE);
@@ -95,10 +102,13 @@ public class HomeClientController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if(authentication instanceof AnonymousAuthenticationToken) {
 			model.addObject(ATTRIBUT_AUTHENTIFICATED,false);
-			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME,authentication.getName());
-			System.out.println(authentication.getName() + " sssss");
 		}else {
+			UserDetails userDetail = (UserDetails)authentication.getPrincipal();
+			User user = userRepository.findByUsername(userDetail.getUsername()).get(0);
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME,userDetail.getUsername());
 			model.addObject(ATTRIBUT_AUTHENTIFICATED,true);
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID);
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID);
 		}
 		
 		return model;
