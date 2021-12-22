@@ -40,7 +40,7 @@ public class SessionFilter implements Filter {
 		
 		boolean testRessource = false;
 		List<String> list = Arrays.asList("/delibdesign", "/assets", "/css", "/fonts", "/images", "/js",
-				"ressourceshumaines", "/scss");
+				"/ressourceshumaines", "/scss");
 
 		for (String item : list) {
 			if (path.startsWith(item))
