@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,8 @@ public class HomeClientController {
 	private final static String ATTRIBUT_BEST_VOYAGE = "voyagesBest";
 	private final static String ATTRIBUT_BEST_EQUIPE = "equipesBest";
 	private final static String ATTRIBUT_BEST_VOYAGE_REDUCTION = "voyageReduction";
+	private final static String ATTRIBUT_AUTHENTIFICATED = "authentificated";
+	private final static String ATTRIBUT_AUTHENTIFICATED_USERNAME = "username";
 	private int nombreVoyagesBest = 6;
 	private int nombreEquipeBest = 9;
 	@Autowired
@@ -83,7 +88,18 @@ public class HomeClientController {
 			}
 			model.addObject(ATTRIBUT_BEST_VOYAGE,sortedEquipes);
 		}
-			
+		
+		/**
+		 * Authentication
+		 * **/
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication instanceof AnonymousAuthenticationToken) {
+			model.addObject(ATTRIBUT_AUTHENTIFICATED,false);
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME,authentication.getName());
+			System.out.println(authentication.getName() + " sssss");
+		}else {
+			model.addObject(ATTRIBUT_AUTHENTIFICATED,true);
+		}
 		
 		return model;
 	}

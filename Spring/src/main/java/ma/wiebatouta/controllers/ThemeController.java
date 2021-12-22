@@ -85,7 +85,6 @@ public class ThemeController {
 			}
 
 		} else {
-			System.out.println('n');
 			HashMap<String, String> errors = new HashMap<String, String>();
 			byte[] image = null;
 			if (logo.getBytes().length != 0) {
@@ -138,7 +137,6 @@ public class ThemeController {
 	@GetMapping("/deleteTheme/{id}")
 	@RolesAllowed("ADMIN")
 	public ModelAndView delete(@PathVariable("id")Long idTheme) {
-		System.out.println(idTheme);
 		themeMetier.deleteTheme(idTheme);
 		ModelAndView model = new ModelAndView(REDIRECT_LIST_THEMES);
 		return model;

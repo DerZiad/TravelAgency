@@ -68,8 +68,14 @@
 												style="margin-left: 10px;" id="numberPanier"></span>
 										</a></li>
 									</c:if>
-									<li class="btn btn-primary"><a href="/login">Login</a></li>
-									<li class="btn btn-primary"><a href="/signup">Sign up</a></li>
+									<c:if test="${not authentificated}">
+										<li class="btn btn-primary"><a href="/login">Login</a></li>
+										<li class="btn btn-primary"><a href="/signup">Sign up</a></li>
+									</c:if>
+									<c:if test="${authentificated}">
+										<li class="btn btn-primary">${username}</li>
+										<li class="btn btn-primary"><a href="/logout">Deconnecter</a></li>
+									</c:if>
 
 								</ul>
 							</div>

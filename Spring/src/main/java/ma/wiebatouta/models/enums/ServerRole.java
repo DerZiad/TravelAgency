@@ -1,7 +1,7 @@
 package ma.wiebatouta.models.enums;
 
 public enum ServerRole {
-	ADMIN("ADMIN", "/admin"), CLIENT("CLIENT", "/client");
+	ADMIN("ADMIN", "/admin"), CLIENT("CLIENT", "/");
 
 	private String role;
 	private String space;

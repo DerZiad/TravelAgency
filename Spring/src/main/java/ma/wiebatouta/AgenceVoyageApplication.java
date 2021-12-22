@@ -46,6 +46,12 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 			user.setPassword(passwordEncoder.encode("twilight"));
 			user.addRole(ServerRole.ADMIN);
 			userRepository.save(user);
+			
+			User user2 = new User();
+			user2.setUsername("ziadbougrine");
+			user2.setPassword(passwordEncoder.encode("ziad2002+"));
+			user2.addRole(ServerRole.CLIENT);
+			userRepository.save(user2);
 			System.out.println("[ + ] - Admin initialized");
 		}else {
 			System.out.println("[ + ] - Admin not initialized");
@@ -57,6 +63,8 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 		}else {
 			System.out.println("[ ! ] - La base de données est plein");
 		}
+		
+		
 		
 	}
 

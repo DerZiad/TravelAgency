@@ -109,7 +109,6 @@ public class LieuController {
 			}
 			boolean bool = false;
 			if (errors.size() != 0) {
-				System.out.println(errors.get("label"));
 				bool = true;
 				model.addObject("bool", bool);
 				model.addObject("errors", errors);
@@ -131,7 +130,6 @@ public class LieuController {
 	public ModelAndView modify(@PathVariable("id") Long idLieu)
 			throws EntityNotFoundException, DataNotFoundException, NotFoundException {
 		ModelAndView model = new ModelAndView(PATH_LIEU);
-		System.out.println("id");
 		Lieu lieu = lieuMetier.getLieuById(idLieu);		
 		List<Lieu> lieux = lieuMetier.listeLieux();
 		model.addObject(LIEUX, lieux);
@@ -145,7 +143,6 @@ public class LieuController {
 	@GetMapping("/deleteLieu/{id}")
 	@RolesAllowed("ADMIN")
 	public ModelAndView delete(@PathVariable("id")Long idLieu) {
-		System.out.println(idLieu);
 		lieuRepository.delete(lieuRepository.getById(idLieu));
 		ModelAndView model = new ModelAndView(REDIRECT_LIST_LIEUX);
 		return model;
