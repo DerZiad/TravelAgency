@@ -10,10 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Sexe;
 import ma.wiebatouta.models.User;
 import ma.wiebatouta.models.enums.ServerRole;
+import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.PersonneRepository;
 import ma.wiebatouta.repositories.UserRepository;
 import ma.wiebatouta.services.ForumCleaner;
@@ -37,6 +39,9 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 	@Autowired
 	private PersonneRepository personneRepository;
 	
+	@Autowired
+	private EquipeRepository equipeRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AgenceVoyageApplication.class, args);
 	}
@@ -53,6 +58,7 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 			user.setPassword(passwordEncoder.encode("twilight"));
 			user.addRole(ServerRole.ADMIN);
 			userRepository.save(user);
+			
 			
 			Personne person = new Personne();
 			person.setCne("D83221dd7");
@@ -74,7 +80,11 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 			user2.setPassword(passwordEncoder.encode("ziad2002+"));
 			user2.addRole(ServerRole.CLIENT);
 			person.setUser(user2);
-			personneRepository.save(person);
+			
+			Equipe equipe = new Equipe();
+			equipe.setLabel("The eagle");
+			equipe.setPersonne(person);
+			equipeRepository.save(equipe);
 			System.out.println("[ + ] - Admin initialized");
 		}else {
 			System.out.println("[ + ] - Admin not initialized");

@@ -62,7 +62,7 @@
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
 										<li class="smooth-menu"><a href="#blog">blog</a></li>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
-										<li><a class="book-btn"> <img
+										<li><a  href="#addImageModal"> <img
 												src="https://img.icons8.com/external-vitaliy-gorbachev-blue-vitaly-gorbachev/60/000000/external-shopping-cart-cyber-monday-vitaliy-gorbachev-blue-vitaly-gorbachev.png"
 												style="height: 20px; width: 20px;" /> <span
 												style="margin-left: 10px;" id="numberPanier"></span>
@@ -225,6 +225,7 @@
 	</footer>
 	<!-- /.footer-copyright-->
 	<!-- footer-copyright end -->
+	<layout:block name="modalFiles"></layout:block>
 	<layout:block name="scriptsfile"></layout:block>
 </body>
 

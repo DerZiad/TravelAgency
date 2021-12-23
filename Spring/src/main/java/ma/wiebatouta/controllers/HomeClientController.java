@@ -20,6 +20,7 @@ import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.User;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.EquipeRepository;
+import ma.wiebatouta.repositories.PersonneRepository;
 import ma.wiebatouta.repositories.UserRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
@@ -44,6 +45,10 @@ public class HomeClientController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private PersonneRepository personneRepository;
+	
 	@GetMapping
 	public ModelAndView getPrincipalPage() {
 		ModelAndView model = new ModelAndView(PATH_HOME_PAGE);
@@ -104,11 +109,9 @@ public class HomeClientController {
 			model.addObject(ATTRIBUT_AUTHENTIFICATED,false);
 		}else {
 			UserDetails userDetail = (UserDetails)authentication.getPrincipal();
-			User user = userRepository.findByUsername(userDetail.getUsername()).get(0);
 			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME,userDetail.getUsername());
 			model.addObject(ATTRIBUT_AUTHENTIFICATED,true);
-			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID);
-			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID);
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID,personneRepository.getPersonneFromUsername(userDetail.getUsername()).getId());
 		}
 		
 		return model;
