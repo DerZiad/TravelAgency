@@ -35,6 +35,8 @@ public class HomeClientController {
 	private final static String ATTRIBUT_AUTHENTIFICATED = "authentificated";
 	private final static String ATTRIBUT_AUTHENTIFICATED_USERNAME = "username";
 	private final static String ATTRIBUT_AUTHENTIFICATED_PERSON_ID = "idPerson";
+	private final static String ATTRIBUT_RESER = "";
+	
 	private int nombreVoyagesBest = 6;
 	private int nombreEquipeBest = 9;
 	@Autowired

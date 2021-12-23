@@ -36,8 +36,7 @@ public class SessionFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		String path = req.getServletPath();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
-		
+
 		boolean testRessource = false;
 		List<String> list = Arrays.asList("/delibdesign", "/assets", "/css", "/fonts", "/images", "/js",
 				"/ressourceshumaines", "/scss");
@@ -47,45 +46,50 @@ public class SessionFilter implements Filter {
 				testRessource = true;
 		}
 
+		/**
+		 * 
+		 * I did if else and not else if because i doesn t to do a long traitment for
+		 * ressoucres
+		 **/
+
 		if (testRessource) {
 			chain.doFilter(req, resp);
-		}
-		
-		boolean testActions = false;
-		List<String> allowedLink = Arrays.asList("/login", "/signup");
-		for (String item : allowedLink) {
-			if (path.startsWith(item))
-				testActions = true;
-		}
-
-		if (testActions) {
-			if (authentication instanceof AnonymousAuthenticationToken) {
-				chain.doFilter(request, response);
-			} else {
-				resp.sendRedirect("/");
-			}
-
-		}
-		
-		if (path.equals("/")) {
-			Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-			Iterator iterator = authorities.iterator();
-			GrantedAuthority grantedAuthority = (GrantedAuthority) iterator.next();
-			if (grantedAuthority.getAuthority().equals("ROLE_" + ServerRole.ADMIN.getRole())) {
-				resp.sendRedirect("/admin");
-			} else {
-				chain.doFilter(request, response);
-			}
 		} else {
-			chain.doFilter(request, response);
-		}
-		
-		if (path.startsWith("/logout")) {
-			if (authentication instanceof AnonymousAuthenticationToken) {
-				resp.sendRedirect("/");
+			boolean testActions = false;
+			List<String> allowedLink = Arrays.asList("/login", "/signup");
+			for (String item : allowedLink) {
+				if (path.startsWith(item))
+					testActions = true;
+			}
+
+			if (testActions) {
+				if (authentication instanceof AnonymousAuthenticationToken) {
+					chain.doFilter(request, response);
+				} else {
+					resp.sendRedirect("/");
+				}
+
 			} else {
-				chain.doFilter(request, response);
+				if (path.startsWith("/logout")) {
+					if (authentication instanceof AnonymousAuthenticationToken) {
+						resp.sendRedirect("/");
+					} else {
+						chain.doFilter(request, response);
+					}
+				} else if (path.equals("/")) {
+					Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+					Iterator iterator = authorities.iterator();
+					GrantedAuthority grantedAuthority = (GrantedAuthority) iterator.next();
+					if (grantedAuthority.getAuthority().equals("ROLE_" + ServerRole.ADMIN.getRole())) {
+						resp.sendRedirect("/admin");
+					} else {
+						chain.doFilter(request, response);
+					}
+				} else {
+					chain.doFilter(request, response);
+				}
 			}
 		}
+
 	}
 }

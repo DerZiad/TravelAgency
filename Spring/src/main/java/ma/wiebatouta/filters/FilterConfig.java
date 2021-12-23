@@ -12,7 +12,7 @@ public class FilterConfig {
 		FilterRegistrationBean<SessionFilter> registrationBean = new FilterRegistrationBean<SessionFilter>();
 
 		registrationBean.setFilter(new SessionFilter());
-		registrationBean.addUrlPatterns("/");
+		registrationBean.addUrlPatterns("/*");
 
 		return registrationBean;
 	}
