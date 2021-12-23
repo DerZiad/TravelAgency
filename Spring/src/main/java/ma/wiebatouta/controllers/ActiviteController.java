@@ -57,28 +57,25 @@ public class ActiviteController {
 	@RolesAllowed("ADMIN")
 	public ModelAndView listeActivite(@RequestParam("id") Long idVoyage) throws NotFoundException {
 		ModelAndView model = new ModelAndView(PATH_ACTIVTE);
+		int  x=1;
+		boolean post=true;
 		Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id not found"));
 		List<Activite> activities = voyage.getActivites();
-		int x = 0;
-		int cmp = 0;
-		for (Activite activite : activities) {
-			List<SousActivite> sousActivities = sousActiviteRepository.getSousActiviteByActivite(activite);
-			model.addObject("sousActivite" + x, sousActivities);
-			x++;
-		}
 		model.addObject(DesignAttributes.ACTIVE_ACTIVITY_AJOUT, DesignAttributes.ACTIVE);
 		model.addObject("activities", activities);
-		model.addObject("cmp", cmp);
 		model.addObject("idVoyage",idVoyage);
+		model.addObject("post", post);
+		model.addObject("x", x);
 		return model;
 	}
 
-	@PostMapping
+	/*@PostMapping
 	@RolesAllowed("ADMIN")
 	public ModelAndView createNewActivity(@RequestParam("idVoyage") Long idVoyage,@RequestParam(required = false) MultiValueMap<String, String> params)
 			throws MessagingException, NotFoundException {
 		String id = params.get("id").get(0);
 		ModelAndView model = new ModelAndView(PATH_ACTIVTE);
+		ModelAndView model1 = new ModelAndView(String.format(REDIRECT_LIST_ACTIVITY,idVoyage));
 		Activite activite = null;
 		List<SousActivite> sousActivities = new ArrayList<SousActivite>();
 		
@@ -153,7 +150,7 @@ public class ActiviteController {
 					model.addObject("sousActivite", act);
 				}
 			}
-			return new ModelAndView(String.format(REDIRECT_LIST_ACTIVITY,idVoyage));
+			return model;
 
 		} else {
 			Long idActivite = Long.parseLong(id);
@@ -165,8 +162,7 @@ public class ActiviteController {
 			String descriptionActivite = params.get("description").get(0);
 			activite.setDescription(descriptionActivite);
 			activite.setNomActivite(labelActivite);
-			List<SousActivite> tbdd = /*sousActiviteRepository.getSousActiviteByActivite(activite);*/activite.getSousActivites();
-			/* int tailleSousActivite = tbdd.size(); */
+			List<SousActivite> tbdd = /*sousActiviteRepository.getSousActiviteByActivite(activite);activite.getSousActivites();
 			int tailleparams = params.get("myparams").size();
 			System.out.println("taillePARAMS"+tailleparams);
 			sousActivities = new ArrayList<>(tailleparams);
@@ -234,19 +230,24 @@ public class ActiviteController {
 		
 		return model;
 	}
-
-	@GetMapping("/{id}")
+*/
+	
+	
+	
+	@GetMapping("/{id}")/**"/admin/activite/${activity.id}?idVoyage=${idVoyage}"**/
 	@RolesAllowed("ADMIN")
 	public ModelAndView modify(@RequestParam("idVoyage") Long idVoyage,@PathVariable("id") Long idActivite) throws NotFoundException {
 		ModelAndView model = new ModelAndView(PATH_ACTIVTE);
 		Voyage voyage = voyageRepository.getById(idVoyage);
 		boolean bool = true;
+		int x=1;
 		List<Activite> activites = voyage.getActivites();
 		Activite activite = activiteRepository.findById(idActivite).orElseThrow(() -> new NotFoundException());
 		model.addObject("activities", activites);
 		model.addObject("activite", activite);
 		model.addObject("idVoyage",activite.getVoyage().getId());
 		model.addObject("etat", activite);
+		model.addObject("x",x);
 		model.addObject("modify", bool);
 		return model;
 	}

@@ -17,12 +17,7 @@
 				</select>
 				<p id="nombreEtoileError" class="error"></p>
 			</div>
-			<div class="form-group">
-				<label>NB ETOILES</label> <select class="selectpicker form-control"
-					data-live-search="true" name="state">
-
-				</select>
-			</div>
+			
 			<div class="form-row">
 				<div class="col-md-6">
 					<label>Date D'Arrivee</label> <input type="date"

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -43,7 +44,10 @@ public class Activite implements Serializable, Comparable<Activite> {
 	@NotNull(message = "La description ne doit pas être vide")
 	@Length(min = 5, max = 150, message = "La taille de la description d'activite doit être entre 5 et 150 caractères")
 	private String description;
-
+	
+	
+	@Transient
+	private Long idVoyage;
 	/**
 	 * Relations
 	 */
