@@ -85,7 +85,21 @@ public class SessionFilter implements Filter {
 					} else {
 						chain.doFilter(request, response);
 					}
-				} else {
+				} else if(path.equals("/admin")){
+					if(authentication instanceof AnonymousAuthenticationToken) {
+						resp.sendRedirect("/login");
+					}else {
+						Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+						Iterator iterator = authorities.iterator();
+						GrantedAuthority grantedAuthority = (GrantedAuthority) iterator.next();
+						if (grantedAuthority.getAuthority().equals("ROLE_" + ServerRole.ADMIN.getRole())) {
+							chain.doFilter(request, response);
+						} else {
+							resp.sendRedirect("/");
+						}
+					}
+					
+				}else {
 					chain.doFilter(request, response);
 				}
 			}

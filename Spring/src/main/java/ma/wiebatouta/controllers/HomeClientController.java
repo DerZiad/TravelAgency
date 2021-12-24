@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.User;
 import ma.wiebatouta.models.Voyage;
+import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.PersonneRepository;
 import ma.wiebatouta.repositories.UserRepository;
@@ -36,6 +37,7 @@ public class HomeClientController {
 	private final static String ATTRIBUT_AUTHENTIFICATED_USERNAME = "username";
 	private final static String ATTRIBUT_AUTHENTIFICATED_PERSON_ID = "idPerson";
 	private final static String ATTRIBUT_RESER = "";
+	private final static String ATTRIBUT_COUNTRIES = "countries";
 	
 	private int nombreVoyagesBest = 6;
 	private int nombreEquipeBest = 9;
@@ -50,6 +52,8 @@ public class HomeClientController {
 	
 	@Autowired
 	private PersonneRepository personneRepository;
+	@Autowired
+	private CountryRepository countryRepository;
 	
 	@GetMapping
 	public ModelAndView getPrincipalPage() {
@@ -115,6 +119,12 @@ public class HomeClientController {
 			model.addObject(ATTRIBUT_AUTHENTIFICATED,true);
 			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID,personneRepository.getPersonneFromUsername(userDetail.getUsername()).getId());
 		}
+		
+		
+		/**
+		 * Countries
+		 * **/
+		model.addObject(ATTRIBUT_COUNTRIES,countryRepository.findAll());
 		
 		return model;
 	}

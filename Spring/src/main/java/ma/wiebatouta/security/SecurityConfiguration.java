@@ -32,8 +32,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable().exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint() {
-		}).and().authenticationProvider(authenticationProvider()).authorizeRequests().antMatchers("/").permitAll()
+		}).and().authenticationProvider(authenticationProvider()).authorizeRequests().antMatchers("/*").permitAll()
 				.antMatchers(ServerRole.ADMIN.getSpace() + "/*").hasRole(ServerRole.ADMIN.getRole())
+				.antMatchers(ServerRole.ADMIN.getSpace()).hasRole(ServerRole.ADMIN.getRole())
 				.antMatchers("/login").permitAll().antMatchers("/signup").permitAll().antMatchers("/logout")
 				.authenticated().anyRequest().permitAll().and().formLogin().loginProcessingUrl("/login")
 				.permitAll().loginPage("/login").permitAll().successHandler(mySimpleUrlAuthenticationHandler())
