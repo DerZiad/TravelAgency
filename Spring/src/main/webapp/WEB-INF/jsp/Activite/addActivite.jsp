@@ -76,7 +76,7 @@
 										<div class="form-row">
 											<div class="col-md-6">
 												<div class="position-relative form-group">
-													<input name="sid" id="id" type="hidden" value="${ss.id}">
+													<input name="sid${x}" id="id" type="hidden" value="${ss.id}">
 													<label for="name" class="">Label SousActivite</label> <input
 														type="text" value="${ss.titre}" name="myparams${x}"
 														class="form-control" /></br>
@@ -102,20 +102,14 @@
 					</div>
 				</div>
 
-
-				<c:if test="${post}">
 					<div class="modal-footer">
-						<input type="submit" name="add" class="btn btn-success"
-							value="Add">
+						<input id="add" type="submit" name="add" class="btn btn-success"
+							value="Add" >
 					</div>
-				</c:if>
-				<c:if test="${!post}">
-
 					<div class="modal-footer">
-						<input name="mdf" type="submit" name="modify"
-							class="btn btn-success" value="MODIFY">
+						<input id="mdf" name="mdf" type="submit" name="modify"
+							class="btn btn-success" value=MODIFY >
 					</div>
-				</c:if>
 			</div>
 			<div class='row'>
 				<div class="col-md-6">

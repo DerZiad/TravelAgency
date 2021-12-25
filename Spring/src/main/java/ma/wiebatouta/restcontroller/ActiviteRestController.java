@@ -89,6 +89,9 @@ public class ActiviteRestController {
 			AddUnsatisfiedException exception = new AddUnsatisfiedException(json);
 			throw exception;
 		}
+		for(int i=0;i<sousActivite.size();i++) {
+			sousActivite.get(i).setActivite(activite);
+		}
 		activiteRepository.save(activite);
 		return ResponseEntity.ok(activite);
 
@@ -98,6 +101,7 @@ public class ActiviteRestController {
 	@RolesAllowed("ADMIN")
 	public HttpEntity<?> addSousActivite(@RequestBody SousActivite sousActivite, @RequestParam Long idSousActivite)
 			throws AddUnsatisfiedException {
+		System.out.println("ADD");
 		HashMap<String, String> errors = new HashMap<String, String>();
 		Activite activite = activiteRepository.getById(idSousActivite);
 		sousActivite.setActivite(activite);

@@ -40,7 +40,7 @@
 		<!--/.about-us-->
 		<!--about-us end -->
 
-		<jsp:include page="search.jsp"/>
+		<jsp:include page="search.jsp" />
 		<!--/.travel-box-->
 		<!--travel-box end-->
 
@@ -465,6 +465,7 @@
 	</layout:put>
 	<layout:put block="scriptsfile">
 		<script src="assets/js/jquery.js"></script>
+		<script src="/delibdesign/js/Search/script.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>

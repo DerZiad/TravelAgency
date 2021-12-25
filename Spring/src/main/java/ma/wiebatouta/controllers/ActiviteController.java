@@ -241,6 +241,7 @@ public class ActiviteController {
 		Voyage voyage = voyageRepository.getById(idVoyage);
 		boolean bool = true;
 		int x=1;
+		boolean post=false;
 		List<Activite> activites = voyage.getActivites();
 		Activite activite = activiteRepository.findById(idActivite).orElseThrow(() -> new NotFoundException());
 		model.addObject("activities", activites);
@@ -249,6 +250,8 @@ public class ActiviteController {
 		model.addObject("etat", activite);
 		model.addObject("x",x);
 		model.addObject("modify", bool);
+		model.addObject("post", post);
+
 		return model;
 	}
 

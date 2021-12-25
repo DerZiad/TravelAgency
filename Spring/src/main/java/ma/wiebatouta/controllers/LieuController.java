@@ -63,6 +63,7 @@ public class LieuController {
 	public ModelAndView saveLieu(@RequestParam(name = "id", required = false) Long id,
 			@RequestParam("name") String name, @RequestParam("keycountry") String keyCountry) {
 		ModelAndView model = new ModelAndView(PATH_LIEU);
+		ModelAndView model1 = new ModelAndView(REDIRECT_LIST_LIEUX);
 		Lieu lieu = null;
 		if (id != null) {
 			HashMap<String, String> errors = new HashMap<String, String>();
@@ -79,11 +80,18 @@ public class LieuController {
 				}
 				boolean bool = false;
 				if (errors.size() != 0) {
+					List<Lieu> lieux = lieuMetier.listeLieux();
+					model.addObject(LIEUX, lieux);
+					List<Country> countries = cm.listeCountries();
+					model.addObject(COUNTRY, countries);
 					model.addObject("errors", errors);
 					bool = true;
 					model.addObject("bool", bool);
+					return model;
 				} else {
 					lieuMetier.save(lieu);
+					return model1;
+
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
