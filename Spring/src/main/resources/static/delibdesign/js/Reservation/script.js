@@ -31,17 +31,18 @@ function refreshReservation() {
 				contenue = contenue + '<td>' + rese['person']['cne'] + " " + rese['person']['prenom'] + " " + rese['person']['nom'] + '</td>\n'
 				contenue = contenue + '<td>' + rese['voyage']['destination'] + '</td>\n'
 				contenue = contenue + '<td>' + rese['voyage']['prix'] + '</td>\n'
-
+				var etat1 = "";
 				if (rese.confirmed) {
 					etat1 = "Confirmee"
 					contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
-				} else {
+				}else{
 					etat1 = "Pas Confirmee"
-					contenue = conteneue + '<td class="text-center danger">' + etat1 + '</td>\n'
+					contenue = contenue + '<td class="text-center danger">' + etat1 + '</td>\n'
 				}
 
 				contenue = contenue + '</tr>\n'
 			}
+			console.log(reservations)
 			$('#reservationslist').html(contenue);
 		}
 	});
@@ -68,7 +69,7 @@ function refreshReservationBYcountry() {
 				contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
 			} else {
 				etat1 = "Pas Confirmee"
-				contenue = conteneue + '<td class="text-center danger">' + etat1 + '</td>\n'
+				contenue = contenue + '<td class="text-center danger">' + etat1 + '</td>\n'
 			}
 
 			contenue = contenue + '</tr>\n'
@@ -96,7 +97,7 @@ function refreshReservationBYBudget() {
 				contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
 			} else {
 				etat1 = "Pas Confirmee"
-				contenue = conteneue + '<td class="text-center danger">' + etat1 + '</td>\n'
+				contenue = contenue + '<td class="text-center danger">' + etat1 + '</td>\n'
 			}
 
 			contenue = contenue + '</tr>\n'
@@ -127,7 +128,7 @@ function refreshReservationByDATEARV() {
 				contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
 			} else {
 				etat1 = "Pas Confirmee"
-				contenue = conteneue + '<td class="text-center danger">' + etat1 + '</td>\n'
+				contenue = contenue + '<td class="text-center danger">' + etat1 + '</td>\n'
 			}
 
 			contenue = contenue + '</tr>\n'

@@ -1,15 +1,18 @@
 var lieux = [];
 var voyages = [];
+var voyfiltre = [];
 $(document).ready(function() {
-	console.log("BOUCLEEE");
 	refreshVoyages();
 	$('input[name=date_arrive]').click(function() {
 		verifi();
 	});
 	$('select[name=country]').change(function() {
-		console.log("dd")
 		refreshLieux();
 		refreshVoyagesByCountry();
+	});
+	$('.date').change(function(){
+		console.log("dteJQUERY");
+		refreshVoyagesByDATE();
 	});
 
 
@@ -18,7 +21,6 @@ function verifi() {
 	var dd = $('input[name=date_depart]').val();
 	var da = $('input[name=date_arrive]').val();
 	document.getElementById('dr').setAttribute("min", dd);
-	console.log(dd);
 }
 function refreshLieux() {
 	$.ajax({
@@ -42,40 +44,58 @@ function refreshLieux() {
 }
 
 function refreshVoyages() {
+	console.log("refreshVoyages");
 	$.ajax({
 		url: '/api/voyage',
 		type: 'get',
 		data: {},
 		success: function(response) {
 			voyages = response;
-			console.log("voyages.lentgh =" + voyages.length);
+			//console.log("voyages.lentgh =" + voyages.length);
 			//document.getElementById("srch").setAttribute("value", "search  " + voyages.length);
-
 		}
 	});
-	document.getElementById("srch").setAttribute("value", "search  " + voyages.length);
+	document.getElementById("srch").setAttribute("value", "search  " /*+ voyages.length*/);
 
 }
 
 function refreshVoyagesByCountry() {
 	var country = $('select[name=country]').val();
 	var i = 0;
-
+	console.log("Rferesh vyg COUNTRY")
 	refreshVoyages();
 	for (voy of voyages) {
-		console.log("desrt " + voy['destination']);
-		console.log("inout user   " + country);
-		console.log("comp= " + voy['destination'] == country)
-		if (voy['destination'] == country) {//voy['destination']
+				if (voy['destination'] == country) {//voy['destination']
+			voyfiltre.push(voy);
 			i = i + 1;
 		}
 
 	}
-	console.log("voy  " + i);
 	document.getElementById("srch").setAttribute("value", "search  " + i);
 
 }
 
 
 
+function refreshVoyagesByDATE() {
+	console.log("datee");
+	var dated = $('input[name=date_depart]').val();
+	console.log("input ==>"+dated);
+	var dater = $('input[name=date_arrive]').val();
+	refreshVoyages();
+	var i=0;
+	/*alert("jhhh");*/
+	for (voy of voyfiltre) {
+		console.log("dATABASE "+voy['dateDepartDate']);
+		if (voy['dateDepartDate'] === dated && voy['dateArriveeDate'] === dater ) {
+			i = i + 1;
+		}
 
+
+	}
+	document.getElementById("srch").setAttribute("value", "search  " + i);
+
+
+
+
+}

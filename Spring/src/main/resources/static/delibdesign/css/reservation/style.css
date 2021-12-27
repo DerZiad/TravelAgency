@@ -1,12 +1,12 @@
 html{
 	height:100%;
-	background:#42426b;
+	background:white;
 	background:radial-gradient(#31314a,#42426b);
 	background-repeat:no-repeat;
 }
 body{
 	margin:0;
-	color:#444;
+	color:white;
 	padding:50px;
 	font:300 18px/18px Roboto, sans-serif;
 }
@@ -55,7 +55,7 @@ body{
 
 .rangeslider__fill{
 	position:absolute;
-	background:#ff637b;
+	background:#00d8ff;
 }
 .rangeslider--horizontal .rangeslider__fill{
 	top:0;
@@ -74,12 +74,12 @@ body{
 	margin-top:-14px;
 	background:white;
 	position:absolute;
-	background:#ff637b;
+	background:#00d8ff;
 	border-radius:50%;
 	display:inline-block;
 }
 .rangeslider__handle:active{
-	background:#ff5a7b;
+	background:rgb(0, 255, 255);
 }
 
 .rangeslider__fill,
@@ -95,7 +95,7 @@ body{
 /* Budget */
 .budget-wrap{
 	padding:40px;
-	background:#292942;
+	background:rgb(192, 192, 192);
 	box-shadow:0 25px 55px 0 rgba(0,0,0,.21),0 16px 28px 0 rgba(0,0,0,.22);
 }
 .budget-wrap .header .title{
@@ -104,7 +104,7 @@ body{
 	margin-bottom:30px;
 }
 .budget-wrap .header .title .pull-right{
-	color:#ff5a84;
+	color:#00d8ff;
 	font-size:24px;
 	font-weight:400;
 }
@@ -119,9 +119,9 @@ body{
 	text-decoration:none;
 }
 .budget-wrap .footer .btn.btn-def{
-	color:#525263;
+	color:#eee;
 }
 .budget-wrap .footer .btn.btn-pri{
 	color:#eee;
-	background:#ff5a84;
+	background:#00d8ff;
 }

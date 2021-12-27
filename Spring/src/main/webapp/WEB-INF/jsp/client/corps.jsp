@@ -480,11 +480,16 @@
 		<script src="assets/js/jquery.sticky.js"></script>
 		<script src="assets/js/datepicker.js"></script>
 		<script src="assets/js/custom.js"></script>
+		<script src="/delibdesign/js/Reservation/template.js"></script>
+
 		<script src="js/home.js"></script>
 	</layout:put>
 	<layout:put block="cssfiles">
 		<link rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/delibdesign/css/reservation/style.css" />
+				<link rel="stylesheet" href="/delibdesign/css/reservation/style.css" />
+		
 		<link rel="stylesheet" href="assets/css/animate.css" />
 		<link rel="stylesheet" href="assets/css/hover-min.css">
 		<link rel="stylesheet" href="assets/css/datepicker.css">

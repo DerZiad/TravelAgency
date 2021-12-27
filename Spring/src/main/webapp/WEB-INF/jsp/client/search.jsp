@@ -56,7 +56,7 @@
 
 														<!-- /.option-->
 
-														
+
 														<!-- /.option-->
 
 													</select>
@@ -76,8 +76,8 @@
 														depart</label>
 													<div class="col-sm-9">
 														<input placeholder="dd/mm/yyyy" type="date"
-															min="<%= new java.sql.Date(System.currentTimeMillis()) %>"
-															name="date_depart" class="form-control" />
+															min="<%=new java.sql.Date(System.currentTimeMillis())%>"
+															name="date_depart" class="form-control date" />
 													</div>
 												</div>
 
@@ -92,14 +92,14 @@
 												<label class="col-sm-3 col-form-label">Date de
 													retour</label>
 												<div class="col-sm-9">
-													<input id="dr" class="form-control" type="date"
+													<input id="dr" class="form-control date" type="date"
 														name="date_arrive" placeholder="dd/mm/yyyy" />
 												</div>
 											</div>
 
 										</div>
 										<!--/.col-->
-									
+
 
 
 										<div class="col-lg-2 col-md-1 col-sm-4">
@@ -133,42 +133,32 @@
 
 									<div class="row">
 										<div class="col-sm-5">
-											<div class="travel-budget">
-												<div class="row">
-													<div class="col-md-3 col-sm-4">
-														<h3>budget :</h3>
-													</div>
-													<!--/.col-->
-													<div class="co-md-9 col-sm-8">
-														<div class="travel-filter">
-															<div class="info_widget">
-																<div class="price_filter">
-
-																	<div id="slider-range"></div>
-																	<!--/.slider-range-->
-
-																	<div class="price_slider_amount">
-																		<input type="text" id="amount" name="price"
-																			placeholder="Add Your Price" />
-																	</div>
-																	<!--/.price_slider_amount-->
-																</div>
-																<!--/.price-filter-->
-															</div>
-															<!--/.info_widget-->
+											<div class="budget-wrap">
+												<div class="budget">
+													<div class="header">
+														<div class="title clearfix">
+															Set your budget! <span class="pull-right"></span>
 														</div>
-														<!--/.travel-filter-->
 													</div>
-													<!--/.col-->
+													<div class="content">
+														<input name="budget" type="range" min="10" max="1000"
+															value="30" data-rangeslider>
+													</div>
+													<div class="footer clearfix">
+														<div class="pull-right">
+															<a href="javascript:void(0)" class="btn btn-def">Back</a>
+															<a href="javascript:void(0)" class="btn btn-pri">Next</a>
+														</div>
+													</div>
 												</div>
-												<!--/.row-->
 											</div>
 											<!--/.travel-budget-->
 										</div>
 										<!--/.col-->
 										<div class="clo-sm-7">
 											<div class="about-btn travel-mrt-0 pull-right">
-												<input id="srch" name="srch" type="submit" class="about-view travel-btn" value="SEARCH ">
+												<input id="srch" name="srch" type="submit"
+													class="about-view travel-btn" value="SEARCH ">
 												<!--/.travel-btn-->
 											</div>
 											<!--/.about-btn-->
