@@ -15,7 +15,7 @@
 			<div class="home1-testm item">
 				<div class="home1-testm-single text-center">
 					<div class="home1-testm-img">
-						<img src="data:image/jpeg;base64,${equipe.personne.base64} alt="${equipe.personne.nom} ${equipe.personne.prenom}" />
+						<img src="data:image/jpeg;base64,${equipe.personne.getBase64()}" alt="${equipe.personne.nom} ${equipe.personne.prenom}" />
 					</div>
 					<!--/.home1-testm-img-->
 					<div class="home1-testm-txt">

@@ -42,6 +42,7 @@ public class HomeClientController {
 	private final static String ATTRIBUT_AUTHENTIFICATED_PERSON_ID = "idPerson";
 	private final static String ATTRIBUT_RESERVATION_NUMBER = "reservationNumber";
 	private final static String ATTRIBUT_COUNTRIES = "countries";
+	private final static String ATTRIBUT_VOYAGES_TRENDS = "trends";
 
 	private int nombreVoyagesBest = 6;
 	private int nombreEquipeBest = 9;
@@ -135,6 +136,20 @@ public class HomeClientController {
 		 **/
 		model.addObject(ATTRIBUT_COUNTRIES, countryRepository.findAll());
 
+		/**
+		 * Trends
+		 */
+		List<Voyage> voyagesTrend = voyageRepository.findAll();
+		Collections.sort(voyagesTrend);
+		List<Voyage> trends = new ArrayList<Voyage>();
+		if (voyagesTrend.size() < 3) {
+			trends = voyagesTrend;
+		} else {
+			trends.add(voyagesTrend.get(0));
+			trends.add(voyagesTrend.get(1));
+			trends.add(voyagesTrend.get(2));
+		}
+		model.addObject(ATTRIBUT_VOYAGES_TRENDS, trends);
 		return model;
 	}
 
