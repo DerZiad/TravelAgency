@@ -12,6 +12,8 @@ import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -93,7 +95,7 @@ public class ReservationRestController {
 
 	@PostMapping
 	public ResponseEntity<?> saveReservation(@RequestBody ReservationRequest reservationRequest)
-			throws DataEmptyException, NotFoundException, AddUnsatisfiedException {		
+			throws DataEmptyException, NotFoundException, AddUnsatisfiedException {
 		Reservation reservation = new Reservation();
 		Voyage voyage = voyageRepository.findById(reservationRequest.getIdVoyage())
 				.orElseThrow(() -> new NotFoundException("Id not found"));
@@ -101,9 +103,22 @@ public class ReservationRestController {
 				.orElseThrow(() -> new NotFoundException("Id not found"));
 		reservation.setVoyage(voyage);
 		reservation.setPerson(person);
-		
+
 		reservationRepository.save(reservation);
 		return ResponseEntity.ok(reservation);
+	}
+
+	@GetMapping("/username")
+	@RolesAllowed("CLIENT")
+	public ResponseEntity<?> getReservations(@RequestParam(name = "username", required = true) String username)
+			throws DataEmptyException, NotFoundException {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth.getName().equals(username)) {
+			List<Reservation> reservations = reservationRepository.getReservationAvecUsername(username);
+			return ResponseEntity.ok(reservations);
+		}else {
+			throw new DataEmptyException();
+		}
 	}
 
 }

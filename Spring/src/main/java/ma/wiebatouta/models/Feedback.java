@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,7 +28,7 @@ public class Feedback implements Serializable, Comparable<Feedback> {
 	@NotNull(message = "Veuillez ecrire quelque chose ")
 	@Length(min = 2, max = 255, message = "Le message doit être entre 2 et 255 caracètres")
 	private String message;
-	@Length(min = 1, message = "Le nb Etoile doit être 1 ou supérieur à 1")
+	@Range(min = 1, message = "Le nb Etoile doit être 1 ou supérieur à 1")
 	private int nbEtoile;
 	@Column(nullable = false, length = 20)
 	@NotNull(message = "Le titre ne doit pas être vide")

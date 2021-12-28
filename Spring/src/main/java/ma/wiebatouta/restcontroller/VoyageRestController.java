@@ -61,8 +61,6 @@ public class VoyageRestController {
 			errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 		}
 		
-		System.out.println(voyage);
-
 		if (errors.size() != 0) {
 			Gson gson = new Gson();
 			String json = gson.toJson(errors);

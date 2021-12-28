@@ -62,19 +62,26 @@
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
 										<li class="smooth-menu"><a href="#blog">blog</a></li>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
-										<li><a  href="#addImageModal"> <img
-												src="https://img.icons8.com/external-vitaliy-gorbachev-blue-vitaly-gorbachev/60/000000/external-shopping-cart-cyber-monday-vitaliy-gorbachev-blue-vitaly-gorbachev.png"
-												style="height: 20px; width: 20px;" /> <span
-												style="margin-left: 10px;" id="numberPanier"></span>
-										</a></li>
 									</c:if>
 									<c:if test="${not authentificated}">
 										<li class="btn btn-primary"><a href="/login">Login</a></li>
 										<li class="btn btn-primary"><a href="/signup">Sign up</a></li>
 									</c:if>
 									<c:if test="${authentificated}">
-										<input type="hidden" name="idPerson" value="${idPerson}"/>
-										<li class="btn btn-primary"><a href="/logout">Deconnecter <br> ${username}</a></li>
+										<input type="hidden" name="username" value="${username}" />
+										<input type="hidden" name="idPerson" value="${idPerson}" />
+										<li><a href="#payer" data-toggle="modal"> <img
+												src="https://img.icons8.com/external-vitaliy-gorbachev-blue-vitaly-gorbachev/60/000000/external-shopping-cart-cyber-monday-vitaliy-gorbachev-blue-vitaly-gorbachev.png"
+												style="height: 20px; width: 20px;" /> <span
+												style="margin-left: 10px;" id="numberPanier"></span><input
+												type="hidden" name="reservationNumber"
+												value="${reservationNumber}" />
+										</a></li>
+
+										<li class="btn btn-primary"><a href="/logout">Deconnecter
+												<br> ${username}
+										</a></li>
+										
 									</c:if>
 
 								</ul>
@@ -225,7 +232,7 @@
 	</footer>
 	<!-- /.footer-copyright-->
 	<!-- footer-copyright end -->
-	<layout:block name="modalFiles"></layout:block>
+
 	<layout:block name="scriptsfile"></layout:block>
 </body>
 

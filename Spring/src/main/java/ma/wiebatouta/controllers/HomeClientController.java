@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -17,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ma.wiebatouta.models.Equipe;
+import ma.wiebatouta.models.Personne;
+import ma.wiebatouta.models.Reservation;
 import ma.wiebatouta.models.User;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.PersonneRepository;
+import ma.wiebatouta.repositories.ReservationRepository;
 import ma.wiebatouta.repositories.UserRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
@@ -36,97 +40,102 @@ public class HomeClientController {
 	private final static String ATTRIBUT_AUTHENTIFICATED = "authentificated";
 	private final static String ATTRIBUT_AUTHENTIFICATED_USERNAME = "username";
 	private final static String ATTRIBUT_AUTHENTIFICATED_PERSON_ID = "idPerson";
-	private final static String ATTRIBUT_RESER = "";
+	private final static String ATTRIBUT_RESERVATION_NUMBER = "reservationNumber";
 	private final static String ATTRIBUT_COUNTRIES = "countries";
-	
+
 	private int nombreVoyagesBest = 6;
 	private int nombreEquipeBest = 9;
 	@Autowired
 	private VoyageRepository voyageRepository;
-	
+
 	@Autowired
 	private EquipeRepository equipeRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private PersonneRepository personneRepository;
 	@Autowired
 	private CountryRepository countryRepository;
-	
+	@Autowired
+	private ReservationRepository reservationRepository;
+
 	@GetMapping
 	public ModelAndView getPrincipalPage() {
 		ModelAndView model = new ModelAndView(PATH_HOME_PAGE);
-		
+
 		/**
 		 * Selecting voyage
-		 * */
+		 */
 		List<Voyage> voyages = voyageRepository.findAll();
 		Collections.sort(voyages);
-		if(voyages.size() < nombreVoyagesBest) {
-			model.addObject(ATTRIBUT_BEST_VOYAGE,voyages);
-		}else {
+		if (voyages.size() < nombreVoyagesBest) {
+			model.addObject(ATTRIBUT_BEST_VOYAGE, voyages);
+		} else {
 			List<Voyage> sortedVoyages = new ArrayList<Voyage>();
 			for (int i = 0; i < nombreVoyagesBest; i++) {
 				sortedVoyages.add(voyages.get(i));
-				
+
 			}
-			model.addObject(ATTRIBUT_BEST_VOYAGE,sortedVoyages);
+			model.addObject(ATTRIBUT_BEST_VOYAGE, sortedVoyages);
 		}
-		
+
 		/**
 		 * Voyages reduction
-		 * **/
+		 **/
 		List<Voyage> voyagesReduction = new ArrayList<Voyage>();
-		for(Voyage voyage:voyages) {
-			if(voyage.isSolded()) {
+		for (Voyage voyage : voyages) {
+			if (voyage.isSolded()) {
 				voyagesReduction.add(voyage);
 			}
 		}
-		if(voyagesReduction.size() != 0) {
+		if (voyagesReduction.size() != 0) {
 			Random random = new Random();
 			int indice = random.nextInt(voyagesReduction.size());
-			model.addObject(ATTRIBUT_BEST_VOYAGE_REDUCTION,voyagesReduction.get(indice));
-			model.addObject("timelong",voyagesReduction.get(indice).getDateDepart().toGMTString());
+			model.addObject(ATTRIBUT_BEST_VOYAGE_REDUCTION, voyagesReduction.get(indice));
+			model.addObject("timelong", voyagesReduction.get(indice).getDateDepart().toGMTString());
 		}
-		
+
 		/**
 		 * Selecting equipe
-		 * */
+		 */
 		List<Equipe> equipes = equipeRepository.findAll();
 		Collections.sort(equipes);
-		if(voyages.size() < nombreEquipeBest) {
-			model.addObject(ATTRIBUT_BEST_EQUIPE,equipes);
-		}else {
+		if (voyages.size() < nombreEquipeBest) {
+			model.addObject(ATTRIBUT_BEST_EQUIPE, equipes);
+		} else {
 			List<Equipe> sortedEquipes = new ArrayList<Equipe>();
 			for (int i = 0; i < nombreEquipeBest; i++) {
 				sortedEquipes.add(equipes.get(i));
-				
+
 			}
-			model.addObject(ATTRIBUT_BEST_VOYAGE,sortedEquipes);
+			model.addObject(ATTRIBUT_BEST_VOYAGE, sortedEquipes);
 		}
-		
+
 		/**
 		 * Authentication
-		 * **/
+		 **/
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication instanceof AnonymousAuthenticationToken) {
-			model.addObject(ATTRIBUT_AUTHENTIFICATED,false);
-		}else {
-			UserDetails userDetail = (UserDetails)authentication.getPrincipal();
-			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME,userDetail.getUsername());
-			model.addObject(ATTRIBUT_AUTHENTIFICATED,true);
-			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID,personneRepository.getPersonneFromUsername(userDetail.getUsername()).getId());
+		if (authentication instanceof AnonymousAuthenticationToken) {
+			model.addObject(ATTRIBUT_AUTHENTIFICATED, false);
+		} else {
+			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
+			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);
+			Personne personne = personneRepository.getPersonneFromUsername(userDetail.getUsername());
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID, personne.getId());
+			List<Reservation> reservations = reservationRepository.findByPerson(personne);
+			reservations = reservations.stream().filter(r -> !r.isConfirmed()).collect(Collectors.toList());
+			model.addObject(ATTRIBUT_RESERVATION_NUMBER, reservations.size());
 		}
-		
-		
+
 		/**
 		 * Countries
-		 * **/
-		model.addObject(ATTRIBUT_COUNTRIES,countryRepository.findAll());
-		
+		 **/
+		model.addObject(ATTRIBUT_COUNTRIES, countryRepository.findAll());
+
 		return model;
 	}
-	
+
 }
