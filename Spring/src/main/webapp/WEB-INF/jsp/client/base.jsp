@@ -15,6 +15,9 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900"
 	rel="stylesheet" />
+<link
+	href="/css/like.css"
+	rel="stylesheet" />
 <title>WIEBATOUTA</title>
 <link rel="shortcut icon" type="image/icon"
 	href="assets/logo/favicon.png" />
@@ -81,7 +84,7 @@
 										<li class="btn btn-primary"><a href="/logout">Deconnecter
 												<br> ${username}
 										</a></li>
-										
+
 									</c:if>
 
 								</ul>
