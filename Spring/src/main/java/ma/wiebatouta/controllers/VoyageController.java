@@ -27,6 +27,7 @@ import ma.wiebatouta.models.Picture;
 import ma.wiebatouta.models.Theme;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.models.enums.TypePicture;
+import ma.wiebatouta.models.enums.TypeVoyage;
 import ma.wiebatouta.repositories.ActiviteRepository;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.HotelRepository;
@@ -48,6 +49,7 @@ public class VoyageController {
 	private final static String ATTRIBUT_ID_VOYAGE = "idVoyage";
 	private final static String ATTRIBUT_PICTURES = "pictures";
 	private final static String ATTRIBUT_COUNTRIES = "countries";
+	private final static String ATTRIBUT_TYPES_VOYAGES = "typeVoyages";
 	private final static String ATTRIBUT_LIEUX = "lieux";
 	private final static String ATTRIBUT_HOTELES = "hoteles";
 	private final static String ATTRIBUT_HOTELES_ALL = "hotelesAll";
@@ -77,7 +79,9 @@ public class VoyageController {
 	
 	@GetMapping
 	public ModelAndView getPageIndexVoyage() {
-		return new ModelAndView(PATH_INDEX_VOYAGE);
+		ModelAndView model = new ModelAndView(PATH_INDEX_VOYAGE);
+		model.addObject(ATTRIBUT_TYPES_VOYAGES,TypeVoyage.values());
+		return model;
 	}
 	
 	@GetMapping("/lieux")

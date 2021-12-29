@@ -49,6 +49,8 @@ function makeEditVoyage(idVoyage) {
 	$("input[name=dateDepartDateEdit]").val(voyage.dateDepartDate);
 	$("input[name=dateArriveeDateEdit]").val(voyage.dateArriveeDate);
 	$("input[name=descriptionEdit]").val(voyage.description);
+	$("select[name=typeVoyageEdit]").val(voyage.typeVoyage);
+	$("input[name=reductionEdit]").val(voyage.reduction);
 	refreshCountryByVoyage(voyage.destination);
 	refreshEquipeByVoyage(voyage.equipe.id)
 	$('input[name=edit]').click(function() {
@@ -63,6 +65,8 @@ function makeEditVoyage(idVoyage) {
 		var dateArriveeDate  = $('input[name=dateArriveeDateEdit]').val();
 		var description = $('input[name=descriptionEdit]').val();
 		var equipe = $('select[name=idequipeEdit]').val();
+		var typeVoyage = $("select[name=typeVoyageEdit]").val();
+		var reduction = $("input[name=reductionEdit]").val();
 		datas = {
 			'id':idVoyage,
 			'titre': titre,
@@ -75,7 +79,9 @@ function makeEditVoyage(idVoyage) {
 			'dateDepartDate': dateDepartDate,
 			'dateArriveeDate': dateArriveeDate,
 			'description':description,
-			'idEquipe':equipe
+			'idEquipe':equipe,
+			'typeVoyage':typeVoyage,
+			'reduction':reduction
 		}
 		datas = JSON.stringify(datas);
 		$.ajax({
@@ -126,6 +132,7 @@ function clearAddCache() {
 	$('input[name=dateDepartDate]').val("");
 	$('input[name=dateArriveeDate]').val("");
 	$('input[name=description]').val("");
+	$('input[name=typeVoyage]').val("");
 	refreshCountry();
 }
 
@@ -216,6 +223,8 @@ function initialize() {
 		var dateArriveeDate  = $('input[name=dateArriveeDate]').val();
 		var description = $('input[name=description]').val();
 		var equipe = $('select[name=idequipe]').val();
+		var typeVoyage = $("select[name=typeVoyage]").val();
+		var reduction = $("input[name=reduction]").val();
 		datas = {
 			'titre': titre,
 			'destination': destination,
@@ -227,7 +236,9 @@ function initialize() {
 			'dateDepartDate': dateDepartDate,
 			'dateArriveeDate': dateArriveeDate,
 			'description':description,
-			'idEquipe':equipe
+			'idEquipe':equipe,
+			'reduction':reduction,
+			'typeVoyage':typeVoyage
 		}
 		datas = JSON.stringify(datas);
 		console.log(datas)

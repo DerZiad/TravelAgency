@@ -77,14 +77,14 @@ public class ReservationRestController {
 
 	@GetMapping
 	@RolesAllowed("ADMIN")
-	public ResponseEntity<?> getReservations(@RequestParam(name = "id", required = false) Long id)
+	public ResponseEntity<?> getReservations(@RequestParam(name = "idVoyage", required = false) Long idVoyage,@RequestParam(name = "idPerson", required = false) Long idPerson)
 			throws DataEmptyException, NotFoundException {
 		List<Reservation> reservations = reservationRepository.findAll();
 		if (reservations.size() == 0) {
 			throw new DataEmptyException("La liste est vide ");
 		} else {
-			if (id != null) {
-				Reservation reservation = reservationRepository.findById(id)
+			if (idVoyage != null && idPerson !=null) {
+				Reservation reservation = reservationRepository.findById(new KeyReservation(idVoyage, idPerson))
 						.orElseThrow(() -> new NotFoundException("Id introuvable"));
 				return ResponseEntity.ok(reservation);
 			} else {

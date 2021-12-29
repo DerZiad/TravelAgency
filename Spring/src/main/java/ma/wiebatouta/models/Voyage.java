@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +31,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.wiebatouta.models.enums.TypePicture;
+import ma.wiebatouta.models.enums.TypeVoyage;
 
 @Entity
 @Table(name = "voyages")
@@ -74,6 +77,9 @@ public class Voyage implements Comparable<Voyage>{
 	@Transient
 	private Long idEquipe;
 	
+	@Enumerated(EnumType.STRING)
+	@NotNull(message = "Le type voyage ne doit pas être vide")
+	private TypeVoyage typeVoyage;
 	private int review = 0;
 	
 	/**

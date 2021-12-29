@@ -47,9 +47,6 @@ public class Reservation implements Serializable,Comparable<Reservation>,Statist
 	@MapsId("idPerson")
 	private Personne person;
 	
-	@OneToOne(cascade = {CascadeType.ALL},mappedBy = "reservation")
-	private Feedback feedback = new Feedback();
-	
 	@Transient
 	private Long idPerson;
 	

@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- Edit Modal HTML -->
+<!-- Add Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -19,7 +19,7 @@
 				</div>
 				<div class="form-group">
 					<label>Destination</label> <select class="form-control"
-						name="destination" ></select>
+						name="destination"></select>
 					<p id="destinationError" class="error"></p>
 				</div>
 				<div class="form-group">
@@ -34,24 +34,40 @@
 				</div>
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Nombre personne total</label> <input type="number" class="form-control"
-						name="nbrPersonnes" required/>
-					</div> 
+						<label>Type voyage</label> <select class="form-control"
+							name="typeVoyage">
+							<c:forEach items="${typeVoyages}" var="type">
+								<option value="${type}">${type}</option>
+							</c:forEach>
+						</select>
+						<p id="typeVoyageError" class="error"></p>
+					</div>
 					<div class="col-md-6">
-						<label>Nombre kilomètres</label> <input type="number" class="form-control"
-						name="nbKilometres" required/>
+						<label>Reduction </label> <input type="number"
+							class="form-control" name="reduction" required />
+						<p id="typeVoyageError" class="error"></p>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-md-6">
+						<label>Nombre personne total</label> <input type="number"
+							class="form-control" name="nbrPersonnes" required />
+					</div>
+					<div class="col-md-6">
+						<label>Nombre kilomètres</label> <input type="number"
+							class="form-control" name="nbKilometres" required />
 						<p id="nbKilometresError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Age minimal</label> <input type="number" class="form-control"
-						name="ageMin" required/>
+						<label>Age minimal</label> <input type="number"
+							class="form-control" name="ageMin" required />
 						<p id="ageMinError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Age maximal</label><input type="number" class="form-control"
-						name="ageMax" required/>
+						<label>Age maximal</label><input type="number"
+							class="form-control" name="ageMax" required />
 						<p id="ageMaxError" class="error"></p>
 					</div>
 				</div>
@@ -59,18 +75,17 @@
 				<div class="form-row">
 					<div class="col-md-6">
 						<label>Date départ</label> <input type="date" class="form-control"
-						name="dateDepartDate" required/>
+							name="dateDepartDate" required />
 						<p id="dateDepartError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Date arrivée</label> <input type="date" class="form-control"
-						name="dateArriveeDate" required/>
+						<label>Date arrivée</label> <input type="date"
+							class="form-control" name="dateArriveeDate" required />
 						<p id="dateArriveeError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label>Equipe</label> <select class="form-control"
-						name="idequipe" ></select>
+					<label>Equipe</label> <select class="form-control" name="idequipe"></select>
 					<p id="equipeError" class="error"></p>
 				</div>
 			</div>
@@ -99,7 +114,7 @@
 				</div>
 				<div class="form-group">
 					<label>Destination</label> <select class="form-control"
-						name="destinationEdit" ></select>
+						name="destinationEdit"></select>
 					<p id="destinationError" class="error"></p>
 				</div>
 				<div class="form-group">
@@ -114,24 +129,40 @@
 				</div>
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Nombre personne total</label> <input type="number" class="form-control"
-						name="nbrPersonnesEdit" required/>
-					</div> 
+						<label>Type voyage</label> <select class="form-control"
+							name="typeVoyageEdit">
+							<c:forEach items="${typeVoyages}" var="type">
+								<option value="${type}">${type}</option>
+							</c:forEach>
+						</select>
+						<p id="typeVoyageError" class="error"></p>
+					</div>
 					<div class="col-md-6">
-						<label>Nombre kilomètres</label> <input type="number" class="form-control"
-						name="nbKilometresEdit" required/>
+						<label>Reduction </label> <input type="number"
+							class="form-control" name="reductionEdit" required />
+						<p id="reductionError" class="error"></p>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-md-6">
+						<label>Nombre personne total</label> <input type="number"
+							class="form-control" name="nbrPersonnesEdit" required />
+					</div>
+					<div class="col-md-6">
+						<label>Nombre kilomètres</label> <input type="number"
+							class="form-control" name="nbKilometresEdit" required />
 						<p id="nbKilometresError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Age minimal</label> <input type="number" class="form-control"
-						name="ageMinEdit" required/>
+						<label>Age minimal</label> <input type="number"
+							class="form-control" name="ageMinEdit" required />
 						<p id="ageMinError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Age maximal</label><input type="number" class="form-control"
-						name="ageMaxEdit" required/>
+						<label>Age maximal</label><input type="number"
+							class="form-control" name="ageMaxEdit" required />
 						<p id="ageMaxError" class="error"></p>
 					</div>
 				</div>
@@ -139,18 +170,18 @@
 				<div class="form-row">
 					<div class="col-md-6">
 						<label>Date départ</label> <input type="date" class="form-control"
-						name="dateDepartDateEdit" required/>
+							name="dateDepartDateEdit" required />
 						<p id="dateDepartError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Date arrivée</label> <input type="date" class="form-control"
-						name="dateArriveeDateEdit" required/>
+						<label>Date arrivée</label> <input type="date"
+							class="form-control" name="dateArriveeDateEdit" required />
 						<p id="dateArriveeError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-group">
 					<label>Equipe</label> <select class="form-control"
-						name="idequipeEdit" ></select>
+						name="idequipeEdit"></select>
 					<p id="equipeErrorEdit" class="error"></p>
 				</div>
 			</div>
@@ -159,9 +190,9 @@
 					value="Cancel" id="cancelAdd"> <input type="submit"
 					name="edit" class="btn btn-success" value="Add">
 			</div>
-			</div>
 		</div>
 	</div>
+</div>
 </div>
 <!-- Delete Modal HTML -->
 <div id="deleteEmployeeModal" class="modal fade">

@@ -56,4 +56,10 @@ public class Equipe implements Serializable,Comparable<Equipe>{
 			return -1;
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Equipe [id=" + id + ", label=" + label + ", personne=" + personne +  "]";
+	}
+	
 }

@@ -50,7 +50,6 @@ public class VoyageRestController {
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	@RolesAllowed("ADMIN")
 	public HttpEntity<?> addVoyage(@RequestBody Voyage voyage) throws AddUnsatisfiedException, NotFoundException {
-		System.out.println(voyage);
 		HashMap<String, String> errors = new HashMap<String, String>();
 		Equipe equipe = equipeRepository.findById(voyage.getIdEquipe()).orElseThrow(() -> new NotFoundException());
 		voyage.setEquipe(equipe);

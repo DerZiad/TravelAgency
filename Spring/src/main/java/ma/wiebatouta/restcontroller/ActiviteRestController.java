@@ -51,7 +51,6 @@ public class ActiviteRestController {
 	@RolesAllowed("ADMIN")
 	public HttpEntity<?> addActivite(@RequestBody Activite activite) throws NotFoundException, AddUnsatisfiedException {
 		HashMap<String, String> errors = new HashMap<String, String>();
-		System.out.println(activite);
 		Long idVoyage = activite.getIdVoyage();
 		Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id introuvable"));
 		activite.setVoyage(voyage);
@@ -81,7 +80,6 @@ public class ActiviteRestController {
 				}
 			}
 		}
-		System.out.println("SA" + errors);
 		
 		if (errors.size() != 0) {
 			Gson gson = new Gson();
@@ -101,7 +99,6 @@ public class ActiviteRestController {
 	@RolesAllowed("ADMIN")
 	public HttpEntity<?> addSousActivite(@RequestBody SousActivite sousActivite, @RequestParam Long idSousActivite)
 			throws AddUnsatisfiedException {
-		System.out.println("ADD");
 		HashMap<String, String> errors = new HashMap<String, String>();
 		Activite activite = activiteRepository.getById(idSousActivite);
 		sousActivite.setActivite(activite);
@@ -141,8 +138,6 @@ public class ActiviteRestController {
 	@RolesAllowed("ADMIN")
 	public HttpEntity<?> editActivite(@RequestBody Activite activite)
 			throws NotFoundException, AddUnsatisfiedException {
-		System.out.println("put");
-		System.out.println(activite);
 		HashMap<String, String> errors = new HashMap<String, String>();
 		Long idVoyage = activite.getIdVoyage();
 		Voyage voyage = voyageRepository.findById(idVoyage).orElseThrow(() -> new NotFoundException("Id introuvable"));
@@ -165,7 +160,6 @@ public class ActiviteRestController {
 			sousActivite.get(i).setId(sousActivite.get(i).getId());
 			sousActivite.get(i).setActivite(activite);
 		}
-		System.out.println("SA" + sousActivite);
 		Validator validator1 = factory.getValidator();
 		/*
 		 * Set<ConstraintViolation<List<SousActivite>>> violatons11 =
@@ -185,7 +179,6 @@ public class ActiviteRestController {
 				}
 			}
 		}
-		System.out.println(errors);
 
 		if (errors.size() != 0) {
 			Gson gson = new Gson();
