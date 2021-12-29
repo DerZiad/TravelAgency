@@ -9,8 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Reservation;
+import ma.wiebatouta.models.idcompose.KeyReservation;
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, Long> {
+public interface ReservationRepository extends JpaRepository<Reservation, KeyReservation> {
 	public List<Reservation> findByPerson(Personne person);
 	
 	@Query("SELECT r FROM Reservation r where r.person.user.username=:username")

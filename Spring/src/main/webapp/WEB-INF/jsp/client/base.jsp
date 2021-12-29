@@ -70,7 +70,7 @@
 									<c:if test="${authentificated}">
 										<input type="hidden" name="username" value="${username}" />
 										<input type="hidden" name="idPerson" value="${idPerson}" />
-										<li><a href="#payer" data-toggle="modal"> <img
+										<li><a href="/panier" data-toggle="modal"> <img
 												src="https://img.icons8.com/external-vitaliy-gorbachev-blue-vitaly-gorbachev/60/000000/external-shopping-cart-cyber-monday-vitaliy-gorbachev-blue-vitaly-gorbachev.png"
 												style="height: 20px; width: 20px;" /> <span
 												style="margin-left: 10px;" id="numberPanier"></span><input

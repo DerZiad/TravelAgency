@@ -65,7 +65,7 @@
 									<td><a
 										href="/admin/voyage/picture/delete?id=${picture.voyage.id}&idPicture=${picture.id}"
 										class="delete"><i class="material-icons"
-											data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+											data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

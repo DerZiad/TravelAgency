@@ -330,8 +330,8 @@
 						<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 							<div class="custom-input-group">
 								<input type="email" class="form-control"
-									placeholder="Enter your Email Here">
-								<button class="appsLand-btn subscribe-btn">Subscribe</button>
+									placeholder="Contact us" disabled>
+								<button formAction="mailto:ziadbougrine@gmail.com" class="appsLand-btn subscribe-btn">Mail to</button>
 								<div class="clearfix"></div>
 								<i class="fa fa-envelope"></i>
 							</div>
