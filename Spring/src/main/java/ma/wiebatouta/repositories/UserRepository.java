@@ -11,4 +11,6 @@ import ma.wiebatouta.models.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	public List<User> findByUsername(String username);
+	
+	
 }	

@@ -14,9 +14,9 @@ public class EmailService {
 	private JavaMailSender mailer;
 	
 	
-	private static final String FROM_EMAIL = "deliberation.sms@gmail.com";
+	private static final String FROM_EMAIL = "a.abouhali@edu.umi.ac.ma";
 		
-	public static String SERVERLINK = "http://localhost:8080";
+	public static String SERVERLINK = "http://localhost";
 
 	
 	

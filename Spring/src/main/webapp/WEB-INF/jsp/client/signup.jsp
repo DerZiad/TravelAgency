@@ -63,7 +63,7 @@
 				</div>
 				<div class="card-body">
 					<h2 class="title">SIGN UP</h2>
-					<form action="InscriptionEnLigne.php" method="POST"
+					<form action="/signup" method="POST"
 						enctype="multipart/form-data">
 						<!--       <div class="input-group">
                            <input class="input--style-2" type="text" placeholder="Nom" name="name">
@@ -103,7 +103,7 @@
 								<div class="input-group">
 									<div class="rs-select2 js-select-simple select--no-search">
 										<select name="sexe">
-											<option disabled="disabled" selected="selected">Sexe</option>
+											<option  selected="selected">Sexe</option>
 											<option value="HOMME">M</option>
 											<option value="FEMME">F</option>
 										</select>
@@ -113,9 +113,9 @@
 							</div>
 						</div>
 						<div class="input-group">
-							<div class="rs-select2 js-select-simple select--no-search">
+							<div  >
 								<select name="lieuN_fr">
-									<option disabled="disabled" selected="selected">Lieu
+									<option  selected="selected">Lieu
 										de naissance</option>
 									<c:forEach var="country" items="${countries}">
 										<option value="${country.valueCountry}">${country.valueCountry}</option>
@@ -189,7 +189,7 @@
 								<div class="input-group">
 									<div class="rs-select2 js-select-simple select--no-search">
 										<select name="etatPhy">
-											<option disabled="disabled" selected="selected">Etat
+											<option selected="selected">Etat
 												physique</option>
 											<option value="Sain">Sain</option>
 											<option value="DeplacementLimite">Déplacement limité</option>
@@ -207,22 +207,22 @@
 								<div class="input-group">
 									<div class="rs-select2 js-select-simple select--no-search">
 										<select name="GroupSocio">
-											<option disabled="disabled" selected="selected">Groupe
+											<option  selected="selected">Groupe
 												socioprofessionnel</option>
-											<option value="Agriculteurs exploitants">Agriculteurs
+											<option value="AgriculExploi">Agriculteurs
 												exploitants</option>
-											<option value="Artisans, commerçants et chefs d’entreprise">
+											<option value="Entreprise">
 												Artisans, commerçants et chefs d’entreprise</option>
 											<option
-												value="Cadres et professions intellectuelles supérieures">
+												value="cadreIntell">
 												Cadres et professions intellectuelles supérieures</option>
-											<option value="Professions intermédiaires">
+											<option value="ProfInter">
 												Professions intermédiaires</option>
 											<option value="Employés">Employés</option>
 											<option value="Ouvriers">Ouvriers</option>
 											<option value="Retraités">Retraités</option>
 											<option
-												value="Autres personnes sans activité professionnelle">
+												value="Autres">
 												Autres personnes sans activité professionnelle</option>
 											<option value="Autres">Autres</option>
 										</select>

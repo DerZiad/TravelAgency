@@ -66,7 +66,6 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 			person.setPrenom("Ziad");
 			person.setCodePostal(50000l);
 			person.setDateNaissance(new Date("2002/01/02"));
-			person.setEtatSocial("Marie");
 			person.setImage(null);
 			person.setEmail("ziadbougrine@gmail.com");
 			person.setNationalite("Morroco");

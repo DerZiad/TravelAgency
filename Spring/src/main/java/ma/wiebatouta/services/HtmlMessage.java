@@ -8,4 +8,6 @@ public interface HtmlMessage {
 	
 	public String generateMessage();
 	
+	
+	
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -61,7 +62,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@Length(min = 2, max = 20, message = "Le prenom doit être entre 2 et 20 caracètres")
 	private String prenom;
 	@Past(message = "La date de naissance doît être dans le passé")
-	@NotNull(message = "La date de naissance ne doît pas être vide")
+	//@NotNull(message = "La date de naissance ne doît pas être vide")
 	private Date dateNaissance;
 	@NotNull(message = "Le code postal ne doît pas être vide")
 	private Long codePostal;
@@ -78,16 +79,13 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@Length(min = 5, max = 25, message = "La nationnalité doit être entre 5 et 25 caracètres")
 	private String nationalite;
 	private boolean marie = false;
-	@Column(nullable = false, length = 35)
-	@NotNull(message = "L'etat social ne ne doit pas être vide")
-	@Length(min = 2, max = 25, message = "L'etat social doit être entre 2 et 25 caracètres")
-	private String etatSocial;
 	@Length(min = 10, max = 22, message = "Le numéro de téléphone doit être entre 10 et 22")
 	@NotNull(message = "Le numero de téléphone ne doit pas être vide")
 	private String telephone;
 	@Email(message = "L'email n'est pas valide")
 	private String email;
-
+	@JsonIgnore
+	private String codeVerif ;
 	@Enumerated(EnumType.STRING)
 	@NotNull(message = "Le sexe ne doit pas être vide")
 	private Sexe sexe;
@@ -153,6 +151,14 @@ public class Personne implements Serializable, Comparable<Personne> {
 	public String getDateNaissanceDate() {
 		java.sql.Date sDate = new java.sql.Date(this.dateNaissance.getTime());
 		return sDate.toString();
+	}
+	
+	public String getCodeVerif() {
+		return this.codeVerif;
+	}
+	public void generateCode() {
+		Random rand = new Random();
+		codeVerif=String.valueOf(rand.nextInt(9999));
 	}
 
 }
