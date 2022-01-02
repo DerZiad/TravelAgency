@@ -16,10 +16,11 @@
 						<div class="col-sm-4 col-md-4">
 							<div class="thumbnail">
 								<h2>
-									trending news <span>${voyage.getDateDepartDate()}</span>
+									trending news <span>${voyage.dateDepart}</span>
 								</h2>
 								<div class="thumbnail-img">
-									<img src="data:image/jpeg;base64,${voyage.getHeader()}" alt="blog-img">
+									<img src="data:image/jpeg;base64,${voyage.getHeader()}"
+										alt="blog-img">
 									<div class="thumbnail-img-overlay"></div>
 									<!--/.thumbnail-img-overlay-->
 
@@ -47,9 +48,75 @@
 						<!--/.col-->
 					</c:forEach>
 				</div>
+
 				<!--/.row-->
 			</div>
 			<!--/.blog-content-->
+			<c:choose>
+				<c:when test="${data.size() > 0 }">
+					<div id="blog" class="blog">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="titlepage">
+										<h2>Nos voyages</h2>
+
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<c:forEach items="${data}" var="voyage">
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+										<div class="blog-box">
+											<figure>
+												<img src="data:image/jpeg;base64,${voyage.getHeader()}"
+													alt="blog-img">
+											</figure>
+											<div class="travel">
+												<span>Destination : ${ voyage.destination }</span>
+												<p>
+													<strong class="Comment"> ${ voyage.prix} $</strong> Prix
+												</p>
+												<h3>${ voyage.getDestination() }AmazingTour</h3>
+												<ul class="list-unstyled">
+													<li><i class="fa fa-car"></i><strong> Date
+															d'arrivée: </strong>${ voyage.dateArrivee }</li>
+
+													<li><i class="fa fa-map-marker"></i> <strong>
+															Nbre de Kilometre : </strong>${ voyage.nbKilometres }</li>
+													<li><i class="fa fa-sun-o"></i> <strong> Type
+															de voyage : </strong> ${ voyage.typeVoyage }</li>
+
+												</ul>
+												<div class=" bottom text-center">
+													<button onclick="addToChart(${voyage.id})"
+														class="about-view packages-btn">book now</button>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+				</c:when>
+
+			</c:choose>
+
+			<c:if test="${data.size() > 0 }">
+				<div class="panel-footer">
+					Showing ${number+1} of ${size+1} of ${totalElements}
+					<ul class="pagination">
+						<c:forEach begin="0" end="${totalPages-1}" var="page">
+							<li class="page-item"><a
+								href="search?country=default&date_depart=<%=new java.sql.Date(System.currentTimeMillis())%>&date_arrive=<%=new java.sql.Date(System.currentTimeMillis())%>&nbrePersonne=1&budget=30&srch=search++&page=${page}&size=${size}"
+								class="page-link">${page+1}</a></li>
+						</c:forEach>
+					</ul>
+				</div>
+			</c:if>
+
 		</div>
 		<!--/.blog-details-->
 	</div>

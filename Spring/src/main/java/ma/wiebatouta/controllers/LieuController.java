@@ -83,6 +83,7 @@ public class LieuController {
 					List<Lieu> lieux = lieuMetier.listeLieux();
 					model.addObject(LIEUX, lieux);
 					List<Country> countries = cm.listeCountries();
+					model.addObject("lieu", lieu);
 					model.addObject(COUNTRY, countries);
 					model.addObject("errors", errors);
 					bool = true;

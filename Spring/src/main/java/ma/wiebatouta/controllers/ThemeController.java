@@ -57,15 +57,18 @@ public class ThemeController {
 	@RolesAllowed("ADMIN")
 	public ModelAndView createNewTheme(@RequestParam(name = "id", required = false) Long id,
 			@RequestParam("name") String nom, @RequestParam("description") String description,
-			@RequestParam(name = "logo") MultipartFile logo) throws IOException, MessagingException {
+			@RequestParam(name = "logo",required=false) MultipartFile logo) throws IOException, MessagingException {
 		ModelAndView model = new ModelAndView(PATH_THEME);
+		ModelAndView model1 = new ModelAndView(REDIRECT_LIST_THEMES);
 		Theme theme = null;
 		if (id != null) {
 			HashMap<String, String> errors = new HashMap<String, String>();
 			try {
+				
 				theme = themeMetier.getThemeById(id);
 				theme.setDescription(description);
 				theme.setLabel(nom);
+				theme.setPicture(theme.getPicture());
 				ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 				Validator validator = factory.getValidator();
 				Set<ConstraintViolation<Theme>> violations = validator.validate(theme);
@@ -74,11 +77,14 @@ public class ThemeController {
 				}
 				boolean bool = false;
 				if (errors.size() != 0) {
+					model.addObject("theme", theme);
 					model.addObject("errors", errors);
 					bool = true;
 					model.addObject("bool", bool);
+					return model;
 				} else {
 					themeMetier.save(theme);
+					return model1;
 				}
 			} catch (NotFoundException e) {
 				errors.put("id", "Id not found");

@@ -1,7 +1,7 @@
 package ma.wiebatouta.metier;
 
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
@@ -33,12 +33,13 @@ public class SignUpMetier {
 			int nbenf, String tel, String cin, String email, Long codep, String grpSocio, MultipartFile photo)
 			throws IOException, MessagingException {
 		Personne personne = new Personne();
+		Date dn = Date.valueOf(date);
 		personne.setCne(cin);
 		personne.setCodePostal(codep);
 		System.out.println(grpSocio);
 		System.out.println(date);
 		personne.setTravaille("medecin");
-		personne.setDateNaissance(null);
+		personne.setDateNaissance(dn);
 		personne.setEmail(email);
 		personne.setImagePart(photo);
 		personne.setMarie(marie);

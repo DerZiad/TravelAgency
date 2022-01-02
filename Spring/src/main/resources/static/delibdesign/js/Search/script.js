@@ -1,6 +1,7 @@
 var lieux = [];
 var voyages = [];
 var voyfiltre = [];
+var voyDate = [];
 $(document).ready(function() {
 	refreshVoyages();
 	$('input[name=date_arrive]').click(function() {
@@ -10,11 +11,12 @@ $(document).ready(function() {
 		refreshLieux();
 		refreshVoyagesByCountry();
 	});
-	$('.date').change(function(){
-		console.log("dteJQUERY");
+	$('.date').change(function() {
 		refreshVoyagesByDATE();
 	});
-
+	$('input[name=budget]').change(function() {
+		refreshVoyagesByBudget();
+	})
 
 });
 function verifi() {
@@ -36,7 +38,6 @@ function refreshLieux() {
 					contenue = contenue + '<option value="' + lieu.id + '">' + lieu.label + '</option>';
 				}
 			}
-			console.log(lieux);
 			$('select[name=state]').html(contenue);
 		}
 	});
@@ -44,7 +45,6 @@ function refreshLieux() {
 }
 
 function refreshVoyages() {
-	console.log("refreshVoyages");
 	$.ajax({
 		url: '/api/voyage',
 		type: 'get',
@@ -62,10 +62,9 @@ function refreshVoyages() {
 function refreshVoyagesByCountry() {
 	var country = $('select[name=country]').val();
 	var i = 0;
-	console.log("Rferesh vyg COUNTRY")
 	refreshVoyages();
 	for (voy of voyages) {
-				if (voy['destination'] == country) {//voy['destination']
+		if (voy['destination'] == country) {//voy['destination']
 			voyfiltre.push(voy);
 			i = i + 1;
 		}
@@ -78,24 +77,37 @@ function refreshVoyagesByCountry() {
 
 
 function refreshVoyagesByDATE() {
-	console.log("datee");
 	var dated = $('input[name=date_depart]').val();
-	console.log("input ==>"+dated);
 	var dater = $('input[name=date_arrive]').val();
 	refreshVoyages();
-	var i=0;
+	var i = 0;
 	/*alert("jhhh");*/
 	for (voy of voyfiltre) {
-		console.log("dATABASE "+voy['dateDepartDate']);
-		if (voy['dateDepartDate'] === dated && voy['dateArriveeDate'] === dater ) {
+		console.log("dATABASE " + voy['dateDepartDate']);
+		if (voy['dateDepartDate'] === dated && voy['dateArriveeDate'] === dater) {
 			i = i + 1;
+			voyDate.push(voy);
 		}
 
 
 	}
 	document.getElementById("srch").setAttribute("value", "search  " + i);
+}
 
 
+
+function refreshVoyagesByBudget() {
+	var prix = $('input[name=budget]').val();
+	refreshVoyages();
+	var i=0;
+	for (voy of voyDate) {
+		console.log(voyDate);
+		if (voy['prix'] <= prix){
+			i = i + 1;
+
+		}
+	}
+	document.getElementById("srch").setAttribute("value", "search  " + i);
 
 
 }

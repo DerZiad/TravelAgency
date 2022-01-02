@@ -1,5 +1,8 @@
-reservations = []
+var reservations = []
 var etat1 = "";
+var reseCountry=[];
+var reseDate=[];
+var reseBudget=[];
 $(document).ready(function() {
 	console.log("hh	");
 
@@ -42,7 +45,6 @@ function refreshReservation() {
 
 				contenue = contenue + '</tr>\n'
 			}
-			console.log(reservations)
 			$('#reservationslist').html(contenue);
 		}
 	});
@@ -53,6 +55,7 @@ function refreshReservationBYcountry() {
 	var country = getCountryByKey(kcountry);
 	console.log(country); */
 	var contenue = "";
+	
 	for (rese of reservations) {
 		console.log(rese['voyage']['destination']);
 		if (rese['voyage']['destination'] === country) {
@@ -73,34 +76,7 @@ function refreshReservationBYcountry() {
 			}
 
 			contenue = contenue + '</tr>\n'
-		}
-	}
-	$('#reservationslist').html(contenue);
-
-}
-function refreshReservationBYBudget() {
-	var prix = $('input[name=budget]').val();
-	console.log(prix);
-	var contenue = "";
-	for (rese of reservations) {
-		if (rese['voyage']['prix'] <= prix) {
-			contenue = contenue + '<tr>\n';
-
-			contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox' + rese['id']['idVoyage'] + '" name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n'
-			contenue = contenue + '<td>' + rese['voyage']['titre'] + '</td>\n'
-			contenue = contenue + '<td>' + rese['person']['cne'] + " " + rese['person']['prenom'] + " " + rese['person']['nom'] + '</td>\n'
-			contenue = contenue + '<td>' + rese['voyage']['destination'] + '</td>\n'
-			contenue = contenue + '<td>' + rese['voyage']['prix'] + '</td>\n'
-
-			if (rese.confirmed) {
-				etat1 = "Confirmee"
-				contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
-			} else {
-				etat1 = "Pas Confirmee"
-				contenue = contenue + '<td class="text-center danger">' + etat1 + '</td>\n'
-			}
-
-			contenue = contenue + '</tr>\n'
+			reseCountry.push(rese);
 		}
 	}
 	$('#reservationslist').html(contenue);
@@ -111,7 +87,7 @@ function refreshReservationByDATEARV() {
 	var date = $('input[name=dateArriveDate]').val();
 	console.log(date);
 	var contenue = "";
-	for (rese of reservations) {
+	for (rese of reseCountry) {
 		console.log("res1  " + rese['voyage']['dateArriveeDate']);
 		console.log(rese['voyage']['dateArriveeDate'] === date);
 		if (rese['voyage']['dateArriveeDate'] === date) {
@@ -132,12 +108,45 @@ function refreshReservationByDATEARV() {
 			}
 
 			contenue = contenue + '</tr>\n'
+			reseDate.push(rese)
 		}
 
 	}
 	$('#reservationslist').html(contenue);
 
 }
+
+function refreshReservationBYBudget() {
+	var prix = $('input[name=budget]').val();
+	console.log(prix);
+	var contenue = "";
+	for (rese of reseDate) {
+		if (rese['voyage']['prix'] <= prix) {
+			contenue = contenue + '<tr>\n';
+
+			contenue = contenue + '<td><span class="custom-checkbox"> <input type="checkbox" id="checkbox' + rese['id']['idVoyage'] + '" name="options[]" value="1"> <label for="checkbox1"></label></span></td>\n'
+			contenue = contenue + '<td>' + rese['voyage']['titre'] + '</td>\n'
+			contenue = contenue + '<td>' + rese['person']['cne'] + " " + rese['person']['prenom'] + " " + rese['person']['nom'] + '</td>\n'
+			contenue = contenue + '<td>' + rese['voyage']['destination'] + '</td>\n'
+			contenue = contenue + '<td>' + rese['voyage']['prix'] + '</td>\n'
+
+			if (rese.confirmed) {
+				etat1 = "Confirmee"
+				contenue = contenue + '<td class="text-center success">' + etat1 + '</td>\n'
+			} else {
+				etat1 = "Pas Confirmee"
+				contenue = contenue + '<td class="text-center danger">' + etat1 + '</td>\n'
+			}
+
+			contenue = contenue + '</tr>\n'
+			reseBudget.push(rese)
+		}
+		
+	}
+	$('#reservationslist').html(contenue);
+
+}
+
 
 
 /*function getCountryByKey(keyCountry){

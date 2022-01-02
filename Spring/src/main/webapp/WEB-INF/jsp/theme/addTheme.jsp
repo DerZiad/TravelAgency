@@ -53,6 +53,13 @@
 						<div class="col-md-6" id="cin">
 							<div class="position-relative form-group alert alert-primary">
 								<div class="row">
+									<c:if test="${bool}">
+									<div class="col-md-6">
+										<img style='display: block; width: 100px; height: 100px;'
+											id='base64image' name="img"
+											src='data:image/jpeg;base64,${theme.encodedPicture}' />
+									</div>
+									</c:if>
 									<c:if test="${modify}">
 									<div class="col-md-6">
 										<img style='display: block; width: 100px; height: 100px;'
@@ -60,12 +67,14 @@
 											src='data:image/jpeg;base64,${theme.encodedPicture}' />
 									</div>
 									</c:if>
+									<c:if test="${! modify}">
 									<div class="col-md-6">
 										<div class="col-md-6">
 											<label for="photo" class="">Inserer Photo</label> <input
-												name="logo" id="file" type="file" />
+												name="logo" id="file" type="file"  />
 										</div>
 									</div>
+									</c:if>
 
 								</div>
 

@@ -22,7 +22,7 @@
 						</ul>
 						<!-- Tab panes -->
 						<div class="tab-content">
-							<form action="search" method="post">
+							<form action="search" method="get">
 
 								<div role="tabpanel" class="tab-pane active fade in" id="tours">
 									<div class="tab-para">
@@ -50,17 +50,7 @@
 													</div>
 													<!-- /.travel-select-icon -->
 
-													<div class="travel-select-icon">
-														<select name="state" class="form-control ">
 
-															<!-- /.option-->
-
-
-															<!-- /.option-->
-
-														</select>
-														<!-- /.select-->
-													</div>
 													<!-- /.travel-select-icon -->
 												</div>
 												<!--/.single-tab-select-box-->
@@ -75,7 +65,8 @@
 														<div class="col-sm-9">
 															<input placeholder="dd/mm/yyyy" type="date"
 																min="<%=new java.sql.Date(System.currentTimeMillis())%>"
-																name="date_depart" class="form-control date" />
+																name="date_depart" class="form-control date"
+																value="<%=new java.sql.Date(System.currentTimeMillis())%>" />
 														</div>
 													</div>
 
@@ -91,7 +82,8 @@
 														retour</label>
 													<div class="col-sm-9">
 														<input id="dr" class="form-control date" type="date"
-															name="date_arrive" placeholder="dd/mm/yyyy" />
+															name="date_arrive"
+															value="<%=new java.sql.Date(System.currentTimeMillis())%>" />
 													</div>
 												</div>
 
@@ -104,7 +96,7 @@
 												<div class="form-row">
 													<div class="col-md-6">
 														<label>Nombre Personnes</label> <input type="number"
-															class="form-control" name="nbrePersonne" />
+															class="form-control" name="nbrePersonne" value=1 />
 														<p id="nbrePersonne" class="error"></p>
 													</div>
 												</div>
@@ -125,8 +117,8 @@
 															</div>
 														</div>
 														<div class="content">
-															<input name="budget" type="range" min="10" max="1000"
-																value="30" data-rangeslider>
+															<input name="budget" type="range" min="100" max="10000"
+																value="300" data-rangeslider>
 														</div>
 														<div class="footer clearfix">
 															<div class="pull-right">
@@ -165,7 +157,7 @@
 
 				<!--/.tabpannel-->
 
-				
+
 				<!--/.tabpannel-->
 
 			</div>
@@ -174,7 +166,7 @@
 		<!--/.desc-tabs-->
 	</div>
 	<!--/.single-travel-box-->
-	
+
 	<!--/.container-->
 
 </section>

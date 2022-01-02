@@ -25,46 +25,53 @@ import org.springframework.stereotype.Controller;
 @RequestMapping("/signup")
 
 public class SignUpController {
-	private final static String PATH_SIGNUP="client/signup";
+	private final static String PATH_SIGNUP = "client/signup";
 	private final static String ATTRIBUT_COUNTRIES = "countries";
-	private final static String PAGE_SUCCES="client/succes";
-	private final static String ATTRIBUT_MESSAGE="message";
-	
+	private final static String PAGE_SUCCES = "client/succes";
+	private final static String ATTRIBUT_MESSAGE = "message";
+
 	@Autowired
 	private CountryRepository countryRepository;
-	
+
 	@Autowired
 	private SignUpMetier signUpMetier;
-	
+
 	@GetMapping
 	public ModelAndView getPageSignUp() {
 		ModelAndView model = new ModelAndView(PATH_SIGNUP);
 		model.addObject(ATTRIBUT_COUNTRIES, countryRepository.findAll());
 		return model;
 	}
-	
+
 	@PostMapping()
-	public ModelAndView signUp(@RequestParam("NomFr")String nom, 
-			@RequestParam("PrenomFr")String prenom,@RequestParam("dateN")String dateN ,@RequestParam("sexe")String sexe,@RequestParam("lieuN_fr")String lieuNaissance,@RequestParam("marie")String marie,
-			@RequestParam("nbenf")int nbenf,@RequestParam("tel")String tel,@RequestParam("cin")String cin,@RequestParam("email")String email,@RequestParam("codep")Long codep,@RequestParam("GroupSocio")String grpSocio,@RequestParam("photo")MultipartFile photo) throws IOException, MessagingException {
+	public ModelAndView signUp(@RequestParam("NomFr") String nom, @RequestParam("PrenomFr") String prenom,
+			@RequestParam("dateN") String dateN, @RequestParam("sexe") String sexe,
+			@RequestParam("lieuN_fr") String lieuNaissance, @RequestParam("marie") String marie,
+			@RequestParam("nbenf") int nbenf, @RequestParam("tel") String tel, @RequestParam("cin") String cin,
+			@RequestParam("email") String email, @RequestParam("codep") Long codep,
+			@RequestParam("GroupSocio") String grpSocio, @RequestParam("photo") MultipartFile photo)
+			throws IOException, MessagingException {
 		ModelAndView model = new ModelAndView(PAGE_SUCCES);
-		boolean b=false;
-		if(marie.equals("oui")) {
-			b=true;
-		}else {
-			b=false;
+		boolean b = false;
+		if (marie.equals("oui")) {
+			b = true;
+		} else {
+			b = false;
 		}
-		model.addObject(ATTRIBUT_MESSAGE,"Vous allez recevoir un email de confirmation de votre inscription");
-		signUpMetier.createSignUp(nom, prenom, dateN, sexe, lieuNaissance, b, nbenf, tel, cin, email, codep,grpSocio, photo);
-		
+		model.addObject(ATTRIBUT_MESSAGE, "Vous allez recevoir un email de confirmation de votre inscription");
+		signUpMetier.createSignUp(nom, prenom, dateN, sexe, lieuNaissance, b, nbenf, tel, cin, email, codep, grpSocio,
+				photo);
+
 		return model;
 	}
+
 	@GetMapping("/confirmation/{codeVerif}/{idPersone}")
-	public ModelAndView confirmerEmail(@PathVariable("codeVerif")Long codeverif,@PathVariable("idPersonne")Long idPersonne) {
+	public ModelAndView confirmerEmail(@PathVariable("codeVerif") Long codeverif,
+			@PathVariable("idPersonne") Long idPersonne) {
 		String code = String.valueOf(codeverif);
 		signUpMetier.confirmerSignUP(code, idPersonne);
 		ModelAndView model = new ModelAndView(PAGE_SUCCES);
 		model.addObject(ATTRIBUT_MESSAGE, "Votre Inscription a ete confirme");
 		return model;
-}
+	}
 }
