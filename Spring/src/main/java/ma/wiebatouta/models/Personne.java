@@ -62,7 +62,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@Length(min = 2, max = 20, message = "Le prenom doit être entre 2 et 20 caracètres")
 	private String prenom;
 	@Past(message = "La date de naissance doît être dans le passé")
-	//@NotNull(message = "La date de naissance ne doît pas être vide")
+	@NotNull(message = "La date de naissance ne doît pas être vide")
 	private Date dateNaissance;
 	@NotNull(message = "Le code postal ne doît pas être vide")
 	private Long codePostal;
@@ -128,6 +128,14 @@ public class Personne implements Serializable, Comparable<Personne> {
 			this.marie = true;
 		} else {
 			this.marie = false;
+		}
+	}
+	
+	public void setSexE(String sexe) {
+		if (Sexe.HOMME.name().equals(sexe.toUpperCase())) {
+			this.sexe=Sexe.HOMME;
+		} else {
+			this.sexe=Sexe.FEMME;
 		}
 	}
 

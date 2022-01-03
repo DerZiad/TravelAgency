@@ -71,7 +71,7 @@ public class AgenceVoyageApplication implements CommandLineRunner{
 			person.setNationalite("Morroco");
 			person.setTravaille("Bachelor");
 			person.setNombreEnfant(1);
-			person.setSexe(Sexe.HOMME);
+			person.setSexE("HOMME");
 			person.setTelephone("+212641408306");
 			person.setImage(new byte[] {0});
 			User user2 = new User();

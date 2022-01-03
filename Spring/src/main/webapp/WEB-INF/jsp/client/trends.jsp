@@ -66,7 +66,7 @@
 							</div>
 							<div class="row">
 								<c:forEach items="${data}" var="voyage">
-									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+									<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
 										<div class="blog-box">
 											<figure>
 												<img src="data:image/jpeg;base64,${voyage.getHeader()}"

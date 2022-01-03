@@ -36,12 +36,16 @@
 <!-- Main CSS-->
 <link href="/css/main.css" rel="stylesheet" media="all">
 <link href="/css/header.css" rel="stylesheet" media="all">
-
+<style type="text/css">
+	.error{
+		color:red;
+	}
+</style>
 </head>
 
 <body>
 	<div class="topnav">
-		<a class="active" href="#home">Home</a> <a href="#about">About</a> <a
+		<a class="active" href="/">Home</a> <a href="#about">About</a> <a
 			href="#contact">Contact</a>
 		<div class="row">
 			<div class="col-sm-12">
@@ -58,13 +62,12 @@
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
 				<div class="card-heading">
-				
+
 					<!--  <img alt="" src="/images/index.jpg"  height=1180> -->
 				</div>
 				<div class="card-body">
 					<h2 class="title">SIGN UP</h2>
-					<form action="/signup" method="POST"
-						enctype="multipart/form-data">
+					<form action="/signup" method="POST" enctype="multipart/form-data">
 						<!--       <div class="input-group">
                            <input class="input--style-2" type="text" placeholder="Nom" name="name">
                        </div>
@@ -78,15 +81,21 @@
 							<div class="col-2">
 								<div class="input-group">
 									<input class="input--style-2" type="text" placeholder="Nom"
-										name="NomFr">
+										name="nom">
 
 								</div>
+								<p class="error">
+									<c:out value="${errors.nom}" />
+								</p>
 							</div>
 							<div class="col-2">
 								<div class="input-group">
 									<input class="input--style-2" type="text" placeholder="Prenom"
-										name="PrenomFr">
+										name="prenom">
 								</div>
+								<p class="error">
+									<c:out value="${errors.prenom}" />
+								</p>
 							</div>
 						</div>
 
@@ -96,40 +105,50 @@
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
-									<input type="date" placeholder="Date de naissance" name="dateN">
+									<input type="date" placeholder="Date de naissance"
+										name="dateNaissanceDate">
 								</div>
+								<p class="error">
+									<c:out value="${errors.dateNaissance}" />
+								</p>
 							</div>
 							<div class="col-2">
 								<div class="input-group">
 									<div class="rs-select2 js-select-simple select--no-search">
-										<select name="sexe">
-											<option  selected="selected">Sexe</option>
+										<select name="SexE">
+											<option selected="selected">Sexe</option>
 											<option value="HOMME">M</option>
 											<option value="FEMME">F</option>
 										</select>
-										<div class="select-dropdown"></div>
+										<div class="select-dropdown">
+											<p class="error">
+												<c:out value="${errors.sexe}" />
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="input-group">
-							<div  >
-								<select name="lieuN_fr">
-									<option  selected="selected">Lieu
-										de naissance</option>
+							<div>
+								<select name="nationalite">
+									<option selected="selected">Lieu de naissance</option>
 									<c:forEach var="country" items="${countries}">
 										<option value="${country.valueCountry}">${country.valueCountry}</option>
 									</c:forEach>
 								</select>
 							</div>
+							<p class="error">
+								<c:out value="${errors.country.valueCountry}" />
+							</p>
 						</div>
 						<div class="col-2">
 							<div class="input-group">
 								<div class="rs-select2 js-select-simple select--no-search">
-									<select name="marie">
+									<select name="marieString">
 										<option disabled="disabled" selected="selected">Marie</option>
-										<option value="oui">OUI</option>
-										<option value="non">NON</option>
+										<option value="OUI">OUI</option>
+										<option value="NON">NON</option>
 									</select>
 									<div class="select-dropdown"></div>
 								</div>
@@ -139,27 +158,37 @@
 							<div class="rs-select2 js-select-simple select--no-search">
 								<div class="input-group">
 									<input type="number" placeholder="Nombre d'enfants"
-										name="nbenf">
+										name="nombreEnfant">
 
 								</div>
+								<p class="error">
+									<c:out value="${errors.nombreEnfant}" />
+								</p>
 							</div>
 						</div>
 						<div class="input-group">
 							<div class="rs-select2 js-select-simple select--no-search">
 								<div class="input-group">
-									<input type="text" placeholder="Numero de Telephone" name="tel">
+									<input type="text" placeholder="Numero de Telephone"
+										name="telephone">
 
 								</div>
+								<p class="error">
+									<c:out value="${errors.telephone}" />
+								</p>
 							</div>
 						</div>
-						
+
 
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
 									<input class="input--style-2" type="text" placeholder="cin"
-										name="cin">
+										name="cne">
 								</div>
+								<p class="error">
+									<c:out value="${errors.cne}" />
+								</p>
 							</div>
 
 						</div>
@@ -172,15 +201,21 @@
 									<input type="email" id="email" name="email"
 										placeholder="Enter your Email">
 								</div>
+								<p class="error">
+									<c:out value="${errors.email}" />
+								</p>
 							</div>
 						</div>
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
 
-									<input type="number" id="codep" name="codep"
+									<input type="number" id="codep" name="codePostal"
 										placeholder="Enter your Code Postal">
 								</div>
+								<p class="error">
+									<c:out value="${errors.codePostal}" />
+								</p>
 							</div>
 						</div>
 
@@ -189,8 +224,7 @@
 								<div class="input-group">
 									<div class="rs-select2 js-select-simple select--no-search">
 										<select name="etatPhy">
-											<option selected="selected">Etat
-												physique</option>
+											<option selected="selected">Etat physique</option>
 											<option value="Sain">Sain</option>
 											<option value="DeplacementLimite">Déplacement limité</option>
 											<option value="Handicape">Handicape</option>
@@ -206,24 +240,21 @@
 							<div class="col-2">
 								<div class="input-group">
 									<div class="rs-select2 js-select-simple select--no-search">
-										<select name="GroupSocio">
-											<option  selected="selected">Groupe
+										<select name=travaille>
+											<option selected="selected">Groupe
 												socioprofessionnel</option>
 											<option value="AgriculExploi">Agriculteurs
 												exploitants</option>
-											<option value="Entreprise">
-												Artisans, commerçants et chefs d’entreprise</option>
-											<option
-												value="cadreIntell">
-												Cadres et professions intellectuelles supérieures</option>
-											<option value="ProfInter">
-												Professions intermédiaires</option>
+											<option value="Entreprise">Artisans, commerçants et
+												chefs d’entreprise</option>
+											<option value="cadreIntell">Cadres et professions
+												intellectuelles supérieures</option>
+											<option value="ProfInter">Professions intermédiaires</option>
 											<option value="Employés">Employés</option>
 											<option value="Ouvriers">Ouvriers</option>
 											<option value="Retraités">Retraités</option>
-											<option
-												value="Autres">
-												Autres personnes sans activité professionnelle</option>
+											<option value="Autres">Autres personnes sans
+												activité professionnelle</option>
 											<option value="Autres">Autres</option>
 										</select>
 										<div class="select-dropdown"></div>
@@ -242,9 +273,12 @@
 
 							<div class="rs-select2 js-select-simple select--no-search">
 
-								<input type="file" id="avatar" name="photo"
+								<input type="file" id="avatar" name="imagePart"
 									accept=".png, .jpg, .jpeg" placeholder="photo">
 							</div>
+							<p class="error">
+								<c:out value="${errors.image}" />
+							</p>
 						</div>
 
 

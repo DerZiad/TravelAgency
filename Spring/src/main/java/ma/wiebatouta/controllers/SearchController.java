@@ -58,7 +58,7 @@ public class SearchController {
 			@RequestParam(name = "date_arrive", required = false) String dateArrive,
 			@RequestParam(name = "budget", required = false) Double budget,
 			@RequestParam(name = "nbrePersonne", required = false) String nbrPersonne,
-			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size) {
 		ModelAndView model = new ModelAndView(PATH_SEARCH);
 		
 		if (country.equals("default")) {
