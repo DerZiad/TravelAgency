@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import ma.wiebatouta.exceptions.NotFoundException;
+import ma.wiebatouta.interfaces.ActivityMetier;
 import ma.wiebatouta.models.Activite;
 import ma.wiebatouta.repositories.ActiviteRepository;
 

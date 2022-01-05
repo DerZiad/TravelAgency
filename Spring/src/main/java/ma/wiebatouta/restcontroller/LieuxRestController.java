@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
-import ma.wiebatouta.metier.LieuxMetier;
+import ma.wiebatouta.interfaces.LieuxMetier;
 import ma.wiebatouta.models.Country;
 import ma.wiebatouta.models.Lieu;
 import ma.wiebatouta.repositories.CountryRepository;

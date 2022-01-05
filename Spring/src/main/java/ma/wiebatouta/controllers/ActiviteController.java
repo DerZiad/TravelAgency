@@ -1,40 +1,23 @@
 package ma.wiebatouta.controllers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.security.RolesAllowed;
-import javax.mail.MessagingException;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import javax.validation.constraints.Max;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import io.swagger.models.Model;
 import ma.wiebatouta.exceptions.NotFoundException;
-import ma.wiebatouta.metier.ActiviteMetierIMP;
-import ma.wiebatouta.metier.ActivityMetier;
+import ma.wiebatouta.interfaces.ActivityMetier;
+import ma.wiebatouta.interfaces.DesignAttributes;
 import ma.wiebatouta.models.Activite;
-import ma.wiebatouta.models.Lieu;
-import ma.wiebatouta.models.SousActivite;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.ActiviteRepository;
-import ma.wiebatouta.repositories.SousActiviteRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
 @Controller
@@ -44,8 +27,6 @@ public class ActiviteController {
 	private final static String REDIRECT_LIST_ACTIVITY = "redirect:/admin/activite?id=%d";
 	@Autowired
 	private ActiviteRepository activiteRepository;
-	@Autowired
-	private SousActiviteRepository sousActiviteRepository;
 	
 	@Autowired
 	private VoyageRepository voyageRepository;

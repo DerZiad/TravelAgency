@@ -1,24 +1,6 @@
 package ma.wiebatouta.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.ws.server.endpoint.annotation.RequestPayload;
-
-import ma.wiebatouta.metier.CountryMetier;
-import ma.wiebatouta.metier.SignUpMetier;
-import ma.wiebatouta.models.Country;
-import ma.wiebatouta.models.Personne;
-import ma.wiebatouta.models.Sexe;
-import ma.wiebatouta.repositories.CountryRepository;
-import ma.wiebatouta.repositories.PersonneRepository;
-
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -29,8 +11,19 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+
+import ma.wiebatouta.exceptions.NotFoundException;
+import ma.wiebatouta.metier.SignUpMetier;
+import ma.wiebatouta.models.Personne;
+import ma.wiebatouta.repositories.CountryRepository;
+import ma.wiebatouta.repositories.PersonneRepository;
 
 @Controller
 @RequestMapping("/signup")
@@ -46,10 +39,6 @@ public class SignUpController {
 	private PersonneRepository personneRepository;
 
 	@Autowired
-	private PasswordEncoder passwordEncoder;
-	@Autowired
-	private CountryMetier cm;
-	@Autowired
 	private CountryRepository countryRepository;
 
 	@Autowired
@@ -63,47 +52,43 @@ public class SignUpController {
 	}
 
 	@PostMapping()
-	public ModelAndView signUp(/*@RequestParam("NomFr") String nom, @RequestParam("PrenomFr") String prenom,
-			@RequestParam("dateN") String dateN, @RequestParam("sexe") String sexe,
-			@RequestParam("lieuN_fr") String lieuNaissance,
-			@RequestParam(name = "marie", required = false) String marie, @RequestParam("nbenf") int nbenf,
-			@RequestParam("tel") String tel, @RequestParam("cin") String cin, @RequestParam("email") String email,
-			@RequestParam("codep") Long codep, @RequestParam("GroupSocio") String grpSocio,
-			@RequestParam("photo") MultipartFile photo*/@RequestPayload Personne personne ) throws IOException, MessagingException {
+	public ModelAndView signUp(/*
+								 * @RequestParam("NomFr") String nom, @RequestParam("PrenomFr") String prenom,
+								 * 
+								 * @RequestParam("dateN") String dateN, @RequestParam("sexe") String sexe,
+								 * 
+								 * @RequestParam("lieuN_fr") String lieuNaissance,
+								 * 
+								 * @RequestParam(name = "marie", required = false) String
+								 * marie, @RequestParam("nbenf") int nbenf,
+								 * 
+								 * @RequestParam("tel") String tel, @RequestParam("cin") String
+								 * cin, @RequestParam("email") String email,
+								 * 
+								 * @RequestParam("codep") Long codep, @RequestParam("GroupSocio") String
+								 * grpSocio,
+								 * 
+								 * @RequestParam("photo") MultipartFile photo
+								 */@RequestPayload Personne personne) throws IOException, MessagingException {
 		ModelAndView model = null;
 		HashMap<String, String> errors = new HashMap<String, String>();
-		/*boolean b = false;
-		if (!marie.isEmpty()) {
-			if (marie.equals("oui")) {
-				b = true;
-			} else {
-				b = false;
-			}
-		}
-		
-		Personne personne = new Personne();
-		dateN = dateN.replace("-", "/");
-		Date dateNaissance = new Date(dateN);
-		personne.setCne(cin);
-		personne.setCodePostal(codep);
-		System.out.println(grpSocio);
-		personne.setTravaille("medecin");
-		personne.setDateNaissance(dateNaissance);
-		personne.setEmail(email);
-		personne.setImagePart(photo);
-		personne.setMarie(b);
-		personne.setNationalite(lieuNaissance);
-		Country country = cm.getCountryByKey(lieuNaissance);
-
-		personne.setNom(nom);
-		personne.setPrenom(prenom);
-		personne.setNombreEnfant(nbenf);
-		if (Sexe.HOMME.name().equals(sexe.toUpperCase())) {
-			personne.setSexe(Sexe.HOMME);
-		} else {
-			personne.setSexe(Sexe.FEMME);
-		}
-			*/
+		/*
+		 * boolean b = false; if (!marie.isEmpty()) { if (marie.equals("oui")) { b =
+		 * true; } else { b = false; } }
+		 * 
+		 * Personne personne = new Personne(); dateN = dateN.replace("-", "/"); Date
+		 * dateNaissance = new Date(dateN); personne.setCne(cin);
+		 * personne.setCodePostal(codep); System.out.println(grpSocio);
+		 * personne.setTravaille("medecin"); personne.setDateNaissance(dateNaissance);
+		 * personne.setEmail(email); personne.setImagePart(photo); personne.setMarie(b);
+		 * personne.setNationalite(lieuNaissance); Country country =
+		 * cm.getCountryByKey(lieuNaissance);
+		 * 
+		 * personne.setNom(nom); personne.setPrenom(prenom);
+		 * personne.setNombreEnfant(nbenf); if
+		 * (Sexe.HOMME.name().equals(sexe.toUpperCase())) {
+		 * personne.setSexe(Sexe.HOMME); } else { personne.setSexe(Sexe.FEMME); }
+		 */
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 
@@ -111,13 +96,15 @@ public class SignUpController {
 		for (ConstraintViolation<Personne> constraintViolation : violatons) {
 			errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
 		}
-		/*ValidatorFactory factory1 = Validation.buildDefaultValidatorFactory();
-		Validator validator1 = factory1.getValidator();
-
-		Set<ConstraintViolation<Country>> violatons1 = validator1.validate(country);
-		for (ConstraintViolation<Country> constraintViolation : violatons1) {
-			errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
-		}*/
+		/*
+		 * ValidatorFactory factory1 = Validation.buildDefaultValidatorFactory();
+		 * Validator validator1 = factory1.getValidator();
+		 * 
+		 * Set<ConstraintViolation<Country>> violatons1 = validator1.validate(country);
+		 * for (ConstraintViolation<Country> constraintViolation : violatons1) {
+		 * errors.put(constraintViolation.getPropertyPath().toString(),
+		 * constraintViolation.getMessage()); }
+		 */
 		/*
 		 * signUpMetier.createSignUp(nom, prenom, dateN, sexe, lieuNaissance, b, nbenf,
 		 * tel, cin, email, codep, grpSocio, photo);
@@ -136,10 +123,11 @@ public class SignUpController {
 
 	@GetMapping("/confirmation/{codeVerif}/{idPersonne}")
 	public ModelAndView confirmerEmail(@PathVariable("codeVerif") Long codeverif,
-			@PathVariable("idPersonne") String idPersonne) {
+			@PathVariable("idPersonne") String idPersonne) throws NotFoundException {
 		String code = String.valueOf(codeverif);
 		Long id = Long.parseLong(idPersonne);
-		Personne personne = personneRepository.getOne(id);
+		Personne personne = personneRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Personne non trouvé"));
 		signUpMetier.confirmerSignUP(code, id);
 		ModelAndView model = new ModelAndView(PAGE_SUCCES);
 		model.addObject(ATTRIBUT_MESSAGE, "Votre Inscription a ete confirme \n" + "Votre Username :" + personne.getNom()

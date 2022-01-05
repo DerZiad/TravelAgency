@@ -1,8 +1,6 @@
 package ma.wiebatouta.controllers;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -18,18 +16,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ma.wiebatouta.controllers.DesignAttributes;
+
 import ma.wiebatouta.exceptions.DataNotFoundException;
 import ma.wiebatouta.exceptions.NotFoundException;
-import ma.wiebatouta.metier.CountryMetier;
-import ma.wiebatouta.metier.LieuxMetier;
+import ma.wiebatouta.interfaces.CountryMetier;
+import ma.wiebatouta.interfaces.DesignAttributes;
+import ma.wiebatouta.interfaces.LieuxMetier;
 import ma.wiebatouta.models.Country;
 import ma.wiebatouta.models.Lieu;
-import ma.wiebatouta.models.Theme;
 import ma.wiebatouta.repositories.LieuRepository;
 
 @Controller

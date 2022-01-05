@@ -1,4 +1,4 @@
-package ma.wiebatouta.controllers;
+package ma.wiebatouta.interfaces;
 
 public interface DesignAttributes {
 	public final static String ACTIVE = "mm-active";

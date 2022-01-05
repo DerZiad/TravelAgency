@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ma.wiebatouta.exceptions.NotFoundException;
+import ma.wiebatouta.interfaces.LieuxMetier;
 import ma.wiebatouta.models.Lieu;
 import ma.wiebatouta.repositories.LieuRepository;
 

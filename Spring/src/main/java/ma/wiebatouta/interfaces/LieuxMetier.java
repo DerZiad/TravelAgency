@@ -1,10 +1,9 @@
-package ma.wiebatouta.metier;
+package ma.wiebatouta.interfaces;
 
 import java.util.List;
 
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Lieu;
-import ma.wiebatouta.models.Theme;
 
 public interface LieuxMetier {
 	public Lieu save(Lieu l);

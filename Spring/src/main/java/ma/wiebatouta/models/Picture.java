@@ -3,7 +3,7 @@ package ma.wiebatouta.models;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Base64;
-
+import ma.wiebatouta.validation.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -44,6 +44,7 @@ public class Picture implements Serializable, Comparable<Picture> {
 	@Lob
 	@NotNull(message = "On a besoin d'au moins d'une image")
 	@JsonIgnore
+	@ExtensionImage
 	private byte[] picture;
 
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })

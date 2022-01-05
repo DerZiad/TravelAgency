@@ -6,16 +6,14 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +33,6 @@ import ma.wiebatouta.repositories.VoyageRepository;
 public class SearchController {
 
 	private final static String PATH_SEARCH = "client/corps";
-	private final static String REDIRECT_HP = "redirect:/";
 	private final static String ATTRIBUT_AUTHENTIFICATED = "authentificated";
 	private final static String ATTRIBUT_AUTHENTIFICATED_USERNAME = "username";
 	private final static String ATTRIBUT_AUTHENTIFICATED_PERSON_ID = "idPerson";

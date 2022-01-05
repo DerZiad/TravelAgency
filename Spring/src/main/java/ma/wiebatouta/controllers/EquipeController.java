@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
 import ma.wiebatouta.exceptions.NotFoundException;
+import ma.wiebatouta.interfaces.DesignAttributes;
 import ma.wiebatouta.models.Country;
 import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Personne;

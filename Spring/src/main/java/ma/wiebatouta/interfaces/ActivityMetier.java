@@ -1,4 +1,4 @@
-package ma.wiebatouta.metier;
+package ma.wiebatouta.interfaces;
 
 import ma.wiebatouta.models.Activite;
 

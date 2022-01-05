@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import ma.wiebatouta.exceptions.NotFoundException;
+import ma.wiebatouta.interfaces.CountryMetier;
 import ma.wiebatouta.models.Country;
 import ma.wiebatouta.repositories.CountryRepository;
 

@@ -2,7 +2,6 @@ package ma.wiebatouta.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -20,13 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Reservation;
-import ma.wiebatouta.models.User;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.PersonneRepository;
 import ma.wiebatouta.repositories.ReservationRepository;
-import ma.wiebatouta.repositories.UserRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
 @Controller
@@ -53,15 +50,13 @@ public class HomeClientController {
 	private EquipeRepository equipeRepository;
 
 	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
 	private PersonneRepository personneRepository;
 	@Autowired
 	private CountryRepository countryRepository;
 	@Autowired
 	private ReservationRepository reservationRepository;
 
+	@SuppressWarnings("deprecation")
 	@GetMapping
 	public ModelAndView getPrincipalPage() {
 		ModelAndView model = new ModelAndView(PATH_HOME_PAGE);

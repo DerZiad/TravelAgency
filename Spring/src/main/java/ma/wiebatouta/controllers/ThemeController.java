@@ -19,8 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,9 +26,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ma.wiebatouta.exceptions.DataNotFoundException;
 import ma.wiebatouta.exceptions.NotFoundException;
-import ma.wiebatouta.metier.ThemeMetierInterface;
+import ma.wiebatouta.interfaces.DesignAttributes;
+import ma.wiebatouta.interfaces.ThemeMetierInterface;
 import ma.wiebatouta.models.Theme;
-import ma.wiebatouta.repositories.ThemeRepository;
 
 @Controller
 @RequestMapping("/admin/theme")

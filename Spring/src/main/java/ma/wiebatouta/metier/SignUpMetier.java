@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.User;
 import ma.wiebatouta.models.enums.ServerRole;
@@ -31,22 +32,6 @@ public class SignUpMetier {
 	private UserRepository userRepository;
 
 	public void createSignUp(Personne personne) throws IOException, MessagingException {
-		/*
-		 * Personne personne = new Personne(); date = date.replace("-", "/"); Date
-		 * dateNaissance = new Date(date); personne.setCne(cin);
-		 * personne.setCodePostal(codep); System.out.println(grpSocio);
-		 * System.out.println(date); personne.setTravaille("medecin");
-		 * personne.setDateNaissance(dateNaissance); personne.setEmail(email);
-		 * personne.setImagePart(photo); personne.setMarie(marie);
-		 * personne.setNationalite(lieuNaissance); personne.setNom(nom);
-		 * personne.setPrenom(prenom); personne.setNombreEnfant(nbenf); if
-		 * (Sexe.HOMME.name().equals(sexe.toUpperCase())) {
-		 * personne.setSexe(Sexe.HOMME); } else { personne.setSexe(Sexe.FEMME); } User
-		 * user = new User(); user.setEnabled(false);
-		 * user.setPassword(passwordEncoder.encode(personne.getPrenom()));
-		 * user.setUsername(personne.getNom()); user.addRole(ServerRole.CLIENT);
-		 * personne.setUser(user); personne.setTelephone(tel); personne.generateCode();
-		 */
 		User user = new User();
 		user.setEnabled(false);
 		user.setPassword(passwordEncoder.encode(personne.getPrenom()));
@@ -62,8 +47,8 @@ public class SignUpMetier {
 
 	}
 
-	public void confirmerSignUP(String codeVerif, Long idPersonne) throws EntityNotFoundException {
-		Personne personne = personneRepository.getOne(idPersonne);
+	public void confirmerSignUP(String codeVerif, Long idPersonne) throws EntityNotFoundException, NotFoundException {
+		Personne personne = personneRepository.findById(idPersonne).orElseThrow(()->new NotFoundException("Personne non trouvé"));
 		if (personne.getCodeVerif().equals(codeVerif)) {
 			User user = personne.getUser();
 			user.setEnabled(true);

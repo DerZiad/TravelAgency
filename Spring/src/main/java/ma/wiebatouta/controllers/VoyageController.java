@@ -1,8 +1,6 @@
 package ma.wiebatouta.controllers;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -20,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
 import ma.wiebatouta.exceptions.NotFoundException;
-import ma.wiebatouta.models.Activite;
+import ma.wiebatouta.interfaces.DesignAttributes;
 import ma.wiebatouta.models.Hotel;
 import ma.wiebatouta.models.Lieu;
 import ma.wiebatouta.models.Picture;
@@ -28,7 +26,6 @@ import ma.wiebatouta.models.Theme;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.models.enums.TypePicture;
 import ma.wiebatouta.models.enums.TypeVoyage;
-import ma.wiebatouta.repositories.ActiviteRepository;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.HotelRepository;
 import ma.wiebatouta.repositories.LieuRepository;
