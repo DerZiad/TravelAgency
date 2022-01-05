@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import ma.wiebatouta.interfaces.HotelServiceInterface;
 import ma.wiebatouta.repositories.CountryRepository;
-import ma.wiebatouta.services.interfaces.HotelServiceInterface;
 
 @Service
 @Primary

@@ -1,4 +1,4 @@
-package ma.wiebatouta.services.interfaces;
+package ma.wiebatouta.interfaces;
 
 import org.springframework.web.servlet.ModelAndView;
 

@@ -1,7 +1,7 @@
 package ma.wiebatouta.metier;
 
+import ma.wiebatouta.interfaces.HtmlMessage;
 import ma.wiebatouta.services.EmailService;
-import ma.wiebatouta.services.HtmlMessage;
 
 public class ConfirmationMessage implements HtmlMessage{
 	private String html = "\r\n" + "\r\n" + "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n"

@@ -1,4 +1,4 @@
-package ma.wiebatouta.services;
+package ma.wiebatouta.interfaces;
 
 public interface HtmlMessage {
 

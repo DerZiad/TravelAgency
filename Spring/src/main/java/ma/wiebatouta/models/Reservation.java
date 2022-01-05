@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.wiebatouta.interfaces.Statistique;
 import ma.wiebatouta.models.idcompose.KeyReservation;
-import ma.wiebatouta.services.interfaces.Statistique;
 
 @Entity
 @Table(name="reservations")

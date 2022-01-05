@@ -19,12 +19,12 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.interfaces.DesignAttributes;
+import ma.wiebatouta.interfaces.HotelServiceInterface;
 import ma.wiebatouta.models.Hotel;
 import ma.wiebatouta.models.Picture;
 import ma.wiebatouta.models.enums.TypePicture;
 import ma.wiebatouta.repositories.HotelRepository;
 import ma.wiebatouta.repositories.PictureRepository;
-import ma.wiebatouta.services.interfaces.HotelServiceInterface;
 
 @Controller
 @RequestMapping("/admin/hotel")

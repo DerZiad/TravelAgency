@@ -1,6 +1,6 @@
 package ma.wiebatouta.services.implement;
 
-import ma.wiebatouta.services.interfaces.EquipeInterface;
+import ma.wiebatouta.interfaces.EquipeInterface;
 
 public class EquipeMetier implements EquipeInterface{
 	
