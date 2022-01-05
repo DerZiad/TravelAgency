@@ -67,6 +67,7 @@ public class ThemeController {
 				theme.setDescription(description);
 				theme.setLabel(nom);
 				theme.setPicture(theme.getPicture());
+				theme.setFileName(theme.getFileName());
 				ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 				Validator validator = factory.getValidator();
 				Set<ConstraintViolation<Theme>> violations = validator.validate(theme);
@@ -81,7 +82,6 @@ public class ThemeController {
 					model.addObject("bool", bool);
 					return model;
 				} else {
-					System.out.println();
 					themeMetier.save(theme);
 					return model1;
 				}
@@ -91,11 +91,10 @@ public class ThemeController {
 
 		} else {
 			HashMap<String, String> errors = new HashMap<String, String>();
-			byte[] image = null;
-			if (logo.getBytes().length != 0) {
-				image = logo.getBytes();
-			}
-			theme = new Theme(nom, description, image);
+			theme = new Theme();
+			theme.setLabel(nom);
+			theme.setDescription(description);
+			theme.setImagePart(logo);
 			theme.setId(null);
 			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 			Validator validator = factory.getValidator();

@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.wiebatouta.validation.ExtensionImage;
 
 @Entity
 @Table(name = "personnes")
@@ -107,7 +108,10 @@ public class Personne implements Serializable, Comparable<Personne> {
 
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private User user;
-
+	
+	@ExtensionImage
+	private String fileName;
+	
 	@Override
 	public int compareTo(Personne o) {
 		return cne.compareTo(o.getCne());
@@ -140,6 +144,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	}
 
 	public void setImagePart(MultipartFile file) throws IOException {
+		fileName = file.getOriginalFilename();
 		byte image[] = file.getBytes();
 		if (image != null && image.length != 0) {
 			this.image = image;

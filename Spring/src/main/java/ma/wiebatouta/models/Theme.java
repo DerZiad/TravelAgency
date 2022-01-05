@@ -1,5 +1,6 @@
 package ma.wiebatouta.models;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -19,12 +20,14 @@ import javax.validation.constraints.NotNull;
 
 import org.apache.commons.codec.binary.Base64;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.wiebatouta.validation.ExtensionImage;
 
 @Entity
 @Table(name = "themes")
@@ -59,9 +62,10 @@ public class Theme implements Serializable, Comparable<Theme> {
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE })
 	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
-
 	
-
+	@ExtensionImage
+	private String fileName;
+	
 	@Override
 	public int compareTo(Theme o) {
 		return label.compareTo(o.getLabel());
@@ -95,11 +99,20 @@ public class Theme implements Serializable, Comparable<Theme> {
 	}
 
 	private void setEncodedPhoto(String encodedPicture) {
-		// TODO Auto-generated method stub
 		this.encodedPicture=encodedPicture;
 	}
 	
 	public String getEncodedString() {
 		return encodedPicture;
+	}
+	
+	public void setImagePart(MultipartFile file) throws IOException {
+		fileName = file.getOriginalFilename();
+		byte image[] = file.getBytes();
+		if (image != null && image.length != 0) {
+			this.picture = image;
+		} else {
+			this.picture = null;
+		}
 	}
 }

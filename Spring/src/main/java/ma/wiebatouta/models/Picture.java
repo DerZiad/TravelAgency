@@ -41,10 +41,12 @@ public class Picture implements Serializable, Comparable<Picture> {
 	@Enumerated(EnumType.STRING)
 	private TypePicture type;
 	
+	@ExtensionImage
+	private String fileName;
+	
 	@Lob
 	@NotNull(message = "On a besoin d'au moins d'une image")
 	@JsonIgnore
-	@ExtensionImage
 	private byte[] picture;
 
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
@@ -62,6 +64,7 @@ public class Picture implements Serializable, Comparable<Picture> {
 	}
 	
 	public void setPicturePart(MultipartFile file) throws IOException {
+		fileName = file.getOriginalFilename();
 		byte image[] = file.getBytes();
 		if(image != null && image.length != 0) {
 			this.picture = image;
