@@ -1,7 +1,6 @@
 package ma.wiebatouta.metier;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
@@ -9,10 +8,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import ma.wiebatouta.models.Personne;
-import ma.wiebatouta.models.Sexe;
 import ma.wiebatouta.models.User;
 import ma.wiebatouta.models.enums.ServerRole;
 import ma.wiebatouta.repositories.PersonneRepository;

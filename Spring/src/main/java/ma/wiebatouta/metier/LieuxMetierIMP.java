@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Lieu;
-import ma.wiebatouta.models.Theme;
 import ma.wiebatouta.repositories.LieuRepository;
 
 @Service

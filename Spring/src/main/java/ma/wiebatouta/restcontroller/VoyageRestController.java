@@ -29,11 +29,9 @@ import com.google.gson.Gson;
 import ma.wiebatouta.exceptions.AddUnsatisfiedException;
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
-import ma.wiebatouta.models.Activite;
 import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.EquipeRepository;
-import ma.wiebatouta.repositories.LieuRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
 @RestController

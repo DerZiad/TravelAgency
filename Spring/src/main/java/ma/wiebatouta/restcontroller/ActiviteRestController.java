@@ -1,7 +1,6 @@
 package ma.wiebatouta.restcontroller;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -11,7 +10,6 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import org.hibernate.dialect.RDMSOS2200Dialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
@@ -29,10 +27,7 @@ import com.google.gson.Gson;
 import ma.wiebatouta.exceptions.AddUnsatisfiedException;
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
-import ma.wiebatouta.metier.ActiviteMetierIMP;
-import ma.wiebatouta.metier.ActivityMetier;
 import ma.wiebatouta.models.Activite;
-import ma.wiebatouta.models.Hotel;
 import ma.wiebatouta.models.SousActivite;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.ActiviteRepository;

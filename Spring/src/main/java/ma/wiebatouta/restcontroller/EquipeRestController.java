@@ -1,8 +1,5 @@
 package ma.wiebatouta.restcontroller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Equipe;
-import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.EquipeRepository;
 
 @RestController

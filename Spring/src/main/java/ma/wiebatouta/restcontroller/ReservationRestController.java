@@ -1,14 +1,8 @@
 package ma.wiebatouta.restcontroller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.security.RolesAllowed;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
-
 import ma.wiebatouta.exceptions.AddUnsatisfiedException;
 import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
-import ma.wiebatouta.models.Hotel;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Reservation;
 import ma.wiebatouta.models.Voyage;

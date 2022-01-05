@@ -3,10 +3,6 @@ package ma.wiebatouta.metier;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Theme;
 
