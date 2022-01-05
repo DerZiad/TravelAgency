@@ -41,7 +41,6 @@ public class Picture implements Serializable, Comparable<Picture> {
 	@Enumerated(EnumType.STRING)
 	private TypePicture type;
 	
-	@ExtensionImage
 	private String fileName;
 	
 	@Lob

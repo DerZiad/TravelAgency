@@ -109,7 +109,6 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private User user;
 	
-	@ExtensionImage
 	private String fileName;
 	
 	@Override

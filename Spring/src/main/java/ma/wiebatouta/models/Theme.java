@@ -63,7 +63,6 @@ public class Theme implements Serializable, Comparable<Theme> {
 	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 	
-	@ExtensionImage
 	private String fileName;
 	
 	@Override
