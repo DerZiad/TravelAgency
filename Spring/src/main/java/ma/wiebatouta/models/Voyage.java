@@ -38,7 +38,7 @@ import ma.wiebatouta.models.enums.TypeVoyage;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Voyage implements Comparable<Voyage>{
+public class Voyage implements Comparable<Voyage> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -73,24 +73,23 @@ public class Voyage implements Comparable<Voyage>{
 	private int nbrPersonnes = 0;
 	@Column
 	private String destination;
-	
+
 	@Transient
 	private Long idEquipe;
-	
+
 	@Enumerated(EnumType.STRING)
 	@NotNull(message = "Le type voyage ne doit pas être vide")
 	private TypeVoyage typeVoyage;
 	private int review = 0;
-	
+
 	/**
 	 * Relations
 	 */
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE,
-			CascadeType.DETACH }, mappedBy = "voyages")
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH }, mappedBy = "voyages")
 	private List<Hotel> hoteles = new ArrayList<Hotel>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,
-			CascadeType.MERGE }, mappedBy = "voyages", targetEntity = Theme.class, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH,
+			CascadeType.DETACH }, mappedBy = "voyages", targetEntity = Theme.class, fetch = FetchType.LAZY)
 	private List<Theme> themes = new ArrayList<Theme>();
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Picture.class)
@@ -99,16 +98,16 @@ public class Voyage implements Comparable<Voyage>{
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage", targetEntity = Activite.class)
 	private List<Activite> activites = new ArrayList<Activite>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,
-			CascadeType.MERGE }, mappedBy = "voyages", targetEntity = Lieu.class)
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH,
+			CascadeType.DETACH }, mappedBy = "voyages", targetEntity = Lieu.class)
 	private List<Lieu> lieux = new ArrayList<Lieu>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE,
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH,
 			CascadeType.DETACH }, mappedBy = "voyages", targetEntity = Personne.class)
 	@JsonIgnore
 	private List<Personne> personnes = new ArrayList<Personne>();
 
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH })
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH })
 	private Equipe equipe;
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage")
@@ -124,6 +123,7 @@ public class Voyage implements Comparable<Voyage>{
 			date = null;
 		}
 	}
+
 	@SuppressWarnings("deprecation")
 	public void setDateArriveeDate(String date) {
 		if (date != null && date.length() == 10) {
@@ -133,61 +133,61 @@ public class Voyage implements Comparable<Voyage>{
 			date = null;
 		}
 	}
-	
+
 	public String getDateArriveeDate() {
 		java.sql.Date sDate = new java.sql.Date(this.dateArrivee.getTime());
 		return sDate.toString();
 	}
-	
+
 	public String getDateDepartDate() {
 		java.sql.Date sDate = new java.sql.Date(this.dateDepart.getTime());
 		return sDate.toString();
 	}
-	
+
 	public void addLieu(Lieu lieu) {
 		lieux.add(lieu);
 	}
-	
+
 	public String getHeader() {
-		List<Picture> pictures  = this.pictures.stream().filter((p) -> {
+		List<Picture> pictures = this.pictures.stream().filter((p) -> {
 			return p.getType().equals(TypePicture.HEADER);
 		}).collect(Collectors.toList());
-	
-		if(pictures.size() >= 1) {
+
+		if (pictures.size() >= 1) {
 			return pictures.get(0).getBase64();
-		}else {
+		} else {
 			return "";
 		}
 	}
-	
+
 	public String getBanner() {
-		List<Picture> pictures  = this.pictures.stream().filter((p) -> {
+		List<Picture> pictures = this.pictures.stream().filter((p) -> {
 			return p.getType().equals(TypePicture.BANNER);
 		}).collect(Collectors.toList());
-	
-		if(pictures.size() >= 1) {
+
+		if (pictures.size() >= 1) {
 			return pictures.get(0).getBase64();
-		}else {
+		} else {
 			return "";
 		}
 	}
-	
+
 	@Override
 	public int compareTo(Voyage o) {
 		return review - o.getReview();
 	}
-	
+
 	public boolean isSolded() {
-		if(reduction == 0) {
+		if (reduction == 0) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
 	}
-	
+
 	public double getReductionPrix() {
 		double prix = this.prix - (this.prix * this.reduction / 100);
 		return prix;
 	}
-	
+
 }

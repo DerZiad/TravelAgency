@@ -83,6 +83,7 @@ public class ThemeController {
 					model.addObject("bool", bool);
 					return model;
 				} else {
+					System.out.println();
 					themeMetier.save(theme);
 					return model1;
 				}
