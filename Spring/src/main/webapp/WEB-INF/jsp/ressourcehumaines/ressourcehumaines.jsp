@@ -203,17 +203,6 @@
 									</p>
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="position-relative form-group">
-									<label for="etatSocial" class="">Etat Sociale</label><input
-										name="etatSocial" id="etatSocial" placeholder="Etat Sociale"
-										type="text" class="form-control"
-										value="${personne.etatSocial}">
-									<p class="error">
-										<c:out value="${errors.etatSocial}" />
-									</p>
-								</div>
-							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-md-6">

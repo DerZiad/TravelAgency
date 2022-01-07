@@ -141,6 +141,18 @@ public class Personne implements Serializable, Comparable<Personne> {
 			this.sexe=Sexe.FEMME;
 		}
 	}
+	
+	public void setSexe(String sexe) {
+		if (Sexe.HOMME.name().equals(sexe.toUpperCase())) {
+			this.sexe=Sexe.HOMME;
+		} else {
+			this.sexe=Sexe.FEMME;
+		}
+	}
+	
+	public void setSexe(Sexe sexe) {
+		this.sexe = sexe;
+	}
 
 	public void setImagePart(MultipartFile file) throws IOException {
 		fileName = file.getOriginalFilename();
