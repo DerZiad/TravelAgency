@@ -66,6 +66,7 @@ public class ThemeController {
 				theme = themeMetier.getThemeById(id);
 				theme.setDescription(description);
 				theme.setLabel(nom);
+				theme.setImagePart(logo);
 				theme.setPicture(theme.getPicture());
 				theme.setFileName(theme.getFileName());
 				ValidatorFactory factory = Validation.buildDefaultValidatorFactory();

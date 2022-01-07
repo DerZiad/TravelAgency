@@ -118,7 +118,7 @@
 														</div>
 														<div class="content">
 															<input name="budget" type="range" min="100" max="10000"
-																value="300" data-rangeslider>
+																value="5000" data-rangeslider>
 														</div>
 														<div class="footer clearfix">
 															<div class="pull-right">

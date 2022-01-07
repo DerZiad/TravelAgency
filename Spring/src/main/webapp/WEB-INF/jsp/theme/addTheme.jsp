@@ -13,9 +13,8 @@
 				<form class="form-group" action="/admin/theme"
 					enctype="multipart/form-data" method="POST">
 					<h5 class="card-title">Création d'un Theme de Voyage</h5>
-					<input name="id"
-									id="id"  type="hidden"
-									class="form-control" value="${theme.id}">
+					<input name="id" id="id" type="hidden" class="form-control"
+						value="${theme.id}">
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
@@ -54,26 +53,35 @@
 							<div class="position-relative form-group alert alert-primary">
 								<div class="row">
 									<c:if test="${bool}">
-									<div class="col-md-6">
-										<img style='display: block; width: 100px; height: 100px;'
-											id='base64image' name="img"
-											src='data:image/jpeg;base64,${theme.encodedPicture}' />
-									</div>
+										<div class="col-md-6">
+											<img style='display: block; width: 100px; height: 100px;'
+												id='base64image' name="img"
+												src='data:image/jpeg;base64,${theme.encodedPicture}' />
+											<div>
+												<label for="photo" class="">Inserer Photo</label> <input
+													name="logo" id="file" type="file" />
+											</div>
+										</div>
+
 									</c:if>
 									<c:if test="${modify}">
-									<div class="col-md-6">
-										<img style='display: block; width: 100px; height: 100px;'
-											id='base64image' name="img"
-											src='data:image/jpeg;base64,${theme.encodedPicture}' />
-									</div>
+										<div class="col-md-6">
+											<img style='display: block; width: 100px; height: 100px;'
+												id='base64image' name="img"
+												src='data:image/jpeg;base64,${theme.encodedPicture}' />
+											<div>
+												<label for="photo" class="">Inserer Photo</label> <input
+													name="logo" id="file" type="file" />
+											</div>
+										</div>
 									</c:if>
 									<c:if test="${! modify}">
-									<div class="col-md-6">
 										<div class="col-md-6">
-											<label for="photo" class="">Inserer Photo</label> <input
-												name="logo" id="file" type="file"  />
+											<div class="col-md-6">
+												<label for="photo" class="">Inserer Photo</label> <input
+													name="logo" id="file" type="file" />
+											</div>
 										</div>
-									</div>
 									</c:if>
 
 								</div>
@@ -91,11 +99,10 @@
 
 
 					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
-				
+
 
 				</form>
-				<button id="rst" class=" mt-2 btn btn-danger" 
-						>Effacer</button>
+				<button id="rst" class=" mt-2 btn btn-danger">Effacer</button>
 			</div>
 			<div class="main-card mb-3">
 				<div class="card-body">
@@ -116,8 +123,8 @@
 										href="/admin/theme/${themes.id}"> ${themes.id}</a></td>
 									<td style="color: black">${themes.label}</td>
 									<td style="color: black">${themes.description}</td>
-									<td><a href="/admin/theme/deleteTheme/${themes.id}" class="delete"
-									><i class="bi bi-trash"></i>DELETE</a> 
+									<td><a href="/admin/theme/deleteTheme/${themes.id}"
+										class="delete"><i class="bi bi-trash"></i>DELETE</a>
 								</tr>
 							</c:forEach>
 						</tbody>
