@@ -119,7 +119,9 @@ public class HomeClientController {
 			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
 			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
 			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);
+			System.out.println(userDetail.getUsername());
 			Personne personne = personneRepository.getPersonneFromUsername(userDetail.getUsername());
+			System.out.println(personne);
 			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID, personne.getId());
 			List<Reservation> reservations = reservationRepository.findByPerson(personne);
 			reservations = reservations.stream().filter(r -> !r.isConfirmed()).collect(Collectors.toList());
