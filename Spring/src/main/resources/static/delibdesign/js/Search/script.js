@@ -102,7 +102,7 @@ function refreshVoyagesByBudget() {
 	var i=0;
 	for (voy of voyDate) {
 		console.log(voyDate);
-		if (voy['prix'] >= prix){
+		if (voy['prix'] <= prix){
 			i = i + 1;
 
 		}

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -114,4 +115,12 @@ public class Theme implements Serializable, Comparable<Theme> {
 			this.picture = null;
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Theme [id=" + id + ", label=" + label + ", description=" + description + ", encodedPicture="
+				+ encodedPicture + ", picture=" + Arrays.toString(picture) + ", fileName=" + fileName + "]";
+	}
+	
+	
 }
