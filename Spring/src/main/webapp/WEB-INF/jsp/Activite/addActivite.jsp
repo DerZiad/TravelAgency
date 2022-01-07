@@ -79,13 +79,13 @@
 													<input name="sid${x}" id="id" type="hidden" value="${ss.id}">
 													<label for="name" class="">Label SousActivite</label> <input
 														type="text" value="${ss.titre}" name="myparams${x}"
-														class="form-control" /></br>
+														class="form-control input" /></br>
 													<p id="titre${x-1}ErrorEdit" class="error"></p>
 													<p id="titre${x-1}Error" class="error"></p>
 
 													<label for="name" class="">Description SousActivite</label>
 													<input type="text" value="${ss.description}"
-														name="SousActdescrip${x}" class="form-control" /> <a
+														name="SousActdescrip${x}" class="form-control input" /> <a
 														href="#" class="delete">Delete</a>
 													<p id="description${x-1}ErrorEdit" class="error"></p>
 													<p id="description${x-1}Error" class="error"></p>

@@ -34,7 +34,7 @@ $(document).ready(function() {
 		var description = $('input[name=description]').val();
 		console.log("lavilla"+ size );
 		let sas = [];
-		for (let pas = 1; pas <= size ; pas++) {
+		for (let pas = 1; pas <= size+1 ; pas++) {
 			var sid = $("input[name=sid"+pas+"]").val();
 			console.log("pas" + pas + "sid  " + sid + "sid!=0");
 
@@ -80,6 +80,7 @@ $(document).ready(function() {
 				var message = xhr['responseJSON'].message;
 				message = JSON.parse(message);
 				keys = Object.keys(message);
+				console.log(keys)
 				for (let i = 0; i < keys.length; i++) {
 					$('#' + keys[i] + 'Error').html(message[keys[i]]);
 				}
@@ -95,7 +96,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		if (x < max_fields) {
 			x++;
-			$(wrapper).append('<div class="form-row"><div class="col-md-6"><div class="position-relative form-group"><input name="sid'+x+'" id="id" type="hidden" value="0"><label for="name" class="">Label SousActivite</label><input id="ssa" type="text" value=""name="myparams' + x + '" class="form-control"/><p id="titre' + (x - 1) + 'Error" class="error"></p></br><label for="name" class="">Description SousActivite</label><input type="text" id="dess" value=""name="SousActdescrip' + x + '" class="form-control"/><p id="description' + (x - 1) + 'Error" class="error"></p><a class="btn btn-danger delete" href="#"><i class="fas fa-backspace"></i></a></div></div></div>'); //add input box
+			$(wrapper).append('<div class="form-row"><div class="col-md-6"><div class="position-relative form-group"><input name="sid'+x+'" id="id" type="hidden" value="0"><label for="name" class="">Label SousActivite</label><input id="ssa" type="text" value=""name="myparams' + x + '" class="form-control input"/><p id="titre' + (x - 1) + 'Error" class="error"></p></br><label for="name" class="">Description SousActivite</label><input type="text" id="dess" value=""name="SousActdescrip' + x + '" class="form-control input"/><p id="description' + (x - 1) + 'Error" class="error"></p><a class="btn btn-danger delete" href="#"><i class="fas fa-backspace"></i></a></div></div></div>'); //add input box
 		} else {
 			alert('Ca se suffit ?!!');
 		}
@@ -127,9 +128,10 @@ function clearAddCache() {
 		document.getElementById("description" + ( pas - 1)  + "ErrorEdit").innerHTML = "";
 		document.getElementById("titre" + ( pas - 1 )  + "ErrorEdit").innerHTML = "";
 	}
+	$('.error').html("");
+	$('.input').html("");
 }
 function refreshActivite() {
-	console.log('wiqd444');
 	$.ajax({
 		url: '/api/activite?id=' + $('input[name=idVoyage]').val(),
 		type: 'get',
@@ -236,6 +238,7 @@ function editActivite() {
 			'sousActivites': sas,
 			'idVoyage': idVoyage
 		}
+		console.log(sas);
 		datas = JSON.stringify(datas);
 		$.ajax({
 			type: "PUT",
@@ -251,6 +254,7 @@ function editActivite() {
 				var message = xhr['responseJSON'].message;
 				message = JSON.parse(message);
 				keys = Object.keys(message);
+				console.log(keys)
 				for (let i = 0; i < keys.length; i++) {
 					$('#' + keys[i] + 'Error').html(message[keys[i]]);
 				}/**EDIT */

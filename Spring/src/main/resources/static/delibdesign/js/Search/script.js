@@ -84,7 +84,7 @@ function refreshVoyagesByDATE() {
 	/*alert("jhhh");*/
 	for (voy of voyfiltre) {
 		console.log("dATABASE " + voy['dateDepartDate']);
-		if (voy['dateDepartDate'] === dated && voy['dateArriveeDate'] === dater) {
+		if (voy['dateDepartDate'] >= dated && voy['dateArriveeDate'] <= dater) {
 			i = i + 1;
 			voyDate.push(voy);
 		}
@@ -102,7 +102,7 @@ function refreshVoyagesByBudget() {
 	var i=0;
 	for (voy of voyDate) {
 		console.log(voyDate);
-		if (voy['prix'] <= prix){
+		if (voy['prix'] >= prix){
 			i = i + 1;
 
 		}
