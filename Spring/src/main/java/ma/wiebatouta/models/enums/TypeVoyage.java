@@ -1,5 +1,5 @@
 package ma.wiebatouta.models.enums;
 
 public enum TypeVoyage {
-	ACCOMPAGNE,CIRCUIT;
+	ACCOMPAGNE,CIRCUIT,FAMILIE,VOYAGE_SUR_MESURE;
 }
