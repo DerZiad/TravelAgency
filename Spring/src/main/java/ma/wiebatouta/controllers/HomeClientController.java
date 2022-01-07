@@ -31,6 +31,7 @@ import ma.wiebatouta.repositories.VoyageRepository;
 public class HomeClientController {
 
 	private final static String PATH_HOME_PAGE = "client/corps";
+	private final static String PATH_SHOW_VOYAGE = "client/showVoyage";
 	private final static String ATTRIBUT_BEST_VOYAGE = "voyagesBest";
 	private final static String ATTRIBUT_BEST_EQUIPE = "equipesBest";
 	private final static String ATTRIBUT_BEST_VOYAGE_REDUCTION = "voyageReduction";
@@ -119,7 +120,6 @@ public class HomeClientController {
 			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
 			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
 			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);
-			System.out.println(userDetail.getUsername());
 			Personne personne = personneRepository.getPersonneFromUsername(userDetail.getUsername());
 			System.out.println(personne);
 			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID, personne.getId());
@@ -147,6 +147,12 @@ public class HomeClientController {
 			trends.add(voyagesTrend.get(2));
 		}
 		model.addObject(ATTRIBUT_VOYAGES_TRENDS, trends);
+		return model;
+	}
+	
+	@GetMapping("/myvoyage")
+	public ModelAndView getMyVoyage() {
+		ModelAndView model = new ModelAndView(PATH_SHOW_VOYAGE);
 		return model;
 	}
 
