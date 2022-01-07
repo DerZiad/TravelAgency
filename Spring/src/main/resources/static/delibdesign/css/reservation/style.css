@@ -1,15 +1,4 @@
-html{
-	height:100%;
-	background:white;
-	background:radial-gradient(#31314a,#42426b);
-	background-repeat:no-repeat;
-}
-body{
-	margin:0;
-	color:white;
-	padding:50px;
-	font:300 18px/18px Roboto, sans-serif;
-}
+
 *,:after,:before{box-sizing:border-box}
 .pull-left{float:left}
 .pull-right{float:right}

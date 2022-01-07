@@ -42,35 +42,42 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 
 	@Column(name = "nombreetoiles", nullable = false)
 	@NotNull(message = "Le nombre d'étoile ne doit pas être vide")
-	@Range (min = 1, max = 5, message = "Le nombre d'étoile doit être entre 1 et 5")
+	@Range(min = 1, max = 5, message = "Le nombre d'étoile doit être entre 1 et 5")
 	private Integer nombreEtoile;
 	@Column(name = "nomhotel", nullable = false)
 	@NotNull(message = "Le nombre d'étoile ne doit pas être vide")
 	@Length(min = 1, max = 30, message = "Le nom d'Hotel doit être entre 1 et 30 caractères")
 	private String nomHotel;
-	
+
 	@Transient
 	private Long idLieu;
-	
+
 	@Transient
 	private Long idJson;
 	/**
 	 * Voyages
-	 * */
-	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE,CascadeType.DETACH})
+	 */
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH })
 	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
-	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "hotel",fetch = FetchType.LAZY,targetEntity = Picture.class)
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel", fetch = FetchType.LAZY, targetEntity = Picture.class)
 	private List<Picture> pictures = new ArrayList<Picture>();
-	
-	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE,CascadeType.DETACH},fetch = FetchType.EAGER,targetEntity = Lieu.class)
+
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH,
+			CascadeType.DETACH }, fetch = FetchType.EAGER, targetEntity = Lieu.class)
 	@NotNull(message = "L'hotel doit avoir au moins une ville")
 	private Lieu ville;
-	
+
 	@Override
 	public int compareTo(Hotel o) {
 		return nomHotel.compareTo(nomHotel);
+	}
+
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", nombreEtoile=" + nombreEtoile + ", nomHotel=" + nomHotel + ", idLieu=" + idLieu
+				+ ", idJson=" + idJson + "]";
 	}
 
 }

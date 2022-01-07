@@ -49,7 +49,7 @@ public class Theme implements Serializable, Comparable<Theme> {
 
 	@Column
 	@NotNull(message = "Un theme a besoin d'une description")
-	@Length(min = 5, max = 60, message = "La description est obligatoire")
+	@Length(min = 5, max = 150, message = "La description est obligatoire")
 	private String description;
 	
 	@Transient
