@@ -1,6 +1,8 @@
 package ma.wiebatouta.controllers;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ma.wiebatouta.models.Country;
+import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Reservation;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.CountryRepository;
+import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.PersonneRepository;
 import ma.wiebatouta.repositories.ReservationRepository;
 import ma.wiebatouta.repositories.VoyageHomeRepository;
@@ -37,6 +41,11 @@ public class SearchController {
 	private final static String ATTRIBUT_AUTHENTIFICATED_USERNAME = "username";
 	private final static String ATTRIBUT_AUTHENTIFICATED_PERSON_ID = "idPerson";
 	private final static String ATTRIBUT_RESERVATION_NUMBER = "reservationNumber";
+	private final static String ATTRIBUT_BEST_EQUIPE = "equipesBest";
+	private final static String ATTRIBUT_BEST_VOYAGE = "voyagesBest";
+
+	private int nombreVoyagesBest = 6;
+	private int nombreEquipeBest = 9;
 	@Autowired
 	private PersonneRepository personneRepository;
 	@Autowired
@@ -47,6 +56,8 @@ public class SearchController {
 	private VoyageHomeRepository voyageHomeRepository;
 	@Autowired
 	private ReservationRepository reservationRepository;
+	@Autowired
+	private EquipeRepository equipeRepository;
 
 	// @DateTimeFormat(pattern = "yyyy-MM-dd") Date
 	@GetMapping
@@ -57,7 +68,8 @@ public class SearchController {
 			@RequestParam(name = "nbrePersonne", required = false) String nbrPersonne,
 			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size) {
 		ModelAndView model = new ModelAndView(PATH_SEARCH);
-		
+		List<Voyage> voyages = voyageRepository.findAll();
+
 		if (country.equals("default")) {
 			boolean b = true;
 			Pageable pageInc = PageRequest.of(page, size);
@@ -72,6 +84,8 @@ public class SearchController {
 			model.addObject("countries", countries);
 			// return new ModelAndView(REDIRECT_HP);
 		} else {
+			List<Country> countries = countryRepository.findAll();
+
 			int nbr;
 			if (!nbrPersonne.equals("")) {
 				nbr = Integer.parseInt(nbrPersonne);
@@ -81,7 +95,7 @@ public class SearchController {
 			boolean b = false;
 			Date dd = Date.valueOf(dateDepart);
 			Date da = Date.valueOf(dateArrive);
-			List<Voyage> voyages = voyageRepository.getVoyageSearch(country, dd, da, budget, nbr);
+			List<Voyage> voyages1 = voyageRepository.getVoyageSearch(country, dd, da, budget, nbr);
 			/*
 			 * Page<Voyage> pages = voyageHomeRepository.findAll(pageable);
 			 * model.addObject("trends", pages.getContent()); model.addObject("number",
@@ -90,8 +104,9 @@ public class SearchController {
 			 * model.addObject("size", pages.getSize());
 			 */
 			model.addObject("boolean", b);
-
-			model.addObject("trends", voyages);
+			model.addObject("countries", countries);
+			
+			model.addObject("trends", voyages1);
 			// System.out.println("cas 1" + pages.getContent());
 		}
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -106,6 +121,21 @@ public class SearchController {
 			List<Reservation> reservations = reservationRepository.findByPerson(personne);
 			reservations = reservations.stream().filter(r -> !r.isConfirmed()).collect(Collectors.toList());
 			model.addObject(ATTRIBUT_RESERVATION_NUMBER, reservations.size());
+		}
+		/**
+		 * Selecting equipe
+		 */
+		List<Equipe> equipes = equipeRepository.findAll();
+		Collections.sort(equipes);
+		if (voyages.size() < nombreEquipeBest) {
+			model.addObject(ATTRIBUT_BEST_EQUIPE, equipes);
+		} else {
+			List<Equipe> sortedEquipes = new ArrayList<Equipe>();
+			for (int i = 0; i < nombreEquipeBest; i++) {
+				sortedEquipes.add(equipes.get(i));
+
+			}
+			model.addObject(ATTRIBUT_BEST_VOYAGE, sortedEquipes);
 		}
 		return model;
 	}

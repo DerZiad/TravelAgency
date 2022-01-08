@@ -15,9 +15,9 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900"
 	rel="stylesheet" />
-<link
-	href="/css/like.css"
-	rel="stylesheet" />
+<link href="/css/like.css" rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>WIEBATOUTA</title>
 <link rel="shortcut icon" type="image/icon"
 	href="assets/logo/favicon.png" />
@@ -63,7 +63,9 @@
 										<li class="smooth-menu"><a href="#gallery">Destination</a></li>
 										<li class="smooth-menu"><a href="#pack">Packages </a></li>
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
-										<li class="smooth-menu"><a href="#blog">blog</a></li>
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown">Activite <b class="caret"></b></a>
+											<ul class="dropdown-menu"></ul>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
 									</c:if>
 									<c:if test="${not authentificated}">
@@ -235,8 +237,10 @@
 	</footer>
 	<!-- /.footer-copyright-->
 	<!-- footer-copyright end -->
-
-	<layout:block name="scriptsfile"></layout:block>
+	
+	<layout:block name="scriptsfile">
+		<script src="delibdesign/js/Search/navbar.js"></script>
+	</layout:block>
 </body>
 
 </html>

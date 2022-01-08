@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,7 +32,7 @@ import ma.wiebatouta.repositories.VoyageRepository;
 public class HomeClientController {
 
 	private final static String PATH_HOME_PAGE = "client/corps";
-	private final static String PATH_SHOW_VOYAGE = "client/showVoyage";
+	private final static String PATH_SHOW_VOYAGE = "client/FicheVoyage";
 	private final static String ATTRIBUT_BEST_VOYAGE = "voyagesBest";
 	private final static String ATTRIBUT_BEST_EQUIPE = "equipesBest";
 	private final static String ATTRIBUT_BEST_VOYAGE_REDUCTION = "voyageReduction";
@@ -153,6 +154,21 @@ public class HomeClientController {
 	@GetMapping("/myvoyage")
 	public ModelAndView getMyVoyage() {
 		ModelAndView model = new ModelAndView(PATH_SHOW_VOYAGE);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+			model.addObject(ATTRIBUT_AUTHENTIFICATED, false);
+		} else {
+			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
+			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);
+			Personne personne = personneRepository.getPersonneFromUsername(userDetail.getUsername());
+			System.out.println(personne);
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID, personne.getId());
+			List<Reservation> reservations = reservationRepository.findByPerson(personne);
+			reservations = reservations.stream().filter(r -> !r.isConfirmed()).collect(Collectors.toList());
+			model.addObject(ATTRIBUT_RESERVATION_NUMBER, reservations.size());
+		}
+
 		return model;
 	}
 

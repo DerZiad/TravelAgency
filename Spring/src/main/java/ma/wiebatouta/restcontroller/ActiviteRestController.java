@@ -128,6 +128,20 @@ public class ActiviteRestController {
 			return ResponseEntity.ok(activites);
 		}
 	}
+	
+	@GetMapping("/all")
+	@RolesAllowed("ADMIN")
+	public ResponseEntity<?> findALLActivite()
+			throws NotFoundException, DataEmptyException {
+		
+		List<Activite> activites = activiteRepository.findAll();
+		if (activites.size() == 0) {
+			throw new DataEmptyException("The list of activity is Empty");
+		} else {
+
+			return ResponseEntity.ok(activites);
+		}
+	}
 
 	@PutMapping
 	@RolesAllowed("ADMIN")
