@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ma.wiebatouta.models.Activite;
 import ma.wiebatouta.models.Country;
 import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Reservation;
 import ma.wiebatouta.models.Voyage;
+import ma.wiebatouta.repositories.ActiviteRepository;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.PersonneRepository;
@@ -58,6 +60,8 @@ public class SearchController {
 	private ReservationRepository reservationRepository;
 	@Autowired
 	private EquipeRepository equipeRepository;
+	@Autowired
+	private ActiviteRepository activiteRepository;
 
 	// @DateTimeFormat(pattern = "yyyy-MM-dd") Date
 	@GetMapping
@@ -125,6 +129,7 @@ public class SearchController {
 		/**
 		 * Selecting equipe
 		 */
+		
 		List<Equipe> equipes = equipeRepository.findAll();
 		Collections.sort(equipes);
 		if (voyages.size() < nombreEquipeBest) {

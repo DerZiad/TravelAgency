@@ -13,13 +13,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ma.wiebatouta.models.Activite;
 import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Reservation;
 import ma.wiebatouta.models.Voyage;
+import ma.wiebatouta.repositories.ActiviteRepository;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.PersonneRepository;
@@ -56,7 +59,8 @@ public class HomeClientController {
 	private CountryRepository countryRepository;
 	@Autowired
 	private ReservationRepository reservationRepository;
-
+	@Autowired
+	private ActiviteRepository activiteRepository;
 	@SuppressWarnings("deprecation")
 	@GetMapping
 	public ModelAndView getPrincipalPage() {
@@ -169,5 +173,12 @@ public class HomeClientController {
 
 		return model;
 	}
-
+	
+	
+	@GetMapping("/{name}")
+	public ModelAndView voyageParActivite(@PathVariable("name")String nomActivite) {
+		System.out.println("ayman"+activiteRepository.findByNomActivite("ayman"));
+		List<Activite> activite = activiteRepository.findByNomActivite(nomActivite);
+		return null;
+	}
 }

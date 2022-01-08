@@ -17,7 +17,7 @@ function refreshActivite() {
 			activites = response;
 			var contenue = "";
 			for (act of activites) {
-				contenue = contenue + '<li value="act[\'nomActivite\']">' + act['nomActivite'] + '</li>';
+				contenue = contenue + '<li ><a style="color:black" href="name='+act['nomActivite']+'">' + act['nomActivite'] + '</a></li>';
 			}
 			console.log(activites);
 		
