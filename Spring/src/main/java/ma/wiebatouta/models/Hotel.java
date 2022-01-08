@@ -3,6 +3,7 @@ package ma.wiebatouta.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.wiebatouta.models.enums.TypePicture;
 
 @Entity
 @Table(name = "hotels")
@@ -79,5 +81,17 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 		return "Hotel [id=" + id + ", nombreEtoile=" + nombreEtoile + ", nomHotel=" + nomHotel + ", idLieu=" + idLieu
 				+ ", idJson=" + idJson + "]";
 	}
+	
+	
+	public String getHeader() {
+		List<Picture> pictures = this.pictures.stream().filter((p) -> {
+			return p.getType().equals(TypePicture.HEADER);
+		}).collect(Collectors.toList());
 
+		if (pictures.size() >= 1) {
+			return pictures.get(0).getBase64();
+		} else {
+			return "";
+		}
+	}
 }

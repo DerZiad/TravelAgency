@@ -73,7 +73,7 @@ public class Voyage implements Comparable<Voyage> {
 	private int nbrPersonnes = 0;
 	@Column
 	private String destination;
-
+	
 	@Transient
 	private Long idEquipe;
 

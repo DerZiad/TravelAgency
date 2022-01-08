@@ -10,11 +10,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Reservation;
+import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.ActiviteRepository;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.EquipeRepository;
@@ -32,6 +35,7 @@ public class VoyageInformationController {
 	private final static String ATTRIBUT_AUTHENTIFICATED_USERNAME = "username";
 	private final static String ATTRIBUT_AUTHENTIFICATED_PERSON_ID = "idPerson";
 	private final static String ATTRIBUT_RESERVATION_NUMBER = "reservationNumber";
+	private final static String ATTRIBUT_VOYAGE = "voyage";
 
 	@Autowired
 	private VoyageRepository voyageRepository;
@@ -50,13 +54,17 @@ public class VoyageInformationController {
 	@Autowired
 	private ThemeRepository themeRepository;
 	
-	@GetMapping
-	public ModelAndView getMyVoyage() {
+	@GetMapping("/{idVoyage}")
+	public ModelAndView getMyVoyage(@PathVariable("idVoyage")Long id) throws NotFoundException {
 		ModelAndView model = new ModelAndView(PATH_SHOW_VOYAGE);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Voyage voyage = voyageRepository.findById(id).orElseThrow(()->new NotFoundException("Voyage not found"));
 		if (authentication instanceof AnonymousAuthenticationToken) {
+			model.addObject(ATTRIBUT_VOYAGE,voyage);
 			model.addObject(ATTRIBUT_AUTHENTIFICATED, false);
+			
 		} else {
+			model.addObject(ATTRIBUT_VOYAGE,voyage);
 			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
 			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
 			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);

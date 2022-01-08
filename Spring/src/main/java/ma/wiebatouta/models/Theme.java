@@ -114,6 +114,14 @@ public class Theme implements Serializable, Comparable<Theme> {
 			this.picture = null;
 		}
 	}
+	
+	public String getBase64() {
+		String c = "";
+		if(this.picture != null && this.picture.length != 0) {
+			c = Base64.encodeBase64String(this.picture);
+		}
+		return c;
+	}
 
 	@Override
 	public String toString() {
