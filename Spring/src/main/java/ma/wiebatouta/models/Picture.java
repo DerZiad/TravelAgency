@@ -3,7 +3,7 @@ package ma.wiebatouta.models;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Base64;
-import ma.wiebatouta.validation.*;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
