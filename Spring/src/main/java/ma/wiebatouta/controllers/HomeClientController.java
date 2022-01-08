@@ -160,28 +160,6 @@ public class HomeClientController {
 		model.addObject(ATTRIBUT_VOYAGES_TRENDS, trends);
 		return model;
 	}
-
-	@GetMapping("/myvoyage")
-	public ModelAndView getMyVoyage() {
-		ModelAndView model = new ModelAndView(PATH_SHOW_VOYAGE);
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication instanceof AnonymousAuthenticationToken) {
-			model.addObject(ATTRIBUT_AUTHENTIFICATED, false);
-		} else {
-			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
-			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
-			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);
-			Personne personne = personneRepository.getPersonneFromUsername(userDetail.getUsername());
-			System.out.println(personne);
-			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID, personne.getId());
-			List<Reservation> reservations = reservationRepository.findByPerson(personne);
-			reservations = reservations.stream().filter(r -> !r.isConfirmed()).collect(Collectors.toList());
-			model.addObject(ATTRIBUT_RESERVATION_NUMBER, reservations.size());
-		}
-
-		return model;
-	}
-	
 	
 	@GetMapping("{name}")
 	public ModelAndView voyageParTheme(@PathVariable("name")String nomTheme) {
