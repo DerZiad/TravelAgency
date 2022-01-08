@@ -22,7 +22,7 @@
 						</ul>
 						<!-- Tab panes -->
 						<div class="tab-content">
-							<form action="search" method="get">
+							<form action="search#subs" method="get">
 
 								<div role="tabpanel" class="tab-pane active fade in" id="tours">
 									<div class="tab-para">
