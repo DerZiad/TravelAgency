@@ -38,7 +38,7 @@
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="logo">
-							<a href="index.html"> WIE<span>BATOUTA</span>
+							<a href="/"> WIE<span>BATOUTA</span>
 							</a>
 						</div>
 						<!-- /.logo-->

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ma.wiebatouta.models.Activite;
+import ma.wiebatouta.models.Country;
 import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Reservation;
@@ -119,7 +120,7 @@ public class HomeClientController {
 				sortedEquipes.add(equipes.get(i));
 
 			}
-			model.addObject(ATTRIBUT_BEST_VOYAGE, sortedEquipes);
+			model.addObject(ATTRIBUT_BEST_EQUIPE, sortedEquipes);
 		}
 
 		/**
@@ -163,12 +164,42 @@ public class HomeClientController {
 	
 	@GetMapping("{name}")
 	public ModelAndView voyageParTheme(@PathVariable("name")String nomTheme) {
-		System.out.println("ayman"+nomTheme);
+		ModelAndView model = new ModelAndView(PATH_HOME_PAGE);
 		Theme theme = themeRepository.findByLabel(nomTheme);
 		List<Voyage> voyages =theme.getVoyages();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+			model.addObject(ATTRIBUT_AUTHENTIFICATED, false);
+		} else {
+			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
+			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);
+			Personne personne = personneRepository.getPersonneFromUsername(userDetail.getUsername());
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID, personne.getId());
+			List<Reservation> reservations = reservationRepository.findByPerson(personne);
+			reservations = reservations.stream().filter(r -> !r.isConfirmed()).collect(Collectors.toList());
+			model.addObject(ATTRIBUT_RESERVATION_NUMBER, reservations.size());
+		}
 		//System.out.println(":"+voyages);
-		ModelAndView model = new ModelAndView(PATH_SHOW_VOYAGE);
-		model.addObject("voyages", voyages);
+		/**
+		 * Selecting equipe
+		 */
+		List<Equipe> equipes = equipeRepository.findAll();
+		Collections.sort(equipes);
+		if (voyages.size() < nombreEquipeBest) {
+			model.addObject(ATTRIBUT_BEST_EQUIPE, equipes);
+		} else {
+			List<Equipe> sortedEquipes = new ArrayList<Equipe>();
+			for (int i = 0; i < nombreEquipeBest; i++) {
+				sortedEquipes.add(equipes.get(i));
+
+			}
+			model.addObject(ATTRIBUT_BEST_VOYAGE, sortedEquipes);
+		}
+		model.addObject(ATTRIBUT_BEST_VOYAGE, voyages);
+		model.addObject("theme", nomTheme);
+		List<Country> countries = countryRepository.findAll();
+		model.addObject(ATTRIBUT_COUNTRIES, countries);
 		return model;
 	}
 }

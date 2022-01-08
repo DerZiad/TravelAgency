@@ -3,9 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="container">
 	<div class="gallary-header text-center">
+	<c:if test="${!empty theme}">
 		<h2>Offres speciales</h2>
-		<p>Ici vous trouvez les meilleures offres que nous avons qui sont
-			recommandés par nos clients</p>
+		<p>
+			<c:out value="Les Meilleurs Voyages associes au theme : ${theme}">
+
+			</c:out>
+		</p>
+	</c:if>
 	</div>
 	<!--/.gallery-header-->
 	<div class="packages-content">
@@ -47,8 +52,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="about-btn">
-										<button 
-											class="about-view packages-btn">
+										<button class="about-view packages-btn">
 											<span>&#x2764;</span>
 										</button>
 									</div>
