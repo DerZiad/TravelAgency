@@ -106,7 +106,7 @@
 
 										</div>
 										<!--/.row-->
-
+										<br>
 										<div class="row">
 											<div class="col-sm-5">
 												<div class="budget-wrap">
@@ -119,12 +119,6 @@
 														<div class="content">
 															<input name="budget" type="range" min="100" max="10000"
 																value="5000" data-rangeslider>
-														</div>
-														<div class="footer clearfix">
-															<div class="pull-right">
-																<a href="javascript:void(0)" class="btn btn-def">Back</a>
-																<a href="javascript:void(0)" class="btn btn-pri">Next</a>
-															</div>
 														</div>
 													</div>
 												</div>
