@@ -8,12 +8,12 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>DevFolio Bootstrap Portfolio Template - Portfolio Details</title>
+<title>WIEBATOUTA</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
-
+<link rel="shortcut icon" type="image/icon"
+	href="/assets/logo/favicon.png" />
 <!-- Favicons -->
-<link href="/css/assets/img/favicon.png" rel="icon">
 <link href="/css/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Vendor CSS Files -->

@@ -3,6 +3,7 @@ package ma.wiebatouta.models;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -184,4 +185,13 @@ public class Personne implements Serializable, Comparable<Personne> {
 		codeVerif=String.valueOf(rand.nextInt(9999));
 	}
 
+	@Override
+	public String toString() {
+		return "Personne [id=" + id + ", cne=" + cne + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance="
+				+ dateNaissance + ", codePostal=" + codePostal + ", travaille=" + travaille + ", nombreEnfant="
+				+ nombreEnfant + ", nationalite=" + nationalite + ", marie=" + marie + ", telephone=" + telephone
+				+ ", email=" + email + ", codeVerif=" + codeVerif + ", sexe=" + sexe + ", image="
+				+ Arrays.toString(image) + ", fileName=" + fileName + "]";
+	}
+	
 }

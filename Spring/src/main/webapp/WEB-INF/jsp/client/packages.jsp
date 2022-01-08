@@ -3,14 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="container">
 	<div class="gallary-header text-center">
-	<c:if test="${!empty theme}">
-		<h2>Offres speciales</h2>
-		<p>
-			<c:out value="Les Meilleurs Voyages associes au theme : ${theme}">
+		<c:if test="${!empty theme}">
+			<h2>Offres speciales</h2>
+			<p>
+				<c:out value="Les Meilleurs Voyages associes au theme : ${theme}">
 
-			</c:out>
-		</p>
-	</c:if>
+				</c:out>
+			</p>
+		</c:if>
 	</div>
 	<!--/.gallery-header-->
 	<div class="packages-content">
@@ -49,6 +49,14 @@
 										<button onclick="addToChart(${voyage.id})"
 											class="about-view packages-btn">book now</button>
 									</div>
+									<form method="GET" action="/myvoyage/${voyageReduction.id}">
+										<div class="offer-btn-group">
+											<div class="about-btn">
+												<button class="about-view packages-btn">View</button>
+											</div>
+											<!--/.about-btn-->
+										</div>
+									</form>
 								</div>
 								<div class="col-md-6">
 									<div class="about-btn">

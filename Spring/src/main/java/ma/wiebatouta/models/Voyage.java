@@ -190,4 +190,15 @@ public class Voyage implements Comparable<Voyage> {
 		return prix;
 	}
 
+	@Override
+	public String toString() {
+		return "Voyage [id=" + id + ", ageMax=" + ageMax + ", ageMin=" + ageMin + ", dateArrivee=" + dateArrivee
+				+ ", dateDepart=" + dateDepart + ", description=" + description + ", nombrePersonneTotal="
+				+ nombrePersonneTotal + ", prix=" + prix + ", reduction=" + reduction + ", titre=" + titre
+				+ ", nbKilometres=" + nbKilometres + ", nbrPersonnes=" + nbrPersonnes + ", destination=" + destination
+				+ ", idEquipe=" + idEquipe + ", typeVoyage=" + typeVoyage + ", review=" + review + "]";
+	}
+	
+	
+
 }
