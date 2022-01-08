@@ -21,12 +21,14 @@ import ma.wiebatouta.models.Activite;
 import ma.wiebatouta.models.Equipe;
 import ma.wiebatouta.models.Personne;
 import ma.wiebatouta.models.Reservation;
+import ma.wiebatouta.models.Theme;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.ActiviteRepository;
 import ma.wiebatouta.repositories.CountryRepository;
 import ma.wiebatouta.repositories.EquipeRepository;
 import ma.wiebatouta.repositories.PersonneRepository;
 import ma.wiebatouta.repositories.ReservationRepository;
+import ma.wiebatouta.repositories.ThemeRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
 @Controller
@@ -61,6 +63,12 @@ public class HomeClientController {
 	private ReservationRepository reservationRepository;
 	@Autowired
 	private ActiviteRepository activiteRepository;
+	@Autowired
+	private ThemeRepository themeRepository;
+	
+	
+	
+	
 	@SuppressWarnings("deprecation")
 	@GetMapping
 	public ModelAndView getPrincipalPage() {
@@ -175,10 +183,14 @@ public class HomeClientController {
 	}
 	
 	
-	@GetMapping("/{name}")
-	public ModelAndView voyageParActivite(@PathVariable("name")String nomActivite) {
-		System.out.println("ayman"+activiteRepository.findByNomActivite("ayman"));
-		List<Activite> activite = activiteRepository.findByNomActivite(nomActivite);
-		return null;
+	@GetMapping("{name}")
+	public ModelAndView voyageParTheme(@PathVariable("name")String nomTheme) {
+		System.out.println("ayman"+nomTheme);
+		Theme theme = themeRepository.findByLabel(nomTheme);
+		List<Voyage> voyages =theme.getVoyages();
+		//System.out.println(":"+voyages);
+		ModelAndView model = new ModelAndView(PATH_SHOW_VOYAGE);
+		model.addObject("voyages", voyages);
+		return model;
 	}
 }

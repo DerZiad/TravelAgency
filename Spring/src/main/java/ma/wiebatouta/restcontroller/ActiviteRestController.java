@@ -29,8 +29,10 @@ import ma.wiebatouta.exceptions.DataEmptyException;
 import ma.wiebatouta.exceptions.NotFoundException;
 import ma.wiebatouta.models.Activite;
 import ma.wiebatouta.models.SousActivite;
+import ma.wiebatouta.models.Theme;
 import ma.wiebatouta.models.Voyage;
 import ma.wiebatouta.repositories.ActiviteRepository;
+import ma.wiebatouta.repositories.ThemeRepository;
 import ma.wiebatouta.repositories.VoyageRepository;
 
 @RestController
@@ -41,7 +43,10 @@ public class ActiviteRestController {
 	private ActiviteRepository activiteRepository;
 	@Autowired
 	private VoyageRepository voyageRepository;
-
+	@Autowired
+	private ThemeRepository themeRepository;
+	
+	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	@RolesAllowed("ADMIN")
 	public HttpEntity<?> addActivite(@RequestBody Activite activite) throws NotFoundException, AddUnsatisfiedException {
@@ -129,17 +134,17 @@ public class ActiviteRestController {
 		}
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("/theme")
 	@RolesAllowed("ADMIN")
-	public ResponseEntity<?> findALLActivite()
+	public ResponseEntity<?> findALLTheme()
 			throws NotFoundException, DataEmptyException {
 		
-		List<Activite> activites = activiteRepository.findAll();
-		if (activites.size() == 0) {
-			throw new DataEmptyException("The list of activity is Empty");
+		List<Theme> themes = themeRepository.findAll();
+		if (themes.size() == 0) {
+			throw new DataEmptyException("The list of topics is Empty");
 		} else {
 
-			return ResponseEntity.ok(activites);
+			return ResponseEntity.ok(themes);
 		}
 	}
 

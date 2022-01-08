@@ -1,4 +1,4 @@
-var activites = []
+var themes = []
 $(document).ready(function() {
 	$('ul.nav li.dropdown').hover(function() {
 		$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
@@ -10,16 +10,16 @@ $(document).ready(function() {
 });
 function refreshActivite() {
 	$.ajax({
-		url: '/api/activite/all',
+		url: '/api/activite/theme',
 		type: 'get',
 		data: {},
 		success: function(response) {
-			activites = response;
+			themes = response;
 			var contenue = "";
-			for (act of activites) {
-				contenue = contenue + '<li ><a style="color:black" href="name='+act['nomActivite']+'">' + act['nomActivite'] + '</a></li>';
+			for (the of themes) {
+				contenue = contenue + '<li ><a style="color:black" href="/'+the['label']+'">' + the['label'] + '</a></li>';
 			}
-			console.log(activites);
+			console.log(themes);
 		
 		$('.dropdown-menu').html(contenue);
 	}
