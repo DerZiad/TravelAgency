@@ -10,17 +10,17 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="css/assets/img/favicon.png" rel="icon">
-  <link href="css/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/css/assets/img/favicon.png" rel="icon">
+  <link href="/css/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Vendor CSS Files -->
-  <link href="css/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="css/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="css/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/css/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/css/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/css/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="css/assets/css/style.css" rel="stylesheet">
+  <link href="/css/assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: DevFolio - v4.7.1
@@ -38,7 +38,7 @@
 
       <h1 class="logo"><a href="index.html">DevFolio</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="css/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.html" class="logo"><img src="/css/assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -72,7 +72,7 @@
     </div>
   </header><!-- End Header -->
 
-  <div class="hero hero-single route bg-image" style="background-image: url(css/assets/img/overlay-bg.jpg)">
+  <div class="hero hero-single route bg-image" style="background-image: url(/css/assets/img/overlay-bg.jpg)">
     <div class="overlay-mf"></div>
     <div class="hero-content display-table">
       <div class="table-cell">
@@ -102,15 +102,15 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="css/assets/img/portfolio-details-1.jpg" alt="">
+                  <img src="/css/assets/img/portfolio-details-1.jpg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="css/assets/img/portfolio-details-2.jpg" alt="">
+                  <img src="/css/assets/img/portfolio-details-2.jpg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="css/assets/img/portfolio-details-3.jpg" alt="">
+                  <img src="/css/assets/img/portfolio-details-3.jpg" alt="">
                 </div>
 
               </div>
@@ -169,15 +169,15 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="css/assets/vendor/purecounter/purecounter.js"></script>
-  <script src="css/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="css/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="css/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="css/assets/vendor/typed.js/typed.min.js"></script>
-  <script src="css/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/css/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="/css/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/css/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/css/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/css/assets/vendor/typed.js/typed.min.js"></script>
+  <script src="/css/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="css/assets/js/main.js"></script>
+  <script src="/css/assets/js/main.js"></script>
 
 </body>
 
