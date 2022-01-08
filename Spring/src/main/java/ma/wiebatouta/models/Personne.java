@@ -106,7 +106,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@JsonIgnore
 	private List<Reservation> reservations = new ArrayList<Reservation>();
 
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity = User.class)
 	private User user;
 	
 	private String fileName;
