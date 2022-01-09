@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class SearchController {
 	private final static String ATTRIBUT_RESERVATION_NUMBER = "reservationNumber";
 	private final static String ATTRIBUT_BEST_EQUIPE = "equipesBest";
 	private final static String ATTRIBUT_BEST_VOYAGE = "voyagesBest";
+	private final static String ATTRIBUT_BEST_VOYAGE_REDUCTION = "voyageReduction";
 
 	private int nombreVoyagesBest = 6;
 	private int nombreEquipeBest = 9;
@@ -73,6 +75,21 @@ public class SearchController {
 			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size) {
 		ModelAndView model = new ModelAndView(PATH_SEARCH);
 		List<Voyage> voyages = voyageRepository.findAll();
+		/**
+		 * Voyages reduction
+		 **/
+		List<Voyage> voyagesReduction = new ArrayList<Voyage>();
+		for (Voyage voyage : voyages) {
+			if (voyage.isSolded()) {
+				voyagesReduction.add(voyage);
+			}
+		}
+		if (voyagesReduction.size() != 0) {
+			Random random = new Random();
+			int indice = random.nextInt(voyagesReduction.size());
+			model.addObject(ATTRIBUT_BEST_VOYAGE_REDUCTION, voyagesReduction.get(indice));
+			model.addObject("timelong", voyagesReduction.get(indice).getDateDepart().toGMTString());
+		}
 
 		if (country.equals("default")) {
 			boolean b = true;

@@ -196,6 +196,22 @@ public class HomeClientController {
 			}
 			model.addObject(ATTRIBUT_BEST_VOYAGE, sortedEquipes);
 		}
+		/**
+		 * Voyages reduction
+		 **/
+		List<Voyage> voyagesReduction = new ArrayList<Voyage>();
+		for (Voyage voyage : voyages) {
+			if (voyage.isSolded()) {
+				voyagesReduction.add(voyage);
+			}
+		}
+		if (voyagesReduction.size() != 0) {
+			Random random = new Random();
+			int indice = random.nextInt(voyagesReduction.size());
+			model.addObject(ATTRIBUT_BEST_VOYAGE_REDUCTION, voyagesReduction.get(indice));
+			model.addObject("timelong", voyagesReduction.get(indice).getDateDepart().toGMTString());
+		}
+
 		model.addObject(ATTRIBUT_BEST_VOYAGE, voyages);
 		model.addObject("theme", nomTheme);
 		List<Country> countries = countryRepository.findAll();
