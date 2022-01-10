@@ -38,6 +38,7 @@ public class SignUpMetier {
 		user.setUsername(personne.getNom());
 		user.addRole(ServerRole.CLIENT);
 		personne.setUser(user);
+		personne.generateCode();
 		personneRepository.save(personne);
 		ConfirmationMessage message = new ConfirmationMessage(personne.getEmail(),
 				"Veuillez confirmer votre Inscription en Votre Site preferee de Voyage WIE BATOUTA",
