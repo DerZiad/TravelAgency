@@ -117,49 +117,53 @@ function updateStar(number) {
 	$('input[name=star]').val(number);
 }
 
+function updateStarEdit(number) {
+	$('input[name=starEdit]').val(number);
+}
+
 function starManagementEdit() {
-	$('#star1').click(function() {
-		$('#star1').css("color", gold);
-		$('#star2').css("color", plat);
-		$('#star3').css("color", plat);
-		$('#star4').css("color", plat);
-		$('#star5').css("color", plat);
-		updateStar(1);
+	$('#star1Edit').click(function() {
+		$('#star1Edit').css("color", gold);
+		$('#star2Edit').css("color", plat);
+		$('#star3Edit').css("color", plat);
+		$('#star4Edit').css("color", plat);
+		$('#star5Edit').css("color", plat);
+		updateStarEdit(1);
 	});
 
-	$('#star2').click(function() {
-		$('#star1').css("color", gold);
-		$('#star2').css("color", gold);
-		$('#star3').css("color", plat);
-		$('#star4').css("color", plat);
-		$('#star5').css("color", plat);
-		updateStar(2);
+	$('#star2Edit').click(function() {
+		$('#star1Edit').css("color", gold);
+		$('#star2Edit').css("color", gold);
+		$('#star3Edit').css("color", plat);
+		$('#star4Edit').css("color", plat);
+		$('#star5Edit').css("color", plat);
+		updateStarEdit(2);
 	});
 
-	$('#star3').click(function() {
-		$('#star1').css("color", gold);
-		$('#star2').css("color", gold);
-		$('#star3').css("color", gold);
-		$('#star4').css("color", plat);
-		$('#star5').css("color", plat);
-		updateStar(3);
+	$('#star3Edit').click(function() {
+		$('#star1Edit').css("color", gold);
+		$('#star2Edit').css("color", gold);
+		$('#star3Edit').css("color", gold);
+		$('#star4Edit').css("color", plat);
+		$('#star5Edit').css("color", plat);
+		updateStarEdit(3);
 	});
 
-	$('#star4').click(function() {
-		$('#star1').css("color", gold);
-		$('#star2').css("color", gold);
-		$('#star3').css("color", gold);
-		$('#star4').css("color", gold);
-		$('#star5').css("color", plat);
-		updateStar(4);
+	$('#star4Edit').click(function() {
+		$('#star1Edit').css("color", gold);
+		$('#star2Edit').css("color", gold);
+		$('#star3Edit').css("color", gold);
+		$('#star4Edit').css("color", gold);
+		$('#star5Edit').css("color", plat);
+		updateStarEdit(4);
 	});
-	$('#star5').click(function() {
-		$('#star1').css("color", gold);
-		$('#star2').css("color", gold);
-		$('#star3').css("color", gold);
-		$('#star4').css("color", gold);
-		$('#star5').css("color", gold);
-		updateStar(5);
+	$('#star5Edit').click(function() {
+		$('#star1Edit').css("color", gold);
+		$('#star2Edit').css("color", gold);
+		$('#star3Edit').css("color", gold);
+		$('#star4Edit').css("color", gold);
+		$('#star5Edit').css("color", gold);
+		updateStarEdit(5);
 	});
 }
 
@@ -347,6 +351,7 @@ function initialize() {
 		});
 	});
 	starManagement();
+	starManagementEdit();
 }
 
 jQuery(document).ready(function() {
