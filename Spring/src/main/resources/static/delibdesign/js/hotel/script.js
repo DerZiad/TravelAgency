@@ -116,6 +116,54 @@ function deleteAll() {
 function updateStar(number) {
 	$('input[name=star]').val(number);
 }
+
+function starManagementEdit() {
+	$('#star1').click(function() {
+		$('#star1').css("color", gold);
+		$('#star2').css("color", plat);
+		$('#star3').css("color", plat);
+		$('#star4').css("color", plat);
+		$('#star5').css("color", plat);
+		updateStar(1);
+	});
+
+	$('#star2').click(function() {
+		$('#star1').css("color", gold);
+		$('#star2').css("color", gold);
+		$('#star3').css("color", plat);
+		$('#star4').css("color", plat);
+		$('#star5').css("color", plat);
+		updateStar(2);
+	});
+
+	$('#star3').click(function() {
+		$('#star1').css("color", gold);
+		$('#star2').css("color", gold);
+		$('#star3').css("color", gold);
+		$('#star4').css("color", plat);
+		$('#star5').css("color", plat);
+		updateStar(3);
+	});
+
+	$('#star4').click(function() {
+		$('#star1').css("color", gold);
+		$('#star2').css("color", gold);
+		$('#star3').css("color", gold);
+		$('#star4').css("color", gold);
+		$('#star5').css("color", plat);
+		updateStar(4);
+	});
+	$('#star5').click(function() {
+		$('#star1').css("color", gold);
+		$('#star2').css("color", gold);
+		$('#star3').css("color", gold);
+		$('#star4').css("color", gold);
+		$('#star5').css("color", gold);
+		updateStar(5);
+	});
+}
+
+
 function starManagement() {
 	$('#star1').click(function() {
 		$('#star1').css("color", gold);

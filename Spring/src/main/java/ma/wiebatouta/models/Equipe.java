@@ -22,44 +22,44 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Entity
-@Table(name="equipes")
+@Table(name = "equipes")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Equipe implements Serializable,Comparable<Equipe>{
+public class Equipe implements Serializable, Comparable<Equipe> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Length(min = 3,max = 20,message = "Le nom de l'equipe doit être entre 3 et 20")
+
+	@Length(min = 3, max = 20, message = "Le nom de l'equipe doit être entre 3 et 20")
 	@NotNull(message = "Vous devez nommer l'equipe")
 	private String label;
-	
-	@OneToOne(cascade = {
-			CascadeType.ALL }, fetch = FetchType.EAGER,targetEntity = Personne.class)
+
+	@OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, targetEntity = Personne.class)
 	private Personne personne;
-	
-	@OneToMany(cascade = {
-			CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "equipe", targetEntity = Voyage.class)
+
+	@OneToMany(cascade = { CascadeType.REFRESH,
+			CascadeType.DETACH }, fetch = FetchType.EAGER, mappedBy = "equipe", targetEntity = Voyage.class)
 	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 
 	@Override
 	public int compareTo(Equipe o) {
-		if(voyages.size() < o.getVoyages().size()) {
+		if (voyages.size() < o.getVoyages().size()) {
 			return 1;
-		}else {
+		} else {
 			return -1;
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Equipe [id=" + id + ", label=" + label + ", personne=" + personne +  "]";
+		return "Equipe [id=" + id + ", label=" + label + ", personne=" + personne + "]";
 	}
-	
+
 }

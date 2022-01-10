@@ -47,11 +47,11 @@ public class Lieu implements Serializable, Comparable<Lieu> {
 	@NotNull(message = "Le lieu doit avoir au moins un pays")
 	private Country country;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Hotel.class,mappedBy = "ville")
+	@OneToMany(cascade = { CascadeType.REFRESH ,CascadeType.DETACH}, fetch = FetchType.EAGER, targetEntity = Hotel.class,mappedBy = "ville")
 	@JsonIgnore
 	private List<Hotel> hotel = new ArrayList<Hotel>();
 
-	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH ,CascadeType.DETACH}, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.REFRESH ,CascadeType.DETACH}, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 
