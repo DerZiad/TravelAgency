@@ -186,6 +186,7 @@ function refreshvoyages() {
 		type: 'get',
 		data: {},
 		success: function(response) {
+			console.log("refresh")
 			voyages = response;
 			var contenue = "";
 			for (voyage of voyages) {
