@@ -57,6 +57,7 @@
 											<img style='display: block; width: 100px; height: 100px;'
 												id='base64image' name="img"
 												src='data:image/jpeg;base64,${theme.encodedPicture}' />
+											<p>1</p>
 											<div>
 												<label for="photo" class="">Inserer Photo</label> <input
 													name="logo" id="file" type="file" />
@@ -69,13 +70,15 @@
 											<img style='display: block; width: 100px; height: 100px;'
 												id='base64image' name="img"
 												src='data:image/jpeg;base64,${theme.encodedPicture}' />
+											<p>2</p>
 											<div>
 												<label for="photo" class="">Inserer Photo</label> <input
 													name="logo" id="file" type="file" />
 											</div>
 										</div>
 									</c:if>
-									<c:if test="${! modify}">
+									<c:if test="${! modify && empty errors}">
+									    <p>3</p>
 										<div class="col-md-6">
 											<div class="col-md-6">
 												<label for="photo" class="">Inserer Photo</label> <input
