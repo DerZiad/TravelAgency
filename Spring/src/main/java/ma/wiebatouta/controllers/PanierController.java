@@ -24,7 +24,7 @@ public class PanierController {
 
 	private static final String ATTRIBUT_RESERVATIONS = "reservations";
 	private static final String ATTRIBUT_PRIX_TOTAL = "total";
-	
+
 	private static final String REDIRECT_LOGIN = "redirect:/login";
 	private static final String REDIRECT_PANIER = "redirect:/panier";
 	@Autowired
@@ -35,33 +35,34 @@ public class PanierController {
 	@GetMapping("/panier")
 	public ModelAndView getPanier() {
 		ModelAndView model = null;
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth instanceof AnonymousAuthenticationToken) {
+		if (auth instanceof AnonymousAuthenticationToken) {
 			model = new ModelAndView(REDIRECT_LOGIN);
-		}else {
+		} else {
 			String username = auth.getName();
 			model = new ModelAndView(PATH_PANIER);
 			List<Reservation> reservations = reservationRepository.findAll();
-			reservations = reservations.stream().filter(r -> !r.isConfirmed() && r.getPerson().getUser().getUsername().equals(username)).toList();
+			reservations = reservations.stream()
+					.filter(r -> !r.isConfirmed() && r.getPerson().getUser().getUsername().equals(username)).toList();
 			double prix = 0;
-			for(Reservation reservation:reservations) {
+			for (Reservation reservation : reservations) {
 				prix = prix + reservation.getVoyage().getPrix();
 			}
-			model.addObject(ATTRIBUT_PRIX_TOTAL,prix);
-			model.addObject(ATTRIBUT_RESERVATIONS,reservations);
+			model.addObject(ATTRIBUT_PRIX_TOTAL, prix);
+			model.addObject(ATTRIBUT_RESERVATIONS, reservations);
 		}
 		return model;
 	}
-	
+
 	@GetMapping("/panier/delete")
-	public ModelAndView getPanier(@RequestParam("idVoyage")Long idVoyage) {
+	public ModelAndView getPanier(@RequestParam("idVoyage") Long idVoyage) {
 		ModelAndView model = null;
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth instanceof AnonymousAuthenticationToken) {
+		if (auth instanceof AnonymousAuthenticationToken) {
 			model = new ModelAndView(REDIRECT_LOGIN);
-		}else {
+		} else {
 			String username = auth.getName();
 			Personne personne = personneRepository.getPersonneFromUsername(username);
 			reservationRepository.deleteById(new KeyReservation(idVoyage, personne.getId()));
@@ -69,17 +70,21 @@ public class PanierController {
 		}
 		return model;
 	}
+
 	@GetMapping("/panier/payer")
 	public ModelAndView payerPanier() {
 		ModelAndView model = null;
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth instanceof AnonymousAuthenticationToken) {
+		if (auth instanceof AnonymousAuthenticationToken) {
 			model = new ModelAndView(REDIRECT_LOGIN);
-		}else {
+		} else {
 			String username = auth.getName();
 			List<Reservation> reservations = reservationRepository.getReservationAvecUsername(username);
-			reservations.forEach(r -> r.setConfirmed(true));
+			reservations.forEach(r -> {
+				r.setConfirmed(true);
+				r.getVoyage().setNbrPersonnes(r.getVoyage().getNbrPersonnes() + 1);
+			});
 			reservationRepository.saveAll(reservations);
 			model = new ModelAndView(REDIRECT_PANIER);
 		}
