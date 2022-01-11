@@ -72,7 +72,7 @@ public class SearchController {
 			@RequestParam(name = "date_arrive", required = false) String dateArrive,
 			@RequestParam(name = "budget", required = false) Double budget,
 			@RequestParam(name = "nbrePersonne", required = false) String nbrPersonne,
-			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size) {
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
 		ModelAndView model = new ModelAndView(PATH_SEARCH);
 		List<Voyage> voyages = voyageRepository.findAll();
 		/**
@@ -96,7 +96,7 @@ public class SearchController {
 			Pageable pageInc = PageRequest.of(page, size);
 			List<Country> countries = countryRepository.findAll();
 			Page<Voyage> pages = voyageHomeRepository.findAll(pageInc);
-			model.addObject("voyagesBest", pages.getContent());
+			model.addObject("data", pages.getContent());
 			model.addObject("number", pages.getNumber());
 			model.addObject("totalPages", pages.getTotalPages());
 			model.addObject("totalElements", pages.getTotalElements());
