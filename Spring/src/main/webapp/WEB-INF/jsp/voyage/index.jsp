@@ -94,5 +94,18 @@
 		</script>
 		<script src="/delibdesign/js/voyage/script.js"></script>
 		<script src="/delibdesign/js/voyage/template.js"></script>
+		<script>
+		$(document).ready(function() {
+		    $('input[name=dateArriveeDate]').click(function() {
+		        verifi();
+		    });
+		});
+		function verifi() {
+		    var dd = $('input[name=dateDepartDate]').val();
+		    var da = $('input[name=dateArriveeDate]').val();
+		    document.getElementById('dr').setAttribute("min",dd);
+		    console.log(dd);
+		}
+		</script>
 	</layout:put>
 </layout:extends>
