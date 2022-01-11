@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ page import="java.util.Date"%>
 <!-- Add Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
@@ -75,18 +75,21 @@
 				<div class="form-row">
 					<div class="col-md-6">
 						<label>Date départ</label> <input type="date" class="form-control"
-							name="dateDepartDate" required />
+							name="dateDepartDate"
+							min="<%=new java.sql.Date(System.currentTimeMillis())%>"
+							placeholder="<%=new java.sql.Date(System.currentTimeMillis())%>" />
 						<p id="dateDepartError" class="error"></p>
 					</div>
 					<div class="col-md-6">
 						<label>Date arrivée</label> <input type="date"
-							class="form-control" name="dateArriveeDate" required />
+							class="form-control" id="dr" name="dateArriveeDate" required />
 						<p id="dateArriveeError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-group">
 					<label>Equipe</label> <select class="form-control" name="idequipe"></select>
-					<p id="equipeError" class="error"></p>
+					<p id="equipeError" class="error"
+						></p>
 				</div>
 			</div>
 			<div class="modal-footer">
