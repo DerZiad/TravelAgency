@@ -136,7 +136,7 @@
 										<div class="filtr-item">
 											<img src="assets/images/gallary/g1.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="#"> china </a>
+												<a href="/destination/China"> china </a>
 												<p>
 													<span>${China} tours</span>
 												</p>
@@ -151,7 +151,7 @@
 										<div class="filtr-item">
 											<img src="assets/images/gallary/g2.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="#"> venuzuala </a>
+												<a href="/destination/Venuzuala"> venuzuala </a>
 												<p>
 													<span>${Venuzuala} tours</span>
 												</p>
@@ -166,7 +166,7 @@
 										<div class="filtr-item">
 											<img src="assets/images/gallary/g3.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="#"> brazil </a>
+												<a href="/destination/Brazil"> brazil </a>
 												<p>
 													<span>${Brazil} tours</span>
 												</p>
@@ -181,7 +181,7 @@
 										<div class="filtr-item">
 											<img src="assets/images/gallary/g4.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="#"> australia </a>
+												<a href="/destination/Australia"> australia </a>
 												<p>
 													<span>${Australia} tours</span>
 												</p>
@@ -196,9 +196,9 @@
 										<div class="filtr-item">
 											<img src="assets/images/gallary/g5.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="#"> netharland </a>
+												<a href="/destination/Netherland"> Netherland </a>
 												<p>
-													<span>${Netharland} tours</span>
+													<span>${Netherland} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title-->
@@ -211,7 +211,7 @@
 										<div class="filtr-item">
 											<img src="assets/images/gallary/g6.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="#"> turkey </a>
+												<a href="/destination/Turkey"> turkey </a>
 												<p>
 													<span>${Turkey} tours</span>
 												</p>

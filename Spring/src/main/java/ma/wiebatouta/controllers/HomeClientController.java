@@ -247,4 +247,60 @@ public class HomeClientController {
 		model.addObject(ATTRIBUT_COUNTRIES, countries);
 		return model;
 	}
+
+	@GetMapping("/destination/{name}")
+	public ModelAndView voyageParDestination(@PathVariable("name")String destination) {
+		ModelAndView model = new ModelAndView(PATH_HOME_PAGE);
+		/*Theme theme = themeRepository.findByDestination*/
+		List<Voyage> voyages =voyageRepository.findByDestination(destination);		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+			model.addObject(ATTRIBUT_AUTHENTIFICATED, false);
+		} else {
+			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
+			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);
+			Personne personne = personneRepository.getPersonneFromUsername(userDetail.getUsername());
+			model.addObject(ATTRIBUT_AUTHENTIFICATED_PERSON_ID, personne.getId());
+			List<Reservation> reservations = reservationRepository.findByPerson(personne);
+			reservations = reservations.stream().filter(r -> !r.isConfirmed()).collect(Collectors.toList());
+			model.addObject(ATTRIBUT_RESERVATION_NUMBER, reservations.size());
+		}
+		//System.out.println(":"+voyages);
+		/**
+		 * Selecting equipe
+		 */
+		List<Equipe> equipes = equipeRepository.findAll();
+		Collections.sort(equipes);
+		if (voyages.size() < nombreEquipeBest) {
+			model.addObject(ATTRIBUT_BEST_EQUIPE, equipes);
+		} else {
+			List<Equipe> sortedEquipes = new ArrayList<Equipe>();
+			for (int i = 0; i < nombreEquipeBest; i++) {
+				sortedEquipes.add(equipes.get(i));
+
+			}
+			model.addObject(ATTRIBUT_BEST_EQUIPE, sortedEquipes);
+		}
+		/**
+		 * Voyages reduction
+		 **/
+		List<Voyage> voyagesReduction = new ArrayList<Voyage>();
+		for (Voyage voyage : voyages) {
+			if (voyage.isSolded()) {
+				voyagesReduction.add(voyage);
+			}
+		}
+		if (voyagesReduction.size() != 0) {
+			Random random = new Random();
+			int indice = random.nextInt(voyagesReduction.size());
+			model.addObject(ATTRIBUT_BEST_VOYAGE_REDUCTION, voyagesReduction.get(indice));
+			model.addObject("timelong", voyagesReduction.get(indice).getDateDepart().toGMTString());
+		}
+
+		model.addObject(ATTRIBUT_BEST_VOYAGE, voyages);
+		List<Country> countries = countryRepository.findAll();
+		model.addObject(ATTRIBUT_COUNTRIES, countries);
+		return model;
+	}
 }

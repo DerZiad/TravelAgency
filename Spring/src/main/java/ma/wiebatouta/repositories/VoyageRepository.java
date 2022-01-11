@@ -21,6 +21,6 @@ public interface VoyageRepository extends JpaRepository<Voyage, Long> {
 	@Query("select v from Voyage v where v.destination=:destination ")
 	public List<Voyage> getVoyageSearch(@Param("destination") String destination);
 
-
+	public List<Voyage> findByDestination(String destination);
   
 }
