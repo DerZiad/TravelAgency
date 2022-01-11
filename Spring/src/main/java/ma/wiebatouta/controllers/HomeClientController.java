@@ -194,7 +194,7 @@ public class HomeClientController {
 				sortedEquipes.add(equipes.get(i));
 
 			}
-			model.addObject(ATTRIBUT_BEST_VOYAGE, sortedEquipes);
+			model.addObject(ATTRIBUT_BEST_EQUIPE, sortedEquipes);
 		}
 		/**
 		 * Voyages reduction

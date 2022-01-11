@@ -96,7 +96,7 @@ public class SearchController {
 			Pageable pageInc = PageRequest.of(page, size);
 			List<Country> countries = countryRepository.findAll();
 			Page<Voyage> pages = voyageHomeRepository.findAll(pageInc);
-			model.addObject("data", pages.getContent());
+			model.addObject("voyagesBest", pages.getContent());
 			model.addObject("number", pages.getNumber());
 			model.addObject("totalPages", pages.getTotalPages());
 			model.addObject("totalElements", pages.getTotalElements());
@@ -157,7 +157,7 @@ public class SearchController {
 				sortedEquipes.add(equipes.get(i));
 
 			}
-			model.addObject(ATTRIBUT_BEST_VOYAGE, sortedEquipes);
+			model.addObject(ATTRIBUT_BEST_EQUIPE, sortedEquipes);
 		}
 		return model;
 	}
