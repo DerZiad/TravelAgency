@@ -39,6 +39,9 @@ public class JadoreRestController {
 				.orElseThrow(() -> new NotFoundException("Id not found"));
 		Personne person = personRepository.findById(reservationRequest.getIdPerson())
 				.orElseThrow(() -> new NotFoundException("Id not found"));
+		voyage.setReview(voyage.getReview() + 1);
+		voyageRepository.save(voyage);
+		
 		jadore.setVoyage(voyage);
 		jadore.setPerson(person);
 

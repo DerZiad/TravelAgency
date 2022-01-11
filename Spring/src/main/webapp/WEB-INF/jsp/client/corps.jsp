@@ -345,22 +345,22 @@
 		<!--subscribe end-->
 	</layout:put>
 	<layout:put block="scriptsfile">
-		<script src="assets/js/jquery.js"></script>
+		<script src="/assets/js/jquery.js"></script>
 		<script src="/delibdesign/js/Search/script.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/bootsnav.js"></script>
-		<script src="assets/js/jquery.filterizr.min.js"></script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+		<script src="/assets/js/bootsnav.js"></script>
+		<script src="/assets/js/jquery.filterizr.min.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-		<script src="assets/js/jquery-ui.min.js"></script>
-		<script src="assets/js/jquery.counterup.min.js"></script>
-		<script src="assets/js/waypoints.min.js"></script>
-		<script src="assets/js/owl.carousel.min.js"></script>
-		<script src="assets/js/jquery.sticky.js"></script>
-		<script src="assets/js/datepicker.js"></script>
-		<script src="assets/js/custom.js"></script>
+		<script src="/assets/js/jquery-ui.min.js"></script>
+		<script src="/assets/js/jquery.counterup.min.js"></script>
+		<script src="/assets/js/waypoints.min.js"></script>
+		<script src="/assets/js/owl.carousel.min.js"></script>
+		<script src="/assets/js/jquery.sticky.js"></script>
+		<script src="/assets/js/datepicker.js"></script>
+		<script src="/assets/js/custom.js"></script>
 		<script src="/delibdesign/js/Reservation/template.js"></script>
 
 		<script src="js/home.js"></script>
@@ -370,16 +370,16 @@
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/delibdesign/css/reservation/style.css" />
 		
-		<link rel="stylesheet" href="assets/css/animate.css" />
-		<link rel="stylesheet" href="assets/css/hover-min.css">
-		<link rel="stylesheet" href="assets/css/datepicker.css">
-		<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-		<link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
-		<link rel="stylesheet" href="assets/css/jquery-ui.min.css" />
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="assets/css/bootsnav.css" />
-		<link rel="stylesheet" href="assets/css/style.css" />
-		<link rel="stylesheet" href="assets/css/responsive.css" />
+		<link rel="stylesheet" href="/assets/css/animate.css" />
+		<link rel="stylesheet" href="/assets/css/hover-min.css">
+		<link rel="stylesheet" href="/assets/css/datepicker.css">
+		<link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="/assets/css/owl.theme.default.min.css" />
+		<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/assets/css/bootsnav.css" />
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/responsive.css" />
 	</layout:put>
 	<layout:put block="modalFiles">
 		<div id="addImageModal" class="modal fade">

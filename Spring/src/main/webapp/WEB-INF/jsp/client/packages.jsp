@@ -51,7 +51,7 @@
 									</div>
 									<form method="GET" action="/myvoyage/${voyageReduction.id}">
 										<div class="offer-btn-group">
-											<div class="about-btn" onclick="like(${voyage.id})">
+											<div class="about-btn">
 												<button class="about-view packages-btn">View</button>
 											</div>
 											<!--/.about-btn-->
@@ -60,7 +60,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="about-btn">
-										<button class="about-view packages-btn">
+										<button class="about-view packages-btn" onclick="like(${voyage.id})">
 											<span>&#x2764;</span>
 										</button>
 									</div>

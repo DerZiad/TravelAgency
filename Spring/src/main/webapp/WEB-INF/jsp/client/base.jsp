@@ -20,7 +20,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>WIEBATOUTA</title>
 <link rel="shortcut icon" type="image/icon"
-	href="assets/logo/favicon.png" />
+	href="/assets/logo/favicon.png" />
 <meta name="msapplication-tap-highlight" content="no">
 <layout:block name="cssfiles"></layout:block>
 </head>
@@ -239,7 +239,7 @@
 	<!-- footer-copyright end -->
 	
 	<layout:block name="scriptsfile">
-		<script src="delibdesign/js/Search/navbar.js"></script>
+		<script src="/delibdesign/js/Search/navbar.js"></script>
 	</layout:block>
 </body>
 
