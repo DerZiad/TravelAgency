@@ -53,7 +53,7 @@
 					<div class="col-md-4 col-sm-4">
 						<div class="single-service-box">
 							<div class="service-img">
-								<img src="assets/images/service/s1.png" alt="service-icon" />
+								<img src="/assets/images/service/s1.png" alt="service-icon" />
 							</div>
 							<!--/.service-img-->
 							<div class="service-content">
@@ -72,7 +72,7 @@
 					<div class="col-md-4 col-sm-4">
 						<div class="single-service-box">
 							<div class="service-img">
-								<img src="assets/images/service/s2.png" alt="service-icon" />
+								<img src="/assets/images/service/s2.png" alt="service-icon" />
 							</div>
 							<!--/.service-img-->
 							<div class="service-content">
@@ -91,7 +91,7 @@
 					<div class="col-md-4 col-sm-4">
 						<div class="single-service-box">
 							<div class="statistics-img">
-								<img src="assets/images/service/s3.png" alt="service-icon" />
+								<img src="/assets/images/service/s3.png" alt="service-icon" />
 							</div>
 							<!--/.service-img-->
 							<div class="service-content">
@@ -134,7 +134,7 @@
 
 									<div class="col-md-6">
 										<div class="filtr-item">
-											<img src="assets/images/gallary/g1.jpg" alt="portfolio image" />
+											<img src="/assets/images/gallary/g1.jpg" alt="portfolio image" />
 											<div class="item-title">
 												<a href="/destination/China"> china </a>
 												<p>
@@ -149,7 +149,7 @@
 
 									<div class="col-md-6">
 										<div class="filtr-item">
-											<img src="assets/images/gallary/g2.jpg" alt="portfolio image" />
+											<img src="/assets/images/gallary/g2.jpg" alt="portfolio image" />
 											<div class="item-title">
 												<a href="/destination/Venuzuala"> venuzuala </a>
 												<p>
@@ -164,7 +164,7 @@
 
 									<div class="col-md-4">
 										<div class="filtr-item">
-											<img src="assets/images/gallary/g3.jpg" alt="portfolio image" />
+											<img src="/assets/images/gallary/g3.jpg" alt="portfolio image" />
 											<div class="item-title">
 												<a href="/destination/Brazil"> brazil </a>
 												<p>
@@ -179,7 +179,7 @@
 
 									<div class="col-md-4">
 										<div class="filtr-item">
-											<img src="assets/images/gallary/g4.jpg" alt="portfolio image" />
+											<img src="/assets/images/gallary/g4.jpg" alt="portfolio image" />
 											<div class="item-title">
 												<a href="/destination/Australia"> australia </a>
 												<p>
@@ -194,7 +194,7 @@
 
 									<div class="col-md-4">
 										<div class="filtr-item">
-											<img src="assets/images/gallary/g5.jpg" alt="portfolio image" />
+											<img src="/assets/images/gallary/g5.jpg" alt="portfolio image" />
 											<div class="item-title">
 												<a href="/destination/Netherland"> Netherland </a>
 												<p>
@@ -209,7 +209,7 @@
 
 									<div class="col-md-8">
 										<div class="filtr-item">
-											<img src="assets/images/gallary/g6.jpg" alt="portfolio image" />
+											<img src="/assets/images/gallary/g6.jpg" alt="portfolio image" />
 											<div class="item-title">
 												<a href="/destination/Turkey"> turkey </a>
 												<p>
