@@ -81,7 +81,7 @@
 								<div class="position-relative form-group">
 									<label for="dateNaissance" class="">Date de naissance</label><input
 										name="dateNaissanceDate" id="dateNaissance" type="date"
-										class="form-control" value="">
+										class="form-control" value="${personne.dateNaissanceDate}">
 									<p class="error">
 										<c:out value="${errors.dateNaissance}" />
 									</p>
