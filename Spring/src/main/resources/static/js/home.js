@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
 			contentType: "application/json",
 			url: "/api/reservation/username?username=" + username,
 			success: function(response) {
-				for(reservation of response){
+				for (reservation of response) {
 					reservations.push(reservation);
 					voyagesID.push(reservation.voyage.id);
 				}
@@ -41,40 +41,28 @@ function like(id) {
 
 	var username = $("input[name=username]").val();
 	if (username != undefined) {
-		var test = 1;
-		for (voyage of voyagesID) {
-			if (voyage == id) {
-				test = 0;
-			}
+		datas = {
+			'idVoyage': id,
+			'idPerson': $('input[name=idPerson]').val()
 		}
-		if (test == 1) {
-			voyagesID.push(id)
-			datas = {
-				'idVoyage': id,
-				'idPerson': $('input[name=idPerson]').val()
-			}
-			datas = JSON.stringify(datas);
-			$.ajax({
-				type: "POST",
-				headers: { Accept: "application/json" },
-				contentType: "application/json",
-				url: "/api/reservation",
-				data: datas,
-				success: function(response) {
-					reservations.push(response);
-				}, error: function(xhr, ajaxOptions, thrownError) {
-					var message = xhr['responseJSON'].message;
-					message = JSON.parse(message);
-					keys = Object.keys(message);
-					for (let i = 0; i < keys.length; i++) {
-						$('#' + keys[i] + 'Error').html(message[keys[i]]);
-					}
-				}
-			});
+		datas = JSON.stringify(datas);
+		$.ajax({
+			type: "POST",
+			headers: { Accept: "application/json" },
+			contentType: "application/json",
+			url: "/api/like",
+			data: datas,
+			success: function(response) {
 
-			productNumber++;
-			$('#numberPanier').html(productNumber);
-		}
+			}, error: function(xhr, ajaxOptions, thrownError) {
+				var message = xhr['responseJSON'].message;
+				message = JSON.parse(message);
+				keys = Object.keys(message);
+				for (let i = 0; i < keys.length; i++) {
+					$('#' + keys[i] + 'Error').html(message[keys[i]]);
+				}
+			}
+		});
 	} else {
 		window.location.replace("/login");
 	}

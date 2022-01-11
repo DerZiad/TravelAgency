@@ -113,6 +113,10 @@ public class Voyage implements Comparable<Voyage> {
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage")
 	@JsonIgnore
 	private List<Reservation> reservations = new ArrayList<Reservation>();
+	
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage")
+	@JsonIgnore
+	private List<Jadore> jadores = new ArrayList<Jadore>();
 
 	@SuppressWarnings("deprecation")
 	public void setDateDepartDate(String date) {
