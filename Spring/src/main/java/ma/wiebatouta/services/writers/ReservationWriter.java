@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import ma.wiebatouta.models.Reservation;
 import ma.wiebatouta.repositories.ReservationRepository;
 
+@Component
 public class ReservationWriter implements ItemWriter<List<Reservation>> {
 	
 	@Autowired

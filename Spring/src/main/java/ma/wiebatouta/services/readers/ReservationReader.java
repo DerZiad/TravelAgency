@@ -7,11 +7,11 @@ import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import ma.wiebatouta.models.Message;
 import ma.wiebatouta.models.Reservation;
 import ma.wiebatouta.repositories.ReservationRepository;
-
+@Component
 public class ReservationReader implements ItemReader<List<Reservation>>{
 	
 	@Autowired

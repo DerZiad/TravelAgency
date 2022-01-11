@@ -21,11 +21,8 @@ import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import ma.wiebatouta.models.Message;
 import ma.wiebatouta.models.Reservation;
-import ma.wiebatouta.services.readers.MessageReader;
 import ma.wiebatouta.services.readers.ReservationReader;
-import ma.wiebatouta.services.writers.MessageWriter;
 import ma.wiebatouta.services.writers.ReservationWriter;
 
 @Configuration
