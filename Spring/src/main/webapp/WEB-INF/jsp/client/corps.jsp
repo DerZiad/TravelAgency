@@ -138,7 +138,7 @@
 											<div class="item-title">
 												<a href="#"> china </a>
 												<p>
-													<span>20 tours</span><span>15 places</span>
+													<span>${China} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title -->
@@ -153,7 +153,7 @@
 											<div class="item-title">
 												<a href="#"> venuzuala </a>
 												<p>
-													<span>12 tours</span><span>9 places</span>
+													<span>${Venuzuala} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title-->
@@ -168,7 +168,7 @@
 											<div class="item-title">
 												<a href="#"> brazil </a>
 												<p>
-													<span>25 tours</span><span>10 places</span>
+													<span>${Brazil} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title -->
@@ -183,7 +183,7 @@
 											<div class="item-title">
 												<a href="#"> australia </a>
 												<p>
-													<span>18 tours</span><span>9 places</span>
+													<span>${Australia} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title-->
@@ -198,7 +198,7 @@
 											<div class="item-title">
 												<a href="#"> netharland </a>
 												<p>
-													<span>14 tours</span><span>12 places</span>
+													<span>${Netharland} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title-->
@@ -213,7 +213,7 @@
 											<div class="item-title">
 												<a href="#"> turkey </a>
 												<p>
-													<span>14 tours</span><span>6 places</span>
+													<span>${Turkey} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title-->

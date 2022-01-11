@@ -17,6 +17,9 @@ public interface VoyageRepository extends JpaRepository<Voyage, Long> {
 	public List<Voyage> getVoyageSearch(@Param("destination") String destination, @Param("dateDepart") Date date_depart,
 			@Param("dateArrivee") Date date_arrivee, @Param("prix") Double prix,
 			@Param("nombrePersonne") int nbrPersone);//TODO a modifiier date et prix 
+	
+	@Query("select v from Voyage v where v.destination=:destination ")
+	public List<Voyage> getVoyageSearch(@Param("destination") String destination);
 
 
   
