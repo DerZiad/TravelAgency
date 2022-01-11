@@ -106,7 +106,7 @@ public class Personne implements Serializable, Comparable<Personne> {
 	@JsonIgnore
 	private List<Reservation> reservations = new ArrayList<Reservation>();
 	
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "person")
+	@OneToMany(cascade = { CascadeType.DETACH,CascadeType.REFRESH }, mappedBy = "person")
 	@JsonIgnore
 	private List<Jadore> jadores = new ArrayList<Jadore>();
 

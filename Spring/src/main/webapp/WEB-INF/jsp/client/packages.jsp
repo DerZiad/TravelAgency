@@ -60,8 +60,8 @@
 								</div>
 								<div class="col-md-6">
 									<div class="about-btn">
-										<button class="about-view packages-btn" onclick="like(${voyage.id})">
-											<span>&#x2764;</span>
+										<button class="about-view packages-btn" onclick="liked(${voyage.id})">
+											<span class="${idPerson}-${voyage.id}">&#x2764;</span>
 										</button>
 									</div>
 								</div>

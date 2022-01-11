@@ -363,7 +363,6 @@
 		<script src="/assets/js/custom.js"></script>
 		<script src="/delibdesign/js/Reservation/template.js"></script>
 
-		<script src="js/home.js"></script>
 	</layout:put>
 	<layout:put block="cssfiles">
 		<link rel="stylesheet"

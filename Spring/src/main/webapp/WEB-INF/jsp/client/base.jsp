@@ -23,8 +23,13 @@
 	href="/assets/logo/favicon.png" />
 <meta name="msapplication-tap-highlight" content="no">
 <layout:block name="cssfiles"></layout:block>
+<style>
+	.liked{
+		color:red;
+	}
+</style>
 </head>
-
+<script src="/js/home.js"></script>
 <body>
 	<!--[if lte IE 9]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade

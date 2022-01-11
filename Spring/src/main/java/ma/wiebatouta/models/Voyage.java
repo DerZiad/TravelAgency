@@ -114,7 +114,7 @@ public class Voyage implements Comparable<Voyage> {
 	@JsonIgnore
 	private List<Reservation> reservations = new ArrayList<Reservation>();
 	
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "voyage")
+	@OneToMany(cascade = { CascadeType.DETACH,CascadeType.REFRESH }, mappedBy = "voyage")
 	@JsonIgnore
 	private List<Jadore> jadores = new ArrayList<Jadore>();
 

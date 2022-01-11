@@ -5,6 +5,7 @@ deletetedId = null;
 hotels = [];
 lieux = [];
 countries = [];
+like = [];
 $(function() {
 	$('.select-stateForm').selectize({
 		sortField: 'text'
