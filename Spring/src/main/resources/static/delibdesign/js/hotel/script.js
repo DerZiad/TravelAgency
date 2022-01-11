@@ -43,8 +43,28 @@ function refreshLieuxByHotel(idLieu) {
 	$('select[name=stateEdit]').html(contenue);
 }
 
+function refreshLieuxEdit() {
+	$.ajax({
+		url: '/api/lieux',
+		type: 'get',
+		data: {},
+		success: function(response) {
+			lieux = response;
+			var country = $('select[name=countryEdit]').val();
+			var contenue = "";
+			for (lieu of lieux) {
+				if (lieu.country.keyCountry === country) {
+					contenue = contenue + '<option value="' + lieu.id + '">' + lieu.label + '</option>';
+				}
+			}
+			$('select[name=stateEdit]').html(contenue);
+		}
+	});
+
+}
 
 function makeEditHotel(idHotel) {
+	$('input[name=idHotel]').val(idHotel);
 	var selectedHotel = null;
 	for (hotel of hotels) {
 		if (hotel.id == idHotel) {
@@ -63,37 +83,6 @@ function makeEditHotel(idHotel) {
 	$("input[name=starEdit]").val(hotel.nombreEtoile);
 	refreshCountryByHotel(hotel.ville.country.keyCountry);
 	refreshLieuxByHotel(hotel.ville.idLieu);
-	$('#editEdit').click(function() {
-		var nomHotel = $('input[name=hotelnameEdit]').val();
-		var star = $('input[name=starEdit]').val();
-		var state = $('select[name=stateEdit]').val();
-		datas = {
-			'id': "" + idHotel,
-			'nomHotel': nomHotel,
-			'nombreEtoile': star,
-			'idLieu': state
-		}
-		datas = JSON.stringify(datas);
-		$.ajax({
-			type: "PUT",
-			headers: { Accept: "application/json" },
-			contentType: "application/json",
-			url: "/api/hotel",
-			data: datas,
-			success: function(response) {
-				hotel = response;
-				refreshotels();
-				clearAddCache();
-			}, error: function(xhr, ajaxOptions, thrownError) {
-				var message = xhr['responseJSON'].message;
-				message = JSON.parse(message);
-				keys = Object.keys(message);
-				for (let i = 0; i < keys.length; i++) {
-					$('#' + keys[i] + 'ErrorEdit').html(message[keys[i]]);
-				}
-			}
-		});
-	});
 }
 
 
@@ -378,6 +367,43 @@ jQuery(document).ready(function() {
 		success: function(response) {
 			countries = response;
 		}
+	});
+	
+	$('select[name=countryEdit]').change(function(){
+		refreshLieuxEdit();
+	});
+	
+	$('#editEdit').click(function() {
+		var nomHotel = $('input[name=hotelnameEdit]').val();
+		var star = $('input[name=starEdit]').val();
+		var state = $('select[name=stateEdit]').val();
+		var idHotel = $('input[name=idHotel]').val();
+		datas = {
+			'id': "" + idHotel,
+			'nomHotel': nomHotel,
+			'nombreEtoile': star,
+			'idLieu': state
+		}
+		datas = JSON.stringify(datas);
+		$.ajax({
+			type: "PUT",
+			headers: { Accept: "application/json" },
+			contentType: "application/json",
+			url: "/api/hotel",
+			data: datas,
+			success: function(response) {
+				hotel = response;
+				refreshotels();
+				clearAddCache();
+			}, error: function(xhr, ajaxOptions, thrownError) {
+				var message = xhr['responseJSON'].message;
+				message = JSON.parse(message);
+				keys = Object.keys(message);
+				for (let i = 0; i < keys.length; i++) {
+					$('#' + keys[i] + 'ErrorEdit').html(message[keys[i]]);
+				}
+			}
+		});
 	});
 });
 
