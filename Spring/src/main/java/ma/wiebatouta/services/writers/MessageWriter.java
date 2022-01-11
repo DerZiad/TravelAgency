@@ -19,11 +19,8 @@ public class MessageWriter implements ItemWriter<List<Message>> {
 
 	@Override
 	public void write(List<? extends List<Message>> items) throws Exception {
-		System.out.println("Woek");
 		for(List<Message> list:items) {
-			System.out.println("Not empty");
 			list.forEach(m -> {
-				System.out.print("I m here");
 				long deadTime = m.getStartTime() + DELAI;
 				long currentTime = System.currentTimeMillis();
 				if (currentTime >= deadTime) {

@@ -3,6 +3,7 @@ package ma.wiebatouta.models;
  * 
  */
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,6 +34,10 @@ public class Reservation implements Serializable,Comparable<Reservation>,Statist
 	
 	@Column
 	boolean isConfirmed = false;
+	
+	private long dateCreation = System.currentTimeMillis();
+	
+	private final static long DELAI = 24 * 3600 * 1000;
 		
 	/**
 	 * Relations
@@ -57,5 +62,13 @@ public class Reservation implements Serializable,Comparable<Reservation>,Statist
 	public int compareTo(Reservation o) {
 		return id.compareTo(o.getId());
 	}
-
+	
+	public boolean isDead() {
+		long dateNow = System.currentTimeMillis();
+		if(dateNow >= (dateCreation + DELAI))
+			return true;
+		else
+			return false;
+	}
+	
 }
