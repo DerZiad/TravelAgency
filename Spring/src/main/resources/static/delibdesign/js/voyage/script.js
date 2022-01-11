@@ -53,56 +53,8 @@ function makeEditVoyage(idVoyage) {
 	$("input[name=reductionEdit]").val(voyage.reduction);
 	refreshCountryByVoyage(voyage.destination);
 	refreshEquipeByVoyage(voyage.equipe.id)
-	$('input[name=edit]').click(function() {
-		var titre = $('input[name=titreEdit]').val();
-		var destination = $('select[name=destinationEdit]').val();
-		var prix = $('input[name=prixEdit]').val();
-		var nbrPersonnes = $('input[name=nbrPersonnesEdit]').val();
-		var nbKilometres = $('input[name=nbKilometresEdit]').val();
-		var ageMin = $('input[name=ageMinEdit]').val();
-		var ageMax = $('input[name=ageMaxEdit]').val();
-		var dateDepartDate = $('input[name=dateDepartDateEdit]').val();
-		var dateArriveeDate  = $('input[name=dateArriveeDateEdit]').val();
-		var description = $('input[name=descriptionEdit]').val();
-		var equipe = $('select[name=idequipeEdit]').val();
-		var typeVoyage = $("select[name=typeVoyageEdit]").val();
-		var reduction = $("input[name=reductionEdit]").val();
-		datas = {
-			'id':idVoyage,
-			'titre': titre,
-			'destination': destination,
-			'prix': prix,
-			'nbrPersonnes': nbrPersonnes,
-			'nbKilometres': nbKilometres,
-			'ageMin': ageMin,
-			'ageMax': ageMax,
-			'dateDepartDate': dateDepartDate,
-			'dateArriveeDate': dateArriveeDate,
-			'description':description,
-			'idEquipe':equipe,
-			'typeVoyage':typeVoyage,
-			'reduction':reduction
-		}
-		datas = JSON.stringify(datas);
-		$.ajax({
-			type: "PUT",
-			headers: { Accept: "application/json" },
-			contentType: "application/json",
-			url: "/api/voyage",
-			data: datas,
-			success: function(response) {
-				refreshvoyages();
-				clearAddCache();
-			}, error: function(xhr, ajaxOptions, thrownError) {
-				var message = xhr['responseJSON'].message;
-				message = JSON.parse(message);
-				keys = Object.keys(message);
-				for (let i = 0; i < keys.length; i++) {
-					$('#' + keys[i] + 'ErrorEdit').html(message[keys[i]]);
-				}
-			}
-		});
-	});
+	$('input[name=idVoyageEdit]').val(idVoyage);
+	
 }
 
 
@@ -300,6 +252,59 @@ jQuery(document).ready(function() {
 			equipes = response;
 			refreshEquipe();
 		}
+	});
+	
+	
+	$('input[name=edit]').click(function() {
+		var idVoyage = $('input[name=idVoyageEdit]').val();
+		var titre = $('input[name=titreEdit]').val();
+		var destination = $('select[name=destinationEdit]').val();
+		var prix = $('input[name=prixEdit]').val();
+		var nbrPersonnes = $('input[name=nbrPersonnesEdit]').val();
+		var nbKilometres = $('input[name=nbKilometresEdit]').val();
+		var ageMin = $('input[name=ageMinEdit]').val();
+		var ageMax = $('input[name=ageMaxEdit]').val();
+		var dateDepartDate = $('input[name=dateDepartDateEdit]').val();
+		var dateArriveeDate  = $('input[name=dateArriveeDateEdit]').val();
+		var description = $('input[name=descriptionEdit]').val();
+		var equipe = $('select[name=idequipeEdit]').val();
+		var typeVoyage = $("select[name=typeVoyageEdit]").val();
+		var reduction = $("input[name=reductionEdit]").val();
+		datas = {
+			'id':idVoyage,
+			'titre': titre,
+			'destination': destination,
+			'prix': prix,
+			'nbrPersonnes': nbrPersonnes,
+			'nbKilometres': nbKilometres,
+			'ageMin': ageMin,
+			'ageMax': ageMax,
+			'dateDepartDate': dateDepartDate,
+			'dateArriveeDate': dateArriveeDate,
+			'description':description,
+			'idEquipe':equipe,
+			'typeVoyage':typeVoyage,
+			'reduction':reduction
+		}
+		datas = JSON.stringify(datas);
+		$.ajax({
+			type: "PUT",
+			headers: { Accept: "application/json" },
+			contentType: "application/json",
+			url: "/api/voyage",
+			data: datas,
+			success: function(response) {
+				refreshvoyages();
+				clearAddCache();
+			}, error: function(xhr, ajaxOptions, thrownError) {
+				var message = xhr['responseJSON'].message;
+				message = JSON.parse(message);
+				keys = Object.keys(message);
+				for (let i = 0; i < keys.length; i++) {
+					$('#' + keys[i] + 'ErrorEdit').html(message[keys[i]]);
+				}
+			}
+		});
 	});
 });
 

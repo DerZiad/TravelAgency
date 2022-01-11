@@ -109,6 +109,7 @@
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
+			<input type="hidden" name="idVoyageEdit" value=""/>
 			<div class="modal-body">
 				<div class="form-group">
 					<label>Titre</label> <input type="text" class="form-control"
