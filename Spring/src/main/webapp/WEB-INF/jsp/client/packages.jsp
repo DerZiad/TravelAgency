@@ -49,7 +49,7 @@
 										<button onclick="addToChart(${voyage.id})"
 											class="about-view packages-btn">book now</button>
 									</div>
-									<form method="GET" action="/myvoyage/${voyageReduction.id}">
+									<form method="GET" action="/myvoyage/${voyage.id}">
 										<div class="offer-btn-group">
 											<div class="about-btn">
 												<button class="about-view packages-btn">View</button>
