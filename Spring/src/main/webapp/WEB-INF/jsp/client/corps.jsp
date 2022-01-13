@@ -136,7 +136,7 @@
 										<div class="filtr-item">
 											<img src="/assets/images/gallary/g1.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="/destination/China"> china </a>
+												<a href="/destination/China"> China </a>
 												<p>
 													<span>${China} tours</span>
 												</p>
@@ -151,9 +151,9 @@
 										<div class="filtr-item">
 											<img src="/assets/images/gallary/g2.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="/destination/Venuzuala"> venuzuala </a>
+												<a href="/destination/Finland"> Finland</a>
 												<p>
-													<span>${Venuzuala} tours</span>
+													<span>${Finland} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title-->
@@ -166,7 +166,7 @@
 										<div class="filtr-item">
 											<img src="/assets/images/gallary/g3.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="/destination/Brazil"> brazil </a>
+												<a href="/destination/Brazil"> Brazil </a>
 												<p>
 													<span>${Brazil} tours</span>
 												</p>
@@ -181,7 +181,7 @@
 										<div class="filtr-item">
 											<img src="/assets/images/gallary/g4.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="/destination/Australia"> australia </a>
+												<a href="/destination/Australia"> Australia </a>
 												<p>
 													<span>${Australia} tours</span>
 												</p>
@@ -196,9 +196,9 @@
 										<div class="filtr-item">
 											<img src="/assets/images/gallary/g5.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="/destination/Netherland"> Netherland </a>
+												<a href="/destination/Netherlands"> Netherlands </a>
 												<p>
-													<span>${Netherland} tours</span>
+													<span>${Netherlands} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title-->
@@ -211,7 +211,7 @@
 										<div class="filtr-item">
 											<img src="/assets/images/gallary/g6.jpg" alt="portfolio image" />
 											<div class="item-title">
-												<a href="/destination/Turkey"> turkey </a>
+												<a href="/destination/Turkey"> Turkey </a>
 												<p>
 													<span>${Turkey} tours</span>
 												</p>

@@ -49,7 +49,7 @@ public class HomeClientController {
 	private final static String ATTRIBUT_VOYAGES_TRENDS = "trends";
 	
 	
-	private final static String ATTRIBUT_VOYAGE_VENUZUALA="Venuzuala";
+	private final static String ATTRIBUT_VOYAGE_FINLAND="Finland";
 	private final static String ATTRIBUT_VOYAGE_AUSTRALIA="Australia";
 	private final static String ATTRIBUT_VOYAGE_NETHARLAND="Netharland";
 	private final static String ATTRIBUT_VOYAGE_BRAZIL="Brazil";
@@ -138,14 +138,14 @@ public class HomeClientController {
 		 * Selecting special offers
 		 * **/
 		
-		List<Voyage> voyagesVenuzuala = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_VENUZUALA);
+		List<Voyage> voyagesVenuzuala = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_FINLAND);
 		List<Voyage> voyagesAustralia = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_AUSTRALIA);
 		List<Voyage> voyagesNetherLand = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_NETHARLAND);
 		List<Voyage> voyagesBrazil = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_BRAZIL);
 		List<Voyage> voyagesTurkey = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_TURKEY);
 		List<Voyage> voyagesChina = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_CHINA);
 		
-		model.addObject(ATTRIBUT_VOYAGE_VENUZUALA,voyagesVenuzuala.size());
+		model.addObject(ATTRIBUT_VOYAGE_FINLAND,voyagesVenuzuala.size());
 		model.addObject(ATTRIBUT_VOYAGE_AUSTRALIA,voyagesAustralia.size());
 		model.addObject(ATTRIBUT_VOYAGE_NETHARLAND,voyagesNetherLand.size());
 		model.addObject(ATTRIBUT_VOYAGE_BRAZIL,voyagesBrazil.size());
