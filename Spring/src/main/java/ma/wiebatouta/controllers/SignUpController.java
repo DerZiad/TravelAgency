@@ -116,7 +116,7 @@ public class SignUpController {
 		} else {
 			model = new ModelAndView(PATH_SIGNUP);
 			model.addObject(ATTRIBUT_ERRORS, errors);
-
+			model.addObject(ATTRIBUT_COUNTRIES, countryRepository.findAll());
 		}
 		return model;
 	}
@@ -130,8 +130,8 @@ public class SignUpController {
 				.orElseThrow(() -> new NotFoundException("Personne non trouvé"));
 		signUpMetier.confirmerSignUP(code, id);
 		ModelAndView model = new ModelAndView(PAGE_SUCCES);
-		model.addObject(ATTRIBUT_MESSAGE, "Votre Inscription a ete confirme \n" + "Votre Username :" + personne.getNom()
-				+ "\n" + "Votre PassWord  :" + personne.getPrenom());
+		model.addObject(ATTRIBUT_MESSAGE, "Votre Inscription a ete confirme \n" + "Votre Username :" + personne.getNom().toLowerCase() + "." + personne.getPrenom().toLowerCase()
+				+ "\n" + "Votre PassWord  :" + personne.getNom().toLowerCase() + "." + personne.getPrenom().toLowerCase());
 		return model;
 	}
 }

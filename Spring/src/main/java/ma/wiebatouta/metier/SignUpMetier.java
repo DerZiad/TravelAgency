@@ -31,25 +31,37 @@ public class SignUpMetier {
 	@Autowired
 	private UserRepository userRepository;
 
-	public void createSignUp(Personne personne) throws IOException, MessagingException {
+	public void createSignUp(Personne personne) throws IOException {
 		User user = new User();
 		user.setEnabled(false);
-		user.setPassword(passwordEncoder.encode(personne.getPrenom()));
-		user.setUsername(personne.getNom());
+		user.setPassword(passwordEncoder.encode(personne.getNom().toLowerCase() + "." + personne.getPrenom().toLowerCase()));
+		user.setUsername(personne.getNom().toLowerCase() + "." + personne.getPrenom().toLowerCase());
 		user.addRole(ServerRole.CLIENT);
 		personne.setUser(user);
 		personne.generateCode();
 		personneRepository.save(personne);
-		ConfirmationMessage message = new ConfirmationMessage(personne.getEmail(),
-				"Veuillez confirmer votre Inscription en Votre Site preferee de Voyage WIE BATOUTA",
-				"CONFIRMATION EMAIL", personne.getPrenom() + " " + personne.getNom(),
-				"/signup/confirmation/" + personne.getCodeVerif() + "/" + personne.getId());
-		emailService.sendEmail(message);
 
+		Thread sendMail = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				ConfirmationMessage message = new ConfirmationMessage(personne.getEmail(),
+						"Veuillez confirmer votre Inscription en Votre Site preferee de Voyage WIE BATOUTA",
+						"CONFIRMATION EMAIL", personne.getPrenom() + " " + personne.getNom(),
+						"/signup/confirmation/" + personne.getCodeVerif() + "/" + personne.getId());
+				try {
+					emailService.sendEmail(message);
+				} catch (MessagingException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		sendMail.start();
 	}
 
 	public void confirmerSignUP(String codeVerif, Long idPersonne) throws EntityNotFoundException, NotFoundException {
-		Personne personne = personneRepository.findById(idPersonne).orElseThrow(()->new NotFoundException("Personne non trouvé"));
+		Personne personne = personneRepository.findById(idPersonne)
+				.orElseThrow(() -> new NotFoundException("Personne non trouvé"));
 		if (personne.getCodeVerif().equals(codeVerif)) {
 			User user = personne.getUser();
 			user.setEnabled(true);
