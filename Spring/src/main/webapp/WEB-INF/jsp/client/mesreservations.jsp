@@ -87,65 +87,80 @@
 
 	</div>
 	<div class="container">
-		
-		<h1>Les Reservations faites par ${personne}</h1>
-		<div class="row">
-			<div class="col-md-8">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">Reservations</h3>
-						<div class="pull-right">
-							<span class="clickable filter" data-toggle="tooltip"
-								title="Toggle table filter" data-container="body"> <i
-								class="glyphicon glyphicon-filter"></i>
-							</span>
+		<c:choose>
+			<c:when test="${data.size() > 0 }">
+				<h1>Les Reservations faites par ${personne}</h1>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">Reservations</h3>
+								<div class="pull-right">
+									<span class="clickable filter" data-toggle="tooltip"
+										title="Toggle table filter" data-container="body"> <i
+										class="glyphicon glyphicon-filter"></i>
+									</span>
+								</div>
+							</div>
+							<div class="panel-body">
+								<input type="text" class="form-control" id="dev-table-filter"
+									data-action="filter" data-filters="#dev-table"
+									placeholder="Filter Developers" />
+							</div>
+							<table class="table table-hover" id="dev-table">
+								<thead>
+									<tr>
+										<th>Picture</th>
+										<th>Titre</th>
+										<th>Description</th>
+										<th>Destination</th>
+										<th>Price</th>
+										<th>Date depart</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${reservations}" var="reserv">
+										<tr>
+
+											<td><img
+												src="data:image/jpeg;base64,${reserv.voyage.header}"
+												alt="Not found" />
+											<td><p>${reserv.voyage.titre}</p></td>
+											<td>
+												<p>${reserv.voyage.description}</p>
+											</td>
+											<td>
+												<p>${reserv.voyage.destination}</p>
+											</td>
+											<td>
+												<p>${reserv.voyage.prix}EUR</p>
+											</td>
+											<td>
+												<p>${reserv.voyage.dateDepartDate}</p>
+											</td>
+
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
-					<div class="panel-body">
-						<input type="text" class="form-control" id="dev-table-filter"
-							data-action="filter" data-filters="#dev-table"
-							placeholder="Filter Developers" />
-					</div>
-					<table class="table table-hover" id="dev-table">
-						<thead>
-							<tr>
-								<th>Picture</th>
-								<th>Titre</th>
-								<th>Description</th>
-								<th>Destination</th>
-								<th>Price</th>
-								<th>Date depart</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${reservations}" var="reserv">
-								<tr>
-
-									<td><img
-										src="data:image/jpeg;base64,${reserv.voyage.header}"
-										alt="Not found" />
-									<td><p>${reserv.voyage.titre}</p></td>
-									<td>
-										<p>${reserv.voyage.description}</p>
-									</td>
-									<td>
-										<p>${reserv.voyage.destination}</p>
-									</td>
-									<td>
-										<p>${reserv.voyage.prix}EUR</p>
-									</td>
-									<td>
-										<p>${reserv.voyage.dateDepartDate}</p>
-									</td>
-
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
 				</div>
+			</c:when>
+		</c:choose>
+		<c:if test="${data.size() > 0 }">
+			<div class="panel-footer">
+				Showing ${number+1} of ${size+1} of ${totalElements}
+				<ul class="pagination">
+					<c:forEach begin="0" end="${totalPages-1}" var="page">
+						<li class="page-item"><a
+							href="mesreservations?page=${page}&size=${size}"
+							class="page-link">${page+1}</a></li>
+					</c:forEach>
+				</ul>
 			</div>
-
-		</div>
+		</c:if>
+	</div>
 	</div>
 </head>
 

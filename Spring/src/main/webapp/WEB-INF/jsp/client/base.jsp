@@ -87,7 +87,7 @@
 												type="hidden" name="reservationNumber"
 												value="${reservationNumber}" />
 										</a></li>
-										<li class="btn btn-primary"><a href="/mesreservations">Mes reservations</a></li>
+										<li class="btn btn-primary"><a href="/mesreservations?page=0&size=3">Mes reservations</a></li>
 										<li class="btn btn-primary"><a href="/logout">Deconnecter
 												<br> ${username}
 										</a></li>
