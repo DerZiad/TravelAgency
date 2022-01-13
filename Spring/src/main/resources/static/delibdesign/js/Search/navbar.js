@@ -17,7 +17,7 @@ function refreshActivite() {
 			themes = response;
 			var contenue = "";
 			for (the of themes) {
-				contenue = contenue + '<li ><a style="color:black" href="/'+the['label']+'">' + the['label'] + '</a></li>';
+				contenue = contenue + '<li ><a style="color:black" href="/theme/'+the['label']+'">' + the['label'] + '</a></li>';
 			}
 			console.log(themes);
 		

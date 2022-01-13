@@ -18,4 +18,6 @@ public interface PersonneRepository extends JpaRepository<Personne, Long> {
 	
 	@Query("SELECT p FROM Personne p where p.user=:user")
 	public List<Personne> findByUser(@Param("user")User user);
+
+	public Personne findByNom(String name);
 }

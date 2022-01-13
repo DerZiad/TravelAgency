@@ -12,14 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ma.wiebatouta.models.Reservation;
+import ma.wiebatouta.repositories.PersonneRepository;
 import ma.wiebatouta.repositories.ReservationRepository;
 
 @Controller
-@RequestMapping("/myreservations")
+@RequestMapping("/mesreservations")
 public class MyReservationController {
 	
 	@Autowired
 	private ReservationRepository reservationRepository;
+	@Autowired
+	private PersonneRepository personneRepository;
 	
 	private final static String PAGE_MES_RESERVATIONS= "client/mesreservations";
 	
@@ -35,6 +38,7 @@ public class MyReservationController {
 			List<Reservation> reservations = reservationRepository.getReservationAvecUsername(auth.getName());
 			reservations = reservations.stream().filter((r)->r.isConfirmed()).toList();
 			model.addObject(ATTRIBUT_MES_RESERVATIONS,reservations);
+			model.addObject("personne", auth.getName());
 			return model;
 		}
 		

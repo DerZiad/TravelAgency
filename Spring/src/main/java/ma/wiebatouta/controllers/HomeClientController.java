@@ -191,10 +191,11 @@ public class HomeClientController {
 		return model;
 	}
 	
-	@GetMapping("{name}")
+	@GetMapping("theme/{name}")
 	public ModelAndView voyageParTheme(@PathVariable("name")String nomTheme) {
 		ModelAndView model = new ModelAndView(PATH_HOME_PAGE);
 		Theme theme = themeRepository.findByLabel(nomTheme);
+		System.out.println("theme"+theme);
 		List<Voyage> voyages =theme.getVoyages();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication instanceof AnonymousAuthenticationToken) {
