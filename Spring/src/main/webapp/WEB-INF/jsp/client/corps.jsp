@@ -198,7 +198,7 @@
 											<div class="item-title">
 												<a href="/destination/Netherlands"> Netherlands </a>
 												<p>
-													<span>${Netherlands} tours</span>
+													<span>${Netharland} tours</span>
 												</p>
 											</div>
 											<!-- /.item-title-->

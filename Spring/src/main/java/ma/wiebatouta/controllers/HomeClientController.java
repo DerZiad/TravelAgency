@@ -200,8 +200,34 @@ public class HomeClientController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication instanceof AnonymousAuthenticationToken) {
 			model.addObject(ATTRIBUT_AUTHENTIFICATED, false);
+			List<Voyage> voyagesVenuzuala = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_FINLAND);
+			List<Voyage> voyagesAustralia = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_AUSTRALIA);
+			List<Voyage> voyagesNetherLand = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_NETHARLAND);
+			List<Voyage> voyagesBrazil = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_BRAZIL);
+			List<Voyage> voyagesTurkey = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_TURKEY);
+			List<Voyage> voyagesChina = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_CHINA);
+			
+			model.addObject(ATTRIBUT_VOYAGE_FINLAND,voyagesVenuzuala.size());
+			model.addObject(ATTRIBUT_VOYAGE_AUSTRALIA,voyagesAustralia.size());
+			model.addObject(ATTRIBUT_VOYAGE_NETHARLAND,voyagesNetherLand.size());
+			model.addObject(ATTRIBUT_VOYAGE_BRAZIL,voyagesBrazil.size());
+			model.addObject(ATTRIBUT_VOYAGE_TURKEY,voyagesTurkey.size());
+			model.addObject(ATTRIBUT_VOYAGE_CHINA,voyagesChina.size());
 		} else {
 			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
+			List<Voyage> voyagesVenuzuala = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_FINLAND);
+			List<Voyage> voyagesAustralia = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_AUSTRALIA);
+			List<Voyage> voyagesNetherLand = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_NETHARLAND);
+			List<Voyage> voyagesBrazil = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_BRAZIL);
+			List<Voyage> voyagesTurkey = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_TURKEY);
+			List<Voyage> voyagesChina = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_CHINA);
+			
+			model.addObject(ATTRIBUT_VOYAGE_FINLAND,voyagesVenuzuala.size());
+			model.addObject(ATTRIBUT_VOYAGE_AUSTRALIA,voyagesAustralia.size());
+			model.addObject(ATTRIBUT_VOYAGE_NETHARLAND,voyagesNetherLand.size());
+			model.addObject(ATTRIBUT_VOYAGE_BRAZIL,voyagesBrazil.size());
+			model.addObject(ATTRIBUT_VOYAGE_TURKEY,voyagesTurkey.size());
+			model.addObject(ATTRIBUT_VOYAGE_CHINA,voyagesChina.size());
 			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
 			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);
 			Personne personne = personneRepository.getPersonneFromUsername(userDetail.getUsername());
@@ -257,7 +283,33 @@ public class HomeClientController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication instanceof AnonymousAuthenticationToken) {
 			model.addObject(ATTRIBUT_AUTHENTIFICATED, false);
+			List<Voyage> voyagesVenuzuala = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_FINLAND);
+			List<Voyage> voyagesAustralia = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_AUSTRALIA);
+			List<Voyage> voyagesNetherLand = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_NETHARLAND);
+			List<Voyage> voyagesBrazil = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_BRAZIL);
+			List<Voyage> voyagesTurkey = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_TURKEY);
+			List<Voyage> voyagesChina = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_CHINA);
+			
+			model.addObject(ATTRIBUT_VOYAGE_FINLAND,voyagesVenuzuala.size());
+			model.addObject(ATTRIBUT_VOYAGE_AUSTRALIA,voyagesAustralia.size());
+			model.addObject(ATTRIBUT_VOYAGE_NETHARLAND,voyagesNetherLand.size());
+			model.addObject(ATTRIBUT_VOYAGE_BRAZIL,voyagesBrazil.size());
+			model.addObject(ATTRIBUT_VOYAGE_TURKEY,voyagesTurkey.size());
+			model.addObject(ATTRIBUT_VOYAGE_CHINA,voyagesChina.size());
 		} else {
+			List<Voyage> voyagesVenuzuala = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_FINLAND);
+			List<Voyage> voyagesAustralia = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_AUSTRALIA);
+			List<Voyage> voyagesNetherLand = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_NETHARLAND);
+			List<Voyage> voyagesBrazil = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_BRAZIL);
+			List<Voyage> voyagesTurkey = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_TURKEY);
+			List<Voyage> voyagesChina = voyageRepository.getVoyageSearch(ATTRIBUT_VOYAGE_CHINA);
+			
+			model.addObject(ATTRIBUT_VOYAGE_FINLAND,voyagesVenuzuala.size());
+			model.addObject(ATTRIBUT_VOYAGE_AUSTRALIA,voyagesAustralia.size());
+			model.addObject(ATTRIBUT_VOYAGE_NETHARLAND,voyagesNetherLand.size());
+			model.addObject(ATTRIBUT_VOYAGE_BRAZIL,voyagesBrazil.size());
+			model.addObject(ATTRIBUT_VOYAGE_TURKEY,voyagesTurkey.size());
+			model.addObject(ATTRIBUT_VOYAGE_CHINA,voyagesChina.size());
 			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
 			model.addObject(ATTRIBUT_AUTHENTIFICATED_USERNAME, userDetail.getUsername());
 			model.addObject(ATTRIBUT_AUTHENTIFICATED, true);
