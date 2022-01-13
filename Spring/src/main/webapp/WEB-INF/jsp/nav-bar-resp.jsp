@@ -106,6 +106,9 @@
 						class="metismenu-icon pe-7s-graph3"></i> Ajouter ressource humairne
 				</a></li>
 					</ul></li>
+				<li><a href="/admin/historiques" class="${historiques}"> <i
+						class="metismenu-icon pe-7s-rocket"></i> Historiques
+				</a></li>
 			</ul>
 		</div>
 	</div>
