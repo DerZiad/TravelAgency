@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var idactivite = $('input[name=id]').val();
 	var idVoyage = $('input[name=idVoyage]').val();
 	console.log(window.location.href);
-	if (window.location.href == "http://localhost/admin/activite/" + idactivite + "?idVoyage=" + idVoyage) {
+	if (window.location.href == "/admin/activite/" + idactivite + "?idVoyage=" + idVoyage) {
 		$('input[id=add]').hide();
 		$('input[id=mdf]').show();
 	} else {
