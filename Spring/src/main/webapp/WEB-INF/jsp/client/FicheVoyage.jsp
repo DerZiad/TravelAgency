@@ -170,7 +170,7 @@
 						<div class="col-md-4">
 							<div class="work-box">
 								<div class="work-img">
-									<img src="data:image/jpeg;base64,${voyage.header}" alt=""
+									<img src="data:image/jpeg;base64,${hotel.header}" alt=""
 										class="img-fluid">
 								</div>
 								<div class="work-content">

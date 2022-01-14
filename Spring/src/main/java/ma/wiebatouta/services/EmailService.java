@@ -18,7 +18,7 @@ public class EmailService {
 	
 	private static final String FROM_EMAIL = "sendsmookerzz@gmail.com";
 		
-	public static String SERVERLINK = "https://localhost:8443";
+	public static String SERVERLINK = "http://localhost";
 
 	
 	

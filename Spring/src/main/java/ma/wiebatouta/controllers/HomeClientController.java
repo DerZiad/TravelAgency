@@ -51,7 +51,7 @@ public class HomeClientController {
 	
 	private final static String ATTRIBUT_VOYAGE_FINLAND="Finland";
 	private final static String ATTRIBUT_VOYAGE_AUSTRALIA="Australia";
-	private final static String ATTRIBUT_VOYAGE_NETHARLAND="Netharland";
+	private final static String ATTRIBUT_VOYAGE_NETHARLAND="Netherlands";
 	private final static String ATTRIBUT_VOYAGE_BRAZIL="Brazil";
 	private final static String ATTRIBUT_VOYAGE_TURKEY="Turkey";
 	private final static String ATTRIBUT_VOYAGE_CHINA="China";

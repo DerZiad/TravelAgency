@@ -31,7 +31,7 @@ public class SignUpMetier {
 	@Autowired
 	private UserRepository userRepository;
 
-	public void createSignUp(Personne personne) throws IOException {
+	public void createSignUp(Personne personne) throws IOException, MessagingException {
 		User user = new User();
 		user.setEnabled(false);
 		user.setPassword(passwordEncoder.encode(personne.getNom().toLowerCase() + "." + personne.getPrenom().toLowerCase()));
@@ -40,23 +40,11 @@ public class SignUpMetier {
 		personne.setUser(user);
 		personne.generateCode();
 		personneRepository.save(personne);
-
-		Thread sendMail = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				ConfirmationMessage message = new ConfirmationMessage(personne.getEmail(),
-						"Veuillez confirmer votre Inscription en Votre Site preferee de Voyage WIE BATOUTA",
-						"CONFIRMATION EMAIL", personne.getPrenom() + " " + personne.getNom(),
-						"/signup/confirmation/" + personne.getCodeVerif() + "/" + personne.getId());
-				try {
-					emailService.sendEmail(message);
-				} catch (MessagingException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		sendMail.start();
+		ConfirmationMessage	message = new ConfirmationMessage(personne.getEmail(),
+				"Veuillez confirmer votre Inscription en Votre Site preferee de Voyage WIE BATOUTA",
+				"CONFIRMATION EMAIL", personne.getPrenom() + " " + personne.getNom(),
+				"/signup/confirmation/" + personne.getCodeVerif() + "/" + personne.getId());
+		emailService.sendEmail(message);
 	}
 
 	public void confirmerSignUP(String codeVerif, Long idPersonne) throws EntityNotFoundException, NotFoundException {
