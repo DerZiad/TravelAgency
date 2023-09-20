@@ -54,6 +54,7 @@ The administrator should be able to view a history of their actions within the s
     - Spring validator
     - Spring security
     - Spring o2Auth
+- Docker
 - JSON Support (Gson, fasterxml.jackson)
 - REST API support
 - HTML5/CSS3 / Java Script (JQuery)
