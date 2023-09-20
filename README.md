@@ -75,6 +75,7 @@ The administrator should be able to view a history of their actions within the s
 # Requirement
 - JDK 16 : https://www.oracle.com/java/technologies/javase/jdk16-archive-downloads.html
 - Maven : https://maven.apache.org/download.cgi
+- Docker
 
 ##### Test requirements
 #
@@ -84,13 +85,13 @@ mvn # Should show error, this is normal
 ```
 # Configuration
 Edit please the database username and password at src/main/resources/applications.properties
-If you have a SMTP Server account, configure it also else then search on google on how to configure SMTP with spring boot using yahoo
+This application use mailing service for email verification, so please configure an SMTP Server for example (Yahoo.com, google.com), and paste the creds in the file **src.main.resources.applications.properties**.
 
 # Installing
-```
+```sh
+# For easy running and avoiding dependencies and sql versions problem, please use docker and following image building
 cd TravelAgency
-mvn spring-boot:run 
-# Go to https://127.0.0.1:8443
+docker compose up --build
 ```
 
 # About us
