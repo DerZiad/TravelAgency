@@ -9,7 +9,7 @@
 		<div class="table-wrapper">
 
 			<div>
-				<label>DESTINATION</label> <select class="form-control"
+				<label>Destination</label> <select class="form-control"
 					name="country">
 					<c:forEach var="country" items="${countries}">
 						<option value="${country.valueCountry}">${country.valueCountry}</option>
@@ -20,7 +20,7 @@
 			
 			<div class="form-row">
 				<div class="col-md-6">
-					<label>Date D'Arrivee</label> <input type="date"
+					<label>Arrived Date</label> <input type="date"
 						class="form-control" name="dateArriveDate" required />
 					<p id="dateDepartError" class="error"></p>
 				</div>
@@ -29,7 +29,7 @@
 				<div class="budget">
 					<div class="header">
 						<div class="title clearfix">
-							Set your budget! <span class="pull-right"></span>
+							Search using price <span class="pull-right"></span>
 						</div>
 					</div>
 					<div class="content">
@@ -61,10 +61,10 @@
 						<th><span class="custom-checkbox"> <input
 								type="checkbox" id="selectAll"> <label for="selectAll"></label>
 						</span></th>
-						<th>Label Voyage</th>
-						<th>Informations Client</th>
-						<th>Pays de Destination</th>
-						<th>Prix</th>
+						<th>Travel</th>
+						<th>Client Informations</th>
+						<th>Destination Country</th>
+						<th>Price</th>
 						<th>Confirmed</th>
 					</tr>
 				</thead>

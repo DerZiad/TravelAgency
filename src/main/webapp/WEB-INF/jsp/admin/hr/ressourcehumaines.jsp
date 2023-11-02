@@ -15,15 +15,15 @@
 			</div>
 			<div class="card-body">
 
-				<h5 class="card-title">Création d'une equipe</h5>
+				<h5 class="card-title">Create Travel Team</h5>
 				<form class="" action="/admin/ressources/add" method="POST"
 					enctype="multipart/form-data">
 					<div class="alert alert-primary">
-						<h1>Informations de l'equipe</h1>
+						<h1>Team Information</h1>
 						<div class="form-row">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									<label for="label" class="">Nom de l'equipe</label><input
+									<label for="label" class="">Team Name</label><input
 										name="label" id="label" placeholder="Titre de l'équipe"
 										type="text" class="form-control"
 										value="<c:out value="${equipe.label}"/>">

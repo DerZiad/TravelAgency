@@ -24,10 +24,10 @@
 					<thead>
 						<tr>
 							<th>Picture</th>
-							<th>Label</th>
-							<th>Nom chef</th>
-							<th>Prenom chef</th>
-							<th>Actions</th>
+							<th>Team Title</th>
+							<th>Boss lastname</th>
+							<th>Boss firstname</th>
+							<th>Perform Actions</th>
 						</tr>
 					</thead>
 					<tbody>
