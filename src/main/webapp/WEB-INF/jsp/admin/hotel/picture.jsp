@@ -12,14 +12,14 @@
 			<div class="card-body">
 				<form class="form-group" action="/admin/hotel/picture?id=${idHotel}"
 					enctype="multipart/form-data" method="POST">
-					<h5 class="card-title">Ajout image</h5>
+					<h5 class="card-title">Add Picture</h5>
 					<input name="id" id="id" type="hidden" class="form-control"
 						value="${idHotel}">
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
-								<label for="photo" class="">Inserer Photo</label> <input
-									name="picturePart" id="file" type="file" class="form-control" />
+								<label for="photo" class="">Insert Picture</label> <input
+									name="picturePart" id="photo" type="file" class="form-control" />
 							</div>
 
 						</div>
@@ -46,13 +46,13 @@
 			</div>
 			<div class="main-card mb-3">
 				<div class="card-body">
-					<h5 class="card-title">Liste des Themes de Voyage</h5>
+					<h5 class="card-title">List of hotel pictures</h5>
 					<table class="mb-0 table table-striped">
 						<thead>
 							<tr>
 								<th>Picture</th>
 								<th>Type</th>
-								<th>Actions</th>
+								<th>Perform Action</th>
 							</tr>
 						</thead>
 						<tbody>

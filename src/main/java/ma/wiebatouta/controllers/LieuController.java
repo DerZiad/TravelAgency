@@ -34,7 +34,7 @@ import ma.wiebatouta.repositories.LieuRepository;
 public class LieuController {
 	private final static String LIEUX = "lieux";
 	private final static String COUNTRY = "country";
-	private final static String PATH_LIEU = "lieu/addLieu";
+	private final static String PATH_LIEU = "admin/lieu/addLieu";
 	private final static String REDIRECT_LIST_LIEUX = "redirect:/admin/lieux";
 	@Autowired
 	private LieuxMetier lieuMetier;
@@ -42,8 +42,8 @@ public class LieuController {
 	private CountryMetier cm;
 	@Autowired
 	private LieuRepository lieuRepository ;
+
 	@GetMapping
-	@RolesAllowed("ADMIN")
 	public ModelAndView listeLieux() {
 		ModelAndView model = new ModelAndView(PATH_LIEU);
 		List<Lieu> lieux = lieuMetier.listeLieux();
@@ -56,7 +56,6 @@ public class LieuController {
 	}
 
 	@PostMapping
-	@RolesAllowed("ADMIN")
 	public ModelAndView saveLieu(@RequestParam(name = "id", required = false) Long id,
 			@RequestParam("name") String name, @RequestParam("keycountry") String keyCountry) {
 		ModelAndView model = new ModelAndView(PATH_LIEU);
@@ -132,7 +131,6 @@ public class LieuController {
 	}
 
 	@GetMapping("/{id}")
-	@RolesAllowed("ADMIN")
 	public ModelAndView modify(@PathVariable("id") Long idLieu)
 			throws EntityNotFoundException, DataNotFoundException, NotFoundException {
 		ModelAndView model = new ModelAndView(PATH_LIEU);
@@ -147,7 +145,6 @@ public class LieuController {
 	}
 
 	@GetMapping("/deleteLieu/{id}")
-	@RolesAllowed("ADMIN")
 	public ModelAndView delete(@PathVariable("id")Long idLieu) {
 		lieuRepository.delete(lieuRepository.getById(idLieu));
 		ModelAndView model = new ModelAndView(REDIRECT_LIST_LIEUX);

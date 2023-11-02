@@ -37,7 +37,7 @@ import ma.wiebatouta.repositories.VoyageRepository;
 @RequestMapping("/admin/voyage")
 public class VoyageController {
 
-	private final static String PATH_INDEX_VOYAGE = "voyage/index";
+	private final static String PATH_INDEX_VOYAGE = "admin/voyage/index";
 	private final static String ADD_PICTURE = "voyage/picture";
 	private final static String ADD_LIEUX = "voyage/lieux";
 	private final static String ADD_HOTELES = "voyage/hoteles";

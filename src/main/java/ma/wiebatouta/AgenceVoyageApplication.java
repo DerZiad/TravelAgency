@@ -41,7 +41,6 @@ public class AgenceVoyageApplication implements CommandLineRunner {
 		SpringApplication.run(AgenceVoyageApplication.class, args);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void run(String... args) throws Exception {
 		Thread thread = new Thread(forumCleaner);

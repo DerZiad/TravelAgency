@@ -12,7 +12,7 @@
 		<div class="main-card mb-3 card">
 			<div class="card-body">
 
-				<h5 class="card-title">Création d'une Activite Voyage</h5>
+				<h5 class="card-title">Create Travel Activity</h5>
 				<input name="id" id="id" type="hidden" class="form-control"
 					value="${activite.id}"> <input name="idVoyage" id="id"
 					type="hidden" class="form-control" value="${idVoyage}">

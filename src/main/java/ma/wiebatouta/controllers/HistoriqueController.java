@@ -12,13 +12,14 @@ import ma.wiebatouta.repositories.HistoriqueRepository;
 @RequestMapping("/admin/historiques")
 public class HistoriqueController {
 	
-	
+	public final static String HISTORY_PATH = "admin/ListHistorique";
+
 	@Autowired
 	private HistoriqueRepository historiqueRepository;
 	
 	@GetMapping
 	public ModelAndView getHistoriques() {
-		ModelAndView model = new ModelAndView("ListHistorique");
+		ModelAndView model = new ModelAndView(HISTORY_PATH);
 		model.addObject("historiques",historiqueRepository.findAll());
 		return model;
 	}

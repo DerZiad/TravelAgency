@@ -23,7 +23,7 @@
 <!-- Style -->
 <link rel="stylesheet" href="/css/style.css">
 
-<title>WIE BATOUTA </title>
+<title>WIE BATOUTA</title>
 </head>
 <body>
 

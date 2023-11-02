@@ -13,12 +13,12 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>NomHotel</label> <input type="text" class="form-control"
+					<label>Hotel Name</label> <input type="text" class="form-control"
 						name="hotelname" required>
 					<p id="nomHotelError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Nombre etoiles</label> <span id="star1" class="C2etoiles"><div></div></span>
+					<label>Hotel Stars</label> <span id="star1" class="C2etoiles"><div></div></span>
 					<span id="star2" class="C2etoiles"><div></div> </span> <span
 						id="star3" class="C2etoiles"><div></div></span> <span id="star4"
 						class="C2etoiles"><div></div></span> <span id="star5"
@@ -27,7 +27,7 @@
 					<p id="nombreEtoileError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Pays</label> <select class="form-control" name="country">
+					<label>Countries</label> <select class="form-control" name="country">
 						<c:forEach var="country" items="${countries }">
 							<option value="${country.keyCountry}">${country.valueCountry}</option>
 						</c:forEach>
@@ -35,7 +35,7 @@
 					<p id="nombreEtoileError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Lieux</label> <select class="selectpicker form-control"
+					<label>Destinations</label> <select class="selectpicker form-control"
 						data-live-search="true" name="state">
 
 					</select>
@@ -62,12 +62,12 @@
 			<input id="idHotelEdit" type="hidden" name="idHotel" value=""/>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>Nom Hotel</label> <input type="text" class="form-control"
+					<label>Hotel Name</label> <input type="text" class="form-control"
 						name="hotelnameEdit" required>
 					<p id="nomHotelErrorEdit" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Nombre etoiles</label> <span id="star1Edit"
+					<label>Hotel Stars</label> <span id="star1Edit"
 						class="C2etoiles"><div></div></span> <span id="star2Edit"
 						class="C2etoiles"><div></div> </span> <span id="star3Edit"
 						class="C2etoiles"><div></div></span> <span id="star4Edit"
@@ -77,7 +77,7 @@
 					<p id="nombreEtoileErrorEdit" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Pays</label> <select class="form-control" name="countryEdit">
+					<label>Countries</label> <select class="form-control" name="countryEdit">
 						<c:forEach var="country" items="${countries }">
 							<option value="${country.keyCountry}">${country.valueCountry}</option>
 						</c:forEach>
@@ -85,7 +85,7 @@
 					<p id="nombreEtoileErrorEdit" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Lieux</label> <select class="selectpicker form-control"
+					<label>Destinations</label> <select class="selectpicker form-control"
 						data-live-search="true" name="stateEdit">
 
 					</select>

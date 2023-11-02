@@ -19,7 +19,7 @@ import ma.wiebatouta.models.Country;
 public class ReservationController {
 	
 	private final static String COUNTRY = "countries";
-	private final static String PATH_RESERVATION ="reservation/listeReservation";
+	private final static String PATH_RESERVATION ="admin/reservation/listeReservation";
 	@Autowired
 	private CountryMetier countryMetier;
 	

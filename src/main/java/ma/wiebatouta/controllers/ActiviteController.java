@@ -23,7 +23,7 @@ import ma.wiebatouta.repositories.VoyageRepository;
 @Controller
 @RequestMapping("/admin/activite")
 public class ActiviteController {
-	private final static String PATH_ACTIVTE = "Activite/addActivite";
+	private final static String PATH_ACTIVTE = "admin/activities/activity";
 	private final static String REDIRECT_LIST_ACTIVITY = "redirect:/admin/activite?id=%d";
 	@Autowired
 	private ActiviteRepository activiteRepository;

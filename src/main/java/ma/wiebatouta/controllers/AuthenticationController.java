@@ -46,7 +46,7 @@ public class AuthenticationController {
 	private static final String ATTRIBUT_LOGIN = "isLogin";
 	
 	private static final String PATH_LOGIN = "client/loginclient";
-	private static final String PATH_ADMIN_PAGE = "index-a";
+	private static final String PATH_ADMIN_PAGE = "admin/index-admin";
 
 	private static final String ATTRIBUT_ERROR = "error";
 	private static final String REDIRECT_HOME_SPACE = "redirect:/";

@@ -11,14 +11,14 @@
 		<div class="main-card mb-3 card">
 			<div class="card-body">
 				<form class="form-group" action="/admin/lieux" method="POST">
-					<h5 class="card-title">Création d'un Lieu</h5>
+					<h5 class="card-title">Create a Destination</h5>
 					<input name="id" id="id" type="hidden" class="form-control"
 						value="${lieu.id}">
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
-								<label for="name" class="">Label lieu</label><input name="name"
-									id="name" placeholder="Nom du Lieu" type="text"
+								<input name="name"
+									id="name" placeholder="Destination" type="text"
 									value="${lieu.label}" class="form-control">
 							</div>
 							<p style="color: red;">
@@ -55,23 +55,29 @@
 							</p>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<button class="mt-2 btn btn-primary" type="submit">Save</button>
+						</div>
 
-					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
-
+						<div class="col-md-6">
+							<button id="rst" class=" mt-2 btn btn-danger" value="Reset">Delete</button>
+						</div>
+					</div>
 
 				</form>
-				<button id="rst" class=" mt-2 btn btn-danger" value="Reset">Effacer</button>
+
 
 			</div>
 			<div class="main-card mb-3">
 				<div class="card-body">
-					<h5 class="card-title">Liste des Lieux</h5>
+					<h5 class="card-title">List of Destinations</h5>
 					<table class="mb-0 table table-striped">
 						<thead>
 							<tr>
-								<th>LABEL</th>
-								<th>COUNTRY</th>
-								<th>Actions</th>
+								<th>City</th>
+								<th>Country</th>
+								<th>Perform Actions</th>
 							</tr>
 						</thead>
 						<tbody>

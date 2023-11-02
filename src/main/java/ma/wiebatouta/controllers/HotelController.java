@@ -30,7 +30,7 @@ import ma.wiebatouta.repositories.PictureRepository;
 @RequestMapping("/admin/hotel")
 public class HotelController {
 	
-	private final static String PATH_HOTEL = "hotel/index";
+	private final static String PATH_HOTEL = "admin/hotel/index";
 	private final static String ADD_PICTURE = "hotel/picture";
 	
 	private final static String ATTRIBUT_TYPES = "types";

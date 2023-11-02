@@ -55,7 +55,7 @@ class ReservationRequest {
 }
 
 @RestController
-@RequestMapping(name = "/api/reservation", value = "/api/reservation")
+@RequestMapping( "/api/reservation")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ReservationRestController {
 

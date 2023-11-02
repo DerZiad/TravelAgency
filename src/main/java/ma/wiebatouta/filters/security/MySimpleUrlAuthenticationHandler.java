@@ -1,4 +1,4 @@
-package ma.wiebatouta.security;
+package ma.wiebatouta.filters.security;
 
 import java.io.IOException;
 import java.util.Collection;

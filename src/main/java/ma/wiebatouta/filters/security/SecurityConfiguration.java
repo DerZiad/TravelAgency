@@ -1,4 +1,4 @@
-package ma.wiebatouta.security;
+package ma.wiebatouta.filters.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

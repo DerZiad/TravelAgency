@@ -11,7 +11,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<h2>
-							Manage your <b>hotels</b> here
+							Hotels Manager
 						</h2>
 					</div>
 					<div class="col-sm-6">
@@ -28,10 +28,10 @@
 						<th><span class="custom-checkbox"> <input
 								type="checkbox" id="selectAll"> <label for="selectAll"></label>
 						</span></th>
-						<th>Nom hotel</th>
-						<th>Nombre etoiles</th>
-						<th>Ville</th>
-						<th>Actions</th>
+						<th>Hotel Name</th>
+						<th>Hotel Stars</th>
+						<th>City</th>
+						<th>Perform Actions</th>
 					</tr>
 				</thead>
 				<tbody id="hotelslist">

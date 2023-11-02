@@ -33,8 +33,8 @@ import ma.wiebatouta.repositories.EquipeRepository;
 @RequestMapping("/admin/ressources")
 public class EquipeController {
 
-	private final static String PAGE_AJOUT_EQUIPE = "ressourcehumaines/ressourcehumaines";
-	private final static String PAGE_LIST_EQUIPES = "ressourcehumaines/ressources";
+	private final static String PAGE_AJOUT_EQUIPE = "admin/hr/ressourcehumaines";
+	private final static String PAGE_LIST_EQUIPES = "admin/hr/ressources";
 	private final static String REDIRECT_LIST_EQUIPES = "redirect:/admin/ressources";
 
 	private final static String ATTRIBUT_COUNTRIES = "countries";

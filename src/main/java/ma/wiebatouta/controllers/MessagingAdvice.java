@@ -1,4 +1,4 @@
-package ma.wiebatouta.advices;
+package ma.wiebatouta.controllers;
 
 import javax.mail.MessagingException;
 

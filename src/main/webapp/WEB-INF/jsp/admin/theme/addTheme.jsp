@@ -12,14 +12,14 @@
 			<div class="card-body">
 				<form class="form-group" action="/admin/theme"
 					enctype="multipart/form-data" method="POST">
-					<h5 class="card-title">Création d'un Theme de Voyage</h5>
+					<h5 class="card-title">Create travel topic</h5>
 					<input name="id" id="id" type="hidden" class="form-control"
 						value="${theme.id}">
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
-								<label for="name" class="">Label Theme</label><input name="name"
-									id="name" placeholder="Label Theme" type="text"
+								<input name="name"
+									id="name" placeholder="Topic" type="text"
 									class="form-control" value="${theme.label}">
 							</div>
 							<p style="color: red;">
@@ -34,9 +34,9 @@
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="position-relative form-group">
-								<label for="name" class="">Description Theme</label><input
+								<input
 									name="description" id="name"
-									placeholder="Description du Theme " type="text"
+									placeholder="Topic Description" type="text"
 									class="form-control" value="${theme.description}">
 
 							</div>
@@ -50,7 +50,7 @@
 
 					<div class="form-row">
 						<div class="col-md-6" id="cin">
-							<div class="position-relative form-group alert alert-primary">
+							<div class="position-relative form-group alert">
 								<div class="row">
 									<c:if test="${bool}">
 										<div class="col-md-6">
@@ -59,7 +59,7 @@
 												src='data:image/jpeg;base64,${theme.encodedPicture}' />
 											<p>1</p>
 											<div>
-												<label for="photo" class="">Inserer Photo</label> <input
+												<label for="photo" class="">Insert Picture</label> <input
 													name="logo" id="file" type="file" />
 											</div>
 										</div>
@@ -72,7 +72,7 @@
 												src='data:image/jpeg;base64,${theme.encodedPicture}' />
 											<p>2</p>
 											<div>
-												<label for="photo" class="">Inserer Photo</label> <input
+												<label for="photo" class="">Insert Picture</label> <input
 													name="logo" id="file" type="file" />
 											</div>
 										</div>
@@ -81,7 +81,7 @@
 									    <p>3</p>
 										<div class="col-md-6">
 											<div class="col-md-6">
-												<label for="photo" class="">Inserer Photo</label> <input
+												<label for="photo" class="">Insert Picture</label> <input
 													name="logo" id="file" type="file" />
 											</div>
 										</div>
@@ -101,22 +101,27 @@
 					</p>
 
 
-					<button class="mt-2 btn btn-primary col-md-6" type="submit">Enregistrer</button>
+					<div class="col-md-6">
+						<button class="mt-2 btn btn-primary" type="submit">Save</button>
+					</div>
+
+					<div class="col-md-6">
+						<button id="rst" class=" mt-2 btn btn-danger" value="Reset">Delete</button>
+					</div>
 
 
 				</form>
-				<button id="rst" class=" mt-2 btn btn-danger">Effacer</button>
 			</div>
 			<div class="main-card mb-3">
 				<div class="card-body">
-					<h5 class="card-title">Liste des Themes de Voyage</h5>
+					<h5 class="card-title">List of Topics</h5>
 					<table class="mb-0 table table-striped">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>LABEL</th>
-								<th>DESCRIPTION</th>
-								<th>Actions</th>
+								<th>Topic ID</th>
+								<th>Topic Title</th>
+								<th>Topic Description</th>
+								<th>Perform Actions</th>
 							</tr>
 						</thead>
 						<tbody>

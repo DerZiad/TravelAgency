@@ -33,7 +33,7 @@ import ma.wiebatouta.models.Theme;
 @Controller
 @RequestMapping("/admin/theme")
 public class ThemeController {
-	private final static String PATH_THEME = "theme/addTheme";
+	private final static String PATH_THEME = "admin/theme/addTheme";
 	private final static String REDIRECT_LIST_THEMES = "redirect:/admin/theme";
 	private final static String THEME = "themes";
 	private final static String MODIFY = "modify";
