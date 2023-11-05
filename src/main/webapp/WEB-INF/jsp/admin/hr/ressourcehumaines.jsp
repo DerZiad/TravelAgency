@@ -8,18 +8,13 @@
 	<layout:put block="content" type="REPLACE">
 		<div class="main-card mb-3 card">
 			<br>
-			<div class="row">
-				<div class="col-md-12">
-						<a href="/admin/ressources" class="col-md-12 btn btn-info">Cancel</a>
-				</div>
-			</div>
 			<div class="card-body">
 
 				<h5 class="card-title">Create Travel Team</h5>
 				<form class="" action="/admin/ressources/add" method="POST"
 					enctype="multipart/form-data">
 					<div class="alert alert-primary">
-						<h1>Team Information</h1>
+						<h3>Team Information</h3>
 						<div class="form-row">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
@@ -37,14 +32,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="alert alert-success">
+					<div class="alert alert-primary">
 						<div class="form-row">
-							<h1>Informations personnelles</h1>
+							<h3>Personal Information</h3>
 						</div>
 						<div class="form-row">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									<label for="nom" class="">Nom</label><input name="nom" id="nom"
+									<label for="nom" class="">Last name</label><input name="nom" id="nom"
 										placeholder="Nom" type="text" class="form-control"
 										value="<c:out value="${personne.nom}"/>">
 									<p class="error">
@@ -55,7 +50,7 @@
 
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									<label for="prenom" class="">Prénom </label><input
+									<label for="prenom" class="">First Name </label><input
 										name="prenom" id="prenom" placeholder="Prénom" type="text"
 										class="form-control"
 										value="<c:out value="${personne.prenom}"/>">
@@ -69,7 +64,7 @@
 						<div class="form-row">
 							<div class="col-md-3">
 								<div class="position-relative form-group">
-									<label for="cne" class="">CNE</label><input name="cne" id="cne"
+									<label for="cne" class="">Identification Number</label><input name="cne" id="cne"
 										placeholder="CNE" type="text" class="form-control"
 										value="<c:out value="${personne.cne}"/>">
 									<p class="error">
@@ -79,7 +74,7 @@
 							</div>
 							<div class="col-md-3">
 								<div class="position-relative form-group">
-									<label for="dateNaissance" class="">Date de naissance</label><input
+									<label for="dateNaissance" class="">Birthday</label><input
 										name="dateNaissanceDate" id="dateNaissance" type="date"
 										class="form-control" value="${personne.dateNaissanceDate}">
 									<p class="error">
@@ -89,7 +84,7 @@
 							</div>
 							<div class="col-md-3">
 								<div class="position-relative form-group">
-									<label for="nationalite" class="">Nationalité</label> <select
+									<label for="nationalite" class="">Nationality</label> <select
 										name="nationalite" id="nationalite" class="form-control">
 										<c:forEach var="c" items="${countries}">
 											<c:if test="${personne.nationalite.equals(c) }">
@@ -112,7 +107,7 @@
 							<div class="col-md-6">
 
 								<div class="card-body">
-									<h5 class="card-title">Sexe</h5>
+									<h5 class="card-title">Gender</h5>
 									<div class="position-relative form-group">
 										<div>
 											<div class="custom-radio custom-control">
@@ -142,7 +137,7 @@
 							<div class="col-md-3">
 								<div class="position-relative form-group">
 
-									<label for="image" class="">Image</label><input
+									<label for="image" class="">Profile Picture</label><input
 										name="imagePart" id="image" type="file" class="form-control">
 									<p class="error">
 										<c:out value="${errors.image}" />
@@ -152,12 +147,12 @@
 						</div>
 
 						<div class="form-row">
-							<h1>Contacts</h1>
+							<h3>Contact Details</h3>
 						</div>
 						<div class="form-row">
 							<div class="col-md-3">
 								<div class="position-relative form-group">
-									<label for="codePostal" class="">Code postal</label><input
+									<label for="codePostal" class="">Zipcode</label><input
 										name="codePostal" id="codePostal" placeholder="Code postale"
 										type="text" class="form-control"
 										value="${personne.codePostal}">
@@ -168,7 +163,7 @@
 							</div>
 							<div class="col-md-3">
 								<div class="position-relative form-group">
-									<label for="telephone" class="">Telephone</label><input
+									<label for="telephone" class="">Mobile number</label><input
 										name="telephone" id="telephone"
 										placeholder="Numéro de telephone" type="text"
 										class="form-control" value="${personne.telephone}">
@@ -190,12 +185,12 @@
 						</div>
 
 						<div class="form-row">
-							<h1>Informations sociales</h1>
+							<h3>Social Information</h3>
 						</div>
 						<div class="form-row">
 							<div class="col-md-3">
 								<div class="position-relative form-group">
-									<label for="travaille" class="">Travaille</label><input
+									<label for="travaille" class="">Work</label><input
 										name="travaille" id="travaille" placeholder="Travaille"
 										type="text" class="form-control" value="${personne.travaille}">
 									<p class="error">
@@ -206,19 +201,19 @@
 						</div>
 						<div class="form-row">
 							<div class="col-md-6">
-								<label for="marie">Marié</label>
+								<label for="marie">Social Status</label>
 								<div class="card-body">
 									<div class="position-relative form-group">
 										<div>
 											<div class="custom-radio custom-control">
 												<input type="radio" id="mariee" value="OUI"
 													name="marieString" class="custom-control-input" checked><label
-													class="custom-control-label" for="mariee">Marié</label>
+													class="custom-control-label" for="mariee">Married</label>
 											</div>
 											<div class="custom-radio custom-control">
 												<input type="radio" id="celib" value="NON" name="marieString"
 													class="custom-control-input"><label
-													class="custom-control-label" for="celib">Célibataire</label>
+													class="custom-control-label" for="celib">Single</label>
 											</div>
 										</div>
 										<p class="error">
@@ -229,7 +224,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									<label for="nombreEnfant" class="">Nombre d'enfants</label><input
+									<label for="nombreEnfant" class="">Children Number</label><input
 										name="nombreEnfant" id="nombreEnfant"
 										placeholder="Nombre d'enfants" type="number"
 										class="form-control" value="${personne.nombreEnfant}">
@@ -240,7 +235,18 @@
 							</div>
 						</div>
 					</div>
-					<button class="mt-2 btn btn-primary col-md-12" type="submit">Valider</button>
+					<div class="row">
+						<div class="col-md-3 col-sm-3">
+						</div>
+						<div class="col-md-3 col-sm-3">
+							<a href="/admin/ressources" class="col-md-12 btn btn-danger">Cancel</a>
+						</div>
+						<div class="col-md-3 col-sm-3">
+							<button class="mt-2 btn btn-success col-md-12" type="submit">Add Team</button>
+						</div>
+						<div class="col-md-3 col-sm-3">
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

@@ -7,7 +7,7 @@
 		<div class="blog-details">
 			<div class="gallary-header text-center">
 				<h2>latest news</h2>
-				<p>Travel News from all over the world</p>
+				<p>At Wie Batouta, we take the hassle out of travel planning. Our dedicated team meticulously selects flights and hotels with competitive prices, ensuring that every aspect of your journey is taken care of. From accommodation to transportation, we've got you covered. With Wie Batouta, you can embark on your adventure worry-free, knowing that you're getting the best value for your investment.</p>
 			</div>
 			<!--/.gallery-header-->
 			<div class="blog-content">

@@ -4,8 +4,8 @@
 <div class="container">
 
 	<div class="gallary-header text-center">
-		<h2>Nos equipes</h2>
-		<p>Ici vous trouverez nos meilleurs guides touristiques dans nos voyages</p>
+		<h2>Our Teams</h2>
+		<p>Our Wie Batouta traveling teams are the heart and soul of our mission. Comprising experienced and passionate individuals, they are dedicated to curating exceptional journeys for our community. With extensive knowledge of diverse destinations, they serve as invaluable guides, offering insights, recommendations, and a deep understanding of local cultures. Rest assured, our teams are committed to providing you with unforgettable experiences and ensuring that every aspect of your trip is seamless and enjoyable.</p>
 
 	</div>
 	<!--/.gallery-header-->

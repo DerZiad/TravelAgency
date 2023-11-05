@@ -14,9 +14,8 @@
 							style="color: red;"> </i>
 					</div>
 					<div>
-						Votre tableau bord
-						<div class="page-title-subheading">Les détails généraux en
-							ce qui concerne votre projet</div>
+						Dashboard
+						<div class="page-title-subheading">Welcome to the Wie Batouta Admin Panel. This powerful tool empowers you to manage every aspect of the Wie Batouta platform with ease and precision. From overseeing reservations to optimizing user experiences, the Admin Panel puts you in control. Stay informed, make strategic decisions, and ensure seamless operations to provide exceptional travel experiences for our community. Unlock the full potential of Wie Batouta with this dynamic hub.</div>
 					</div>
 				</div>
 			</div>
@@ -26,9 +25,8 @@
 				<div class="card mb-3 widget-content bg-midnight-bloom">
 					<div class="widget-content-wrapper text-white">
 						<div class="widget-content-left">
-							<div class="widget-heading">Nombre de voyages</div>
-							<div class="widget-subheading">Le nombre de voyages non
-								effectués</div>
+							<div class="widget-heading">Travels Number</div>
+							<div class="widget-subheading">Upcoming Future Travel Count</div>
 						</div>
 						<div class="widget-content-right">
 							<div class="widget-numbers text-white">
@@ -42,8 +40,7 @@
 				<div class="card mb-3 widget-content bg-arielle-smile">
 					<div class="widget-content-wrapper text-white">
 						<div class="widget-content-left">
-							<div class="widget-heading">Nombre d'equipes</div>
-							<div class="widget-subheading">Nombre d'equipes disponibles</div>
+							<div class="widget-heading">Teams Number</div>
 						</div>
 						<div class="widget-content-right">
 							<div class="widget-numbers text-white">
@@ -57,8 +54,8 @@
 				<div class="card mb-3 widget-content bg-grow-early">
 					<div class="widget-content-wrapper text-white">
 						<div class="widget-content-left">
-							<div class="widget-heading">Nombre de reservations</div>
-							<div class="widget-subheading">Nombre de reservations payés</div>
+							<div class="widget-heading">Reservations Number</div>
+							<div class="widget-subheading">Count of the paid reservation</div>
 						</div>
 						<div class="widget-content-right">
 							<div class="widget-numbers text-white">
@@ -90,7 +87,7 @@
 					<div class="card-header-tab card-header-tab-animation card-header">
 						<div class="card-header-title">
 							<i class="header-icon lnr-apartment icon-gradient bg-love-kiss">
-							</i> Visualisation des pays plus visités
+							</i> The most visited Countries
 						</div>
 					</div>
 					<div class="card-body">
@@ -112,83 +109,10 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6 col-xl-4">
-				<div class="card mb-3 widget-content">
-					<div class="widget-content-outer">
-						<div class="widget-content-wrapper">
-							<div class="widget-content-left">
-								<div class="widget-heading">Total Orders</div>
-								<div class="widget-subheading">Last year expenses</div>
-							</div>
-							<div class="widget-content-right">
-								<div class="widget-numbers text-success">1896</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-xl-4">
-				<div class="card mb-3 widget-content">
-					<div class="widget-content-outer">
-						<div class="widget-content-wrapper">
-							<div class="widget-content-left">
-								<div class="widget-heading">Products Sold</div>
-								<div class="widget-subheading">Revenue streams</div>
-							</div>
-							<div class="widget-content-right">
-								<div class="widget-numbers text-warning">$3M</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-xl-4">
-				<div class="card mb-3 widget-content">
-					<div class="widget-content-outer">
-						<div class="widget-content-wrapper">
-							<div class="widget-content-left">
-								<div class="widget-heading">Followers</div>
-								<div class="widget-subheading">People Interested</div>
-							</div>
-							<div class="widget-content-right">
-								<div class="widget-numbers text-danger">45,9%</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-				<div class="card mb-3 widget-content">
-					<div class="widget-content-outer">
-						<div class="widget-content-wrapper">
-							<div class="widget-content-left">
-								<div class="widget-heading">Income</div>
-								<div class="widget-subheading">Expected totals</div>
-							</div>
-							<div class="widget-content-right">
-								<div class="widget-numbers text-focus">$147</div>
-							</div>
-						</div>
-						<div class="widget-progress-wrapper">
-							<div class="progress-bar-sm progress-bar-animated-alt progress">
-								<div class="progress-bar bg-info" role="progressbar"
-									aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"
-									style="width: 54%;"></div>
-							</div>
-							<div class="progress-sub-label">
-								<div class="sub-label-left">Expenses</div>
-								<div class="sub-label-right">100%</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-md-12">
 				<div class="main-card mb-3 card">
 					<div class="card-header">
-						Les equipes les plus bien
+						Recommended Teams
 					</div>
 					<div class="table-responsive">
 						<table

@@ -7,7 +7,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Add Voyage</h4>
+				<h4 class="modal-title">Add Travel</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
@@ -34,7 +34,7 @@
 				</div>
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Type voyage</label> <select class="form-control"
+						<label>Travel Type</label> <select class="form-control"
 							name="typeVoyage">
 							<c:forEach items="${typeVoyages}" var="type">
 								<option value="${type}">${type}</option>
@@ -43,30 +43,30 @@
 						<p id="typeVoyageError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Reduction </label> <input type="number"
+						<label>Discount </label> <input type="number"
 							class="form-control" name="reduction" required />
 						<p id="typeVoyageError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Nombre personne total</label> <input type="number"
+						<label>Total Number of Participants</label> <input type="number"
 							class="form-control" name="nbrPersonnes" required />
 					</div>
 					<div class="col-md-6">
-						<label>Nombre kilomètres</label> <input type="number"
+						<label>Kilometers Number</label> <input type="number"
 							class="form-control" name="nbKilometres" required />
 						<p id="nbKilometresError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Age minimal</label> <input type="number"
+						<label>Minimal Age</label> <input type="number"
 							class="form-control" name="ageMin" required />
 						<p id="ageMinError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Age maximal</label><input type="number"
+						<label>Maximal Age</label><input type="number"
 							class="form-control" name="ageMax" required />
 						<p id="ageMaxError" class="error"></p>
 					</div>
@@ -74,20 +74,20 @@
 
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Date départ</label> <input type="date" class="form-control"
+						<label>Depart Date</label> <input type="date" class="form-control"
 							name="dateDepartDate"
 							min="<%=new java.sql.Date(System.currentTimeMillis())%>"
 							placeholder="<%=new java.sql.Date(System.currentTimeMillis())%>" />
 						<p id="dateDepartError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Date arrivée</label> <input type="date"
+						<label>Arrived Date</label> <input type="date"
 							class="form-control" id="dr" name="dateArriveeDate" required />
 						<p id="dateArriveeError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label>Equipe</label> <select class="form-control" name="idequipe"></select>
+					<label>Team</label> <select class="form-control" name="idequipe"></select>
 					<p id="equipeError" class="error"
 						></p>
 				</div>
@@ -112,7 +112,7 @@
 			<input type="hidden" name="idVoyageEdit" value=""/>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>Titre</label> <input type="text" class="form-control"
+					<label>Title</label> <input type="text" class="form-control"
 						name="titreEdit" required>
 					<p id="titreError" class="error"></p>
 				</div>
@@ -127,7 +127,7 @@
 					<p id="descriptionError" class="error"></p>
 				</div>
 				<div class="form-group">
-					<label>Prix</label> <input type="number" class="form-control"
+					<label>Price</label> <input type="number" class="form-control"
 						name="prixEdit" required>
 					<p id="prixError" class="error"></p>
 				</div>
@@ -142,30 +142,30 @@
 						<p id="typeVoyageError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Reduction </label> <input type="number"
+						<label>Discount </label> <input type="number"
 							class="form-control" name="reductionEdit" required />
 						<p id="reductionError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Nombre personne total</label> <input type="number"
+						<label>Total Number of Participant</label> <input type="number"
 							class="form-control" name="nbrPersonnesEdit" required />
 					</div>
 					<div class="col-md-6">
-						<label>Nombre kilomètres</label> <input type="number"
+						<label>Kilometers Number</label> <input type="number"
 							class="form-control" name="nbKilometresEdit" required />
 						<p id="nbKilometresError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Age minimal</label> <input type="number"
+						<label>Minimal Age</label> <input type="number"
 							class="form-control" name="ageMinEdit" required />
 						<p id="ageMinError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Age maximal</label><input type="number"
+						<label>Maximal Age</label><input type="number"
 							class="form-control" name="ageMaxEdit" required />
 						<p id="ageMaxError" class="error"></p>
 					</div>
@@ -173,18 +173,18 @@
 
 				<div class="form-row">
 					<div class="col-md-6">
-						<label>Date départ</label> <input type="date" class="form-control"
+						<label>Depart Date</label> <input type="date" class="form-control"
 							name="dateDepartDateEdit" required />
 						<p id="dateDepartError" class="error"></p>
 					</div>
 					<div class="col-md-6">
-						<label>Date arrivée</label> <input type="date"
+						<label>Arrived Date</label> <input type="date"
 							class="form-control" name="dateArriveeDateEdit" required />
 						<p id="dateArriveeError" class="error"></p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label>Equipe</label> <select class="form-control"
+					<label>Team</label> <select class="form-control"
 						name="idequipeEdit"></select>
 					<p id="equipeErrorEdit" class="error"></p>
 				</div>

@@ -37,14 +37,14 @@
 
 		function drawChart() {
 			var data = google.visualization.arrayToDataTable([
-				[ 'Pays', 'Réservations faites'],
-				[ 'Réservé avec confirmation', ${reservationsdonenumber}],
-				[ 'Réservé sans confirmation', ${reservationsnotdonenumber}]]);
+				[ 'Pays', 'Reservations Confirmed'],
+				[ 'Confirmed Reservation', ${reservationsdonenumber}],
+				[ 'Not Confirmed Reservation', ${reservationsnotdonenumber}]]);
 
 			var options = {
 				chart : {
-					title : 'Statistique des etudiants',
-					subtitle : 'Validé, ratrappage et non validé pour cette periode',
+					title : 'Reservations Chart',
+					subtitle : 'Here, you\'ll find a chart displaying all reservations, categorized by whether they have confirmed the reservation or not, based on the respective country.',
 				}
 			};
 
@@ -144,78 +144,37 @@
 				<div class="scrollbar-sidebar">
 					<div class="app-sidebar__inner">
 						<ul class="vertical-nav-menu">
-							<li class="app-sidebar__heading">Accueil</li>
+							<li class="app-sidebar__heading">WIEBATOUTA Admin Panel</li>
 							<li><a href="/admin" class="${dashboard}"> <i
-									class="metismenu-icon pe-7s-rocket"></i> Tableau de bords
+									class="metismenu-icon pe-7s-rocket"></i> Dashboard
 							</a></li>
-							<li><a href="#" aria-expanded="false"> <i
-									class="metismenu-icon pe-7s-id"></i> Lieux <i
-									class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-							</a>
-								<ul class="mm-collapse" style="height: 7.04px;">
-									<li><a href="/admin/lieux"
-										   class="${lieuAjout}"> <i
-											class="metismenu-icon pe-7s-graph3"></i> Ajouter Lieux
-									</a></li>
 
-								</ul></li>
-							<li><a href="#" aria-expanded="false"> <i
-									class="metismenu-icon pe-7s-id"></i> Themes <i
-									class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-							</a>
-								<ul class="mm-collapse" style="height: 7.04px;">
-									<li><a href="/admin/theme"
-										   class="${themeAjout}"> <i
-											class="metismenu-icon pe-7s-graph3"></i> Ajouter Theme du Voyage
-									</a></li>
+							<li><a href="/admin/lieux" class="${lieuAjout}"> <i
+									class="metismenu-icon pe-7s-rocket"></i> Destinations
+							</a></li>
 
-								</ul></li>
-							<li><a href="#" aria-expanded="false"> <i
-									class="metismenu-icon pe-7s-id"></i> Hotel <i
-									class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-							</a>
-								<ul class="mm-collapse" style="height: 7.04px;">
-									<li><a href="/admin/hotel"
-										   class="${hotelActive}"> <i
-											class="metismenu-icon pe-7s-graph3"></i> Gérer hotel
-									</a></li>
-								</ul></li>
+							<li><a href="/admin/theme" class="${themeAjout}"> <i
+									class="metismenu-icon pe-7s-rocket"></i> Topics
+							</a></li>
 
-							<li><a href="#" aria-expanded="false"> <i
-									class="metismenu-icon pe-7s-id"></i> Voyage <i
-									class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-							</a>
-								<ul class="mm-collapse" style="height: 7.04px;">
-									<li><a href="/admin/voyage"
-										   class="${voyage}"> <i
-											class="metismenu-icon pe-7s-graph3"></i> Gérer Voyage
-									</a></li>
-								</ul></li>
-							<li><a href="#" aria-expanded="false"> <i
-									class="metismenu-icon pe-7s-id"></i> Reservation <i
-									class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-							</a>
-								<ul class="mm-collapse" style="height: 7.04px;">
-									<li><a href="/admin/reservation"
-										   class="${reservationAjout}"> <i
-											class="metismenu-icon pe-7s-graph3"></i>Liste des Reservations
-									</a></li>
+							<li><a href="/admin/hotel" class="${hotelActive}"> <i
+									class="metismenu-icon pe-7s-rocket"></i> Hotels
+							</a></li>
 
-								</ul></li>
+							<li><a href="/admin/voyage" class="${voyage}"> <i
+									class="metismenu-icon pe-7s-rocket"></i> Travels
+							</a></li>
 
+							<li><a href="/admin/reservation" class="${reservationAjout}"> <i
+									class="metismenu-icon pe-7s-rocket"></i> Reservations
+							</a></li>
 
-							<li><a href="#" aria-expanded="false"> <i
-									class="metismenu-icon pe-7s-id"></i> Ressources humaines <i
-									class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-							</a>
-								<ul class="mm-collapse" style="height: 7.04px;">
-									<li><a href="/admin/ressources"
-										   class="${ressourceHumaine}"> <i
-											class="metismenu-icon pe-7s-graph3"></i> Ajouter ressource humairne
-									</a></li>
-								</ul></li>
-							<li><a href="/admin/historiques" class="${historiques}"> <i
-									class="metismenu-icon pe-7s-rocket"></i> Historiques
+							<li><a href="/admin/ressources" class="${ressourceHumaine}"> <i
+									class="metismenu-icon pe-7s-rocket"></i> Human Resources
+							</a></li>
+
+							<li><a href="/admin/historiques" class="${pathhistory}"> <i
+									class="metismenu-icon pe-7s-rocket"></i> Actions History
 							</a></li>
 						</ul>
 					</div>

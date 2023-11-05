@@ -11,7 +11,7 @@
 				<h5 class="card-title"></h5>
 				<div class="row">
 					<div class="col-md-6">
-						<a class="btn btn-success" href="/admin/ressources/add">Add</a>
+						<a class="btn btn-success" href="/admin/ressources/add">Add New Team</a>
 					</div>
 					<div class="col-md-6"></div>
 				</div>
@@ -19,7 +19,7 @@
 		</div>
 		<div class="main-card mb-3 card">
 			<div class="card-body">
-				<h5 class="card-title">Liste des équipes</h5>
+				<h5 class="card-title">Our Teams</h5>
 				<table class="mb-0 table table-striped">
 					<thead>
 						<tr>

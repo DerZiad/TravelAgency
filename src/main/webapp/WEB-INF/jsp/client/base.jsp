@@ -69,7 +69,7 @@
 										<li class="smooth-menu"><a href="#pack">Packages </a></li>
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown">Themes <b class="caret"></b></a>
+											data-toggle="dropdown">Topics <b class="caret"></b></a>
 											<ul class="dropdown-menu"></ul>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
 									</c:if>

@@ -31,7 +31,7 @@ import ma.wiebatouta.repositories.PictureRepository;
 public class HotelController {
 	
 	private final static String PATH_HOTEL = "admin/hotel/index";
-	private final static String ADD_PICTURE = "hotel/picture";
+	private final static String ADD_PICTURE = "admin/hotel/picture";
 	
 	private final static String ATTRIBUT_TYPES = "types";
 	private final static String ATTRIBUT_ID_HOTEL = "idHotel";

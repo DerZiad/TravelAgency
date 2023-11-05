@@ -9,13 +9,13 @@
 
 		<div class="main-card mb-3 card">
 			<div class="card-body">
-				<h5 class="card-title">Liste des historiques</h5>
-				<a class="btn btn-success" href="/admin/historiques/vider">Vider</a>
+				<h5 class="card-title">History</h5>
+				<a class="btn btn-danger" href="/admin/historiques/vider">Empty</a>
 				<table class="mb-0 table table-striped">
 					<thead>
 						<tr>
 							<th>Date</th>
-							<th>Historique</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>

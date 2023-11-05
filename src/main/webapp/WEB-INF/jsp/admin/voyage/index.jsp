@@ -11,13 +11,13 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<h2>
-							Manage your <b>voyages</b> here
+							Manage your <b>travels</b> here
 						</h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success"
 							data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add
-								New Voyage</span></a> <a href="#deleteEmployeeModale"
+								New Travel</span></a> <a href="#deleteEmployeeModale"
 							class="btn btn-danger" data-toggle="modal"><i
 							class="material-icons">&#xE15C;</i> <span>Delete</span></a>
 					</div>
@@ -35,21 +35,19 @@
 
 
 						<th data-field="Titre" data-filter-control="input"
-							data-sortable="true">Titre</th>
+							data-sortable="true">Title</th>
 						<th data-field="Destination" data-filter-control="input"
 							data-sortable="true">Destination</th>
 						<th data-field="Date-depart" data-filter-control="select"
-							data-sortable="true">Date départ</th>
+							data-sortable="true">Depart Date</th>
 						<th data-field="Date-arrivee" data-filter-control="select"
-							data-sortable="true">Date arrivée</th>
+							data-sortable="true">Arrived Date</th>
 						<th data-field="Description" data-filter-control="input"
 							data-sortable="true">Description</th>
-						<th data-field="Nombre-personnes-inscrits" data-sortable="true">Nombre
-							personnes inscrits</th>
-						<th data-field="Nombre-personnes-totale" data-sortable="true">Nombre
-							personnes totale</th>
-						<th data-field="Prix" data-sortable="true">Prix</th>
-						<th data-field="Reduction" data-sortable="true">Reduction</th>
+						<th data-field="Nombre-personnes-inscrits" data-sortable="true">Number of registered participants</th>
+						<th data-field="Nombre-personnes-totale" data-sortable="true">Total number of participants</th>
+						<th data-field="Prix" data-sortable="true">Price</th>
+						<th data-field="Reduction" data-sortable="true">Discount</th>
 						<th>Actions</th>
 					</tr>
 				</thead>

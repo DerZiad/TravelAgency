@@ -50,7 +50,7 @@
 
 				<div class="service-counter text-center">
 
-					<div class="col-md-4 col-sm-4">
+					<div class="col-md-6 col-sm-6">
 						<div class="single-service-box">
 							<div class="service-img">
 								<img src="/assets/images/service/s1.png" alt="service-icon" />
@@ -60,8 +60,7 @@
 								<h2>
 									<a href="#"> amazing tour packages </a>
 								</h2>
-								<p>Duis aute irure dolor in velit esse cillum dolore eu
-									fugiat nulla.</p>
+								<p>Welcome to Wie Batouta, where we celebrate the transformative power of travel. We believe that venturing beyond familiar boundaries sparks creativity, cultivates empathy, and fosters personal growth. Through Wie Batouta, we aim to inspire wanderlust, providing resources, tips, and stories to help you embark on your own enriching journeys. Join us in discovering the world and unlocking the potential within yourself.</p>
 							</div>
 							<!--/.service-content-->
 						</div>
@@ -69,7 +68,7 @@
 					</div>
 					<!--/.col-->
 
-					<div class="col-md-4 col-sm-4">
+					<div class="col-md-6 col-sm-6">
 						<div class="single-service-box">
 							<div class="service-img">
 								<img src="/assets/images/service/s2.png" alt="service-icon" />
@@ -79,28 +78,7 @@
 								<h2>
 									<a href="#"> book top class hotel </a>
 								</h2>
-								<p>Duis aute irure dolor in velit esse cillum dolore eu
-									fugiat nulla.</p>
-							</div>
-							<!--/.service-content-->
-						</div>
-						<!--/.single-service-box-->
-					</div>
-					<!--/.col-->
-
-					<div class="col-md-4 col-sm-4">
-						<div class="single-service-box">
-							<div class="statistics-img">
-								<img src="/assets/images/service/s3.png" alt="service-icon" />
-							</div>
-							<!--/.service-img-->
-							<div class="service-content">
-
-								<h2>
-									<a href="#"> online flight booking </a>
-								</h2>
-								<p>Duis aute irure dolor in velit esse cillum dolore eu
-									fugiat nulla.</p>
+								<p>At Wie Batouta, we're dedicated to helping you find the perfect accommodations for your travels. We carefully curate a selection of hotels that offer both quality and affordability, ensuring that you have a comfortable and memorable stay without breaking the bank. Trust us to guide you to the best options for your trip.</p>
 							</div>
 							<!--/.service-content-->
 						</div>
@@ -123,8 +101,7 @@
 				<div class="gallery-details">
 					<div class="gallary-header text-center">
 						<h2>top destination</h2>
-						<p>Duis aute irure dolor in velit esse cillum dolore eu fugiat
-							nulla.</p>
+						<p>Traveling the world broadens horizons, opening minds to new cultures, landscapes, and perspectives. Embracing change through exploration fosters personal growth, enriching the soul. Embrace the unknown, for it holds the key to self-discovery and a deeper understanding of our global community.</p>
 					</div>
 					<!--/.gallery-header-->
 					<div class="gallery-box">

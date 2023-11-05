@@ -38,10 +38,10 @@ import ma.wiebatouta.repositories.VoyageRepository;
 public class VoyageController {
 
 	private final static String PATH_INDEX_VOYAGE = "admin/voyage/index";
-	private final static String ADD_PICTURE = "voyage/picture";
-	private final static String ADD_LIEUX = "voyage/lieux";
-	private final static String ADD_HOTELES = "voyage/hoteles";
-	private final static String ADD_THEMES = "voyage/themes";
+	private final static String ADD_PICTURE = "admin/voyage/picture";
+	private final static String ADD_LIEUX = "admin/voyage/lieux";
+	private final static String ADD_HOTELES = "admin/voyage/hoteles";
+	private final static String ADD_THEMES = "admin/voyage/themes";
 	private final static String ATTRIBUT_TYPES = "types";
 	private final static String ATTRIBUT_ID_VOYAGE = "idVoyage";
 	private final static String ATTRIBUT_PICTURES = "pictures";
@@ -77,6 +77,7 @@ public class VoyageController {
 	@GetMapping
 	public ModelAndView getPageIndexVoyage() {
 		ModelAndView model = new ModelAndView(PATH_INDEX_VOYAGE);
+		model.addObject(DesignAttributes.ACTIVE_VOYAGE, DesignAttributes.ACTIVE);
 		model.addObject(ATTRIBUT_TYPES_VOYAGES,TypeVoyage.values());
 		return model;
 	}
